@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ezen.team.mapper.admin.AdminMapper">
+
+<!-- 관리자 등록 -->
+<insert id="adminRegister">
+insert into admin_master values(
+#{adm_id}, #{adm_nm}, #{adm_vnm}, #{adm_pw}, #{emp_id}, #{use_yn},
+#{proc_dt}, #{mod_dt}, #{exp_dt}, #{proc_id}, #{mod_id}, #{exp_id},#{role}
+);
+</insert>
+
+<!-- 검색한 관리자의 사번 가져오기 -->
+<select id="getEmp" resultType="EmpDTO">
+select emp_id, emp_nm from emp_info where emp_nm = #{name}
+</select>
+
+<!-- 관리자 권한 코드 가져오기 -->
+<select id="getAdminRole" resultType="hashmap">
+select * from cmmn_cd where cm_cd = '990';
+</select>
+
+<!-- 사용구분 코드 가져오기 -->
+<select id="getUseCode" resultType="hashmap">
+select * from cmmn_cd where cm_cd = '200';
+</select>
+
+
+<!-- 관리자 리스트 가져오기 -->
+<select id="getAdminList" resultType="hashmap">
+select * from admin_master
+</select>
+
+<!-- 관리자 삭제 -->
+<delete id="adminDelete">
+delete from admin_master where adm_id = #{id}
+</delete>
+
+<!-- 수정할 관리자 정보 가져오기 -->
+<select id="getAdminInfo" resultType="AdminDTO">
+select * from admin_master where adm_id = #{id}
+</select>
+
+<!-- 관리자 정보 수정하기 -->
+<update id="adminUpdate">
+
+update admin_master set adm_vnm = #{adm_vnm}, adm_pw = #{adm_pw}, role = #{role},
+use_yn = #{use_yn} where adm_id = #{adm_id}
+
+
+</update>
+
+</mapper>
