@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 상품 리스트 페이지 -->
 
@@ -44,7 +44,7 @@
 						<th>${pdto.proc_id}</th>
 						<th>${pdto.proc_dt}</th>
 						<th>${pdto.mod_dt}</th>
-						<td><a href="" class="btn btn-info">수정</a></td>
+						<td><a href="<c:url value="/product/prodUpdate?prod_no=${pdto.prod_no}"/>" class="btn btn-info">수정</a></td>
 						<td><a href="" class="btn btn-dark">삭제</a></td>
 					</tr>
 					</c:forEach>

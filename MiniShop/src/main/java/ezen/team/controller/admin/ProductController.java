@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -85,6 +86,31 @@ public class ProductController {
 		return "/admin/monthlyProd";
 	}
 	
+	// 상품 수정 페이지 이동
+	@GetMapping("/prodUpdate")
+	public String prodUpdate(@RequestParam("prod_no") String no,Model model) {
+		
+		// 상품등록 페이지에 카테고리 띄우기
+		List<CategoryDTO> cList = categoryService.catList();
+		
+		ProductDTO pdto = productService.prodListByNo(no);
+		
+		model.addAttribute("pdto",pdto);
+		model.addAttribute("cList",cList);
+		
+		return "/admin/prodUpdate";
+	}
+	
+	// 상품 수정 처리
+	@PostMapping("prodUpdate")
+	public String prodUpdate(MultipartHttpServletRequest mhr, HttpServletRequest rq) throws Exception {
+		
+		productService.prodUpdate(mhr,rq);
+
+		
+		return "redirect:/product/prodList";
+	}
+		
 	
 	
 	
