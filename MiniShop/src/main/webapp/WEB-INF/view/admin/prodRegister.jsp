@@ -35,12 +35,13 @@
 				</tr>
 				<tr>
 					<td>상품이미지</td>
-					<td><input type="button"
-						class="form-control btn btn-secondary w-50" type="text"
-						value="파일 업로드" />
-						<div id="div-file">
-							<input type="file" class="form-control w-50" name="main_img" id="main_img" onchange="preViewImg(this)"/><img />
-						</div></td>
+					<td><input type="button" class="form-control btn btn-secondary w-50" 
+             	  type="text" value="파일 업로드" onclick="fileAppend();"/>
+             	  	                  
+                  <div id="div-file">
+  
+                  
+                  </div></td>
 				</tr>
 
 
@@ -97,9 +98,6 @@
 							<option value="N">N</option>
 					</select></td>
 				</tr>
-
-
-
 				<tr>
 					<td colspan="2" class="text-center"><input type="submit"
 						class="btn btn-sm btn-primary" value="상품등록" /> <a
@@ -112,13 +110,12 @@
 </div>
 
 <script>	
-/*
+
 function fileAppend(){
-  var fileElement ='<input type="file" class="form-control w-50" name="main_img" id="main_img" onchange="preViewImg(this)"/><img />';
-  var fileDelete =  '<button type="button" class="btn-close border bg-danger" style="display:block; position:relative; left:100%; top:-55px;" onclick="delInput(this)"></button>';
+  var fileElement ='<input type="file" class="form-control w-50" name="main_img" id="main_img" onchange="preViewImg(this)"/><img />'
+  +'<button type="button" class="btn-close border bg-danger" style="display:none; position:relative; left:-24px; top:-30px;" onclick="delInput(this)"></button>';
   
-  $("#div-file").append(fileElement);
-  $("#div-file").append(fileDelete);
+  $("#div-file").append(fileElement).one();
   
 } 
 
@@ -136,7 +133,7 @@ function delInput(obj){
   imgTag.style.display="none";
   obj.style.display="none";
 }
-*/
+
 function preViewImg(obj){
   console.log(obj.files)
   
@@ -154,6 +151,7 @@ function preViewImg(obj){
         imgTag.height=100;
         // e.target(이벤트가 발생한 대상) == fileReader
         imgTag.src = e.target.result; // 파일을 읽어온 결과값(바이너리)
+        btnTag.style.display="";// button 보이게함.
      }
      // 파일의 종류를 크게 두가지로 분류
      // i) 바이너리 파일 : 데이터를 있는 그대로 읽고 쓰는 파일

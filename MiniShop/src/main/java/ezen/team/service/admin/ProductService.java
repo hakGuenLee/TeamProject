@@ -17,4 +17,8 @@ public interface ProductService {
 	//상품 리스트
 	List<ProductDTO> prodList();
 
+	ProductDTO prodListByNo(String no);
+
+	void prodUpdate(MultipartHttpServletRequest mhr, HttpServletRequest rq) throws Exception;
+
 }

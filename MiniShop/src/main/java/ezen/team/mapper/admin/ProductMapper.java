@@ -16,4 +16,8 @@ public interface ProductMapper {
 
 	List<ProductDTO> prodList();
 
+	ProductDTO getListByNo(String no);
+
+	void prodUpdate(Map map);
+
 }
