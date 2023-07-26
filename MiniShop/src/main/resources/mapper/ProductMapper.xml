@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ezen.team.mapper.admin.ProductMapper">
+
+<!-- 상품 등록 -->
+	<insert id="prodRegister" parameterType="Map">
+		INSERT INTO prod_master( ctgry_no, prod_nm , main_img , price , point, qty, dc_price, proc_id)
+		VALUES( #{ctgry_no}, #{prod_nm} , #{main_img} , #{price} , #{point} , #{qty} , #{dc_price} , 'manager' )
+	</insert>
+
+<!-- 상품 리스트 -->
+	<select id="prodList" resultType="ProductDTO">
+	SELECT * FROM prod_master
+	</select>
+
+</mapper>

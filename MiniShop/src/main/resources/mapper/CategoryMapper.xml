@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ezen.team.mapper.admin.CategoryMapper">
+
+<!-- 카테고리 리스트 가져오기 -->
+<select id="catList" resultType="CategoryDTO">
+SELECT * FROM ctgry_mng
+</select>
+
+<!-- 수정 할 카테고리 정보 가져오기 ( no )  -->
+<select id="catListByNo" resultType="CategoryDTO">
+SELECT * FROM ctgry_mng
+WHERE ctgry_no = #{no}
+</select>
+
+
+<!-- 카테고리 등록 -->
+<insert id="catRegister">
+
+INSERT INTO ctgry_mng(ct_cd1, ct_nm1, ct_seq1, ct_cd2, ct_nm2, ct_seq2, proc_id)
+VALUES (#{ct_cd1}, #{ct_nm1}, #{ct_seq1}, #{ct_cd2}, #{ct_nm2}, #{ct_seq2} , 'manager')
+
+</insert>
+
+<!-- 카테고리 수정 처리  -->
+<update id="catUpdate">
+UPDATE ctgry_mng SET
+ct_cd1 = #{ct_cd1} ,
+ct_nm1 = #{ct_nm1} ,
+ct_seq1 = #{ct_seq1} ,
+ct_cd2 = #{ct_cd2} ,
+ct_nm2 = #{ct_nm2} ,
+ct_seq2 = #{ct_seq2} ,
+use_yn = #{use_yn}
+WHERE ctgry_no = #{ctgry_no}
+</update>
+
+
+
+
+</mapper>
