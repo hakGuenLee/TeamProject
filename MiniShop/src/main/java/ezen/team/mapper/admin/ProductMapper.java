@@ -20,4 +20,6 @@ public interface ProductMapper {
 
 	void prodUpdate(Map map);
 
+	void prodDelete(String no);
+
 }

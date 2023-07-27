@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void prodRegister(MultipartHttpServletRequest mhr, HttpServletRequest rq) throws Exception {
 		
-		String repo = "resources/upload";
+		String repo = "/resources/upload";
 
 		// 서버의 물리경로 얻어오기
 		String savePath = rq.getServletContext().getRealPath("") + File.separator + repo;
@@ -116,17 +116,19 @@ public class ProductServiceImpl implements ProductService {
 
 		return mapper.prodList();
 	}
-
+	
+	//상품 상세보기 정보
 	@Override
 	public ProductDTO prodListByNo(String no) {
 		
 		return mapper.getListByNo(no);
 	}
-
+	
+	//상품 수정 완료처리
 	@Override
 	public void prodUpdate(MultipartHttpServletRequest mhr, HttpServletRequest rq) throws Exception {
 
-		String repo = "resources/upload";
+		String repo = "/resources/upload";
 
 		// 서버의 물리경로 얻어오기
 		String savePath = rq.getServletContext().getRealPath("") + File.separator + repo;
@@ -222,6 +224,12 @@ public class ProductServiceImpl implements ProductService {
 		map.put("main_img", main_img);
 		
 		mapper.prodUpdate(map);
+	}
+
+	// 상품 삭제
+	@Override
+	public void prodDelete(String no) {
+		mapper.prodDelete(no);
 	}
 		
 	

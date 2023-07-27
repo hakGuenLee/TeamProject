@@ -38,10 +38,10 @@
         <a class="nav-link" href="<c:url value="/product/prodList"/>">상품 리스트</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<c:url value="/notice/noticeRegister"/>">공지/팝업 등록</a>
+        <a class="nav-link" href="<c:url value="/post/postRegister"/>">공지/팝업 등록</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<c:url value="/notice/noticeRegister"/>">공지/팝업 리스트</a>
+        <a class="nav-link" href="<c:url value="/post/postRegister"/>">공지/팝업 리스트</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<c:url value="/order/orderList"/>">회원 주문/배송조회</a>

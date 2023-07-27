@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ezen.team.mapper.admin.PostMapper">
+
+<!-- 상품 공지 등록  -->
+<insert id="postRegister">
+INSERT INTO post_mng (pst_gb, pst_ttl, wrt_id, strt_ymd, end_ymd, pst_img, pst_txt, pst_sts, req_id, aprv_id, req_dt)
+VALUES(#{pst_gb}, #{pst_ttl}, #{wrt_id}, #{strt_ymd}, #{end_ymd}, #{pst_img}, #{pst_txt}, '처리중', '윤학근' ,'SuperAdmin',now())
+</insert>
+
+<!-- 상품 리스트 가져오기 -->
+<select id="getList" resultType="PostDTO">
+SELECT * FROM post_mng
+</select>
+
+</mapper>
