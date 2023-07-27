@@ -31,9 +31,16 @@
 	point = #{point},
 	qty = #{qty},
 	dc_price = #{dc_price},
-	use_yn = #{use_yn}
+	use_yn = #{use_yn},
+	mod_dt = now()
 	WHERE prod_no = #{prod_no}
 	
 	</update>
+	
+	<!--  상품 삭제 -->
+	<delete id="prodDelete">
+	DELETE FROM prod_master
+	WHERE prod_no = #{prod_no}
+	</delete>
 
 </mapper>

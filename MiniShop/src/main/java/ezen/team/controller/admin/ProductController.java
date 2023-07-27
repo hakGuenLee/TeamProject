@@ -110,6 +110,15 @@ public class ProductController {
 		
 		return "redirect:/product/prodList";
 	}
+	
+	//상품 삭제
+	@GetMapping("prodDelete")
+	public String prodDelete(@RequestParam("prod_no") String no) {
+		
+		productService.prodDelete(no);
+		
+		return "redirect:/product/prodList";
+	}
 		
 	
 	

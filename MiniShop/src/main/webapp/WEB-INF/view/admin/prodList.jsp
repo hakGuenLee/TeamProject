@@ -45,7 +45,7 @@
 						<th>${pdto.proc_dt}</th>
 						<th>${pdto.mod_dt}</th>
 						<td><a href="<c:url value="/product/prodUpdate?prod_no=${pdto.prod_no}"/>" class="btn btn-info">수정</a></td>
-						<td><a href="" class="btn btn-dark">삭제</a></td>
+						<td><a href="<c:url value="/product/prodDelete?prod_no=${pdto.prod_no}"/>" class="btn btn-dark">삭제</a></td>
 					</tr>
 					</c:forEach>
 				</tbody>
