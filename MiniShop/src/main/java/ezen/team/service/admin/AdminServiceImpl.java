@@ -17,25 +17,7 @@ import ezen.team.mapper.admin.AdminMapper;
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
-	AdminMapper mapper;
-	
-	
-	//관리자 권한 코드 가져오기
-	@Override
-	public List<CommonCodeDTO> getAdminRole() {
-		
-		List<CommonCodeDTO> list = mapper.getAdminRole();
-		
-		return list;
-	}
-	
-	//사용구분 코드 가져오기
-	@Override
-	public List<CommonCodeDTO> getUseCode() {
-		List<CommonCodeDTO> list = mapper.getUseCode();
-		
-		return list;
-	}
+	AdminMapper mapper;	
 	
 	
 	//관리자 등록

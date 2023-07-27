@@ -97,7 +97,7 @@
 		</div>
 	</form>
 	<script>
- 	$(document).ready(function() {
+/*  	$(document).ready(function() {
 		//여기 아래 부분
 		$('#summernote').summernote({
 			  height: 300,                 // 에디터 높이
@@ -108,9 +108,9 @@
 			  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
 	          
 		});
-	}) 
-/* 	$(document).ready(function() {		 */
-/* 	$('#summernote').summernote({
+	})  */
+ 	$(document).ready(function() {		
+ 	$('#summernote').summernote({
 		  toolbar: [
 			    // [groupName, [list of button]]
 			    ['fontname', ['fontname']],
@@ -124,10 +124,11 @@
 			    ['view', ['fullscreen', 'help']]
 			  ],
 			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+			height: 300
 	  });
 	
-	}) */
+	}) 
 	</script>
 	<jsp:include page="../include/a_footer.jsp"/>
 	

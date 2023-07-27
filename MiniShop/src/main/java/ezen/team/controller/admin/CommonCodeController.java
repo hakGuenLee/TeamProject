@@ -26,14 +26,10 @@ public class CommonCodeController {
 	@ResponseBody
 	public List<CommonCodeDTO> getCode(@RequestParam("code") String code) {
 		
-		System.out.println("공통컨트롤러 코드 : " + code);
-		
+		//view에서 넘겨준 code값을 통해 공통코드 리스트 가져오기
 		List<CommonCodeDTO> codelist = service.getCode(code);
 		
-		System.out.println("코드리스트 : " + codelist);
-		
-		
-		
+
 		return codelist;
 	}
 

@@ -34,18 +34,15 @@
 			<div class="mt-3">
 			<p>권한 설정</p>
 			 <select class="form-select" id="role" name="role">
-				 <c:forEach var="list" items="${roleList}">
-				     <option>${list.item_nm}</option>
-				  </c:forEach>
+				     <option></option>
 			</select>
 			</div>
 			
 			<div class="mt-3">
 			<p>사용구분</p>
 			 <select class="form-select" id="use_yn" name="use_yn">
-				 <c:forEach var="usecode" items="${useCode}">
-				     <option>${usecode.item_nm}</option>
-				  </c:forEach>
+				     <option></option>
+
 			</select>
 			</div>
 			
@@ -58,6 +55,90 @@
 	</form>	
 					
 	<jsp:include page="../include/a_footer.jsp"/>
+	
+	
+	
+		<script>
+	
+	//관리자명 검색 시 사번 가져온 후, 사번 입력폼에 대입하는 함수
+	
+	
+	
+ $(document).ready(function(){
+		var codeNum = '990';
+		let str = "";
+		
+		let roleArea = $("#role"); //권한부여 영역
+
+ 		getCommonCode(codeNum, function(data){
+ 		console.log(data);
+ 		
+ 		let list = data;
+ 		
+ 		for(let i=0; i<list.length; i++){
+ 			str += ' <option value=' + list[i].item_cd+ '>'+list[i].item_nm+'</option>'
+ 		}
+ 		
+ 		roleArea.html(str);
+ 			
+ 		});
+		
+		
+		var codeNum = '200';
+		
+		
+		let str2 = "";
+		
+		let useArea = $("#use_yn"); //권한부여 영역
+
+ 		getCommonCode(codeNum, function(data){
+ 		console.log(data);
+ 		
+ 		let list = data;
+ 		
+ 		for(let i=0; i<list.length; i++){
+ 			str2 += ' <option value=' + list[i].item_cd+ '>'+list[i].item_nm+'</option>'
+ 		}
+ 		
+ 		useArea.html(str2);
+ 			
+ 		});
+	
+	
+	});
+	
+	//사번 검색
+	function empSearch(){
+		let empName = $("#adm_nm").val();
+ 				
+		
+	 	$.ajax({
+			url:"<c:url value='empSearch?name="+empName+"'/>", 
+			type : "get", //서버에 전송하기 위한 전송방식
+			dataType : "json", // 서버에서 응답하는 데이터 형식
+			success: 
+			function(data){
+				console.log(data)
+				$("#emp_id").val(data.emp_id)},
+			error : function(){alert("error!!")} //서버에서 요청 처리가 실패 됬을 경우
+			
+		}); 
+	}
+	
+
+	
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 </body>

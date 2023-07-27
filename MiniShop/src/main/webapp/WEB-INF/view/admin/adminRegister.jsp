@@ -46,9 +46,7 @@
 	
 			 <label for="sel1" class="form-label">사용 구분</label>
 			 <select class="form-select w-50" id="use_yn" name="use_yn">
-			    <c:forEach var="list" items="${usecode}">
-			      <option>${list.item_nm}</option>
-			     </c:forEach>
+			      <option></option>
 			 </select>
 			 </div>
 			 <div>
@@ -108,6 +106,8 @@
 	
  $(document).ready(function(){
 		var codeNum = '990';
+		
+		
 		let str = "";
 		
 		let roleArea = $("#role"); //권한부여 영역
@@ -123,7 +123,27 @@
  		
  		roleArea.html(str);
  			
- 	});
+ 		});
+		
+		var codeNum = '200';
+		
+		
+		let str2 = "";
+		
+		let useArea = $("#use_yn"); //권한부여 영역
+
+ 		getCommonCode(codeNum, function(data){
+ 		console.log(data);
+ 		
+ 		let list = data;
+ 		
+ 		for(let i=0; i<list.length; i++){
+ 			str2 += ' <option value=' + list[i].item_cd+ '>'+list[i].item_nm+'</option>'
+ 		}
+ 		
+ 		useArea.html(str2);
+ 			
+ 		});
 	
 	});
 	

@@ -17,17 +17,6 @@ insert into admin_master values(
 select emp_id, emp_nm from emp_info where emp_nm = #{name}
 </select>
 
-<!-- 관리자 권한 코드 가져오기 -->
-<select id="getAdminRole" resultType="hashmap">
-select * from cmmn_cd where cm_cd = '990';
-</select>
-
-<!-- 사용구분 코드 가져오기 -->
-<select id="getUseCode" resultType="hashmap">
-select * from cmmn_cd where cm_cd = '200';
-</select>
-
-
 <!-- 관리자 리스트 가져오기 -->
 <select id="getAdminList" resultType="hashmap">
 select * from admin_master

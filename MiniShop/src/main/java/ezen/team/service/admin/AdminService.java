@@ -14,13 +14,7 @@ public interface AdminService {
 	
 	//사번 검색
 	EmpDTO getEmpList(String name);
-	
-	//관리자 권한 코드 가져오기
-	List<CommonCodeDTO> getAdminRole();
-	
-	//사용구분 코드 가져오기
-	List<CommonCodeDTO> getUseCode();
-	
+
 	//관리자 리스트 가져오기
 	 List<AdminDTO> getAdminList();
 	 

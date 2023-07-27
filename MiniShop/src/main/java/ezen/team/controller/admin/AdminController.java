@@ -44,50 +44,30 @@ public class AdminController {
 	//관리자 등록 페이지 이동
 	@GetMapping("/adminRegister")
 	public String adminRegister(Model model) {
-		
-	//관리자 권한 코드 가져오기
-	List<CommonCodeDTO> list = adminservice.getAdminRole();
-	//사용구분 코드 가져오기
-	List<CommonCodeDTO> list2 = adminservice.getUseCode();
-
-	
-	model.addAttribute("roleList", list);	
-	model.addAttribute("usecode", list2);	
-	
-				
+			
 		return "/admin/adminRegister";
 	}
 	
 	//관리자 등록 처리
 	@PostMapping("/adminRegister")
 	public String adminRegister(AdminDTO aDto) {
-		
-		System.out.println("관리자등록정보 : " + aDto);
-		
-		
+	
 		adminservice.adminRegister(aDto);
 			
 		return "redirect:adminList";
 		
 	}
-	
-	
+		
 	//관리자 사번 검색
 	@GetMapping("/empSearch")
 	@ResponseBody
 	public EmpDTO empSearch(@RequestParam("name") String name) {
 	
-		System.out.println("name : " + name);
-		
-		
 		EmpDTO empDto = adminservice.getEmpList(name);		
 		
-		System.out.println("컨트롤러 empDto : " + empDto);
 	
 		return empDto;
 	}
-
-	
 
 	//시스템 로그리스트 페이지 이동
 	@GetMapping("/logList")
@@ -121,14 +101,8 @@ public class AdminController {
 	public String adminUpdate(@RequestParam("id") String id, Model model) {
 		
 		AdminDTO adminDto = adminservice.getAdminInfo(id);
-		//관리자 권한 코드 가져오기
-		List<CommonCodeDTO> list = adminservice.getAdminRole();
-		//사용구분 코드 가져오기
-		List<CommonCodeDTO> list2 = adminservice.getUseCode();
 		
 		model.addAttribute("adminDTO", adminDto);
-		model.addAttribute("roleList", list);
-		model.addAttribute("useCode", list2);
 		
 		return "/admin/adminUpdate";
 	}
@@ -136,10 +110,8 @@ public class AdminController {
 	//관리자 수정 처리
 	@PostMapping("/adminUpdate")
 	public String adminUpdateComplete(AdminDTO aDto) {
-		System.out.println("컨트롤러 aDto : " + aDto );
 		
-		adminservice.adminUpdate(aDto);
-		
+		adminservice.adminUpdate(aDto);		
 		
 		return "redirect:/admin/adminList";
 	}

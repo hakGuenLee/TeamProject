@@ -15,11 +15,6 @@ import ezen.team.domain.EmpDTO;
 @Mapper
 public interface AdminMapper {
 
-	//관리자 권한 코드 가져오기
-	List<CommonCodeDTO> getAdminRole();
-	
-	//사용구분 코드 가져오기
-	List<CommonCodeDTO> getUseCode();
 	
 	//관리자 등록
 	void adminRegister(AdminDTO aDto);
