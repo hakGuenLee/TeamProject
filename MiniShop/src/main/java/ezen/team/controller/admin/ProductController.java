@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import ezen.team.domain.CategoryDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.domain.ProductDTO;
 import ezen.team.service.admin.CategoryService;
 import ezen.team.service.admin.ProductService;
@@ -48,9 +49,10 @@ public class ProductController {
 	public String productRegister(Model model) {
 
 		// 상품등록 페이지에 카테고리 띄우기
-		List<CategoryDTO> cList = categoryService.catList();
+		List<CategoryDTO> cList = categoryService.cateList();
 		
 		model.addAttribute("cList",cList);
+
 
 		return "/admin/prodRegister";
 	}
@@ -70,11 +72,12 @@ public class ProductController {
 
 	// 상품 리스트
 	@GetMapping("/prodList")
-	public String productList(Model model) {
+	public String productList(PageDTO pagedto, Model model) {
 
-		List<ProductDTO> pList = productService.prodList();
+		List<ProductDTO> pList = productService.prodList(pagedto);
 		
 		model.addAttribute("pList", pList);
+		// pagedto는 model 처리 안함, 안해도 PageDTO -> pageDTO 로 받을 수 있음
 		
 		return "/admin/prodList";
 	}
@@ -91,7 +94,7 @@ public class ProductController {
 	public String prodUpdate(@RequestParam("prod_no") String no,Model model) {
 		
 		// 상품등록 페이지에 카테고리 띄우기
-		List<CategoryDTO> cList = categoryService.catList();
+		List<CategoryDTO> cList = categoryService.cateList();
 		
 		ProductDTO pdto = productService.prodListByNo(no);
 		
@@ -102,7 +105,7 @@ public class ProductController {
 	}
 	
 	// 상품 수정 처리
-	@PostMapping("prodUpdate")
+	@PostMapping("/prodUpdate")
 	public String prodUpdate(MultipartHttpServletRequest mhr, HttpServletRequest rq) throws Exception {
 		
 		productService.prodUpdate(mhr,rq);
@@ -112,7 +115,7 @@ public class ProductController {
 	}
 	
 	//상품 삭제
-	@GetMapping("prodDelete")
+	@GetMapping("/prodDelete")
 	public String prodDelete(@RequestParam("prod_no") String no) {
 		
 		productService.prodDelete(no);

@@ -92,11 +92,11 @@
 				</tr> -->
 				<tr>
 					<td>사용유무</td>
-					<td><select class="form-select form-select-sm w-50"
-						name="use_yn">
-							<option value="Y" selected>Y</option>
-							<option value="N">N</option>
-					</select></td>
+					<td>
+			 <select class="form-select w-50" id="use_yn" name="use_yn" onchange="ynView()" >
+			      <option></option>
+			 </select>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2" class="text-center"><input type="submit"
@@ -110,6 +110,30 @@
 </div>
 
 <script>	
+
+//공통 코드 함수
+
+$(document).ready(function(){
+		var codeNum = '200';
+		let str = "";
+		
+		let roleArea = $("#use_yn"); //권한부여 영역
+
+		getCommonCode(codeNum, function(data){
+		console.log(data);
+		
+		let list = data;
+		
+		for(let i=0; i<list.length; i++){
+			str += ' <option value=' + list[i].item_cd+ '>'+list[i].item_nm+'</option>'
+		}
+		
+		roleArea.html(str);
+			
+	});
+	
+});
+
 
 function fileAppend(){
   var fileElement ='<input type="file" class="form-control w-50" name="main_img" id="main_img" onchange="preViewImg(this)"/><img />'

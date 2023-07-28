@@ -21,7 +21,7 @@
 <form action="<c:url value="/post/postRegister"/>" method="post"
 enctype="multipart/form-data">
 	<div class="container w-50 border shadow-sm p-5 my-5">
-			<h2>관리자 공지사항 등록</h2>
+			<h2>관리자 공지/팝업 등록</h2>
 				 <label for="sel1" class="form-label mt-3 mb-3 w-50">등록구분 ( 공지 / 팝업 ) </label>
 			 <select class="form-select" id="pst_gb" name="pst_gb" onchange="gbView()" >
 			      <option></option>
@@ -156,7 +156,7 @@ enctype="multipart/form-data">
  			
  	});
 	
-	});
+});
 
  function preViewImg(obj){
 	    console.log(obj.files)
