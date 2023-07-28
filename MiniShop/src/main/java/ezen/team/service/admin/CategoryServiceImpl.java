@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ezen.team.domain.CategoryDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.mapper.admin.CategoryMapper;
 
 @Service
@@ -16,15 +17,19 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	//카테고리 리스트 가져오기
 	   @Override
-	   public List<CategoryDTO> catList() {
+	   public List<CategoryDTO> catList(PageDTO pagedto) {
 	      
-	      List<CategoryDTO> cList = mapper.catList();
+			int totalCnt = mapper.totalCnt(pagedto);
+			
+			pagedto.setValue(totalCnt, pagedto.getCntPerPage());    
+	      	
 	      
-	      System.out.println(cList);
-	      
-	      return cList;
+	      return mapper.catList(pagedto);
 	   }
 
+	   
+	   
+	   
 	//카테고리 등록
 	@Override
 	public void catRegister(CategoryDTO cdto) {
@@ -49,5 +54,15 @@ public class CategoryServiceImpl implements CategoryService {
 		mapper.catUpdate(cdto);
 		
 	}
+
+
+
+
+	@Override
+	public List<CategoryDTO> cateList() {
+		List<CategoryDTO> cList = mapper.cateList();
+		return cList;
+	}
+
 
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import ezen.team.domain.PageDTO;
 import ezen.team.domain.ProductDTO;
 
 public interface ProductService {
@@ -15,7 +16,7 @@ public interface ProductService {
 	void prodRegister(MultipartHttpServletRequest mhr, HttpServletRequest request) throws Exception;
 
 	//상품 리스트
-	List<ProductDTO> prodList();
+	List<ProductDTO> prodList(PageDTO pagedto);
 
 	ProductDTO prodListByNo(String no);
 

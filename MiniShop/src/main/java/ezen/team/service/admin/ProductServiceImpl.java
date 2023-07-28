@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import ezen.team.domain.PageDTO;
 import ezen.team.domain.ProductDTO;
 import ezen.team.mapper.admin.ProductMapper;
 
@@ -112,9 +113,13 @@ public class ProductServiceImpl implements ProductService {
 
 	//상품 리스트
 	@Override
-	public List<ProductDTO> prodList() {
+	public List<ProductDTO> prodList(PageDTO pagedto) {
 
-		return mapper.prodList();
+		int totalCnt = mapper.totalCnt(pagedto);
+		
+		pagedto.setValue(totalCnt, pagedto.getCntPerPage());
+		
+		return mapper.prodList(pagedto);
 	}
 	
 	//상품 상세보기 정보

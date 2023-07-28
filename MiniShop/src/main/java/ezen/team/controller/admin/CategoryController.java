@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ezen.team.domain.CategoryDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.service.admin.CategoryService;
 
 /* 
@@ -45,10 +46,10 @@ public class CategoryController {
    
    //카테고리 리스트
    @GetMapping("/catList")
-   public String catList(CategoryDTO cdto, Model model) {
+   public String catList(PageDTO pagedto, Model model) {
       
        
-      List<CategoryDTO> cList = categoryService.catList();
+      List<CategoryDTO> cList = categoryService.catList(pagedto);
       
       model.addAttribute("cList",cList); // 받아온 카테고리 리스트를 cList , Model객체로 return페이지에 보냄
       

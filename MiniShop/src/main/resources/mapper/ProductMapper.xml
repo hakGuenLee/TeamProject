@@ -6,14 +6,21 @@
 
 <!-- 상품 등록 -->
 	<insert id="prodRegister" parameterType="Map">
-		INSERT INTO prod_master( ctgry_no, prod_nm , main_img , price , point, qty, dc_price, proc_id)
-		VALUES( #{ctgry_no}, #{prod_nm} , #{main_img} , #{price} , #{point} , #{qty} , #{dc_price} , 'manager' )
+		INSERT INTO prod_master( ctgry_no, prod_nm , main_img , price , point, qty, dc_price, use_yn, proc_id)
+		VALUES( #{ctgry_no}, #{prod_nm} , #{main_img} , #{price} , #{point} , #{qty} , #{dc_price} , #{use_yn} , 'manager' )
 	</insert>
 
 <!-- 상품 리스트 -->
 	<select id="prodList" resultType="ProductDTO">
 	SELECT * FROM prod_master
+	ORDER BY prod_no DESC
+	LIMIT #{startIndex}, #{cntPerPage}
 	</select>
+	
+	<select id="totalCnt" resultType="Integer">
+	SELECT count(*) FROM prod_master
+	</select>
+	
 	
 	<!-- 수정 할 상품 정보 가져오기-->
 	<select id="getListByNo" resultType="ProductDTO">
@@ -34,7 +41,6 @@
 	use_yn = #{use_yn},
 	mod_dt = now()
 	WHERE prod_no = #{prod_no}
-	
 	</update>
 	
 	<!--  상품 삭제 -->
