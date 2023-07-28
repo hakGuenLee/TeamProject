@@ -2,6 +2,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ezen.team.mapper.admin.CommonCodeMapper">
+<mapper namespace="ezen.team.mapper.admin.CustomerMapper">
 
+	<select id="csList" resultType="CsDTO">
+	 	select * from cs_master
+	 	where 1=1
+	
+        <if test="cs_code != 'ALL'">
+            and cs_code = #{cs_code}
+        </if>
+        <if test="proc_sts != 'proc_all'">
+            and proc_sts = #{proc_sts}
+      </if>
+    </select>
+    
 </mapper>
