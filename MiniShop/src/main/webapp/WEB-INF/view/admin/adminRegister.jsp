@@ -99,11 +99,9 @@
 	<jsp:include page="../include/a_footer.jsp"/>
 	
 	<script>
+
 	
-	//관리자명 검색 시 사번 가져온 후, 사번 입력폼에 대입하는 함수
-	
-	
-	
+	//공통코드 가져오기
  $(document).ready(function(){
 		var codeNum = '990';
 		
@@ -148,7 +146,7 @@
 	});
 	
 	
-	
+	//관리자명 검색 시 사번 가져온 후, 사번 입력폼에 대입하는 함수
 	function empSearch(){
 		let empName = $("#adm_nm").val();
  				

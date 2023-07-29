@@ -1,0 +1,29 @@
+/* 폰트 시작 */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+
+body, ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;		/* 해당 태그의 list-style을 none으로 하는 것으로 ●을 제거한다 */
+}
+
+.navbar > ul ul {
+	display: none;
+}
+
+.navbar > ul > li {
+	position: relative;
+}
+
+
+.navbar > ul > li:hover > ul {
+	display:block;
+	height: 130px;
+	
+}
+
+img {
+	height:700px;
+	width:100%;
+}
