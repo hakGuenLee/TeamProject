@@ -7,10 +7,12 @@
 //import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.AuthenticationException;
+//import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //
 //import ezen.team.domain.AdminDTO;
+//import ezen.team.security.common.AdminContext;
 //import ezen.team.security.common.FormWebAuthenticationDetails;
 //
 //
@@ -31,17 +33,23 @@
 //	
 //		//사용자(==즉, 관리자)가 입력한 id, pw를 가져옴
 //		
-//		String id = authentication.getName();
-//		String pw = (String) authentication.getCredentials();
+//		String username = authentication.getName();
+//		String password = (String) authentication.getCredentials();
 //		
-//		AdminDTO adminDto = (AdminDTO) userDetailsService.loadUserByUsername(id);
-//		System.out.println(adminDto);
+//		System.out.println("username : " + username );
+//		System.out.println("password : " + password );
 //		
-//		if(!passwordEncoder.matches(pw, adminDto.getAdm_pw())) {
+//		AdminContext adminContext = (AdminContext) userDetailsService.loadUserByUsername(username);
+//		System.out.println(adminContext);
+//		
+//		System.out.println("어드민 컨텍스트 : " + adminContext.getPassword());
+//		
+//		//일치여부 확인
+//		if(!passwordEncoder.matches(password, adminContext.getPassword())) {
 //			throw new BadCredentialsException("Invalid Password");
 //		}
 //		
-//		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(adminDto.getAdm_id(),adminDto.getRole());
+//		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(adminContext.getUsername(),adminContext.getAuthorities());
 //		
 //		FormWebAuthenticationDetails formWebAuthenticationDetails = (FormWebAuthenticationDetails) authentication.getDetails();
 //		

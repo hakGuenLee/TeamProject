@@ -42,7 +42,13 @@
 //		   web.ignoring().antMatchers("**/*.js", "**/*.css");
 //	}
 //	
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.authenticationProvider(customProvider());
+//	}
+//	
 //
+//	//customProvider를 빈으로 등록
 //	@Bean
 //	public AuthenticationProvider customProvider() {
 //		return new CustomAuthenticationProvider();
@@ -68,7 +74,7 @@
 //		.and()
 //			.formLogin()   //formlogin방식 적용
 //			.loginPage("/adminLogin")
-//			.loginProcessingUrl("/adminLogin") //로그인 처리 URL
+//			.loginProcessingUrl("/login") //로그인 처리 URL
 //			.defaultSuccessUrl("/admin/adminHome") //로그인 성공 시 URL
 //			.failureHandler(customAuthenticationFailureHandler) //로그인 실패 시 처리하는 Handler
 //			.permitAll()
@@ -79,6 +85,7 @@
 //			.accessDeniedHandler(accessDeniedHandler());
 //	}
 //	
+//	//인가 예외 처리 Handler
 //	private AccessDeniedHandler accessDeniedHandler() {
 //		
 //		CustomAccessDeniedHandler customDeniedHandler = new CustomAccessDeniedHandler();
@@ -86,8 +93,6 @@
 //		return customDeniedHandler;
 //		
 //	}
-//
-//
 //	 
 //
 // }

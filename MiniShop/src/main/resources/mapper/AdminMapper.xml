@@ -6,8 +6,8 @@
 
 
 <!-- 관리자 로그인 정보 확인 -->
-<select id="findByusername">
-select * from admin_master where admin_id = #{id}
+<select id="findByusername" resultType="AdminDTO">
+select * from admin_master where adm_id = #{username}
 </select>
 
 <!-- 관리자 등록 -->

@@ -5,6 +5,7 @@ package ezen.team.mapper.admin;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import ezen.team.domain.AdminDTO;
 import ezen.team.domain.CommonCodeDTO;
@@ -35,7 +36,7 @@ public interface AdminMapper {
 	void adminUpdate( AdminDTO aDto);
 
 	//관리자 로그인 정보 가져오기
-	AdminDTO findByusername(String id);
+	AdminDTO findByusername(String username);
 
 
 

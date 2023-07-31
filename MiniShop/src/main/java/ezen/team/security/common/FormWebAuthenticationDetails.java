@@ -14,7 +14,8 @@
 //		super(request);
 //		
 //		secretKey = request.getParameter("secret_key");
-//		
+//	
+//		System.out.println("시크릿 키 : " + secretKey);
 //	}
 //	
 //	//getter

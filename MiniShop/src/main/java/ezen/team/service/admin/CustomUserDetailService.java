@@ -25,22 +25,27 @@
 //	
 //	
 //	@Override
-//	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//
 //		
 //		//DB로부터 관리자 정보 가져오기
-//		AdminDTO aDto = adminMapper.findByusername(id);
+//		AdminDTO aDto = adminMapper.findByusername(username);
 //		
-//		//해당 아이디가 없을 경우
-//		if(aDto == null) {
-//			throw new UsernameNotFoundException("Not Found : " + id);
+//		System.out.println("커스터머 유저 디테일스 aDto : " + aDto);
+//		
+////		//해당 아이디가 없을 경우
+//	if(aDto == null) {
+//			throw new UsernameNotFoundException("Not Found : " + username);
 //		}
 //		
 //		ArrayList<GrantedAuthority> roles = new ArrayList<>();
 //		roles.add(new SimpleGrantedAuthority(aDto.getRole()));
+//	
+//		System.out.println("롤 : " + roles);
 //		
-//		AdminContext adminContext = new AdminContext(aDto, id, id, roles);
+//		AdminContext adminContext = new AdminContext(aDto.getAdm_id(), aDto.getAdm_pw(), roles);
 //		
-//		return adminContext;
+//		return (UserDetails)adminContext;
 //	}
 //
 //}
