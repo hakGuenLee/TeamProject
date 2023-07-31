@@ -1,17 +1,12 @@
 package ezen.team.domain;
 
 
+import java.util.Date;
 
-
-import java.sql.Date;
-
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.Data;
 //관리자
 //admin_master 테이블
-@Getter
-@Setter
+@Data
 public class AdminDTO {
 	private String adm_id; //관리자ID
 	private String adm_vnm; //관리자명(별칭)

@@ -1,34 +1,93 @@
-/*
- * package ezen.team.security.config;
- * 
- * import org.springframework.context.annotation.Configuration; import
- * org.springframework.security.config.annotation.web.builders.HttpSecurity;
- * import
- * org.springframework.security.config.annotation.web.builders.WebSecurity;
- * import org.springframework.security.config.annotation.web.configuration.
- * EnableWebSecurity; import
- * org.springframework.security.config.annotation.web.configuration.
- * WebSecurityConfigurerAdapter;
- * 
- * @Configuration
- * 
- * @EnableWebSecurity public class SecurityConfig extends
- * WebSecurityConfigurerAdapter {
- * 
- * //WebSecurityConfigurerAdapter : 보안 설정을 위한 클래스
- * 
- * 
- * //인증,인가에 대한 설정
- * 
- * @Override protected void configure(HttpSecurity http) throws Exception {
- * 
- * http .authorizeRequests() // 특정 리소스에 대한 권한 설정 .antMatchers("/").permitAll()
- * .anyRequest().authenticated();
- * 
- * 
- * 
- * }
- * 
- * 
- * }
- */
+//
+// package ezen.team.security.config;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.security.authentication.AuthenticationProvider;
+//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+//import org.springframework.security.config.annotation.web.builders.WebSecurity;
+//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+//import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.web.access.AccessDeniedHandler;
+//import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+//
+//import ezen.team.security.common.FormAuthenticationDetailsSource;
+//import ezen.team.security.handler.CustomAccessDeniedHandler;
+//import ezen.team.security.handler.CustomAuthenticationFailureHandler;
+//import ezen.team.security.provider.CustomAuthenticationProvider;
+//
+////Spring Security 환경설정
+//
+//@Configuration
+// @EnableWebSecurity public class SecurityConfig extends
+// WebSecurityConfigurerAdapter {
+//	
+//	@Autowired
+//	private FormAuthenticationDetailsSource formAuthenticationDetailsSource;
+//	
+//	
+//	@Autowired
+//	private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+//
+//	
+//	
+//	//정적 파일 접근 필터 해제
+//	@Override
+//	public void configure(WebSecurity web) throws Exception {
+//
+//		   web.ignoring().antMatchers("**/*.js", "**/*.css");
+//	}
+//	
+//
+//	@Bean
+//	public AuthenticationProvider customProvider() {
+//		return new CustomAuthenticationProvider();
+//	}
+//	
+//	@Bean
+//	public PasswordEncoder pwEncoder() {
+//		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//		return passwordEncoder;
+//	}
+//	
+//	
+//	//인증, 인가 권한 설정
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		
+//		http
+//			.authorizeRequests()
+//			.antMatchers("/", "/adminLogin").permitAll()
+//			.antMatchers("/admin/**").hasRole("mng1")
+//			.anyRequest().authenticated()
+//			
+//		.and()
+//			.formLogin()   //formlogin방식 적용
+//			.loginPage("/adminLogin")
+//			.loginProcessingUrl("/adminLogin") //로그인 처리 URL
+//			.defaultSuccessUrl("/admin/adminHome") //로그인 성공 시 URL
+//			.failureHandler(customAuthenticationFailureHandler) //로그인 실패 시 처리하는 Handler
+//			.permitAll()
+//			
+//			//인가 예외 발생하였을 경우 처리하는 Handler
+//		.and()
+//			.exceptionHandling()
+//			.accessDeniedHandler(accessDeniedHandler());
+//	}
+//	
+//	private AccessDeniedHandler accessDeniedHandler() {
+//		
+//		CustomAccessDeniedHandler customDeniedHandler = new CustomAccessDeniedHandler();
+//		customDeniedHandler.setErrorPage("/denied");
+//		return customDeniedHandler;
+//		
+//	}
+//
+//
+//	 
+//
+// }
