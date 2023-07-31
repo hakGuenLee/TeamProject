@@ -34,6 +34,9 @@ public interface AdminMapper {
 	//관리자 정보 수정하기
 	void adminUpdate( AdminDTO aDto);
 
+	//관리자 로그인 정보 가져오기
+	AdminDTO findByusername(String id);
+
 
 
 

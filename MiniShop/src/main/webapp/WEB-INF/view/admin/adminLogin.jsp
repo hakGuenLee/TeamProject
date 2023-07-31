@@ -6,7 +6,12 @@
 
 		<div class="container mt-5 border shadow p-5">
 				<h3><b>관리자 로그인</b></h3>
-				<form action="#" method="post" class="mt-5">	
+				
+<%-- 				<c:if test = "${param.error}">
+					<span class="text-danger">${exception}</span>
+				</c:if> --%>
+			<form action="/adminLogin" method="post" class="mt-5">	
+					<input type="hidden" value="secretData" name="secret_key">
 					
 						<div class="input-group mb-3">
 						  <span class="input-group-text"><i class="xi-user"></i></span>
