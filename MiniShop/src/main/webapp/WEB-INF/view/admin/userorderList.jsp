@@ -9,8 +9,8 @@
 			<h3><b>회원 주문/배송/교환/환불 조회</b></h3>
 			
 			<form action="orderSearch" method="post">
-			  <div class="input-group mb-3">
-				 <input type="text" value="${id}"  name="search" class="form-control" placeholder="회원 ID or휴대폰 번호 검색">
+			  <div class="input-group mb-3 w-25">
+				 <input type="text"<%--  value="${id}"  --%> name="search" class="form-control" placeholder="회원 ID or휴대폰 번호 검색">
 			  	<button type="submit" class="btn btn-info">검색</button>	
 			  </div>
 			</form>
@@ -22,6 +22,7 @@
 						<th>주문번호</th>
 						<th>주문자ID(성명)</th>
 						<th>주문자 휴대폰번호</th>
+						<th>주문일자</th>
 						<th>상태</th>
 					</tr>
 				</thead>
@@ -30,10 +31,11 @@
 					<c:forEach var="list" items="${orderList}">				
 						<tr>
 							<td>${i}</td>
-							<td><a href="#">${list.order_id}</a></td>
-							<td>${list.user_id}</td>
+							<td><a href="<c:url value="/order/orderInfo?order_no=${list.order_no}&search=${search}"/>">${list.order_no}</a></td>
+							<td>${list.user_id} (${list.user_nm}) </td>
 							<td>${list.user_phone}</td>
-							<td></td>
+							<td>${list.order_dt}</td>
+							<td>${list.order_sts}</td>
 							<c:set var="i" value="${i+1}"/>
 						</tr>
 						</c:forEach>	
