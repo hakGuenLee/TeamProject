@@ -36,6 +36,7 @@
 						<th>문의 일자(등록일)</th>
 						<th>담당자명</th>
 						<th>처리일</th>
+						<th>상세</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,6 +54,7 @@
 							<td>${dto.cs_dt}</td>
 							<td>관리자</td>
 							<td>${dto.proc_dt}</td>
+							<td><a href="<c:url value="/customer/csInfo?cs_no=${dto.cs_no}&cs_code=${dto.cs_code}"/>" class="btn btn-primary">상세</a></td>
 						
 						</tr>
 						</c:forEach>				

@@ -16,4 +16,13 @@
       </if>
     </select>
     
+    <select id="csInfo" parameterType="Integer" resultType="CsDTO">
+  	select * from cs_master left outer join cmmn_cd on cs_master.cs_code = cmmn_cd.item_cd
+	where cs_master.cs_no = #{cs_code} 
+  	</select>
+  	
+  	<select id="itemName" resultType="CsDTO">
+  		select item_nm from cmmn_cd where item_cd = #{cs_code};
+  	</select>
+    
 </mapper>
