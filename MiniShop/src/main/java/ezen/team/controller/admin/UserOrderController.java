@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ezen.team.domain.OrderDTO;
+import ezen.team.domain.UserOrderDTO;
 import ezen.team.service.admin.UserOrderService;
 
 
@@ -61,11 +61,12 @@ public class UserOrderController {
 		System.out.println(phone);
 		
 		//관리자가 검색한 회원id 혹은 연락처로 DB에서 주문내역 가져오기
-		 List<OrderDTO> orderList =  userOrderService.getOrderList(id,phone);
+		 List<UserOrderDTO> orderList =  userOrderService.getOrderList(id,phone);
 		
 		
 		model.addAttribute("id", id);
 		model.addAttribute("phone", phone);
+		model.addAttribute("search", search);
 		model.addAttribute("orderList", orderList);
 		
 		return "admin/userorderList";
@@ -74,9 +75,31 @@ public class UserOrderController {
 	
 	//회원 주문/배송 상세 보기
 	@GetMapping("/orderInfo")
-	public String orderInfo() {
+	public String orderInfo(@RequestParam("order_no")String order_no,
+							@RequestParam("search")String search, Model model) {
+
+		// 검색한 주문내역 상세보기
+		List<UserOrderDTO> UOList = userOrderService.orderInfo(order_no);
+		
+		// 검색한 주문내역 상세보기의 회원정보
+		UserOrderDTO UOdto = userOrderService.userorderInfo(order_no);
+		
+		model.addAttribute("order_no",order_no);
+		model.addAttribute("search",search);
+		model.addAttribute("uoList",UOList);
+		model.addAttribute("UOdto",UOdto);
 		
 		return "/admin/userorderInfo";
 	}
+	
+	//회원 주문 상세보기 처리상태 업데이트
+//	@PostMapping("orderUpdate")
+//	public String orderUpdate(@RequestParam("search")String search, UserOrderDTO uodto) {
+//		
+//		userOrderService.orderUpdate(uodto);
+//		
+//		return "redirect:/order/orderSearch?search="+search;
+//	}
+	
 	
 }

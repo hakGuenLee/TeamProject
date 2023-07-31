@@ -10,13 +10,38 @@ select * from user_info where info like CONCAT('%', #{parameter}, '%')
 </select>
 
 <!-- 검색한 회원ID 또는 전화번호로 주문내역 가져오기 -->
-<select id="getOrderList" resultType="hashmap">
+<select id="getOrderList" resultType="UserOrderDTO">
 
-select o.order_id, o.user_id, u.user_phone
+select o.order_no, o.user_id, u.user_phone, o.order_sts, o.order_dt, u.user_nm
 from order_master as o left outer join user_master as u
 on o.user_id = u.user_id where u.user_id = #{id} or u.user_phone = #{phone}  
 
 </select>
+
+<!-- 검색한 주문번호 상세보기 내역 가져오기  -->
+<select id="orderInfo" resultType="UserOrderDTO">
+SELECT p.prod_nm, p.price, p.point , o.order_sts, o.order_dt
+FROM order_master o INNER JOIN order_detail od ON o.order_no=od.order_no
+INNER JOIN prod_master p ON od.prod_no = p.prod_no
+WHERE o.order_no = #{order_no}
+</select>
+
+
+<!-- 검색한 주문내역 상세보기의 회원정보  -->
+<select id="userorderInfo" resultType="UserOrderDTO">
+SELECT o.order_dt, um.user_nm, am.addr_tel, am.zipcode, am.addr, am.addr_detail, o.order_sts
+FROM order_master o INNER JOIN addr_manage am ON o.user_id = am.user_id
+INNER JOIN user_master um ON am.user_id = um.user_id
+WHERE o.order_no = #{order_no}
+</select>
+
+<!-- 주문내역 처리상태 변경하기  -->
+<update id="orderUpdate">
+UPDATE order_master
+SET order_sts = #{order_sts}
+WHERE order_no = #{order_no}
+</update>
+
 
 
 </mapper>
