@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ezen.team.domain.CommonCodeDTO;
 import ezen.team.domain.CsDTO;
+import ezen.team.domain.PageDTO;
+import ezen.team.service.admin.CommonCodeService;
 import ezen.team.service.admin.CustomerService;
 
 /*
@@ -26,7 +29,6 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerService service;
-	
 	
 	//1:1문의 리스트 페이지 이동(문의 목록 가져오기)
 //	@GetMapping("/csList")
@@ -44,23 +46,24 @@ public class CustomerController {
                              Model model){
     	List<CsDTO> csList = service.csList(cs_code, proc_sts);
 
-//    	System.out.println(cs_code);
-//    	System.out.println(proc_sts);
-    	
     	model.addAttribute("csList", csList);
     	model.addAttribute("search_cd", cs_code);
     	model.addAttribute("search_sts", proc_sts);
     	
-//    	System.out.println(cs_code);
-//    	System.out.println(proc_sts);
-
         return "/admin/csList";
     }
 	
 	
 	//1:1문의 상세보기
 	@GetMapping("/csInfo")
-	public String csInfo() {
+	public String csInfo(int cs_no, String cs_code, Model model) {
+		
+		CsDTO csDto = service.csInfo(cs_no);
+		model.addAttribute("csDto", csDto);
+		
+		
+		
+		System.out.println(csDto);
 		
 		return "/admin/csInfo";
 	}

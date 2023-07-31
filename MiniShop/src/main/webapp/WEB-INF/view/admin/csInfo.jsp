@@ -6,38 +6,70 @@
 
 <jsp:include page="../include/a_header.jsp"/>
 		<div class="container w-75 mt-5">
-			<form action="" method="post">
+			<form action="csList" method="post">
 			<div class="d-flex justify-content-around">
 				<div>
 				<h3><b>고객문의(1:1)상세</b></h3>
-				<div class="input-group mb-3">
-				  <input type="text" class="form-control" aria-label="Text input with dropdown button" value="카테고리">
-				  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">문의내용</button>
-				  <ul class="dropdown-menu dropdown-menu-end">
-				    <li><a class="dropdown-item" href="#">Action</a></li>
-				    <li><a class="dropdown-item" href="#">Another action</a></li>
-				    <li><a class="dropdown-item" href="#">Something else here</a></li>
-				    <li><hr class="dropdown-divider"></li>
-				    <li><a class="dropdown-item" href="#">Separated link</a></li>
-				  </ul>
-				</div>
+				 
+				 <div class="form-group">
+			         <label for="cs_code">문의유형</label>
+			         <input type="text" class="form-control" id="cs_code" 
+			            name="cs_code" disabled value="${csDto.item_nm}"/>
+			    </div>
+			 
+				<div class="form-group">
+			         <label for="cs_no">번호</label>
+			         <input type="text" class="form-control" id="cs_no" 
+			            name="cs_no" disabled value="${csDto.cs_no}"/>
+			    </div>
+			    <div class="form-group">
+			         <label for="cs_title">제목</label>
+			         <input type="text" class="form-control" id="cs_title" 
+			            name="cs_title" disabled value="${csDto.cs_title}"/>
+			    </div>
+			    <div class="form-group">
+			         <label for="user_id">글쓴이</label>
+			         <input type="text" class="form-control" id="user_id" 
+			            name="user_id" disabled value="${csDto.user_id}"/>
+			    </div>
+			    <div class="form-group">
+			         <label for="cs_dt">등록일</label>
+			         <input type="text" class="form-control" id="cs_dt" 
+			            name="cs_dt" disabled value="${csDto.cs_dt}"/>
+			    </div>
+			    <div class="form-group">
+			         <label for="cs_con">내용</label>
+			         <input type="text" class="form-control" id="cs_con" 
+			            name="cs_con" disabled value="${csDto.cs_con}"/>
+			    </div>
 			
-				  <input type="text" class="form-control" placeholder="제목">
-				  <input type="text" class="form-control" placeholder="글쓴이">
-				  <input type="text" class="form-control" placeholder="등록일">
-				  <input type="text" class="form-control" placeholder="내용">
-			  	</div>
 			  	<div>
-			  		<a href="" class="btn btn-primary">답글쓰기</a>
-			  		<input type="text" class="form-control w-50 h-50" placeholder="내용">
+			  		 <label for="csre_con">답글쓰기</label>
+			         <textarea id="csre_con" name="csre_con" rows="5" cols="33" value="${csDto.csre_con}">
+					</textarea>
+					
+					<div class="form-group">
+			         <label for="proc_id">처리자</label>
+			         <input type="text" class="form-control" id="proc_id" 
+			            name="proc_id" disabled value="${csDto.proc_id}"/>
+			    	</div>
+			        <div class="form-group">
+			         <label for="proc_dt">처리일시</label>
+			         <input type="text" class="form-control" id="proc_dt" 
+			            name="proc_dt" disabled value="${csDto.proc_dt}"/>
+			    	</div>
+					
+			  		<a input type='submit' href="<c:url value="/customer/csList?csre_con=${csDto.csre_con}"/>" class="btn btn-primary">답글등록</a>
+			  		<a href="<c:url value="/customer/csList"/>" class="btn btn-primary">답글수정</a>
 			  	</div>
 			</div>
 			</form>
 		</div>
-	
+
 					
 <jsp:include page="../include/a_footer.jsp"/>
 	
 	
+
 </body>
 </html>

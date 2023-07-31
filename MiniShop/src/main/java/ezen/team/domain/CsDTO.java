@@ -14,7 +14,8 @@ public class CsDTO {
 	private int cs_no; 		 // 1:1문의 번호
 	private String user_id;  // 회원 ID
 	private String prod_id;  // 상품 ID
-	private String cs_code;  // 문의유형
+	private String cs_code;  // 문의유형코드
+	private String item_nm;  // 문의유형명
 	private String cs_title; // 제목
 	private Date cs_dt; 	 // 문의일시
 	private String cs_con; 	 // 내용

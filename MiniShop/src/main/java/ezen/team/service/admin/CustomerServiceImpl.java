@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ezen.team.domain.CsDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.mapper.admin.CustomerMapper;
 
 @Service
@@ -19,5 +20,20 @@ public class CustomerServiceImpl implements CustomerService {
 		System.out.println(cs_code);
 		return mapper.csList(cs_code, proc_sts);
 	}
+
+	@Override
+	public CsDTO csInfo(int cs_no) {
+		System.out.println(cs_no);
+		return mapper.csInfo(cs_no);
+	}
+
+	@Override
+	public CsDTO itemName(String cs_code) {
+		return mapper.itemName(cs_code);
+	}
+	
+	
+
+
 
 }
