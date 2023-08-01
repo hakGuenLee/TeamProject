@@ -30,7 +30,8 @@
 			<table class="table mt-3">
 				<thead class="table-secondary">
 					<tr>
-						<th>No.</th>					
+						<th>No.</th>
+						<th>문의유형</th>					
 						<th>제목</th>
 						<th>글쓴이ID</th>
 						<th>문의 일자(등록일)</th>
@@ -49,6 +50,7 @@
 						<c:forEach var="dto" items="${csList}">
 						<tr>
 							<td>${dto.cs_no}</td>
+							<td>${item_nm}</td>
 							<td>${dto.cs_title}</td>
 							<td>${dto.user_id}</td>
 							<td>${dto.cs_dt}</td>
@@ -73,27 +75,41 @@
 	
 	
 	
- $(document).ready(function(){
-		var codeNum = '500';
-		let str = "";
-		
-		let roleArea = $("#cs_code"); //권한부여 영역
+  $(document).ready(function(){
+      var codeNum = '500';
+      let str = "";
+      
+      let roleArea = $("#cs_code"); //권한부여 영역
 
- 		getCommonCode(codeNum, function(data){
- 		console.log(data);
- 		
- 		let list = data;
- 		
- 		str += ' <option value=ALL>전체</option>'
- 		
- 		for(let i=0; i<list.length; i++){
- 			str += ' <option value=' + list[i].item_cd+ '>'+list[i].item_nm+'</option>'
- 		}
- 		roleArea.html(str);
- 			
- 	});
-	
-	});
+       getCommonCode(codeNum, function(data){
+       console.log(data);
+       
+       let list = data;
+       let selected = "";
+       
+       str += ' <option value=ALL>전체</option>'
+
+       for(let i=1; i<list.length; i++){          
+         console.log('${search_cd}' +","+list[i].item_cd);
+         
+          if('${search_cd}' == list[i].item_cd){
+               selected = "selected";     
+         }else{
+             selected = "";
+         } 
+           str += " <option value='" + list[i].item_cd+"' "+selected + ">";
+          str += list[i].item_nm+"</option>"; 
+          
+          console.log(str);
+       
+       }
+              
+       roleArea.html(str);
+          
+    });
+   
+   });
+
 	
 </script>
 

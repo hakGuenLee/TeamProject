@@ -16,4 +16,6 @@ public interface CustomerMapper {
 	
 	CsDTO itemName(String cs_code);
 
+	CsDTO csReply(int cs_no, String csre_con, String proc_id);
+
 }
