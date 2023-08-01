@@ -18,6 +18,7 @@
   <script src="<c:url value="/resources/js/commoncode.js"/>"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">   
 <link rel="stylesheet" href="<c:url value="/resources/css/a_header.css"/>">   
+<link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">   
 
 </head>
 <body>
