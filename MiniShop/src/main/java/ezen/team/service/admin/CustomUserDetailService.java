@@ -8,6 +8,7 @@
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.stereotype.Service;
 //
 //import ezen.team.domain.AdminDTO;
@@ -23,6 +24,8 @@
 //	@Autowired
 //	AdminMapper adminMapper;
 //	
+//	@Autowired
+//	PasswordEncoder pwEncoder;
 //	
 //	@Override
 //	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -37,7 +40,8 @@
 //	if(aDto == null) {
 //			throw new UsernameNotFoundException("Not Found : " + username);
 //		}
-//		
+//
+//	
 //		ArrayList<GrantedAuthority> roles = new ArrayList<>();
 //		roles.add(new SimpleGrantedAuthority(aDto.getRole()));
 //	
@@ -45,7 +49,7 @@
 //		
 //		AdminContext adminContext = new AdminContext(aDto.getAdm_id(), aDto.getAdm_pw(), roles);
 //		
-//		return (UserDetails)adminContext;
+//		return adminContext;
 //	}
 //
 //}

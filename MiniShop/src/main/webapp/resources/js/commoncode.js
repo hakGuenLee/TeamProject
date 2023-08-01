@@ -23,15 +23,15 @@
 	
 		
  function getCommonCode(a,cb){	 
-	 
-/*	 var token = $("meta[name='_csrf'").attr("content");
+ 
+ var token = $("meta[name='_csrf'").attr("content");
 	 var header = $("meta[name='_csrf_header']").attr("content");
-	 */
+	
 	 $.ajax({
-			url:"http://localhost:8887/getCode",
-	/*		beforeSend: function(xhr){
+			url:"/getCode",
+	beforeSend: function(xhr){
 				xhr.setRequestHeader(header, token);
-			},*/
+			},
 			type : "post", //서버에 전송하기 위한 전송방식
 			data:{"code" : a},
 			dataType : "json", // 서버에서 응답하는 데이터 형식

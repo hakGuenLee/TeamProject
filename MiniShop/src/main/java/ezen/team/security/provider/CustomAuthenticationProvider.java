@@ -7,11 +7,10 @@
 //import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.AuthenticationException;
-//import org.springframework.security.core.userdetails.UserDetails;
+//
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //
-//import ezen.team.domain.AdminDTO;
 //import ezen.team.security.common.AdminContext;
 //import ezen.team.security.common.FormWebAuthenticationDetails;
 //
@@ -34,10 +33,14 @@
 //		//사용자(==즉, 관리자)가 입력한 id, pw를 가져옴
 //		
 //		String username = authentication.getName();
-//		String password = (String) authentication.getCredentials();
+//		
+//		System.out.println("authentication.get " + authentication.getCredentials());
+//		
+//		//String.valueOf
+//		String password = (String)authentication.getCredentials();
 //		
 //		System.out.println("username : " + username );
-//		System.out.println("password : " + password );
+//		System.out.println("프로바이더 password : " + password );
 //		
 //		AdminContext adminContext = (AdminContext) userDetailsService.loadUserByUsername(username);
 //		System.out.println(adminContext);
@@ -49,11 +52,13 @@
 //			throw new BadCredentialsException("Invalid Password");
 //		}
 //		
-//		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(adminContext.getUsername(),adminContext.getAuthorities());
+//		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(adminContext.getUsername(), null, adminContext.getAuthorities());
 //		
 //		FormWebAuthenticationDetails formWebAuthenticationDetails = (FormWebAuthenticationDetails) authentication.getDetails();
 //		
 //		String secretKey = formWebAuthenticationDetails.getSecretKey();
+//		
+//		System.out.println("프로바이더 secretKey : " + secretKey);
 //		
 //		if(secretKey == null || !"secretData".equals(secretKey)) {
 //			System.out.println("secreyKey Error!!");

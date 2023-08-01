@@ -9,15 +9,20 @@
 //import org.springframework.security.core.userdetails.User;
 //
 //import ezen.team.domain.AdminDTO;
+//import lombok.AllArgsConstructor;
 //import lombok.Data;
 //import lombok.Getter;
+//import lombok.NoArgsConstructor;
 //import lombok.Setter;
 //import lombok.ToString;
 //
 //
 //@Getter
 //public class AdminContext extends User {
+//
+//
 //	
+//
 //	private String username;
 //	private String password;
 //	/* private Collection<? extends GrantedAuthority> authorities; */

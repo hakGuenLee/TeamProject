@@ -7,6 +7,7 @@
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
 //
+//
 //public class CustomUserDetails implements UserDetails {
 //	
 //	private String adm_id; //관리자ID

@@ -44,7 +44,8 @@ public class AdminController {
 	//관리자 등록 페이지 이동
 	@GetMapping("/adminRegister")
 	public String adminRegister(Model model) {
-			
+		
+	
 		return "/admin/adminRegister";
 	}
 	

@@ -6,6 +6,10 @@
 //
 //public class FormWebAuthenticationDetails extends WebAuthenticationDetails {
 //
+//	/**
+//	 * 
+//	 */
+//	private static final long serialVersionUID = 1L;
 //	private String secretKey;
 //	
 //	//추가로 넘어온 파라미터 secret_key 벨류 저장

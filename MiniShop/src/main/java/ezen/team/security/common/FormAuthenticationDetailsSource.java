@@ -14,6 +14,9 @@
 //
 //	@Override
 //	public WebAuthenticationDetails buildDetails(HttpServletRequest context) {
+//		
+//		System.out.println("context : " + context);
+//		
 //		return new FormWebAuthenticationDetails(context);
 //	}
 //

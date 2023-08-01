@@ -5,7 +5,7 @@ package ezen.team.mapper.admin;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.security.core.userdetails.UserDetails;
+/*import org.springframework.security.core.userdetails.UserDetails;*/
 
 import ezen.team.domain.AdminDTO;
 import ezen.team.domain.CommonCodeDTO;

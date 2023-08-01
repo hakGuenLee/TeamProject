@@ -14,7 +14,7 @@ select * from admin_master where adm_id = #{username}
 <insert id="adminRegister">
 insert into admin_master values(
 #{adm_id}, #{adm_nm}, #{adm_vnm}, #{adm_pw}, #{emp_id}, #{use_yn},
-#{proc_dt}, #{mod_dt}, #{exp_dt}, #{proc_id}, #{mod_id}, #{exp_id},#{role}
+#{proc_dt}, #{mod_dt}, #{exp_dt}, #{proc_id}, #{mod_id}, #{exp_id}, #{role}
 );
 </insert>
 

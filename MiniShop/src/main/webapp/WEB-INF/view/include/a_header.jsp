@@ -7,8 +7,8 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<%-- 	<meta name="_csrf_header" content="${_csrf.headerName}">
-	<meta name="_csrf" content="${_csrf.token}"> --%>
+ 	<meta name="_csrf_header" content="${_csrf.headerName}">
+	<meta name="_csrf" content="${_csrf.token}"> 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -79,8 +79,11 @@
             <li><a class="nav-link" href="<c:url value="/QnA/qnaList"/>">상품 문의 처리</a></li>
           </ul>
         </li>
-         <li>
-          <a class="nav-link active" href="<c:url value="/aLogin/adminLogin"/>">로그인</a>
+           <li sec:authorize="isAnonymous()">
+          <a class="nav-link active" href="<c:url value="/adminLogin"/>">로그인</a>
+        </li>
+         <li sec:authorize="isAuthenticated()">
+          <a class="nav-link active" href="<c:url value="/adminLogout"/>">로그아웃</a>
         </li>
       </ul>
     </nav>
