@@ -31,21 +31,34 @@
 				<input type="text" value="${adminDTO.adm_pw}" class="form-control w-50" name="adm_pw">
 			</div>
 			
+			<div class="d-flex">
 			<div class="mt-3">
-			<p>권한 설정</p>
+			<p>관리자 현재 권한</p>
+			<input type="text" value="${adminDTO.role}" class="form-control w-50"  readonly>
+			</div>
+			
+			<div class="mt-3">
+			<p>권한 수정</p>
 			 <select class="form-select" id="role" name="role">
 				     <option></option>
 			</select>
 			</div>
-			
-			<div class="mt-3">
-			<p>사용구분</p>
-			 <select class="form-select" id="use_yn" name="use_yn">
-				     <option></option>
-
-			</select>
 			</div>
 			
+			
+			<div class="d-flex">
+			<div class="mt-3">
+			<p>현재 사용구분</p>
+			<input type="text" value="${adminDTO.use_yn}" class="form-control w-50"  readonly>
+			</div>
+			
+			<div class="mt-3">
+			<p>사용구분 수정</p>
+			 <select class="form-select" id="use_yn" name="use_yn">
+				     <option></option>
+			</select>
+			</div>
+			</div>
 			
 			<div class="mt-3">
 				<button type="submit" class="btn btn-info">저장</button>				

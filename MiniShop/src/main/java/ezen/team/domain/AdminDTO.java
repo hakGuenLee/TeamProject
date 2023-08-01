@@ -6,12 +6,16 @@ package ezen.team.domain;
 
 import java.sql.Date;
 
+
+
 import lombok.Data;
 
 //관리자
 //admin_master 테이블
 @Data
-public class AdminDTO {
+public class AdminDTO  {
+	
+
 	private String adm_id; //관리자ID
 	private String adm_vnm; //관리자명(별칭)
 	private String adm_nm; //관리자명(실명)
@@ -25,5 +29,13 @@ public class AdminDTO {
 	private String mod_id; //수정처리자
 	private String exp_id; //종료처리자
 	private String role; //권한
+
+
+	
+
+	
+	
+	
+
 
 }

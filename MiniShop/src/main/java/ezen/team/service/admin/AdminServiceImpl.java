@@ -4,7 +4,7 @@ package ezen.team.service.admin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ezen.team.domain.AdminDTO;
@@ -18,8 +18,8 @@ import ezen.team.mapper.admin.AdminMapper;
 public class AdminServiceImpl implements AdminService {
 	
 	//비밀번호 암호화
-//	@Autowired
-//	private PasswordEncoder pwEncoder;
+	@Autowired
+	private PasswordEncoder pwEncoder;
 	
 	@Autowired
 	AdminMapper mapper;	
@@ -29,10 +29,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void adminRegister(AdminDTO aDto) {
 		
-//		String inputPw = aDto.getAdm_pw();
-//		String cipherPw = pwEncoder.encode(inputPw);
-//		
-//		aDto.setAdm_pw(cipherPw);
+		String inputPw = aDto.getAdm_pw();
+		String cipherPw = pwEncoder.encode(inputPw);
+		
+		aDto.setAdm_pw(cipherPw);
 		
 		mapper.adminRegister(aDto);		
 		

@@ -1,43 +1,43 @@
-////
-// package ezen.team.security.config;
-////
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.web.filter.CharacterEncodingFilter;
-//import org.springframework.security.authentication.AuthenticationProvider;
-//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.builders.WebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.security.web.csrf.CsrfFilter;
-//import org.springframework.security.web.access.AccessDeniedHandler;
-//import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-////
+//
+ package ezen.team.security.config;
+//
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+//
 //import ezen.team.security.common.FormAuthenticationDetailsSource;
 //import ezen.team.security.handler.CustomAccessDeniedHandler;
 //import ezen.team.security.handler.CustomAuthenticationFailureHandler;
 //import ezen.team.security.provider.CustomAuthenticationProvider;
+
+////Spring Security 환경설정
 //
-//////Spring Security 환경설정
-////
-//@Configuration
-// @EnableWebSecurity 
-//public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//	
+@Configuration
+ @EnableWebSecurity 
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
 //	@Autowired
 //	private FormAuthenticationDetailsSource formAuthenticationDetailsSource;
 //	
 //	
 //	@Autowired
 //	private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
-//
-//	
-//	
+
+	
+	
 //	//정적 파일 접근 필터 해제
 //	@Override
 //	public void configure(WebSecurity web) throws Exception {
@@ -46,7 +46,7 @@
 //
 //			
 //	}
-//	
+	
 //	@Override
 //	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //		auth.authenticationProvider(customProvider());
@@ -54,26 +54,33 @@
 //		
 ////		auth.inMemoryAuthentication().withUser("sys").password("{noop}1234").roles("SUPER_ADMIN");
 //	}
-//	
-//
-//	//customProvider를 빈으로 등록
+	
+
+	//customProvider를 빈으로 등록
 //	@Bean
 //	public AuthenticationProvider customProvider() {
 //		return new CustomAuthenticationProvider();
 //	}
+	
+	@Bean
+	public PasswordEncoder pwEncoder() {
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		return passwordEncoder;
+	}
 //	
-//	@Bean
-//	public PasswordEncoder pwEncoder() {
-//		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//		return passwordEncoder;
-//	}
-////	
-////	
-////	//인증, 인가 권한 설정
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception { 
+//	
+//	//인증, 인가 권한 설정
+	@Override
+	protected void configure(HttpSecurity http) throws Exception { 
+		
+		   http
+		   		.cors().disable()
+		         .csrf().disable()
+		         .formLogin().disable()
+		         .headers().frameOptions().disable();
+		
+		
 //		
-//		http
 //			.authorizeRequests()
 //			.antMatchers("/", "/adminLogin").permitAll()
 //			.antMatchers("/admin/**", "/category/**", "/product/**", "/order/**", "/post/**", "/customer/**", "/QnA/**").hasAuthority("adm1")
@@ -102,7 +109,7 @@
 //		customDeniedHandler.setErrorPage("/denied");
 //		return customDeniedHandler;
 //		
-//	}
-//	 
-//
-// }
+	}
+	 
+
+ }

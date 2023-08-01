@@ -7,18 +7,16 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
- 	<meta name="_csrf_header" content="${_csrf.headerName}">
-	<meta name="_csrf" content="${_csrf.token}"> 
+<%--  	<meta name="_csrf_header" content="${_csrf.headerName}">
+	<meta name="_csrf" content="${_csrf.token}">  --%>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <script src="<c:url value="/resources/js/commoncode.js"/>"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">   
 <link rel="stylesheet" href="<c:url value="/resources/css/a_header.css"/>">   
-<link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">   
+<link rel="stylesheet" href="<c:url value="/resources/css/admin.css"/>">   
 
 </head>
 <body>
@@ -51,13 +49,6 @@
           <ul>
             <li><a class="nav-link" href="<c:url value="/product/prodRegister"/>">상품 등록</a></li>
             <li><a class="nav-link" href="<c:url value="/product/prodList"/>">상품 리스트</a></li>
-          </ul>
-        </li>
-         <li>
-          <a class="nav-link active" href="#">공지 관리</a>
-          <ul>
-            <li><a class="nav-link" href="<c:url value="/post/postRegister"/>">공지/팝업 등록</a></li>
-            <li><a class="nav-link" href="<c:url value="/post/postList"/>">공지/팝업 리스트</a></li>
           </ul>
         </li>
          <li>

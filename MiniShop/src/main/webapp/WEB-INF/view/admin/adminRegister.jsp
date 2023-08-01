@@ -7,19 +7,19 @@
 <jsp:include page="../include/a_header.jsp"/>
 
 
-		<form action="adminRegister" method="post" class="mt-5">
+		<form action="adminRegister" method="post" class="mt-5 w-100">
 			
 		<div class="d-flex container w-50 border shadow-sm p-5 my-5">
-			<h4>관리자 등록</h4>	
-			<div>
+			<h4><b>관리자 등록</b></h4>	
+			<div class="mt-5">
 			<div class="form-floating mb-3 mt-3">
-			  <input type="text" class="form-control w-50" id="adm_id" placeholder="관리자 아이디" name="adm_id">
+			  <input type="text" class="form-control w-100" id="adm_id" placeholder="관리자 아이디" name="adm_id">
 			  <label for="id">관리자 아이디</label>
 			</div>
 
 			<div class="form-floating mt-3 mb-3">
 			  <input type="text" class="form-control w-50" id="adm_vnm" placeholder="관리자 이름(사용자뷰용 닉네임)" name="adm_vnm">
-			  <label for="name">관리자 이름(사용자뷰용 닉네임)</label>
+			  <label for="name">관리자 이름(닉네임)</label>
 			</div>
 			
 			<div class="form-floating mt-3 mb-3">
@@ -49,7 +49,7 @@
 			      <option></option>
 			 </select>
 			 </div>
-			 <div>
+			 <div class="mt-5">
 			 <div class="d-flex">
 			 <div class="form-floating mt-3 mb-3">
 			  <input type="text" class="form-control" id="proc_dt" placeholder="등록일" name="proc_dt">

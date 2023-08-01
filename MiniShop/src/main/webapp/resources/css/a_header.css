@@ -12,10 +12,17 @@ body, ul, li {
 	display: none;
 }
 
+/*.navbar > ul > li >  a{
+	margin-left:20px;
+}*/
+
 .navbar > ul > li {
 	position: relative;
 }
 
+.navbar > ul{
+	transition: 1s;
+}
 
 .navbar > ul > li:hover > ul {
 	display:block;
