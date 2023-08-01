@@ -6,7 +6,7 @@
 
 <jsp:include page="../include/a_header.jsp"/>
 		<div class="container w-75 mt-5">
-			<form action="csList" method="post">
+			<form action="csReply" method="post">
 			<div class="d-flex justify-content-around">
 				<div>
 				<h3><b>고객문의(1:1)상세</b></h3>
@@ -43,10 +43,12 @@
 			            name="cs_con" disabled value="${csDto.cs_con}"/>
 			    </div>
 			
-			  	<div>
-			  		 <label for="csre_con">답글쓰기</label>
-			         <textarea id="csre_con" name="csre_con" rows="5" cols="33" value="${csDto.csre_con}">
-					</textarea>
+			  	<div class="form-group">
+			         <label for="csre_con">답글쓰기</label>
+			         <textarea class="form-control" id="csre_con" 
+	           		 name="csre_con" rows="5" cols="33"><c:out value="${csDto.csre_con}"/></textarea>
+	      		</div>
+			       
 					
 					<div class="form-group">
 			         <label for="proc_id">처리자</label>
@@ -59,12 +61,24 @@
 			            name="proc_dt" disabled value="${csDto.proc_dt}"/>
 			    	</div>
 					
-			  		<a input type='submit' href="<c:url value="/customer/csList?csre_con=${csDto.csre_con}"/>" class="btn btn-primary">답글등록</a>
-			  		<a href="<c:url value="/customer/csList"/>" class="btn btn-primary">답글수정</a>
+			  		  <div class="form-group mt-4">
+				         <button type="submit" id="btn-modify" class="btn btn-primary me-2">답글등록</button>
+				         <button type="submit" id="btn-remove" class="btn btn-danger me-2">답글수정</button>
+				         <button type="button" id="btn-list" class="btn btn-primary">리스트</button>
+				      </div>
 			  	</div>
 			</div>
 			</form>
 		</div>
+
+<script>
+	$("#btn-list").click(()=>{
+      location.href="<c:url value='/board/list.do?viewPage=${pDto.viewPage}&cntPerPage=${pDto.cntPerPage}&searchType=${pDto.searchType}&keyWord=${pDto.keyWord}'/>";
+   });
+   $("#btn-remove").click(()=>{
+      location.href="<c:url value='/board/remove.do?bid=${dto.bid}&cntPerPage=${pDto.cntPerPage}&searchType=${pDto.searchType}&keyWord=${pDto.keyWord}'/>";
+   });
+</script>
 
 					
 <jsp:include page="../include/a_footer.jsp"/>

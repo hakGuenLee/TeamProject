@@ -50,6 +50,8 @@ public class CustomerController {
     	model.addAttribute("search_cd", cs_code);
     	model.addAttribute("search_sts", proc_sts);
     	
+    	    	
+    	
         return "/admin/csList";
     }
 	
@@ -67,6 +69,22 @@ public class CustomerController {
 		
 		return "/admin/csInfo";
 	}
+	
+	// 1:1답글 등록
+	@PostMapping("/csReply")
+	public String csReply(@RequestParam(value = "csre_con") String csre_con,
+						  int cs_no, String proc_id, Model model) {
+		System.out.println("cs_no" + cs_no);
+		
+		CsDTO csDto = service.csReply(cs_no, csre_con, proc_id);
+		
+		model.addAttribute("csDto",csDto);
+		
+		return "/admin/csList";
+		
+	}
+	
+	
 	
 	
 

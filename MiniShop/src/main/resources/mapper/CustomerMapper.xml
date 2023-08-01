@@ -5,6 +5,12 @@
 <mapper namespace="ezen.team.mapper.admin.CustomerMapper">
 
 	<select id="csList" resultType="CsDTO">
+<!-- 		create view csList as
+		select a.cs_no, b.item_nm, a.cs_title, a.user_id, a.cs_dt, c.proc_id, c.proc_dt
+		from cs_master as a, cmmn_cd as b, cs_reply c
+		where a.cs_no = c.cs_no
+		and a.cs_code = b.cs_code
+	 	and 1=1 -->
 	 	select * from cs_master
 	 	where 1=1
 	
@@ -21,8 +27,9 @@
 	where cs_master.cs_no = #{cs_code} 
   	</select>
   	
-  	<select id="itemName" resultType="CsDTO">
-  		select item_nm from cmmn_cd where item_cd = #{cs_code};
-  	</select>
+  	
+  	  <insert id="csReply" parameterType="CsDTO">
+	  	INSERT into cs_master(proc_sts, proc_id, sts_dt) VALUES(#{2}, #{proc_id}, #{SYSDATETIME()})
+	  </insert>
     
 </mapper>
