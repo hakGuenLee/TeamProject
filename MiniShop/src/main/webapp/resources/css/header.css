@@ -14,12 +14,12 @@ body, ul, li {
 
 .navbar > ul > li {
 	position: relative;
+
 }
 
 
 .navbar > ul > li:hover > ul {
 	display:block;
-	height: 130px;
 	
 }
 

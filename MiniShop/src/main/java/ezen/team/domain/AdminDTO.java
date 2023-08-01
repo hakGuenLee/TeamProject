@@ -1,7 +1,8 @@
 package ezen.team.domain;
 
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import lombok.Data;
 //관리자
