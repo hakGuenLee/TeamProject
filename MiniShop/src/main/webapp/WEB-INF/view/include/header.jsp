@@ -34,10 +34,35 @@
         </li>
         <li>
           <a class="nav-link active" href="#">모든 제품보기</a>
-          <ul>
-            <li> <a class="nav-link" href="#">과일</a></li>
-            <li> <a class="nav-link" href="#">가전</a></li>
-            <li> <a class="nav-link" href="#">의류</a></li>
+        </li>
+        <li>
+          <a class="nav-link active" href="#">과일</a>
+          <ul id="fruitArea">
+            <li><a class="nav-link" href="#"></a></li>
+          </ul>
+        </li>
+         <li>
+          <a class="nav-link active" href="#">채소</a>
+          <ul id="vegeArea">
+            <li><a class="nav-link" href="#"></a></li>
+          </ul>
+        </li>
+         <li>
+          <a class="nav-link active" href="#">축산</a>
+          <ul id="meetArea">
+            <li><a class="nav-link" href="#"></a></li>
+          </ul>
+        </li>
+         <li>
+          <a class="nav-link active" href="#">의류</a>
+          <ul id="clothArea">
+            <li><a class="nav-link" href="#"></a></li>
+          </ul>
+        </li>
+        <li>
+          <a class="nav-link active" href="#">가전</a>
+          <ul id="electroArea">
+            <li><a class="nav-link" href="#"></a></li>
           </ul>
         </li>
         <li>
@@ -62,12 +87,110 @@
             <li><a class="nav-link" href="#">상품문의</a></li>
           </ul>
         </li>
-         <li>
-          <a class="nav-link active ms-auto" href="<c:url value="/user/userLogin"/>" >로그인</a>
-        </li>
+         <c:if test="${sessionScope.userDTO ==null}">
+            <li><a class="nav-link active ms-auto"
+                     href="<c:url value="/user/userLogin"/>">로그인</a></li>
+            <li><a class="nav-link active ms-auto"
+                     href="<c:url value="/user/userLogin"/>">회원가입</a></li>
+               </c:if>
+               <c:if test="${sessionScope.userDTO !=null}">
+                  <li><a class="nav-link active ms-auto"
+                     href="<c:url value="/user/userLogout"/>">로그아웃</a></li>
+               </c:if>
          
       </ul>
     </nav>
   </div>
 </header>
+<script>
+$(document).ready(function(){	
+	var categoryCode = 'A100'
+	let str = "";
+	let fruitArea = $("#fruitArea");
+	
+	getProdCategoryList(categoryCode, function(data){
+		console.log(data);
+		
+		let list = data;
+		
+		for(let i=0; i<list.length; i++){
+			str += '<li><a class="nav-link" href="/fruitPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+		}
+		
+		fruitArea.html(str);
+
+	});
+	
+	var categoryCode = 'B100'
+	let str2 = "";
+	let vegeArea = $("#vegeArea");
+		
+		getProdCategoryList(categoryCode, function(data){
+		console.log(data);
+			
+		let list = data;
+			
+		for(let i=0; i<list.length; i++){
+			str2 += '<li><a class="nav-link" href="/vegePage'+i+'">'+list[i].ct_nm2+'</a></li>'
+		}
+			
+			vegeArea.html(str2);
+
+		});
+		
+	var categoryCode = 'C100'
+		let str3 = "";
+		let meetArea = $("#meetArea");
+				
+		getProdCategoryList(categoryCode, function(data){
+			console.log(data);
+					
+			let list = data;
+					
+			for(let i=0; i<list.length; i++){
+				str3 += '<li><a class="nav-link" href="/meetPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+			}
+					
+			meetArea.html(str3);
+
+		});
+		
+	var categoryCode = 'S100'
+		let str4 = "";
+		let clothArea = $("#clothArea");
+					
+		getProdCategoryList(categoryCode, function(data){
+			console.log(data);
+						
+			let list = data;
+						
+			for(let i=0; i<list.length; i++){
+				str4 += '<li><a class="nav-link" href="/clothPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+			}
+						
+			clothArea.html(str4);
+				
+		});	
+		
+	var categoryCode = 'K100'
+		let str5 = "";
+		let electroArea = $("#electroArea");
+						
+		getProdCategoryList(categoryCode, function(data){
+			console.log(data);
+							
+			let list = data;
+							
+			for(let i=0; i<list.length; i++){
+				str5 += '<li><a class="nav-link" href="/electroPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+			}
+							
+			electroArea.html(str5);
+					
+		});			
+
+});
+</script>
+
+
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ezen.team.domain.CategoryDTO;
 import ezen.team.domain.CommonCodeDTO;
 import ezen.team.service.admin.CommonCodeService;
 
@@ -22,6 +23,7 @@ public class CommonCodeController {
 	CommonCodeService service;
 	
 	
+	//공통코드 리스트 가져오기
 	@PostMapping("/getCode")
 	@ResponseBody
 	public List<CommonCodeDTO> getCode(@RequestParam("code") String code) {
@@ -33,4 +35,17 @@ public class CommonCodeController {
 		return codelist;
 	}
 
+	//상품카테고리 가져오기
+	@PostMapping("/getProdCategoryList")
+	@ResponseBody
+	public List<CategoryDTO> categoryList(@RequestParam("categoryCode") String catCode){
+		
+		//view에서 넘겨준 catCode값을 통해 상품 카테고리 리스트 가져오기
+		List<CategoryDTO> catList = service.getProdCategory(catCode);		
+		
+		return catList;
+		
+		
+	}
+	
 }

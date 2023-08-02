@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ezen.team.mapper.ShopProdMapper">
+
+<!-- 과일제품 가져오기 -->
+
+<select id="getFruit" resultType="hashmap">
+select * from prod_master where ctgry_no = 1
+</select>
+
+<!-- 견과, 특용작물 가져오기 -->
+<select id="getNuts" resultType="hashmap">
+select * from prod_master where ctgry_no = 2
+</select>
+
+<!-- 냉동과일 가져오기 -->
+<select id="getIceFruit" resultType="hashmap">
+select * from prod_master where ctgry_no = 3
+</select>
+
+<!-- 잎채소 가져오기 -->
+<select id="getLeap" resultType="hashmap">
+select * from prod_master where ctgry_no = 4
+</select>
+
+<!-- 열매채소 가져오기 -->
+<select id="getFruitVege" resultType="hashmap">
+select * from prod_master where ctgry_no = 5
+</select>
+
+<!-- 뿌리채소 가져오기 -->
+<select id="getRootVege" resultType="hashmap">
+select * from prod_master where ctgry_no = 6
+</select>
+
+<!-- 버섯 가져오기 -->
+<select id="getMushRoom" resultType="hashmap">
+select * from prod_master where ctgry_no = 7
+</select>
+
+<!-- 나물 가져오기 -->
+<select id="getNamuel" resultType="hashmap">
+select * from prod_master where ctgry_no = 8
+</select>
+
+<!-- 한우 가져오기 -->
+<select id="getCow" resultType="hashmap">
+select * from prod_master where ctgry_no = 9
+</select>
+
+<!-- 돈육 가져오기 -->
+<select id="getPig" resultType="hashmap">
+select * from prod_master where ctgry_no = 10
+</select>
+
+<!-- 닭/오리 가져오기 -->
+<select id="getChicken" resultType="hashmap">
+select * from prod_master where ctgry_no = 11
+
+</select>
+
+</mapper>
