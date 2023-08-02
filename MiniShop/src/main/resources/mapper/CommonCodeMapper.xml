@@ -10,4 +10,13 @@
 select * from cmmn_cd where cm_cd = #{code}
 </select>
 
+<!-- 해당 카테고리 리스트 가져오기 -->
+<select id="getCategory" resultType="hashmap">
+select * from ctgry_mng where ct_cd1 = #{category}
+</select>
+
+<!-- 팝업 이미지 가져오기 -->
+<select id="getPopImg" resultType="String">
+select pst_img from post_mng where pst_no = #{postno}
+</select>
 </mapper>

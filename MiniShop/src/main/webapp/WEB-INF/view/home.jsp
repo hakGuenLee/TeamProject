@@ -4,6 +4,20 @@
 
  <jsp:include page="include/header.jsp"/> 
 
+
+
+	<div id="popupImg" class="popupImg">
+		<img >
+	
+		
+	</div>
+	
+		<button id="btn-chk" type="button"
+					class="btn-close border bg-danger"
+							style="display: block; position: relative; left: -24px; top: -30px;"
+							onclick="delInput(this)">
+		</button>
+
 	<!-- Carousel -->
 	<div id="demo" class="carousel slide" data-bs-ride="carousel">
 	
@@ -45,5 +59,48 @@
 
 <jsp:include page="include/footer.jsp"/>
 
+<script>
+$(document).ready(function(){
+
+	var postno = 1;
+	let str = "";
+	let popArea = $("#popupImg");
+
+	$.ajax({
+		
+		url: "/popWindow",
+		type: "post",
+		data: {"postno" : postno},
+		success: function(data){
+			console.log(data)
+			
+			str += '<img src="resources/upload/'+data+'"/>'
+			
+			popArea.html(str);	
+			
+		},
+		error: function(){alert("error!")}
+	
+	
+	})
+	
+		function delInput() {
+		var imgTag = document.getElementById("img-tag");
+		var btnTag = document.getElementById("btn-chk");
+
+
+		imgTag.style.display = "none";
+		btnTag.style.display = "none";
+	}
+	
+	
+	
+})
+
+
+
+
+
+</script>
 
 
