@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication  (exclude={SecurityAutoConfiguration.class}) 
-@ComponentScan(basePackages={"ezen.team.shop, ezen.team.controller", "ezen.team.service", "ezen.team.security"})
+@ComponentScan(basePackages={"ezen.team.shop, ezen.team.controller", "ezen.team.service", "ezen.team.security","ezen.team.domain"})
 @MapperScan(basePackages= {"ezen.team.mapper"})
 public class MiniShopApplication {
 

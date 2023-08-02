@@ -7,6 +7,7 @@
 <jsp:include page="../include/header.jsp"/>
 <div class="container w-50 shadow rounded border p-5 mt-5">
     <form action="<c:url value='/user/userLogin'/>" method="post">
+        <input type="hidden" id="result" name ="result" value="${result}"/>
         <h3 class="text-center mb-4">로그인</h3>
         <input class="form-control mb-3" type="text" id="user_id" name="user_id" placeholder="아이디"/>
         <input class="form-control mb-2" type="text" id="user_pw" name="user_pw" placeholder="비밀번호"/>
@@ -31,6 +32,18 @@
 					
 	<jsp:include page="../include/footer.jsp"/>
 	
+<script>
+
+let result = $("#result").val();
+
+console.log("result = " + result);
+
+$(document).ready(function(){
 	
-</body>
-</html>
+	if(result=="오류"){
+		alert("아이디 또는 비밀번호가 틀렸습니다.");
+	}
+	
+})
+
+</script>
