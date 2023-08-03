@@ -30,14 +30,16 @@
 					가입시 아이디는 <b><span id="resultId"></span></b>입니다.
 				</p>
 				<a class="btn btn-primary mt-3 w-100" type="button"
-					href="<c:url value="/member/login.do"/>">로그인</a>
+					href="<c:url value="/user/userLogin"/>">로그인</a>
+				<a class="btn btn-primary mt-3 w-100" type="button"
+					href="<c:url value="/user/idpwSearch?find=pw"/>">비밀번호찾기</a>
 			</div>
 
 			<div id="findIdBefore" class="px-4">
 				<p>이름과 휴대폰 번호를 입력하세요.</p>
-				<input class="form-control mb-2" type="text" id="name" name="name"
+				<input class="form-control mb-2" type="text" id="user_nm" name="user_nm"
 					placeholder="이름" /> <input class="form-control mb-2" type="text"
-					id="tel" name="tel" placeholder="전화번호" /> <input
+					id="user_phone" name="user_phone" placeholder="휴대폰번호" /> <input
 					class="btn btn-primary mt-3 w-100" type="button" value="아이디 찾기"
 					onclick="idFind()" />
 			</div>
@@ -49,22 +51,22 @@
 
 			<div id="findPwSuccess" style="display: none" class="px-4">
 				<p>변경하실 비밀번호를 입력해주세요.</p>
-				<input class="form-control mb-2" type="text" id="newPw" name="newPw"
+				<input class="form-control mb-2" type="text" id="newUser_pw" name="newUser_pw"
 					placeholder="새로운 비밀번호" />
 				<p id="chkMsg" class="mb-2"></p>
 				<input class="form-control mb-2" onkeyup="findPwChk()" type="text"
-					id="newPwChk" name="newPwChk" placeholder="비밀번호 확인" /> <span
+					id="newUser_pwChk" name="newUser_pwChk" placeholder="비밀번호 확인" /> <span
 					class="btn btn-outline-secondary" onclick="pwChange()">수정하기</span>
 			</div>
 
 			<div id="findPwBefore" class="px-4">
 				<p>가입시 아이디와 이메일을 입력하세요.</p>
-				<input class="form-control mb-2" type="text" id="id" name="id"
+				<input class="form-control mb-2" type="text" id="user_id" name="user_id"
 					placeholder="아이디" />
 				<div class="row">
 					<div class="col-md-8">
-						<input class="form-control mb-2" type="text" id="email"
-							name="email" placeholder="이메일" />
+						<input class="form-control mb-2" type="text" id="user_email"
+							name="user_email" placeholder="이메일" />
 					</div>
 					<div class="col-md-4">
 						<span class="btn btn-outline-secondary" onclick="pwFind()">인증번호받기</span>
@@ -85,38 +87,15 @@
 
 <script>
 
-function pwChange(){
-
-	let id = $("#id").val();
-	let newPw = $("#newPw").val();
-	let newPwChk = $("#newPwChk").val();
-
-	
-    $.ajax({
-        url:"<c:url value= '/member/findPwChange.do?id='/>"+id+"&pw="+newPw+"&newPwChk="+newPwChk,
-        type:"post",
-        success(data){
-            if(data =="fail"){
-        	console.log(data)
-                alert("비밀번호가 일치하지 않습니다.");
-            }else{
-            	 alert("비밀번호가 수정완료.");
-                 location.href="<c:url value="/member/login.do"/>"
-            }
-        },
-        error:function(){alert("비밀번호 수정 요청 실패!!")}
-    });
-}
-
-
         function idFind(){
-        	let name = $("#name").val();
-             let tel = $("#tel").val(); 
+        	let user_nm = $("#user_nm").val();
+             let user_phone = $("#user_phone").val(); 
 
             $.ajax({
-               url:"<c:url value='/member/findId.do?name='/>"+name+"&tel="+tel,
+               url:"<c:url value='/user/findId?user_nm='/>"+user_nm+"&user_phone="+user_phone,
                type:"post",	// data 는 findId.do 실행시 결과값 resultId를 리턴받아서 가져옴
                success: function(data){ // data는 찾기 실패시 0, 찾으면 해당 아이디값
+            	   console.log(data);
                    if(data == 0){
                        alert("이름 및 휴대폰 번호를 다시 확인하기 바랍니다..")
                    }else{ // 아이디 찾기 성공
@@ -134,15 +113,15 @@ function pwChange(){
         
         function pwFind(){
 
-        	let id = $("#id").val();
-    		let email = $("#email").val();
+        	let user_id = $("#user_id").val();
+    		let user_email = $("#user_email").val();
         	
             $.ajax({
-                url:"<c:url value='/member/findPw.do?id='/>"+id+"&email="+email,
+                url:"<c:url value='/user/findPw?user_id='/>"+user_id+"&user_email="+user_email,
                 type:"post",
                 success(data){
                     if(data =="fail"){
-                	console.log(data)
+                	console.log("비밀번호 찾기 리턴 값 ( 이메일 코드 ) = "+data)
                         alert("아이디와 이메일을 다시 확인하세요");
                     }else{
                     	console.log(data)
@@ -162,7 +141,6 @@ function pwChange(){
 
         function emailConfirm(){
         	
-
             let confrimUUID = $("#confirmUUID").val();
 
             if(confrimUUID == null || confrimUUID ==""){
@@ -170,8 +148,6 @@ function pwChange(){
                 $("#confrimUUID").select();
             }else if(serverUUID == confrimUUID){
                 alert("인증성공")
-                
-                console.log(id);
                 $("#findPwBefore").css("display", "none");
                 $("#findPwSuccess").css("display", "block");
                 
@@ -183,20 +159,42 @@ function pwChange(){
         }
     		
         function findPwChk(){
-        	let newPw = $("#newPw").val();
-        	let newPwChk = $("#newPwChk").val();
+        	let newUser_pw = $("#newUser_pw").val();
+        	let newUser_pwChk = $("#newUser_pwChk").val();
         	
-        	if(newPw != newPwChk ){
+        	if(newUser_pw != newUser_pwChk ){
         		 $('#chkMsg').html("비밀번호가 일치하지 않습니다..");
                 $('#chkMsg').css({"color":"red","font-size":"13px"});
         	}
-        	if(newPw == newPwChk){
+        	if(newUser_pw == newUser_pwChk){
                 $('#chkMsg').html("비밀번호가 일치합니다입  니다.")
              $('#chkMsg').css({"color":"blue","font-size":"13px"});
         	}
         	
         }
         
+        function pwChange(){
+
+        	let user_id = $("#user_id").val();
+        	let newUser_pw = $("#newUser_pw").val();
+        	let newUser_pwChk = $("#newUser_pwChk").val();
+
+        	
+            $.ajax({
+                url:"<c:url value= '/user/pwChange?user_id='/>"+user_id+"&user_pw="+newUser_pw+"&newUser_pwChk="+newUser_pwChk,
+                type:"post",
+                success(data){
+                    if(data =="fail"){
+                	console.log(data)
+                        alert("비밀번호가 일치하지 않습니다.");
+                    }else{
+                    	 alert("비밀번호가 수정완료.");
+                         location.href='<c:url value="/user/userLogin"/>'
+                    }
+                },
+                error:function(){alert("비밀번호 수정 실패")}
+            });
+        }
         
         
     </script>

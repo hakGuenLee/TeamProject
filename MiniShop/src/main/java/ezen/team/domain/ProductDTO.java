@@ -11,10 +11,13 @@ import lombok.Setter;
 @Setter
 public class ProductDTO {
 	
-	private int prod_no; //상품ID
+	private int prod_no; //상품no
 	private int ctgry_no; //카테고리ID
 	private String prod_nm; //상품명
 	private String main_img; //대표 이미지 파일명
+	private String detail_img; // 상품 상세 이미지
+	private String sub_img1; //서브이미지1
+	private String sub_img2; //서브이미지2
 	private int price; //가격
 	private int point; //적립금
 	private int qty; //수량

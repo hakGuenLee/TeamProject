@@ -19,6 +19,7 @@ public class UserDTO {
 	private Date birth_ymd;
 	private String zipcode;
 	private String addr;
+	private String addr_road;
 	private String addr_detail;
 	private String use_yn;
 	private Date user_dt;

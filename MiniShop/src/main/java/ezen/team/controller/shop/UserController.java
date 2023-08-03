@@ -3,11 +3,13 @@ package ezen.team.controller.shop;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -89,6 +91,46 @@ public class UserController {
 		
 		return "/user/idpwSearch";
 	}
+	// 아이디 찾기
+	@PostMapping("/findId")
+	public @ResponseBody String findId(UserDTO userDTO) {
+		
+		String resultId = userService.findId(userDTO);
+		
+		return resultId;
+	}
+	// 비밀번호 찾기
+	@PostMapping("/findPw")
+	public @ResponseBody String findPw(UserDTO userDTO) {
+		
+		String emailCode = userService.findPw(userDTO);
+		
+		return emailCode;
+	}
+	
+    
+    @PostMapping("pwChange")
+    public @ResponseBody String pwChange(@Param("user_pw") String user_pw,
+    							@Param("newUser_pwChk") String newUser_pwChk,
+    							@Param("user_id")String user_id) {
+    	
+    	
+    	// 새로 입력한 비밀번호 중복체크
+    	if(user_pw.equals(newUser_pwChk)) {
+    		
+    		userService.pwChange(user_id,user_pw);
+    		
+    		return "Yes";
+    	}
+    	
+    
+    	return "fail";
+    	
+    }
+	
+	
+	
+	
 	
 	// 회원가입 페이지 이동
 	@GetMapping("/userRegister")

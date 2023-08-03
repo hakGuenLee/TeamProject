@@ -7,9 +7,9 @@
 <!-- 회원가입 처리  -->
 <insert id="userRegister">
 INSERT INTO user_master
-(user_id, user_pw, user_nm, user_home, user_phone, user_email, birth_ymd, zipcode, addr, addr_detail)
+(user_id, user_pw, user_nm, user_home, user_phone, user_email, birth_ymd, zipcode, addr,addr_road, addr_detail)
 VALUES
-(#{user_id}, #{user_pw}, #{user_nm}, #{user_home}, #{user_phone}, #{user_email}, #{birth_ymd}, #{zipcode}, #{addr}, #{addr_detail})
+(#{user_id}, #{user_pw}, #{user_nm}, #{user_home}, #{user_phone}, #{user_email}, #{birth_ymd}, #{zipcode}, #{addr}, #{addr_road}, #{addr_detail})
 </insert>
 
 <!-- 회원가입 시 아이디 중복체크  -->
@@ -23,6 +23,26 @@ WHERE user_id = #{user_id}
 SELECT user_id, user_pw, user_nm FROM user_master
 WHERE user_id = #{user_id}
 </select>
+
+<!-- 아이디 찾기  --> <!--  IFNULL (id,0) id가 널이면 0으로 하겠다.  -->
+<select id="findId" resultType="String">
+SELECT IFNULL(user_id,0) FROM user_master
+WHERE user_nm = #{user_nm}
+AND user_phone = #{user_phone}
+</select>
+<!-- 비밀번호 찾기  -->
+<select id="findPw" resultType="UserDTO">
+SELECT * FROM user_master
+WHERE user_id = #{user_id}
+AND user_email = #{user_email}
+</select>
+<!-- 비밀번호 수정  -->
+<update id="pwChange">
+UPDATE user_master
+SET user_pw = #{user_pw} 
+WHERE user_id = #{user_id}
+</update>
+
 
 
 </mapper>

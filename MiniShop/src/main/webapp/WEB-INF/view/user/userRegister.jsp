@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <input class="form-control mb-2 w-50" type="text" name="zipcode" id="sample4_roadAddress" placeholder="도로명주소"
+        <input class="form-control mb-2 w-50" type="text" name="addr_road" id="sample4_roadAddress" placeholder="도로명주소"
                readonly>
         <input class="form-control mb-2 w-50" type="text" name="addr" id="sample4_jibunAddress" placeholder="지번주소"
                readonly>
@@ -79,7 +79,6 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            Modal Header
             <div class="modal-header">
                 <h4 class="modal-title">중복 체크 확인</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -142,7 +141,7 @@ document.getElementById('birth_ymd').max = new Date().toISOString().substring(0,
             data: {"user_id": user_id}, // 서버에 전송 할 데이터
             success: function (responseData) {
 					
-            	console.log("맆ㄴ데이타"+responseData);
+            	console.log("아이디 중복체크"+responseData);
             	
             	
                 //responseData = "Y" or "N", Y: 사용가능 N: 사용불가

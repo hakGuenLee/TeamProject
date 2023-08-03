@@ -55,7 +55,7 @@ public class AdminController {
 	
 		adminservice.adminRegister(aDto);
 			
-		return "redirect:adminList";
+		return "redirect:/admin/adminList";
 		
 	}
 		
@@ -90,6 +90,8 @@ public class AdminController {
 	public String adminList(Model model) {
 			
 		List<AdminDTO> list = adminservice.getAdminList();
+		
+		
 		
 		model.addAttribute("adminList", list);
 		

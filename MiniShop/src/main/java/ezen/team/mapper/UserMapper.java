@@ -21,5 +21,9 @@ public interface UserMapper {
 
 	UserDTO userLogin(String user_id);
 
+	String findId(UserDTO userDTO);
 
+	UserDTO findPw(UserDTO userDTO);
+
+	void pwChange(String user_id, String user_pw);
 }
