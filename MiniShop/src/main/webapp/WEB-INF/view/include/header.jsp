@@ -16,7 +16,7 @@
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <script src="<c:url value="/resources/js/commoncode.js"/>"></script>
    <script src="<c:url value="/resources/js/zipcode.js"/>"></script>
-  
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">   
 <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">   
 <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">   
@@ -69,14 +69,14 @@
           <a class="nav-link active" href="<c:url value="/cart/cartList"/>">Cart</a>       
         </li>
         <li>
-          <a class="nav-link active" href="<c:url value="/user/myPagehome"/>">My Page</a>
+          <a class="nav-link active" href="<c:url value="/myPage/myPagehome"/>">My Page</a>
           <ul>
-            <li><a class="nav-link" href="<c:url value="/user/myInfoUpdate"/>" >내 정보수정</a>
-            <li><a class="nav-link" href="<c:url value="/user/myPageWish"/>">나의 위시리스트</a></li>
-            <li><a class="nav-link" href="<c:url value="/user/myPagehome"/>">나의 주문/배송조회</a></li>
-            <li><a class="nav-link" href="<c:url value="/user/myPagePoint"/>">나의 적립금</a></li>
-            <li><a class="nav-link" href="<c:url value="/user/myPageQuestion"/>">나의 1:1문의</a></li>
-            <li><a class="nav-link" href="<c:url value="/user/myPageProdQna"/>">나의 상품문의</a></li>
+            <li><a class="nav-link" href="<c:url value="/myPage/myInfoUpdate"/>" >내 정보수정</a>
+            <li><a class="nav-link" href="<c:url value="/cart/wishList"/>">나의 위시리스트</a></li>
+            <li><a class="nav-link" href="<c:url value="/myPage/myPagehome"/>">나의 주문/배송조회</a></li>
+            <li><a class="nav-link" href="<c:url value="/myPage/myPagePoint"/>">나의 적립금</a></li>
+            <li><a class="nav-link" href="<c:url value="/myPage/myPageQuestion"/>">나의 1:1문의</a></li>
+            <li><a class="nav-link" href="<c:url value="/myPage/myPageProdQna"/>">나의 상품문의</a></li>
           </ul>
         </li>
          <li>
@@ -91,7 +91,7 @@
             <li><a class="nav-link active ms-auto"
                      href="<c:url value="/user/userLogin"/>">로그인</a></li>
             <li><a class="nav-link active ms-auto"
-                     href="<c:url value="/user/userLogin"/>">회원가입</a></li>
+                     href="<c:url value="/user/userRegister"/>">회원가입</a></li>
                </c:if>
                <c:if test="${sessionScope.userDTO !=null}">
                   <li><a class="nav-link active ms-auto"

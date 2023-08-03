@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import ezen.team.domain.CategoryDTO;
 import ezen.team.domain.CommonCodeDTO;
+import ezen.team.domain.ProductDTO;
 
 @Mapper
 public interface CommonCodeMapper {
@@ -15,5 +16,8 @@ public interface CommonCodeMapper {
 
 	//상품 카테고리 가져오기
 	List<CategoryDTO> getProdCategory(String catCode);
+
+	//해당 카테고리 번호에 맞는 상품 리스트 가져오기
+	List<ProductDTO> getProdBox(String ctNo);
 
 }

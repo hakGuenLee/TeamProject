@@ -1,0 +1,32 @@
+/*@charset "UTF-8";
+
+#cardBox{
+	background-color: lightgray;
+	width: 100%;
+	height: 300px;
+	opacity: 0.9;
+	position: relative;
+	display:none;
+	transition: 1s;
+	z-index: 99;
+}
+
+#prodName{
+	margin-top : 80px;
+}
+
+#cardBox p{
+	text-align: center;
+}
+
+#menuBtn{
+	margin-left:56px;
+}
+
+#prodImg :hover ~ #cardBox{
+	
+	display: block;
+	transform: translateY(-300px);
+
+	
+}*/
