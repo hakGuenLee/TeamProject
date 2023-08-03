@@ -47,3 +47,23 @@
 	 
  }
  
+ 
+ function homeProdBox(a, cb){
+	 
+	 $.ajax({
+		 url:"/getHomeProdBox",
+		 type:"post",
+		 data:{"codeNum" : a},
+		 dataType : "json",
+		 success: (result) =>{
+			 if(cb) cb(result);
+		 },
+		 error: function(){alert("error")}
+		 
+	 });
+	 
+	 
+ }
+ 
+ 
+ 

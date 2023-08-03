@@ -2,6 +2,26 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ezen.team.mapper.admin.CartMapper">
+<mapper namespace="ezen.team.mapper.CartMapper">
 
+<!-- 위시리스트 상품 담기 -->
+<insert id="insertWish">
+insert into user_wish(user_id, prod_no) 
+values(#{id}, #{no})
+</insert>
+
+<!-- 해당 회원 아이디에 맞는 위시리스트 가져오기 -->
+<select id="getWishList" resultType="hashmap">
+
+select p.main_img, p.prod_nm, p.price, p.point, u.wish_no 
+from prod_master as p left outer join user_wish as u
+on p.prod_no = u.prod_no 
+where u.user_id = #{id} 
+</select>
+
+
+<!-- 해당번호에 해당하는 위시리스트 삭제하기 -->
+<delete id="deleteWish">
+delete from user_wish where wish_no = #{no}
+</delete>
 </mapper>

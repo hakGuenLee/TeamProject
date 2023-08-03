@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ezen.team.domain.CategoryDTO;
 import ezen.team.domain.CommonCodeDTO;
+import ezen.team.domain.ProductDTO;
 import ezen.team.service.admin.CommonCodeService;
 
 //공통코드 호출 처리 컨트롤러
@@ -45,6 +46,18 @@ public class CommonCodeController {
 		
 		return catList;
 		
+		
+	}
+	
+	//홈 화면 상품 박스 출력하기
+	@PostMapping("/getHomeProdBox")
+	@ResponseBody
+	public List<ProductDTO> prodBox(@RequestParam("codeNum") String ctNo){
+		
+		//view에서 넘겨준 codeNum을 통해 해당 카테고리 번호에 맞는 상품 정보 가져오기
+		List<ProductDTO> prodList = service.getProdBox(ctNo);
+		
+		return prodList;
 		
 	}
 	

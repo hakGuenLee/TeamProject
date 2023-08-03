@@ -2,24 +2,23 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
-<!-- 회원가입 페이지 -->
+<!-- 회원정보 수정 페이지 -->
 
 <jsp:include page="../include/header.jsp"/>
 
 <div class="container w-50 mt-5 p-5 shadow">
-    <form action="insert.do" method="post" onsubmit="return submitChk()"> 
-        <h4>내 정보 수정</h4>
+    <form action="/myPage/myInfoUpdate" method="post" onsubmit="return submitChk()"> 
+        <h4>${userDTO.user_nm }님의 정보 수정</h4>
 
-            <input type="hidden" id="isIdChk" value="no"/><!-- -->
-            <input class="form-control mb-2"  onkeyup="idCheck()" type="text" name="id" id="id" placeholder="아이디" readonly/>
+            <input type="hidden" value="${userDTO.user_no }" name="user_no"/><!-- -->
+            <input class="form-control mb-2"  onkeyup="idCheck()" value="${userDTO.user_id}" type="text" name="user_id" id="user_id" placeholder="아이디" readonly/>
                 <p id="chkMsg" class="mb-2"></p>
 
-        <input class="form-control mb-2" type="text" name="pw" placeholder="비밀번호">
-        <input class="form-control mb-2" type="text" name="name" placeholder="이름">
-        <input class="form-control mb-2" type="text" name="tel" placeholder="전화번호">
+        <input class="form-control mb-2" value="${userDTO.user_home}" type="text" name="user_home" placeholder="자택번호">
+        <input class="form-control mb-2" value="${userDTO.user_phone}" type="text" name="user_phone" placeholder="휴대번호">
         <div class="row">
             <div class="col-md-8">
-                <input class="form-control mb-2" type="text" id="email" name="email" placeholder="이메일"/>
+                <input class="form-control mb-2" value="${userDTO.user_email}" type="text" id="user_email" name="user_email" placeholder="이메일"/>
             </div>
             <div class="col-md-4">
                 <span class="btn btn-outline-secondary" onclick="emailCheck()" >인증번호받기</span>
@@ -36,7 +35,7 @@
         <!-- 주소 -->
         <div class="row mb-2">
             <div class="col-md-6">
-                <input class="form-control mb-2" type="text" id="sample4_postcode" name="zipcode" placeholder="우편번호"
+                <input class="form-control mb-2" value="${userDTO.zipcode}" type="text" id="zipcode" name="zipcode" placeholder="우편번호"
                        readonly>
             </div>
             <div class="col-md-6 p-0 ps-2">
@@ -44,15 +43,15 @@
             </div>
         </div>
 
-        <input class="form-control mb-2" type="text" name="roadAddr" id="sample4_roadAddress" placeholder="도로명주소"
+        <input class="form-control mb-2" value="${userDTO.addr_load}" type="text" name="addr_load" id="addr_load" placeholder="도로명주소"
                readonly>
-        <input class="form-control mb-2" type="text" name="jibunAddr" id="sample4_jibunAddress" placeholder="지번주소"
+        <input class="form-control mb-2" value="${userDTO.addr}"  type="text" name="addr" id="addr" placeholder="지번주소"
                readonly>
         <!-- <span id="guide" style="color:#999;display:none"></span> -->
-        <input class="form-control mb-2" type="text" id="sample4_detailAddress" name="detailAddr" placeholder="상세주소">
+        <input class="form-control mb-2" value="${userDTO.addr_detail}" type="text" id="addr_detail" name="addr_detail" placeholder="상세주소">
         <div class="text-center mt-3">
-            <input type="submit" class="btn btn-primary" value="가입">
-            <input type="reset" class="btn btn-info" value="취소">
+            <input type="submit" class="btn btn-primary" value="수정하기">
+            <input type="reset" class="btn btn-info" value="취소하기">
         </div>
     </form>
 </div>
@@ -88,7 +87,7 @@
     let severUUID = "";
 
 
-    function submitChk(){
+   /*  function submitChk(){
 
         let isIdChk = $("#isIdChk").val();
 
@@ -101,7 +100,7 @@
             alert("이메일 인증확인을 해주세요");
             $("#email").select();
             return false;
-        } 
+        }  */
 
 
 
@@ -109,7 +108,7 @@
 
 
 
-
+/* 
     function idCheck() {
 
         var uid = $('#id').val();
@@ -153,7 +152,7 @@
 
 
     }//funtion idCheck
-
+ */
 
     function emailCheck() {
         let uEmail = $("#email").val();
