@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ezen.team.domain.CsDTO;
 import ezen.team.domain.PageDTO;
+import ezen.team.domain.QnaDTO;
 import ezen.team.mapper.admin.CustomerMapper;
 
 @Service
@@ -17,10 +18,17 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerMapper mapper;
 
 	@Override
-	public List<CsDTO> csList(String cs_code, String proc_sts) {
+	public List<CsDTO> csList(String cs_code, String proc_sts, PageDTO pageDto) {
+		int totalCnt = mapper.totalCnt(pageDto);
+		pageDto.setValue(totalCnt, pageDto.getCntPerPage());  
+		List<CsDTO> csList = mapper.csList(cs_code, proc_sts, pageDto);
+		System.out.println("서비스임플"+ csList);
+		
 		System.out.println(cs_code);
-		return mapper.csList(cs_code, proc_sts);
+		return mapper.csList(cs_code, proc_sts, pageDto);
+
 	}
+	
 	
 	@Override
 	public CsDTO csInfo(int cs_no, int proc_sts) {
