@@ -20,12 +20,11 @@
 
 	<dependencies>
 
-<!--자바 메일센터를 사용하기 위한 디펜더시-->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-mail</artifactId>
-    </dependency>
-
+		<!--자바 메일센터를 사용하기 위한 디펜더시-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 
 
 		<dependency>
@@ -85,6 +84,14 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.14.2</version>
 		</dependency>
+
+		<!-- 카카오 로그인을 위한 GSON-->
+	<dependency>
+  	 	 <groupId>com.google.code.gson</groupId>
+  		  <artifactId>gson</artifactId>
+  		  <version>2.9.0</version>
+	</dependency>
+
 
 
 	</dependencies>

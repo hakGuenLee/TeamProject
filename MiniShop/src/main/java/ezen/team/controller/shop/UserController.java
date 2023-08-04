@@ -3,6 +3,7 @@ package ezen.team.controller.shop;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,6 +69,36 @@ public class UserController {
 	
 		return"redirect:/";
 	}
+	
+	// 카카오 로그인 처리
+	 @GetMapping("/kakaoLogin")
+	    public String kakaoCb(@RequestParam("code")String code, HttpSession session){
+
+		 
+		 	// 액세스 토큰 가져오기
+	        String accessToken = userService.getToken(code);
+
+	        System.out.println(accessToken);
+	        
+	        // 3 . 사용자정보 가져오기
+	         UserDTO kakaoUser = userService.getUserInfo(accessToken);
+
+
+	        // 4. 사용자 정보를 이용해서 회원가입
+	            // 회원가입 하기 전에 이미 가입된 회원인지 확인하기
+	        UserDTO findUser = userService.userIdChk(kakaoUser.getUser_id());
+	        
+	        if(findUser==null) {
+	        	userService.userRegister(kakaoUser);
+	        }
+
+	        // 5. 인증 처리
+	        session.setAttribute("userDTO",kakaoUser);
+
+	        return "redirect:/";
+
+	    }
+	
 	
 	// 유저 로그아웃 처리
 	@GetMapping("userLogout")
