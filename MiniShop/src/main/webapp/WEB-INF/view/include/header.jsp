@@ -27,48 +27,56 @@
 
 <header class="top-bar con-min-width">
   <div class="container">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-sm  navbar-white bg-white fixed-top">
        <ul class="navbar-nav">
          <li class="nav-item">
           <a class="nav-link active" href="<c:url value="/"/>">쇼핑몰 홈</a>
         </li>
-        <li>
-          <a class="nav-link active" href="#">모든 제품보기</a>
+
+        <li id="allProduct">
+          <a class="nav-link active" href="#"><b>모든제품</b></a>
         </li>
         <li>
-          <a class="nav-link active" href="#">과일</a>
+          <a class="nav-link active " href="#"><b>과일</b></a>
           <ul id="fruitArea">
             <li><a class="nav-link" href="#"></a></li>
           </ul>
         </li>
          <li>
-          <a class="nav-link active" href="#">채소</a>
+          <a class="nav-link active" href="#"><b>채소</b></a>
           <ul id="vegeArea">
             <li><a class="nav-link" href="#"></a></li>
           </ul>
         </li>
          <li>
-          <a class="nav-link active" href="#">축산</a>
+          <a class="nav-link active " href="#"><b>축산</b></a>
           <ul id="meetArea">
             <li><a class="nav-link" href="#"></a></li>
           </ul>
         </li>
          <li>
-          <a class="nav-link active" href="#">의류</a>
+          <a class="nav-link active " href="#"><b>의류</b></a>
           <ul id="clothArea">
             <li><a class="nav-link" href="#"></a></li>
           </ul>
         </li>
         <li>
-          <a class="nav-link active" href="#">가전</a>
+          <a class="nav-link active " href="#"><b>가전</b></a>
           <ul id="electroArea">
             <li><a class="nav-link" href="#"></a></li>
           </ul>
         </li>
-        <li>
-          <a class="nav-link active" href="<c:url value="/cart/cartList"/>">Cart</a>       
+    	 <li>
+          <a class="nav-link active" href="#"><b>Community</b></a>
+          <ul>
+            <li><a class="nav-link" href="#">Notice</a></li>
+            <li><a class="nav-link" href="#">FAQ</a></li>
+            <li><a class="nav-link" href="#">상품문의</a></li>
+          </ul>
         </li>
-        <li>
+    
+    
+        <li id="UserArea">
           <a class="nav-link active" href="<c:url value="/myPage/myPagehome"/>">My Page</a>
           <ul>
             <li><a class="nav-link" href="<c:url value="/myPage/myInfoUpdate"/>" >내 정보수정</a>
@@ -80,24 +88,20 @@
           </ul>
         </li>
          <li>
-          <a class="nav-link active" href="#">Community</a>
-          <ul>
-            <li><a class="nav-link" href="#">Notice</a></li>
-            <li><a class="nav-link" href="#">FAQ</a></li>
-            <li><a class="nav-link" href="#">상품문의</a></li>
-          </ul>
+          <a class="nav-link active" href="<c:url value="/cart/cartList"/>">Cart</a>       
         </li>
+        
          <c:if test="${sessionScope.userDTO ==null}">
             <li><a class="nav-link active ms-auto"
-                     href="<c:url value="/user/userLogin"/>">로그인</a></li>
+                     href="<c:url value="/user/userLogin"/>">Login</a></li>
             <li><a class="nav-link active ms-auto"
-                     href="<c:url value="/user/userRegister"/>">회원가입</a></li>
+                     href="<c:url value="/user/userRegister"/>">join</a></li>
                </c:if>
                <c:if test="${sessionScope.userDTO !=null}">
                   <li><a class="nav-link active ms-auto"
-                     href="<c:url value="/user/userLogout"/>">로그아웃</a></li>
+                     href="<c:url value="/user/userLogout"/>">Logout</a></li>
                </c:if>
-         
+
       </ul>
     </nav>
   </div>

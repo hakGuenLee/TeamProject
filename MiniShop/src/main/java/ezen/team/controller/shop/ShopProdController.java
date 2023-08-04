@@ -15,8 +15,7 @@ public class ShopProdController {
 	
 	@Autowired
 	private ShopProdService service;
-	
-	
+
 	//과일상품 페이지 이동
 	@GetMapping("/fruitPage0")
 	public String fruit(Model model) {

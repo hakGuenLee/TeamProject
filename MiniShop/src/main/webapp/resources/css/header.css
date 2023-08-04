@@ -12,18 +12,36 @@ body, ul, li {
 	display: none;
 }
 
+
 .navbar > ul > li {
 	position: relative;
 
 }
 
+.navbar a{
+	margin-top:10px;
+}
 
 .navbar > ul > li:hover > ul {
 	display:block;
 	
 }
 
+header 
+
+
+
+
 img {
 	height:700px;
 	width:100%;
+}
+
+#allProduct{
+	padding-left:600px;
+	
+}
+
+#UserArea{
+	padding-left:300px;
 }
