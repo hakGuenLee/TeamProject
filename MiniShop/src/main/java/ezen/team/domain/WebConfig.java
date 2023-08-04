@@ -22,6 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
 		.addPathPatterns("/myPage/myPagehome")
 		.addPathPatterns("/myPage/myInfoUpdate")
 		.addPathPatterns("/cart/wishList")
+		.addPathPatterns("/cart/wish")
 		.addPathPatterns("/cart/cartList")
 		.addPathPatterns("/cart/inputCart")
 		.addPathPatterns("/myPage/myPagePoint")
