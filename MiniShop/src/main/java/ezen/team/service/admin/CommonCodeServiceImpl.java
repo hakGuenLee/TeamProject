@@ -39,6 +39,8 @@ public class CommonCodeServiceImpl implements CommonCodeService {
 	@Override
 	public List<ProductDTO> getProdBox(String ctNo) {
 	
+		
+		
 		List<ProductDTO> list = mapper.getProdBox(ctNo);
 		
 		return list;

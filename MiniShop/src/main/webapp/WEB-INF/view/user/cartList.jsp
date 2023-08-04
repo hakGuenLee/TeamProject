@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>      
 
 <!-- 마이페이지 위시리스트-->
 
@@ -22,39 +23,38 @@
 			</thead>
 			<tbody>
 
-				<c:if test="${cdto==null || cdto.size()== 0}">
+				<c:if test="${list==null || list.size()== 0}">
 					<tr>
 						<td colspan="6">장바구니가 비어있습니다.</td>
 					</tr>
 				</c:if>
-				<c:if test="${cdto!=null || cdto.size()!= 0}">
+				<c:if test="${list!=null || list.size()!= 0}">
 
 					<c:set var="totPrice" value="0" />
 					<c:set var="cartTotPrice" value="0" />
 
-					<c:forEach var="dto" items="">
+					<c:forEach var="dto" items="${list}">
 						<tr>
 
-							<td><a href="prodView.do?pNum=">
-							<img src="<c:url value=""/>" style="width: 60px" />
+							<td><a href="">
+							<img src="<c:url value="/resources/upload/${dto.main_img}"/>" style="width: 60px; height:60px" />
 							</a></td>
 
-							<td></td>
+							<td>${dto.prod_nm}</td>
 							<td>
-							<form action="cartModify.do" method="post">
-							<input type="hidden" name="cno" value="">
-							<input type="text" size="3" name="pqty" value=""/>개
-							<input type="submit" calss="btn btn-sm btn-secondary mt-3" value="수정"/>
+							<form action="/cart/updateQty?no=${dto.cart_no}" method="post">
+							<input type="text" size="3" name="pqty" value="${dto.qty }"/>
+							<input type="submit" class="btn btn-sm btn-outline-secondary" value="수정"/>
 							</form>
 							</td>
-							<td> 가격 : <fmt:formatNumber value=""/> 원 </br>
+							<td> 가격 : <fmt:formatNumber value="${dto.price}"/> 원 </br>
 							</td>
-							<c:set var="totPrice" value=""/>
-							<td><fmt:formatNumber value=""/> 원</br>
-							<c:set var="cartTotPrice" value=""/>
+							<c:set var="totPrice" value="${dto.price * dto.qty}"/>
+							<td><fmt:formatNumber value="${totPrice}"/> 원</br>
+							<c:set var="cartTotPrice" value="${cartTotPrice + totPrice }"/>
 
 							<td><a
-								href="<c:url value="/cart/cartDelete.do?cno="/>" 
+								href="<c:url value="cartDelete?no=${dto.cart_no}"/>" 
 								class="btn btn-sm btn-danger">삭제</a></td>
 						</tr>
 							
@@ -65,7 +65,7 @@
 		</table>
 		
 		<div class="text-end">
-			장바구니 총액 : <fmt:formatNumber value=""/> 원</br>
+			장바구니 총액 : <fmt:formatNumber value="${cartTotPrice }"/> 원</br>
 		
 		</div>
 		<div class="text-center">
