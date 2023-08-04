@@ -2,6 +2,7 @@ package ezen.team.service.admin;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,9 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	@Override
-	public CsDTO csInfo(int cs_no) {
+	public CsDTO csInfo(int cs_no, int proc_sts) {
 		System.out.println(cs_no);
-		return mapper.csInfo(cs_no);
+		return mapper.csInfo(cs_no, proc_sts);
 	}
 
 	@Override
@@ -33,8 +34,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public CsDTO csReply(int cs_no, String csre_con, String proc_id) {
-		return mapper.csReply(cs_no, csre_con, proc_id);
+	public void csReply(int cs_no, String csre_con, String proc_id) {
+		mapper.csReply(cs_no, csre_con, proc_id);
 	}
 
 
