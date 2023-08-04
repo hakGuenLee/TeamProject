@@ -49,8 +49,7 @@ public class UserController {
 	//로그인 페이지 이동
 	@GetMapping("/userLogin")
 	public String userLogin() {
-		
-		
+	
 		return "/user/userLogin";
 	}
 	// 유저 로그인 처리
@@ -168,45 +167,6 @@ public class UserController {
 		return uuid;
 		
 	}
-	
-	
-	
-	
-	// //////////// 마이페이지 /////////////////////
 
-	@GetMapping("/myInfoUpdate")
-	public String myInfoUpdate() {
-		
-		return"/user/myInfoUpdate";
-	}
-	
-	@GetMapping("/myPagehome")
-	public String myPagehome() {
-		
-		return "/user/myPagehome";
-	}
-	
-	@GetMapping("/myPagePoint")
-	public String myPagePoint() {
-		
-		return "/user/myPagePoint";
-	}
-	@GetMapping("/myPageProdQna")
-	public String myPageProdQna() {
-		
-		return "/user/myPageProdQna";
-	}
-	@GetMapping("/myPageQuestion")
-	public String myPageQuestion() {
-		
-		return "/user/myPageQuestion";
-	}
-	@GetMapping("/myPageWish")
-	public String myPageWish() {
-		
-		return "/user/myPageWish";
-	}
-	
-	// //////////// 마이페이지 /////////////////////
 
 }

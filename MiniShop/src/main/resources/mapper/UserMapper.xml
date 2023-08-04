@@ -7,9 +7,11 @@
 <!-- 회원가입 처리  -->
 <insert id="userRegister">
 INSERT INTO user_master
+
 (user_id, user_pw, user_nm, user_home, user_phone, user_email, birth_ymd, zipcode, addr,addr_road, addr_detail)
 VALUES
 (#{user_id}, #{user_pw}, #{user_nm}, #{user_home}, #{user_phone}, #{user_email}, #{birth_ymd}, #{zipcode}, #{addr}, #{addr_road}, #{addr_detail})
+
 </insert>
 
 <!-- 회원가입 시 아이디 중복체크  -->

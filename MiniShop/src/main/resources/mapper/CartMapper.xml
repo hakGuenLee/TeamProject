@@ -24,4 +24,44 @@ where u.user_id = #{id}
 <delete id="deleteWish">
 delete from user_wish where wish_no = #{no}
 </delete>
+
+
+<!-- 장바구니에 상품 넣기 -->
+<insert id="insertCart">
+insert into cart(user_id, prod_no, buy_yn, cart_dt)
+values(#{id}, #{no}, 'N', now())
+</insert>
+
+<!-- 장바구니 리스트 가져오기 -->
+<select id="getCartList" resultType="hashmap">
+
+select p.main_img, p.prod_nm, c.cart_no, c.qty, p.price
+from prod_master as p left outer join cart as c 
+on p.prod_no = c.prod_no
+where c.user_id = #{id} 
+
+</select>
+
+<!-- 장바구니 상품 유무 확인 -->
+<select id="checkCart" resultType="CartDTO">
+select * from cart where user_id = #{id} AND prod_no = #{no}
+</select>
+
+<!-- 장바구니에 상품이 이미 있을 경우 수량 1씩 증가 -->
+<update id="modifyQty">
+update cart set qty = #{pQty} where cart_no = #{cart_no}
+</update>
+
+
+<!-- 장바구니 상품 삭제하기 -->
+<delete id="deleteCart">
+delete from cart where cart_no = #{cartNo}
+</delete>
+
+<!--장바구니 수량 수정하기 -->
+<update id="updateQty">
+update cart set qty = #{pqty} where cart_no = #{cartNo} 
+</update>
+
 </mapper>
+

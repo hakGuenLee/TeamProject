@@ -66,4 +66,21 @@
  }
  
  
+  function getVegeBox(a, cb){
+	 
+	 $.ajax({
+		 url:"/getVegeBox",
+		 type:"post",
+		 data:{"codeNum" : a},
+		 dataType : "json",
+		 success: (result) =>{
+			 if(cb) cb(result);
+		 },
+		 error: function(){alert("error")}
+		 
+	 });
+	 
+	 
+ }
+ 
  

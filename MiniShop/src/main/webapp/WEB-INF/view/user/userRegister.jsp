@@ -62,6 +62,7 @@
         </div>
 
         <input class="form-control mb-2 w-50" type="text" name="addr_road" id="sample4_roadAddress" placeholder="도로명주소"
+
                readonly>
         <input class="form-control mb-2 w-50" type="text" name="addr" id="sample4_jibunAddress" placeholder="지번주소"
                readonly>
