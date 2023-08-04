@@ -1,5 +1,7 @@
-package ezen.team.service;
+	package ezen.team.service;
 
+import java.sql.Date;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.mail.Message;
@@ -10,9 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.web.client.RestTemplate;
+
+import com.google.gson.Gson;
 
 import ezen.team.domain.UserDTO;
 import ezen.team.mapper.UserMapper;
@@ -31,10 +41,117 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private PasswordEncoder pwEncoder;
 	
+	/////////// 카카오 로그인     //////////////
+
+	// 카카오 로그인을 위한 토큰 가져오기
+	@Override
+	public String getToken(String code) {
+		
+		//요청 메시지 시작
+		// 헤더값 설장 ( 필수 항복 )
+		HttpHeaders header = new HttpHeaders();
+		
+		header.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+		
+		// 바디값 설정 ( 필수 항목 )
+		LinkedMultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+        body.add("grant_type","authorization_code");
+        body.add("client_id","46130752fef71518c9e7e66cfc149760");
+        body.add("redirect_uri","http://localhost:8887/user/kakaoLogin");
+        body.add("code",code);
+		
+        HttpEntity<LinkedMultiValueMap<String, String>> requestEntity = new HttpEntity<>(body, header);
+        
+        // 요청 메시지 끝
+        
+        // 웹브라우저 역할을 하는 객체
+        RestTemplate restTemplate = new RestTemplate();
+        // 특정 서버에 요청을 전달하기
+        ResponseEntity<String> responseEntity = restTemplate.exchange(
+        "https://kauth.kakao.com/oauth/token", // 토큰 요청주소
+        HttpMethod.POST, // 요청 방식
+        requestEntity, // http 요청메시지
+        String.class // 응답받을 타입
+        );
+        
+        // body의 정보값만 가져온다
+        String userInfo = responseEntity.getBody();
+
+        //GSON 라이브러리를 이용하여 액세스 토큰 값 추출하기
+        Gson gson = new Gson();
+
+        Map<?,?> mapDate = gson.fromJson(userInfo, Map.class); // map 컬렉션 구조로 변경
+        
+
+        // 맵 구조에서 value만 리턴 // access_token의 값만 리턴
+        return (String)mapDate.get("access_token");
+	}	
+	
+	
+	@Override
+	public UserDTO getUserInfo(String accessToken) {
+
+		/* 요청 메시지 생성 시작*/
+        HttpHeaders header = new HttpHeaders();
+        // 헤더값 설정 ( 필수 항복  Bearer 뒤에 공백 한칸 필수 )	
+        header.add("Authorization", "Bearer "+accessToken);
+        header.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        //HttpEntity 에서 body는 생략가능
+        HttpEntity<LinkedMultiValueMap<String, String>> requestEntity = new HttpEntity<>(header);
+
+        /* 요청 메시지 생성 끝*/
+
+        // 웹브라우저 역할을 하는 객체
+        RestTemplate restTemplate = new RestTemplate();
+
+        // 특정 서버에 요청을 전달하기
+        ResponseEntity<String> responseEntity = restTemplate.exchange(
+        "https://kapi.kakao.com/v2/user/me", // 사용자 정보 요청주소
+        HttpMethod.POST, // 요청 방식
+        requestEntity, // http 요청메시지
+        String.class // 응답받을 타입
+        );
+        
+        
+        String userInfo = responseEntity.getBody();
+
+        Gson gson = new Gson();
+        Map<?,?> mapDate = gson.fromJson(userInfo, Map.class);
+
+//        String name = (String) ((Map<?,?>)(mapDate.get("kakao_account"))).get("nickname");
+        String name = (String) ((Map<?,?>)(mapDate.get("properties"))).get("nickname");
+        String email = (String) ((Map<?,?>)(mapDate.get("kakao_account"))).get("email");
+//        Date birth = (Date) ((Map<?,?>)(mapDate.get("birth"))).get("birthday");
+
+        UserDTO user = new UserDTO();
+        
+//        System.out.println(name);
+        user.setUser_id(email);
+        user.setUser_pw("1212");
+        user.setUser_email(email);
+        user.setUser_nm(name);
+//        user.setUser_dt(birth);
+
+        return user;
+
+    }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	/////////// 카카오 로그인     //////////////
+	
 	
 	// 회원 가입처리
 	@Override
 	public void userRegister(UserDTO userDTO) {
+		
 		
 		String inputPw = userDTO.getUser_pw();
 		
@@ -48,8 +165,10 @@ public class UserServiceImpl implements UserService {
 	//회원가입 시 아이디 중복체크
 	@Override
 	public UserDTO userIdChk( String user_id) {
+
+		UserDTO userDTO = mapper.userIdChk(user_id);
 		
-		return 	mapper.userIdChk(user_id);
+		return userDTO;
 	}
 
 	// 회원가입 시 이메일 인증
@@ -112,6 +231,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	
+	
 	// Id찾기
 	@Override
 	public String findId(UserDTO userDTO) {
@@ -160,11 +280,6 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		
-		
-		
-		
-		
-		
 		return "faul";
 	}
 
@@ -176,6 +291,7 @@ public class UserServiceImpl implements UserService {
 		
 		mapper.pwChange(user_id,user_pw);
 	}
+
 
 
 
