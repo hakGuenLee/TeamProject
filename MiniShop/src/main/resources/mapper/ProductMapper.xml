@@ -6,8 +6,8 @@
 
 <!-- 상품 등록 -->
 	<insert id="prodRegister" parameterType="Map">
-		INSERT INTO prod_master( ctgry_no, prod_nm , main_img , price , point, qty, dc_price, use_yn, proc_id)
-		VALUES( #{ctgry_no}, #{prod_nm} , #{main_img} , #{price} , #{point} , #{qty} , #{dc_price} , #{use_yn} , 'manager' )
+		INSERT INTO prod_master( ctgry_no, prod_nm , main_img ,detail_img, sub_img1, sub_img2, price , point, qty, dc_price, use_yn, proc_id)
+		VALUES( #{ctgry_no}, #{prod_nm} , #{main_img} , #{detail_img}, #{sub_img1}, #{sub_img2}, #{price} , #{point} , #{qty} , #{dc_price} , #{use_yn} , 'manager' )
 	</insert>
 
 <!-- 상품 리스트 -->
@@ -34,6 +34,9 @@
 	ctgry_no = #{ctgry_no},
 	prod_nm = #{prod_nm},
 	main_img = #{main_img},
+	detail_img = #{detail_img},
+	sub_img1 = #{sub_img1},
+	sub_img2 = #{sub_img2},
 	price = #{price},
 	point = #{point},
 	qty = #{qty},

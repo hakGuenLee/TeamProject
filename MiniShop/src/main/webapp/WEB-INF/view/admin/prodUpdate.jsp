@@ -38,24 +38,93 @@
 						class="form-control form-control-sm w-50" name="prod_nm" value="${pdto.prod_nm}" /></td>
 				</tr>
             <tr>
-               <td>상품이미지</td>
+               <td>상품 메인이미지</td>
                <td>
 				(현재) <img src="<c:url value="/resources/upload/${pdto.main_img}"/>" width="100px"/>
                </td>
                </tr>
                <tr>
-               <td>수정 할 이미지</td>
+               <td>메인 이미지 수정</td>
                <td>
-				<input type="file" class="form-control form-control-sm w-50" 
-               name="main_img" id="input-tag"  onchange="preViewImg(this)"/>
-               <div id="div-file"><img id="img-tag" /><button id="btn-chk" type="button" class="btn-close border bg-danger" style="display:none; position:relative; left:-24px; top:-30px;" onclick="delInput(this)"></button>
-               </div>
+				 <div id="div-file">
+  				<input type="file" class="form-control form-control-sm w-50" 
+               name="main_img" onchange="preViewImg(this)"/>
+             <img id="img-tag" /><button id="btn-chk" type="button" class="btn-close border bg-danger" style="display:none; position:relative; left:-24px; top:-30px;" onclick="delInput(this)"></button>
+             
+                  </div>
                <!-- 이미지를 수정하지 않는 경우에는 지금 현재 이미지를 넘겨야 함. -->
                 <input type="hidden" class="form-control form-control-sm" 
                name="imgOld" value="${pdto.main_img}"/>
                
                </td>
             </tr>
+
+            <tr>
+               <td>상품 상세이미지</td>
+               <td>
+				(현재) <img src="<c:url value="/resources/upload/${pdto.detail_img}"/>" width="100px"/>
+               </td>
+               </tr>
+               <tr>
+               <td>상세 이미지 수정</td>
+               <td>
+				 <div id="div-file">
+  				<input type="file" class="form-control form-control-sm w-50" 
+               name="detail_img" onchange="preViewImg(this)"/>
+             <img id="img-tag" /><button id="btn-chk" type="button" class="btn-close border bg-danger" style="display:none; position:relative; left:-24px; top:-30px;" onclick="delInput(this)"></button>
+             
+                  </div>
+               <!-- 이미지를 수정하지 않는 경우에는 지금 현재 이미지를 넘겨야 함. -->
+                <input type="hidden" class="form-control form-control-sm" 
+               name="detailOld" value="${pdto.detail_img}"/>
+               
+               </td>
+            </tr>
+            
+                        <tr>
+               <td>상품 서브이미지1</td>
+               <td>
+				(현재) <img src="<c:url value="/resources/upload/${pdto.sub_img1}"/>" width="100px"/>
+               </td>
+               </tr>
+               <tr>
+               <td>서브1 이미지 수정</td>
+               <td>
+				 <div id="div-file">
+  				<input type="file" class="form-control form-control-sm w-50" 
+               name="sub_img1" onchange="preViewImg(this)"/>
+             <img id="img-tag" /><button id="btn-chk" type="button" class="btn-close border bg-danger" style="display:none; position:relative; left:-24px; top:-30px;" onclick="delInput(this)"></button>
+             
+                  </div>
+               <!-- 이미지를 수정하지 않는 경우에는 지금 현재 이미지를 넘겨야 함. -->
+                <input type="hidden" class="form-control form-control-sm" 
+               name="subOld1" value="${pdto.sub_img1}"/>
+               
+               </td>
+            </tr>
+            
+                        <tr>
+               <td>상품 서브이미지2</td>
+               <td>
+				(현재) <img src="<c:url value="/resources/upload/${pdto.sub_img2}"/>" width="100px"/>
+               </td>
+               </tr>
+               <tr>
+               <td>서브2 이미지 수정</td>
+               <td>
+				 <div id="div-file">
+  				<input type="file" class="form-control form-control-sm w-50" 
+               name="main_img" onchange="preViewImg(this)"/>
+             <img id="img-tag" /><button id="btn-chk" type="button" class="btn-close border bg-danger" style="display:none; position:relative; left:-24px; top:-30px;" onclick="delInput(this)"></button>
+             
+                  </div>
+               <!-- 이미지를 수정하지 않는 경우에는 지금 현재 이미지를 넘겨야 함. -->
+                <input type="hidden" class="form-control form-control-sm" 
+               name="subOld2" value="${pdto.sub_img2}"/>
+               
+               </td>
+            </tr>
+
 
 
 				<tr>
@@ -126,52 +195,58 @@ $(document).ready(function(){
 }); */
 
 function preViewImg(obj){
-    console.log(obj.files)
-    
-    var imgTag = document.getElementById("img-tag");
-    var btnTag = document.getElementById("btn-chk");
-    
-    console.log(imgTag);
-    console.log(btnTag);
-    
-    if(obj.files && obj.files[0]){
-       var fileReader = new FileReader(); // js의 라이브러리
-       
-       // fileReader.onload는 파일을 성공적으로 읽었을 때 발생하는 이벤트
-       fileReader.onload = function(e){            
-          imgTag.width=100;
-          imgTag.height=100;
-          // e.target(이벤트가 발생한 대상) == fileReader
-          imgTag.src = e.target.result; // 파일을 읽어온 결과값(바이너리)
-          btnTag.style.display="";// button 보이게함.
-          imgTag.style.display="";
-       }
-       // 파일의 종류를 크게 두가지로 분류
-       // i) 바이너리 파일 : 데이터를 있는 그대로 읽고 쓰는 파일
-       // ii) 텍스트 파일 : 데이터를 문자로 변환한 파일
-       
-       // Base64(2^6)는 binary Data를 텍스트로 손실없이 안전하게 인코딩하는 방식
-       // 바이너리 데이터의 훼손없이 정확하게 데이터를 전달할 수 있음.
-       
-       // 바이너리 파일을 base64형식으로 변환해줌
-       fileReader.readAsDataURL(obj.files[0]);
-    }
- }
- 
-function delInput(){
-    	var imgTag = document.getElementById("img-tag");
-	    var inputTag = document.getElementById("input-tag");
-	    var btnTag = document.getElementById("btn-chk");
+	  console.log(obj.files)
 	  
-	  console.log(imgTag);
-	  console.log(inputTag);
+	  var imgTag = obj.nextElementSibling; // nextSibling : 다음 형제요소
+	  var btnTag = obj.nextElementSibling.nextElementSibling;
 	  
-	  inputTag.value="";
-	  //inputTag.style.display="none";
-	  imgTag.src="";
-	  imgTag.style.display="none";
-	  btnTag.style.display="none";
-}
+	  console.log("imgtag = " + imgTag);
+	  
+	  if(obj.files && obj.files[0]){
+	      var fileReader = new FileReader(); // js의 라이브러리
+	      
+	      // fileReader.onload는 파일을 성공적으로 읽었을 때 발생하는 이벤트
+	      fileReader.onload = function(e){            
+	         imgTag.width=100;
+	         imgTag.height=100;
+	         // e.target(이벤트가 발생한 대상) == fileReader
+	         imgTag.src = e.target.result; // 파일을 읽어온 결과값(바이너리)
+	         btnTag.style.display="";// button 보이게함.
+	         imgTag.style.display="";
+	      }
+	      // 파일의 종류를 크게 두가지로 분류
+	      // i) 바이너리 파일 : 데이터를 있는 그대로 읽고 쓰는 파일
+	      // ii) 텍스트 파일 : 데이터를 문자로 변환한 파일
+	      
+	      // Base64(2^6)는 binary Data를 텍스트로 손실없이 안전하게 인코딩하는 방식
+	      // 바이너리 데이터의 훼손없이 정확하게 데이터를 전달할 수 있음.
+	      
+	      // 바이너리 파일을 base64형식으로 변환해줌
+	      fileReader.readAsDataURL(obj.files[0]);
+	   }
+	  
+	  /* let imgName = $("#imgfile").val();
+	  alert(imgName)
+	  $("#pImage").val(imgName); */
+	}
+
+	function delInput(obj){
+		  var imgTag = obj.previousElementSibling; // 이전 형제요소
+		  var inputTag = obj.previousElementSibling.previousElementSibling;
+		  var btnTag = obj;
+		  
+		  
+		  console.log("imgTag = " + imgTag)
+		  console.log("inputTag = " + inputTag)
+		  
+		  
+		  inputTag.value="";
+		  //inputTag.style.display="none";
+		  imgTag.src="";
+		  imgTag.style.display="none";
+		  btnTag.style.display="none";
+		}
+
 </script>    
 
 

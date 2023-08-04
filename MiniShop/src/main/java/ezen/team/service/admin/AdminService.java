@@ -4,7 +4,6 @@ package ezen.team.service.admin;
 import java.util.List;
 
 import ezen.team.domain.AdminDTO;
-import ezen.team.domain.CommonCodeDTO;
 import ezen.team.domain.EmpDTO;
 
 public interface AdminService {

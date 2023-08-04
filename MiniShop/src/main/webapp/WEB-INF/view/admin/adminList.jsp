@@ -30,7 +30,7 @@
 							<td>${list.emp_id }</td>
 							<td>${list.adm_vnm }</td>
 							<td>${list.proc_dt}</td>
-							<td>${list.exp_dt }</td>
+							<td>${list.exp_dt}</td>
 							<td><a href="<c:url value='adminUpdate?id=${list.adm_id}'/>" class="btn btn-sm btn-info">수정</a></td>
 							<td><a href="<c:url value='adminDelete?id=${list.adm_id}'/>" class="btn btn-sm btn-dark">삭제</a></td>
 						<c:set var="i" value="${i+1}"/>

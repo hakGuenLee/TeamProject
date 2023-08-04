@@ -17,5 +17,12 @@ public interface UserService {
 	//로그인 처리
 	boolean userLogin(HttpServletRequest rq);
 
+	//id찾기
+	String findId(UserDTO userDTO);
+
+	String findPw(UserDTO userDTO);
+
+	void pwChange(String user_id, String user_pw);
+
 
 }

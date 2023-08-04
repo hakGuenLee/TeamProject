@@ -111,6 +111,72 @@ public class UserServiceImpl implements UserService {
 		return false;// 회원정보가 없으면
 	}
 
+	
+	// Id찾기
+	@Override
+	public String findId(UserDTO userDTO) {
+		
+		// 없으면 리턴값이 0
+		return mapper.findId(userDTO);
+	}
+
+	//Pw찾기
+	@Override
+	public String findPw(UserDTO userDTO) {
+		
+		UserDTO dbDTO = mapper.findPw(userDTO);
+
+		String userEmail = userDTO.getUser_email(); // 사용자가 입력한 email
+		
+		if(dbDTO==null) { // null 이면 id , email로 찾아봤을 때 없는 것
+			
+			return "fail";
+		}
+		
+		String dbEmail = dbDTO.getUser_email(); // db에 있는 email
+
+		if(userEmail.equals(dbEmail)) { // 이메일이 같으면 인증코드를 보내준다.
+			
+			String uuid = UUID.randomUUID().toString().substring(0,4);
+			
+			MimeMessage mail = mailSender.createMimeMessage();
+			
+			String content =   "<h3>이메일 주소 확인</h3></br>" +
+					"<span>사용자가 본인임을 확인 하려고 합니다. 다음 코드를 입력하세요</span>" +
+					"<h2>"+uuid+"</h2>";
+			try {
+				// 보내는 메일의 제목 / 제목 / 형식
+				mail.setSubject("용식 메일" , "utf-8");
+				// 내용 / 형식
+				mail.setText(content,"utf-8","html");
+				// 메일 보낼 곳 세팅
+				mail.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
+				mailSender.send(mail);
+				
+				return uuid;
+				
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
+		
+		
+		return "faul";
+	}
+
+	@Override
+	public void pwChange(String user_id, String user_pw) {
+
+		// user_pw를 암호화 시켜서 재할당
+		user_pw = pwEncoder.encode(user_pw);
+		
+		mapper.pwChange(user_id,user_pw);
+	}
+
 
 
 

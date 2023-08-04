@@ -3,6 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <!-- 관리자 등록 페이지 -->
+<style>
+    input[type='date']::before{
+        content: attr(data-placeholder);
+        width: 100%;
+        color: #666;
+    }
+    input[type='date']:valid::before{
+        display: none;
+    }
+</style>
 
 <jsp:include page="../include/a_header.jsp"/>
 
@@ -18,12 +28,12 @@
 			</div>
 
 			<div class="form-floating mt-3 mb-3">
-			  <input type="text" class="form-control w-50" id="adm_vnm" placeholder="관리자 이름(사용자뷰용 닉네임)" name="adm_vnm">
+			  <input type="text" class="form-control" id="adm_vnm" placeholder="관리자 이름(사용자뷰용 닉네임)" name="adm_vnm">
 			  <label for="name">관리자 이름(닉네임)</label>
 			</div>
 			
 			<div class="form-floating mt-3 mb-3">
-			  <input type="text" class="form-control w-50" id="adm_nm" placeholder="관리자 이름(사용자명))" name="adm_nm">
+			  <input type="text" class="form-control" id="adm_nm" placeholder="관리자 이름(사용자명))" name="adm_nm">
 			  <label for="name">관리자 이름(사용자명)</label>
 			</div>
 			
@@ -51,10 +61,10 @@
 			 </div>
 			 <div class="mt-5">
 			 <div class="d-flex">
-			 <div class="form-floating mt-3 mb-3">
-			  <input type="text" class="form-control" id="proc_dt" placeholder="등록일" name="proc_dt">
-			  <label for="regDate">등록일</label>
-			</div>
+					<div class="form-floating mt-3 mb-3">
+        		<input class="form-control" type="date" id="proc_dt" name="proc_dt" min="now()" max="9999-12-31"
+              required/>
+				</div>
 			<div class="form-floating mt-3 mb-3">
 			  <input type="text" class="form-control" id="proc_id" placeholder="등록처리자" name="proc_id">
 			  <label for="regDate">등록처리자</label>
@@ -62,22 +72,23 @@
 			</div>
 			
 			<div class="d-flex">
-			 <div class="form-floating mt-3 mb-3">
-			  <input type="text" class="form-control" id="mod_dt" placeholder="수정일" name="mod_dt">
-			  <label for="mod_dt">수정일</label>
-			</div>
-			<div class="form-floating mt-3 mb-3">
+				<div class="form-floating mb-3">
+        		<input class="form-control" type="date" id="mod_dt" name="mod_dt" min="now()" max="9999-12-31"
+               data-placeholder="수정일" required/>
+				</div>
+			<div class="form-floating mb-3">
 			  <input type="text" class="form-control" id="mod_id" placeholder="수정처리자" name="mod_id">
 			  <label for="mod_id">수정처리자</label>
 			</div>
 			</div>
 			
 			<div class="d-flex">
-			 <div class="form-floating mt-3 mb-3">
-			  <input type="text" class="form-control" id="exp_dt" placeholder="종료일" name="exp_dt">
-			  <label for="exp_dt">종료일</label>
+			 <div class="form-floating mb-3">
+			  <input class="form-control" type="date" id="exp_dt" name="exp_dt" min="now()" max="9999-12-31"
+			  data-placeholder="종료일" required/>
 			</div>
-			<div class="form-floating mt-3 mb-3">
+			
+			<div class="form-floating mb-3">
 			  <input type="text" class="form-control" id="exp_id" placeholder="종료처리자" name="exp_id">
 			  <label for="exp_id">종료처리자</label>
 			</div>
@@ -100,6 +111,12 @@
 	
 	<script>
 
+	// 날짜설장
+		document.getElementById('proc_dt').value = new Date().toISOString().substring(0, 10);; // 게시판 설정일 기본값을 오늘날짜로
+	  document.getElementById('proc_dt').min = new Date().toISOString().substring(0, 10);; // 게시판 설정일 min 값을 오늘 날짜로
+	  document.getElementById('mod_dt').min = new Date().toISOString().substring(0, 10);; // 게시판 설정일 min 값을 오늘 날짜로
+	  document.getElementById('exp_dt').min = new Date().toISOString().substring(0, 10);; // 게시판 설정일 min 값을 오늘 날짜로
+		
 	
 	//공통코드 가져오기
  $(document).ready(function(){
