@@ -4,6 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ezen.team.mapper.admin.CustomerMapper">
 
+    <!-- 페이징 처리를 위한 상품문의 총 갯수 가져오기  -->
+	<select id="totalCnt" resultType="Integer">
+	SELECT count(*) FROM cs_master
+	</select>
+
 	<select id="csList" resultType="CsDTO">
 <!-- 		create view csList as
 
@@ -33,6 +38,10 @@
       <if test="proc_sts != 'proc_all'">
          and cm.proc_sts = #{proc_sts}         
       </if>
+      	ORDER BY cs_no DESC
+		LIMIT #{startIndex},
+		#{cntPerPage}
+      
     </select>
     <sql id="sel_reply">
     	select * 
@@ -63,5 +72,5 @@
 	  	insert into cs_reply(cs_no, csre_con, proc_id) 
 	  	VALUES(#{cs_no}, #{csre_con}, #{proc_id})
     </insert>
-    
+   
 </mapper>

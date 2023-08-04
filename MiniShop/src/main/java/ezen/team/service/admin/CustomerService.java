@@ -7,7 +7,7 @@ import ezen.team.domain.PageDTO;
 
 public interface CustomerService {
 
-	List<CsDTO> csList(String cs_code, String proc_sts);
+	List<CsDTO> csList(String cs_code, String proc_sts, PageDTO pageDto);
 	
 	CsDTO csInfo(int cs_no, int proc_sts);
 

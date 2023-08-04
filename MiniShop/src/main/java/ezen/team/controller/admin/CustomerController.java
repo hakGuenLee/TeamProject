@@ -45,8 +45,8 @@ public class CustomerController {
     public String csSearchList(
     		@RequestParam(value = "cs_code" , defaultValue ="ALL") String cs_code,
             @RequestParam(value = "proc_sts" , defaultValue ="1") String proc_sts,
-            Model model){
-    	List<CsDTO> csList = service.csList(cs_code, proc_sts);
+            PageDTO pageDto, Model model){
+    	List<CsDTO> csList = service.csList(cs_code, proc_sts, pageDto);
 
     	model.addAttribute("csList", csList);
     	System.out.println("csList : " + csList);
