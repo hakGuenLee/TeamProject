@@ -1,5 +1,6 @@
 package ezen.team.controller.admin;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -41,15 +42,16 @@ public class CustomerController {
 	
 	// 1:1 문의 검색
     @RequestMapping("/csList")
-    public String csSearchList(@RequestParam(value = "cs_code" , defaultValue ="ALL") String cs_code,
-                             @RequestParam(value = "proc_sts" , defaultValue ="1") String proc_sts,
-                             Model model){
+    public String csSearchList(
+    		@RequestParam(value = "cs_code" , defaultValue ="ALL") String cs_code,
+            @RequestParam(value = "proc_sts" , defaultValue ="1") String proc_sts,
+            Model model){
     	List<CsDTO> csList = service.csList(cs_code, proc_sts);
 
     	model.addAttribute("csList", csList);
+    	System.out.println("csList : " + csList);
     	model.addAttribute("search_cd", cs_code);
     	model.addAttribute("search_sts", proc_sts);
-    	
     	    	
     	
         return "/admin/csList";
@@ -58,27 +60,34 @@ public class CustomerController {
 	
 	//1:1문의 상세보기
 	@GetMapping("/csInfo")
-	public String csInfo(int cs_no, String cs_code, Model model) {
+//	public String csInfo(int cs_no, String cs_code, Model model) {
+	public String csInfo(int cs_no, int proc_sts, Model model) {	
+		CsDTO csDto = service.csInfo(cs_no, proc_sts);
 		
-		CsDTO csDto = service.csInfo(cs_no);
+		System.out.println("csDto :::::: " + csDto);
+		System.out.println("댓글 내용 : " + csDto.getCsre_con());
+		
 		model.addAttribute("csDto", csDto);
 		
 		
 		
-		System.out.println(csDto);
+//		System.out.println("csDto :: " + csDto.toString());
 		
 		return "/admin/csInfo";
 	}
 	
 	// 1:1답글 등록
 	@PostMapping("/csReply")
-	public String csReply(@RequestParam(value = "csre_con") String csre_con,
+	public String csReply(@RequestParam("csre_con") String csre_con,
 						  int cs_no, String proc_id, Model model) {
-		System.out.println("cs_no" + cs_no);
+		System.out.println("cs_no:::::::::::::" + cs_no);
 		
-		CsDTO csDto = service.csReply(cs_no, csre_con, proc_id);
+		service.csReply(cs_no, csre_con, proc_id);
 		
-		model.addAttribute("csDto",csDto);
+//		CsDTO csDto = service.csReply(cs_no, csre_con, proc_id);
+		
+//		model.addAttribute("csDto", csDto);
+		
 		
 		return "/admin/csList";
 		
