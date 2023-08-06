@@ -12,3 +12,18 @@ section{
 img{
 	cursor: pointer;
 }
+
+
+
+#mainImg{
+	width:400px;
+	height:400px;
+}
+
+#prodInfoArea{
+	margin-left:200px;
+}
+
+#prodName{
+	font-size: 35px;
+}
