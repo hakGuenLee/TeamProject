@@ -25,5 +25,8 @@ public interface AdminService {
 	 
 	//관리자 정보 수정 처리하기
 	 void adminUpdate(AdminDTO aDto);
+	 
+	 //관리자 등록 아이디 유효성 검사
+	 AdminDTO adminIdChk(String id);
 
 }

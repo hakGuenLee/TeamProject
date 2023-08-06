@@ -40,11 +40,16 @@ select * from admin_master where adm_id = #{id}
 
 <!-- 관리자 정보 수정하기 -->
 <update id="adminUpdate">
-
 update admin_master set adm_vnm = #{adm_vnm}, adm_pw = #{adm_pw}, role = #{role},
 use_yn = #{use_yn} where adm_id = #{adm_id}
-
-
 </update>
+
+<!-- 관리자 등록 시 아이디 유효성 검사 -->
+<select id="adminIdCheck" resultType="AdminDTO">
+select * from admin_master
+where adm_id = #{id}
+
+</select>
+
 
 </mapper>

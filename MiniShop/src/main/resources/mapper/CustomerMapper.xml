@@ -39,8 +39,8 @@
          and cm.proc_sts = #{proc_sts}         
       </if>
       	ORDER BY cs_no DESC
-		LIMIT #{startIndex},
-		#{cntPerPage}
+		LIMIT #{pageDto.startIndex},
+		#{pageDto.cntPerPage}
       
     </select>
     <sql id="sel_reply">

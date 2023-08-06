@@ -49,6 +49,19 @@ public class AdminController {
 		return "/admin/adminRegister";
 	}
 	
+	@PostMapping("/adminIdChk")
+	@ResponseBody
+	public String adminIdChk(@RequestParam("adm_id")String id) {
+		
+		AdminDTO adminDTO = adminservice.adminIdChk(id);
+		if(adminDTO != null || "".equals(id.trim())) {
+			return "N";
+		}
+		return "yes";
+		
+	}
+	
+	
 	//관리자 등록 처리
 	@PostMapping("/adminRegister")
 	public String adminRegister(AdminDTO aDto) {

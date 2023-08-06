@@ -52,6 +52,7 @@ public class CustomerController {
     	System.out.println("csList : " + csList);
     	model.addAttribute("search_cd", cs_code);
     	model.addAttribute("search_sts", proc_sts);
+    	model.addAttribute("pageDTO", pageDto);
     	    	
     	
         return "/admin/csList";

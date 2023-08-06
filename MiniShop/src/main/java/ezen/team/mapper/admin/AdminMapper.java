@@ -38,6 +38,9 @@ public interface AdminMapper {
 	//관리자 로그인 정보 가져오기
 	AdminDTO findByusername(String username);
 
+	//관리자 등록 아이디 유효성 검사
+	AdminDTO adminIdCheck(String id);
+
 
 
 

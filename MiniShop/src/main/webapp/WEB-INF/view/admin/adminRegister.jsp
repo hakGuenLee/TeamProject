@@ -23,8 +23,9 @@
 			<h4><b>관리자 등록</b></h4>	
 			<div class="mt-5">
 			<div class="form-floating mb-3 mt-3">
-			  <input type="text" class="form-control w-100" id="adm_id" placeholder="관리자 아이디" name="adm_id">
+			  <input onkeyup="idCheck()" type="text" class="form-control w-100" id="adm_id" placeholder="관리자 아이디" name="adm_id">
 			  <label for="id">관리자 아이디</label>
+			  <p id="chkMsg" class="mb-2"></p>
 			</div>
 
 			<div class="form-floating mt-3 mb-3">
@@ -182,6 +183,53 @@
 	}
 	
 
+    function idCheck() {
+
+        var adm_id = $('#adm_id').val();
+
+        if(adm_id.length<2){
+            $('#chkMsg').html("아이디 길이는 2자리 이상이어야 합니다.")
+            $('#chkMsg').css({"color":"red","font-size":"13px"});
+            return;
+        }
+
+        $.ajax({
+            url: "<c:url value='/admin/adminIdChk'/>",
+            type: "post",
+            data: {"adm_id": adm_id}, // 서버에 전송 할 데이터
+            success: function (responseData) {
+					
+            	console.log("아이디 중복체크"+responseData);
+            	
+            	
+                //responseData = "Y" or "N", Y: 사용가능 N: 사용불가
+                if (responseData == "yes") {
+                    $('#chkMsg').html("사용가능한 아이디 입니다.");
+                    $('#chkMsg').css({"color":"blue","font-size":"13px"});
+                    $('#isIdChk').val("yes");
+                } else {
+                    $('#isIdChk').val("no");
+                    $('#chkMsg').html("사용 불가능한 아이디 입니다.")
+                    $('#chkMsg').css({"color":"red","font-size":"13px"});
+
+                }// if문
+
+
+            },
+            //success
+
+            error: function () {
+                $('#chkMsg').html("네트웍 에러")
+                $('#chkModal').modal("show");
+            }
+
+        }); // $.ajax
+
+
+    }//funtion idCheck
+	
+	
+	
 	
 	</script>
 	

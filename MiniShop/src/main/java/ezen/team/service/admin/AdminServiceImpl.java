@@ -78,6 +78,16 @@ public class AdminServiceImpl implements AdminService {
 		mapper.adminUpdate(aDto);
 		
 	}
+	
+	
+	//관리자 등록 아이디 유효성 체크
+	public AdminDTO adminIdChk(String id) {
+		
+		AdminDTO adminDTO = mapper.adminIdCheck(id);
+		
+		
+		return adminDTO;
+	}
 
 
 
