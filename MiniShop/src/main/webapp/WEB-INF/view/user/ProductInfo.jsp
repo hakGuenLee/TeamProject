@@ -10,10 +10,10 @@
    <section>
       <div class="d-flex">
          <div id="imgArea">
-            <img id="mainImg" src="resources/upload/${dto.main_img}">
+            <img id="mainImg" src="/resources/upload/${dto.main_img}">
             <div class="d-flex mt-3">
-            <img id="subimg" src="resources/upload/${dto.main_img}" style="width:70px;height:70px">
-            <img id="subimg2" src="resources/upload/${dto.sub_img1}" style="width:70px;height:70px">
+            <img id="subimg" src="/resources/upload/${dto.main_img}" style="width:70px;height:70px">
+            <img id="subimg2" src="/resources/upload/${dto.sub_img1}" style="width:70px;height:70px">
             </div>
          </div>
          <div id="prodInfoArea">
