@@ -7,8 +7,8 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<%-- 	<meta name="_csrf_header" content="${_csrf.headerName}">
-	<meta name="_csrf" content="${_csrf.token}"> --%>
+<%--  	<meta name="_csrf_header" content="${_csrf.headerName}">
+	<meta name="_csrf" content="${_csrf.token}">  --%>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -119,7 +119,7 @@ $(document).ready(function(){
 		let list = data;
 		
 		for(let i=0; i<list.length; i++){
-			str += '<li><a class="nav-link" href="/fruitPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+			str += '<li><a class="nav-link" href="/productPage/fruitPage'+i+'">'+list[i].ct_nm2+'</a></li>'
 		}
 		
 		fruitArea.html(str);
@@ -136,7 +136,7 @@ $(document).ready(function(){
 		let list = data;
 			
 		for(let i=0; i<list.length; i++){
-			str2 += '<li><a class="nav-link" href="/vegePage'+i+'">'+list[i].ct_nm2+'</a></li>'
+			str2 += '<li><a class="nav-link" href="/productPage/vegePage'+i+'">'+list[i].ct_nm2+'</a></li>'
 		}
 			
 			vegeArea.html(str2);
@@ -153,7 +153,7 @@ $(document).ready(function(){
 			let list = data;
 					
 			for(let i=0; i<list.length; i++){
-				str3 += '<li><a class="nav-link" href="/meetPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+				str3 += '<li><a class="nav-link" href="/productPage/meetPage'+i+'">'+list[i].ct_nm2+'</a></li>'
 			}
 					
 			meetArea.html(str3);
@@ -170,7 +170,7 @@ $(document).ready(function(){
 			let list = data;
 						
 			for(let i=0; i<list.length; i++){
-				str4 += '<li><a class="nav-link" href="/clothPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+				str4 += '<li><a class="nav-link" href="/productPage/clothPage'+i+'">'+list[i].ct_nm2+'</a></li>'
 			}
 						
 			clothArea.html(str4);
@@ -187,7 +187,7 @@ $(document).ready(function(){
 			let list = data;
 							
 			for(let i=0; i<list.length; i++){
-				str5 += '<li><a class="nav-link" href="/electroPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+				str5 += '<li><a class="nav-link" href="/productPage/electroPage'+i+'">'+list[i].ct_nm2+'</a></li>'
 			}
 							
 			electroArea.html(str5);

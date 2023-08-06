@@ -49,6 +49,7 @@ public class AdminController {
 		return "/admin/adminRegister";
 	}
 	
+	//관리자 등록 시 ID 유효성 체크
 	@PostMapping("/adminIdChk")
 	@ResponseBody
 	public String adminIdChk(@RequestParam("adm_id")String id) {

@@ -11,8 +11,8 @@
 	 $.ajax({
 			url:"/getCode",
 /*	beforeSend: function(xhr){
-				xhr.setRequestHeader(header, token);
-			},*/
+				xhr.setRequestHeader(header, token);*/
+/*			},*/
 			type : "post", //서버에 전송하기 위한 전송방식
 			data:{"code" : a},
 			dataType : "json", // 서버에서 응답하는 데이터 형식
@@ -33,8 +33,14 @@
  
  function getProdCategoryList(a,cb){
 	 
+/*	  var token = $("meta[name='_csrf'").attr("content");
+	 var header = $("meta[name='_csrf_header']").attr("content");*/
+	 
 	 $.ajax({
 		 url:"/getProdCategoryList",
+/*		 	beforeSend: function(xhr){
+				xhr.setRequestHeader(header, token);
+			},*/
 		 type: "post",
 		 data:{"categoryCode":a},
 		 dataType : "json",
@@ -50,8 +56,14 @@
  
  function homeProdBox(a, cb){
 	 
+/*	 	  var token = $("meta[name='_csrf'").attr("content");
+	 var header = $("meta[name='_csrf_header']").attr("content");*/
+	 
 	 $.ajax({
 		 url:"/getHomeProdBox",
+/*		 	 	beforeSend: function(xhr){
+				xhr.setRequestHeader(header, token);
+			},*/
 		 type:"post",
 		 data:{"codeNum" : a},
 		 dataType : "json",
@@ -67,9 +79,15 @@
  
  
   function getVegeBox(a, cb){
+/*	  	  var token = $("meta[name='_csrf'").attr("content");
+	 var header = $("meta[name='_csrf_header']").attr("content");*/
+	 
 	 
 	 $.ajax({
 		 url:"/getVegeBox",
+/*		 		 	 	beforeSend: function(xhr){
+				xhr.setRequestHeader(header, token);
+			},*/
 		 type:"post",
 		 data:{"codeNum" : a},
 		 dataType : "json",

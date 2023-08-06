@@ -18,10 +18,10 @@ import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 //
-//import ezen.team.security.common.FormAuthenticationDetailsSource;
-//import ezen.team.security.handler.CustomAccessDeniedHandler;
-//import ezen.team.security.handler.CustomAuthenticationFailureHandler;
-//import ezen.team.security.provider.CustomAuthenticationProvider;
+import ezen.team.security.common.FormAuthenticationDetailsSource;
+import ezen.team.security.handler.CustomAccessDeniedHandler;
+import ezen.team.security.handler.CustomAuthenticationFailureHandler;
+import ezen.team.security.provider.CustomAuthenticationProvider;
 
 ////Spring Security 환경설정
 //
@@ -29,38 +29,39 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
  @EnableWebSecurity 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
-//	@Autowired
-//	private FormAuthenticationDetailsSource formAuthenticationDetailsSource;
-//	
-//	
-//	@Autowired
-//	private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+	@Autowired
+	private FormAuthenticationDetailsSource formAuthenticationDetailsSource;
+	
+	
+	@Autowired
+	private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 
 	
 	
 //	//정적 파일 접근 필터 해제
-//	@Override
-//	public void configure(WebSecurity web) throws Exception {
-//
-//		   web.ignoring().antMatchers("/resources/js/*.js", "/resources/css/*.css", "/resources/imgs/*.jpg");
-//
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+
+		 web.ignoring().antMatchers("/resources/js/*.js", "/resources/css/*.css", "/resources/imgs/*.jpg", "/resources/imgs/*.png", "/resources/upload/*.jpg", "/resources/upload/*.png", 
+				 "/resources/upload/*.jpeg");
+
 //			
-//	}
+	}
 	
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.authenticationProvider(customProvider());
-//		auth.eraseCredentials(false);
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.authenticationProvider(customProvider());
+		auth.eraseCredentials(false);
 //		
-////		auth.inMemoryAuthentication().withUser("sys").password("{noop}1234").roles("SUPER_ADMIN");
-//	}
+		auth.inMemoryAuthentication().withUser("test").password("{noop}1234").roles("SUPER_ADMIN");
+	}
 	
 
 	//customProvider를 빈으로 등록
-//	@Bean
-//	public AuthenticationProvider customProvider() {
-//		return new CustomAuthenticationProvider();
-//	}
+	@Bean
+	public AuthenticationProvider customProvider() {
+		return new CustomAuthenticationProvider();
+	}
 	
 	@Bean
 	public PasswordEncoder pwEncoder() {
@@ -74,41 +75,40 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception { 
 		
 		   http
-		   		.cors().disable()
+//		   		.cors().disable()
 		         .csrf().disable()
-		         .formLogin().disable()
-		         .headers().frameOptions().disable();
+//		         .formLogin().disable()
+//		         .headers().frameOptions().disable();
 		
 		
-//		
-//			.authorizeRequests()
-//			.antMatchers("/", "/adminLogin").permitAll()
-//			.antMatchers("/admin/**", "/category/**", "/product/**", "/order/**", "/post/**", "/customer/**", "/QnA/**").hasAuthority("adm1")
-//			.antMatchers("/category/**").hasAnyAuthority("mng1")
-//			.anyRequest().authenticated()
-//			
-//		.and()
-//			.formLogin()   //formlogin방식 적용
-//			.loginPage("/adminLogin")
-//			.loginProcessingUrl("/login") //로그인 처리 URL
-//			.defaultSuccessUrl("/admin/adminHome") //로그인 성공 시 URL
-//			.authenticationDetailsSource(formAuthenticationDetailsSource)
-//			.failureHandler(customAuthenticationFailureHandler) //로그인 실패 시 처리하는 Handler
-//			.permitAll()
-//			
-//			//인가 예외 발생하였을 경우 처리하는 Handler
-//		.and()
-//			.exceptionHandling()
-//			.accessDeniedHandler(accessDeniedHandler());
-//	}
-//	
-//	//인가 예외 처리 Handler
-//	private AccessDeniedHandler accessDeniedHandler() {
-//		
-//		CustomAccessDeniedHandler customDeniedHandler = new CustomAccessDeniedHandler();
-//		customDeniedHandler.setErrorPage("/denied");
-//		return customDeniedHandler;
-//		
+		
+			.authorizeRequests()
+			.antMatchers("/", "/adminLogin", "/cart/**", "/user/**", "/getProdCategoryList", "/productPage/**", "/myPage/**").permitAll()
+			.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
+			.anyRequest().authenticated()
+			
+		.and()
+			.formLogin()   //formlogin방식 적용
+			.loginPage("/adminLogin")
+			.loginProcessingUrl("/login") //로그인 처리 URL
+			.defaultSuccessUrl("/admin/adminHome") //로그인 성공 시 URL
+			.authenticationDetailsSource(formAuthenticationDetailsSource)
+			.failureHandler(customAuthenticationFailureHandler) //로그인 실패 시 처리하는 Handler
+			.permitAll()
+			
+			//인가 예외 발생하였을 경우 처리하는 Handler
+		.and()
+			.exceptionHandling()
+			.accessDeniedHandler(accessDeniedHandler());
+	}
+	
+	//인가 예외 처리 Handler
+	private AccessDeniedHandler accessDeniedHandler() {
+		
+		CustomAccessDeniedHandler customDeniedHandler = new CustomAccessDeniedHandler();
+		customDeniedHandler.setErrorPage("/denied");
+		return customDeniedHandler;
+		
 	}
 	 
 
