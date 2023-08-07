@@ -14,7 +14,7 @@
         <input class="form-control mb-2" type="text" id="user_pw" name="user_pw" placeholder="비밀번호"/>
 
         <div class="text-center pt-4">
-            <input type="submit" class="btn btn-primary w-100" value="로그인"/>
+            <input type="submit" class="btn btn-primary" style="width:300px; height:48px" value="로그인"/>
          <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=46130752fef71518c9e7e66cfc149760&redirect_uri=http://localhost:8887/user/kakaoLogin">
            <img src="<c:url value="/resources/imgs/kakao_login_medium_wide.png"/>" style="height:50px" />
            </a>
