@@ -13,7 +13,7 @@ select * from user_master where user_nm = #{username}
 <!-- 회원 정보 수정하기 -->
 <update id="userInfoUpdate">
 update user_master set user_home = #{user_home}, user_phone = #{user_phone}, user_email = #{user_email},
- zipcode = #{zipcode}, addr = #{addr}, addr_load = #{addr_load}, addr_detail = #{addr_detail} where user_no = #{user_no}   
+ zipcode = #{zipcode}, addr = #{addr}, addr_road = #{addr_road}, addr_detail = #{addr_detail} where user_no = #{user_no}   
 
 </update>
 
