@@ -7,8 +7,7 @@
 
 <jsp:include page="../include/header.jsp" />
 
-<form action="<c:url value="/order/inputOrder"/>" name="cartForm"
-	method="post">
+
 	<div class="container w-75 mt-5">
 		<h3>장바구니</h3>
 		<table class="table">
@@ -37,8 +36,8 @@
 
 					<c:forEach var="dto" items="${list}">
 						<tr>
-							<td><input type="checkbox" id="prod_no" name="prod_no"
-								value="${dto.prod_no}" /></td>
+							<td><input type="checkbox" id="cart_no" name="cart_no"
+								value="${dto.cart_no}" /></td>
 							<td><a href=""> <img
 									src="<c:url value="/resources/upload/${dto.main_img}"/>"
 									style="width: 60px; height: 60px" />
@@ -74,23 +73,26 @@
 
 		</div>
 		<div class="text-center">
-
+	<form action="<c:url value="/order/inputOrder"/>" name="cartForm"
+	method="post">
 			<input type="hidden" name="choiceBuy" /> <a
 				href="javascript:choiceBuy()" class="btn btn-outline-secondary">구매하기</a>
 			<a href="${pageContext.request.contextPath}"
 				class="btn btn-outline-primary me-2">계속 쇼핑하기</a>
+				<a href="<c:url value="/order/buyPage"/>"
+				class="btn btn-outline-primary me-2">(임시) 구매페이지 이동)</a>
+			</form>
 
 		</div>
 
 	</div>
-</form>
 
 
 <script>
 	function checkAll() {
 		let isChecked = document.getElementById("checkAll").checked;
 
-		let chks = document.getElementsByName('prod_no');
+		let chks = document.getElementsByName('cart_no');
 		//let chks = $('prod_no');
 
 		console.log(chks);
@@ -101,7 +103,7 @@
 	}
 
 	function choiceBuy() {
-		let chks = document.getElementsByName('prod_no');
+		let chks = document.getElementsByName('cart_no');
 
 		let prodNumStr = "";
 		let separator = false;
@@ -120,7 +122,7 @@
 			alert("구매 할 상품을 체크하세요");
 			return;
 		}
-		//삭제할 상품번호(예: 7/9/..) 문자열로 묶어서 input에 저장
+		//구매할 상품번호(예: 7/9/..) 문자열로 묶어서 input에 저장
 		document.cartForm.choiceBuy.value = prodNumStr;
 
 		console.log(prodNumStr);

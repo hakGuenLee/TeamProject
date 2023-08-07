@@ -35,6 +35,12 @@ public class OrderServiceImpl implements OrderService {
 				mapper.inputOrder(prod_no);
 		
 	}
+
+	@Override
+	public void orderDelete(int no) {
+		mapper.orderDelete(no);
+		
+	}
 	
 	
 //	@Override // 장바구니를 주문 리스트에 담기 ( 보류 )

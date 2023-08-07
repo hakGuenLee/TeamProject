@@ -26,7 +26,7 @@
 
 				<c:if test="${list==null || list.size()== 0}">
 					<tr>
-						<td colspan="6">장바구니가 비어있습니다.</td>
+						<td colspan="6">주문하실 상품이 없습니다.</td>
 					</tr>
 				</c:if>
 				<c:if test="${list!=null || list.size()!= 0}">
@@ -43,7 +43,7 @@
 							</a></td>
 							<td>${dto.prod_nm}</td>
 							<td>
-								<form action="/cart/updateQty?no=${dto.cart_no}" method="post">
+								<form action="/order/updateQty?no=${dto.cart_no}" method="post">
 									<input type="text" size="3" name="pqty" value="${dto.qty }" />
 									<input type="submit" class="btn btn-sm btn-outline-secondary"
 										value="수정" />
@@ -82,30 +82,30 @@
 			<tbody>
 				<tr>
 					<td>이름</td>
-					<td>${mDto.name }</td>
+					<td>${userDTO.user_nm}</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td>${mDto.email }</td>
+					<td>${userDTO.user_email}</td>
 				</tr>
 				<tr>
 					<td>전화번호</td>
-					<td>${mDto.tel }</td>
+					<td>${userDTO.user_phone}</td>
 				</tr>
 				<tr>
 					<td><b>받는사람 정보</b></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td>${mDto.name }</td>
+					<td>${userDTO.user_nm}</td>
 				</tr>
 				<tr>
 					<td>배송지 주소</td>
-					<td>${mDto.road_addr }</td>
+					<td>${userDTO.zipcode}<br>	${userDTO.addr}<br>${userDTO.addr_road} <br/>${userDTO.addr_detail}</td>
 				</tr>
 				<tr>
 					<td>전화번호</td>
-					<td>${mDto.tel }</td>
+					<td>${userDTO.user_phone}</td>
 				</tr>
 				<tr>
 					<td><b>결제정보</b></td>

@@ -27,10 +27,14 @@ WHERE c.user_id = #{id} AND c.buy_yn='Y'
 UPDATE cart
 SET
 buy_yn = 'Y'
-WHERE prod_no = #{prod_no}
-
+WHERE cart_no = #{prod_no}
 </update>
 
-
+<update id="orderDelete">
+UPDATE cart
+SET
+buy_yn = 'N'
+WHERE cart_no = #{no}
+</update>
 
 </mapper>
