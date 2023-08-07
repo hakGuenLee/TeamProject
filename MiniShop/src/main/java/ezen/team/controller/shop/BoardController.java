@@ -1,6 +1,17 @@
 package ezen.team.controller.shop;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import ezen.team.domain.CsDTO;
+import ezen.team.domain.UserDTO;
+import ezen.team.service.BoardService;
 
 /*
 공지사항
@@ -8,9 +19,33 @@ FAQ
 1:1문의하기
  */
 
-
-
 @Controller
+@RequestMapping("/board")
 public class BoardController {
 
+	@Autowired
+	private BoardService service;
+	
+	
+	@GetMapping("/question")
+	public String question(CsDTO csDto, HttpSession session, Model model) {
+		UserDTO user =	(UserDTO) session.getAttribute("userDTO");
+		String id = user.getUser_id();
+		
+		model.addAttribute("user_id", id);
+		
+		return "/user/csInsert";
+	}
+	
+	@PostMapping("/question")
+	public String question(CsDTO csDto) {
+		
+		// 주문 상품 가져오기
+//		service.searchProd(session.get);
+		System.out.println(csDto);
+		// 1:1문의 등록하기
+		service.csInsert(csDto);
+		
+		return "/user/csInfo";
+	}
 }

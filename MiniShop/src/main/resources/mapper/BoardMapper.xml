@@ -4,4 +4,10 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ezen.team.mapper.BoardMapper">
 
+	<!-- 1:1문의 등록 -->
+	<insert id="csInsert" parameterType="csDTO">
+		INSERT INTO cs_master(user_id, cs_title, cs_con)
+		VALUES(#{user_id},#{cs_title},#{cs_con}) 
+	</insert>
+	
 </mapper>
