@@ -1,12 +1,18 @@
 @charset "utf-8";
 
 
-
-section{
-	
-	margin-left:30%;
+#imgArea{
 	margin-top:300px;
+	margin-left:30%;
 	
+}
+
+#prodInfoArea{
+	margin-top:300px;
+}
+
+#detailImg{
+	margin-left:25%;
 }
 
 img{

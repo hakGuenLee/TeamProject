@@ -35,7 +35,7 @@
         <!-- 주소 -->
         <div class="row mb-2">
             <div class="col-md-6">
-                <input class="form-control mb-2" value="${userDTO.zipcode}" type="text" id="zipcode" name="zipcode" placeholder="우편번호"
+                <input class="form-control mb-2" value="${userDTO.zipcode}" type="text" id="sample4_postcode" name="zipcode" placeholder="우편번호"
                        readonly>
             </div>
             <div class="col-md-6 p-0 ps-2">
@@ -43,12 +43,12 @@
             </div>
         </div>
 
-        <input class="form-control mb-2" value="${userDTO.addr_load}" type="text" name="addr_load" id="addr_load" placeholder="도로명주소"
+        <input class="form-control mb-2" value="${userDTO.addr_road}" type="text" name="addr_road" id="sample4_roadAddress" placeholder="도로명주소"
                readonly>
-        <input class="form-control mb-2" value="${userDTO.addr}"  type="text" name="addr" id="addr" placeholder="지번주소"
+        <input class="form-control mb-2" value="${userDTO.addr}"  type="text" name="addr" id="sample4_jibunAddress" placeholder="지번주소"
                readonly>
         <!-- <span id="guide" style="color:#999;display:none"></span> -->
-        <input class="form-control mb-2" value="${userDTO.addr_detail}" type="text" id="addr_detail" name="addr_detail" placeholder="상세주소">
+        <input class="form-control mb-2" value="${userDTO.addr_detail}" type="text" id="sample4_detailAddress" name="addr_detail" placeholder="상세주소">
         <div class="text-center mt-3">
             <input type="submit" class="btn btn-primary" value="수정하기">
             <input type="reset" class="btn btn-info" value="취소하기">

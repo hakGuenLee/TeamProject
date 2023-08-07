@@ -34,12 +34,10 @@ values(#{id}, #{no}, 'N', now())
 
 <!-- 장바구니 리스트 가져오기 -->
 <select id="getCartList" resultType="hashmap">
-
-select p.main_img, p.prod_nm, c.cart_no, c.qty, p.price
+select c.user_id, c.prod_no, p.main_img, p.prod_nm, c.cart_no, c.qty, p.price
 from prod_master as p left outer join cart as c 
 on p.prod_no = c.prod_no
-where c.user_id = #{id} 
-
+where c.user_id = #{id} AND c.buy_yn='N'
 </select>
 
 <!-- 장바구니 상품 유무 확인 -->

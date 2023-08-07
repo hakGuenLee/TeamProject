@@ -19,17 +19,8 @@ public class WebConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		
 		registry.addInterceptor(userInterceptor)
-		.addPathPatterns("/myPage/myPagehome")
-		.addPathPatterns("/myPage/myInfoUpdate")
-		.addPathPatterns("/cart/wishList")
-		.addPathPatterns("/cart/wish")
-		.addPathPatterns("/cart/cartList")
-		.addPathPatterns("/cart/inputCart")
-		.addPathPatterns("/myPage/myPagePoint")
-		.addPathPatterns("/myPage/myPageQuestion")
-		.addPathPatterns("/myPage/myPageProdQna")
-		.addPathPatterns("/myPage/cartList");
-		
+		.addPathPatterns("/myPage/**")
+		.addPathPatterns("/cart/**");
 
 	}
 	

@@ -3,8 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+
 <jsp:include page="../include/a_header.jsp"/>
 
+<p><sec:authentication property="principal"/></p>
+
+<p>${SPRING_SECURITY_CONTEXT}</p>
 					
 	<div class="container">
 		<div class="container-fluid mt-3" >

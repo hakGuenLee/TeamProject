@@ -2,6 +2,8 @@ package ezen.team.service.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -38,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
 		// 서버의 물리경로 얻어오기
 		String savePath = rq.getServletContext().getRealPath("") + File.separator + repo;
 
-		System.out.println(savePath);
+		System.out.println("savePath : " + savePath);
 
 		Map<String, String> map = new HashMap<>();
 
@@ -268,7 +270,45 @@ public class ProductServiceImpl implements ProductService {
 	
 	// 상품 삭제
 	@Override
-	public void prodDelete(String no) {
+	public void prodDelete(String no, HttpServletRequest request) {
+		
+		//업로드 폴더에서 삭제할 이미지의 정보를 가져오기 위한 상품 정보 얻기
+		ProductDTO pDto = mapper.getProdInfo(no);
+		String mainImg = pDto.getMain_img();
+		
+		String subImg = pDto.getSub_img1();
+		String subImg2 = pDto.getSub_img2();
+		String detailImg = pDto.getDetail_img();
+		
+		String repo = "/resources/upload/";
+
+		// 서버의 물리경로 얻어오기
+		String savePath = request.getServletContext().getRealPath("") + File.separator + repo;
+
+
+		System.out.println("삭제할 파일 메인 : " + mainImg);
+		
+		File file = new File(savePath + mainImg);
+		File file2 = new File(savePath + subImg);
+		File file3 = new File(savePath + subImg2);
+		File file4 = new File(savePath + detailImg);
+		
+			System.out.println("삭제할 파일명 : " + file);
+			
+			System.gc();
+			System.runFinalization();
+		
+		boolean result = 	file.delete();
+		boolean result2 = 	file2.delete();
+		boolean result3 = 	file3.delete();
+		boolean result4 = 	file4.delete();
+		
+		System.out.println("삭제결과 : " + result);
+		System.out.println("삭제결과 : " + result2);
+		System.out.println("삭제결과 : " + result3);
+		System.out.println("삭제결과 : " + result4);
+
+		
 		mapper.prodDelete(no);
 	}
 		

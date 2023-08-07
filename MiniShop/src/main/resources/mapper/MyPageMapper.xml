@@ -13,9 +13,37 @@ select * from user_master where user_nm = #{username}
 <!-- 회원 정보 수정하기 -->
 <update id="userInfoUpdate">
 update user_master set user_home = #{user_home}, user_phone = #{user_phone}, user_email = #{user_email},
- zipcode = #{zipcode}, addr = #{addr}, addr_load = #{addr_load}, addr_detail = #{addr_detail} where user_no = #{user_no}   
+ zipcode = #{zipcode}, addr = #{addr}, addr_road = #{addr_road}, addr_detail = #{addr_detail} where user_no = #{user_no}   
 
 </update>
 
+
+<!-- 해당 아이디에 맞는 배송지 리스트 가져오기  -->
+<select id="getAddrList" resultType="hashmap">
+select * from addr_manage where user_id = #{id}
+</select>
+
+<!-- 배송지 추가하기 -->
+<insert id="insertNewAddress">
+insert into addr_manage(user_id, addr_nm, addr_gb, addr_nik, addr_tel, zipcode, addr, addr_detail, addr_dt, addr_jibun)
+values(#{user_id}, #{addr_nm}, #{addr_gb}, #{addr_nik}, #{addr_tel}, #{zipcode}, #{addr}, #{addr_detail}, now(), #{addr_jibun}) 
+</insert>
+
+<!-- 배송지 삭제하기  -->
+<delete id="deleteAddress">
+delete from addr_manage where addr_no = #{no}
+</delete>
+
+<!-- 배송지 정보 가져오기  -->
+<select id="getAddrInfo" resultType="AddrDTO">
+select * from addr_manage where addr_no = #{no}
+</select>
+
+<!-- 배송지 수정하기 -->
+<update id="updateAddress">
+update addr_manage set user_id = #{user_id}, addr_nm = #{addr_nm}, addr_gb = #{addr_gb}, addr_nik = #{addr_nik},
+addr_tel = #{addr_tel}, zipcode = #{zipcode}, addr = #{addr}, addr_detail = #{addr_detail}, addr_dt = now(), 
+addr_jibun = #{addr_jibun} where addr_no = #{addr_no}
+</update>
 
 </mapper>

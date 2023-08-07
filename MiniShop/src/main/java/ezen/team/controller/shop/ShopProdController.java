@@ -144,5 +144,68 @@ public class ShopProdController {
 		return "/user/chicken";
 	}
 	
+	//유정란 페이지 이동
+	@GetMapping("/meetPage3")
+	public String egg(Model model) {
+		
+		List<ProductDTO> eggList = service.getEgg();
+		
+		model.addAttribute("list", eggList);
+		
+		return "/user/egg";
+	}
+	
+	//아우터 페이지 이동
+	@GetMapping("/clothPage0")
+	public String outer(Model model) {
+		List<ProductDTO> outerList = service.getOuter();
+		
+		model.addAttribute("list", outerList);
+		
+		return "/user/outer";
+		
+	}
+	
+	//팬츠 페이지 이동
+	@GetMapping("/clothPage1")
+	public String pants(Model model) {
+		List<ProductDTO> list = service.getPants();
+		
+		model.addAttribute("list", list);
+		
+		return "/user/pants";
+	}
+	
+	//스커트 페이지 이동
+	@GetMapping("/clothPage2")
+	public String skirt(Model model) {
+		List<ProductDTO> skirtList = service.getSkirt();
+		
+		model.addAttribute("list", skirtList);
+		
+		return "/user/skirt";
+	}
+	
+	//상의 페이지 이동
+	@GetMapping("/clothPage3")
+	public String top(Model model) {
+		List<ProductDTO> top = service.getTop();
+		model.addAttribute("list", top);
+		
+		return "/user/top";
+	}
+	
+	//주방가전 페이지 이동
+	@GetMapping("/electroPage0")
+	public String cookElectro(Model model) {
+		List<ProductDTO> list = service.getCook();
+		model.addAttribute("list", list);
+		
+		return "/user/cook";
+	}
+	
+	
+	
+	
 
 }

@@ -37,6 +37,12 @@
             <li> <a class="nav-link" href="<c:url value="/admin/logList"/>">시스템 로그</a></li>
           </ul>
         </li>
+          <li>
+          <a class="nav-link active" href="#">회원관리</a>
+          <ul>
+            <li> <a class="nav-link" href="<c:url value="/admin/userList"/>">회원리스트</a></li>
+          </ul>
+        </li>
         <li>
           <a class="nav-link active" href="#">카테고리 관리</a>
           <ul>
