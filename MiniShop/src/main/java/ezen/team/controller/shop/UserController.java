@@ -83,8 +83,8 @@ public class UserController {
 	         UserDTO kakaoUser = userService.getUserInfo(accessToken);
 
 
-	        // 4. 사용자 정보를 이용해서 회원가입
-	            // 회원가입 하기 전에 이미 가입된 회원인지 확인하기
+	        // 4. 사용자 정보를 이용해서 DB에 저장
+	            // DB에 저장 하기 전에 이미 저장된 회원인지 확인하기
 	        UserDTO findUser = userService.userIdChk(kakaoUser.getUser_id());
 	        
 	        if(findUser==null) {
