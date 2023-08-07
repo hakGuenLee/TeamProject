@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!-- 관리자 등록 페이지 -->
 <style>
@@ -67,7 +68,7 @@
               required/>
 				</div>
 			<div class="form-floating mt-3 mb-3">
-			  <input type="text" class="form-control" id="proc_id" placeholder="등록처리자" name="proc_id">
+			  <input type="text" class="form-control" id="proc_id" placeholder="등록처리자" name="proc_id" value="<sec:authentication property="principal"/>">
 			  <label for="regDate">등록처리자</label>
 			</div>
 			</div>

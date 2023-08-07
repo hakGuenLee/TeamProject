@@ -58,7 +58,36 @@ select * from prod_master where ctgry_no = 10
 <!-- 닭/오리 가져오기 -->
 <select id="getChicken" resultType="hashmap">
 select * from prod_master where ctgry_no = 11
+</select>
 
+<!-- 유정란 가져오기 -->
+<select id="getEgg" resultType="hashmap">
+select * from prod_master where ctgry_no = 12
+</select>
+
+<!-- 아우터 가져오기 -->
+<select id="getOuter" resultType="hashmap">
+select * from prod_master where ctgry_no = 13
+</select>
+
+<!-- 팬츠 가져오기 -->
+<select id ="getPants" resultType="hashmap">
+select * from prod_master where ctgry_no = 14
+</select>
+
+<!-- 스커트 가져오기 -->
+<select id = "getSkirt" resultType="hashmap">
+select * from prod_master where ctgry_no = 15
+</select>
+
+<!-- 상의 가져오기 -->
+<select id="getTop" resultType="hashmap">
+select * from prod_master where ctgry_no = 16
+</select>
+
+<!-- 주방가전 가져오기 -->
+<select id="getCook" resultType="hashmap">
+select * from prod_master where ctgry_no = 17
 </select>
 
 </mapper>

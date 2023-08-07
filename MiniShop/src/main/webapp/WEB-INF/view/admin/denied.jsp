@@ -8,7 +8,7 @@
 
 	<div class="container">
 		<h1>
-			<span class="text-danger">${username}님은 접근 권한이 없습니다!!</span>
+			<span class="text-danger">접근 권한이 없습니다!</span>
 		</h1>
 	
 	</div>	

@@ -39,4 +39,22 @@ public interface ShopProdService {
 	//닭/오리 가져오기
 	List<ProductDTO> getChicken();
 
+	//아우터 가져오기
+	List<ProductDTO> getOuter();
+
+	//유정란 가져오기
+	List<ProductDTO> getEgg();
+
+	//팬츠 가져오기
+	List<ProductDTO> getPants();
+
+	//스커트 가져오기
+	List<ProductDTO> getSkirt();
+
+	//상의 가져오기
+	List<ProductDTO> getTop();
+
+	//주방가전 가져오기
+	List<ProductDTO> getCook();
+
 }

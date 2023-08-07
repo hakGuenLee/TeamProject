@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import ezen.team.domain.AdminDTO;
 import ezen.team.domain.CommonCodeDTO;
 import ezen.team.domain.EmpDTO;
+import ezen.team.domain.PageDTO;
+import ezen.team.domain.UserDTO;
 import ezen.team.mapper.admin.AdminMapper;
 
 //AdminController와 연결
@@ -68,7 +70,6 @@ public class AdminServiceImpl implements AdminService {
 	public AdminDTO getAdminInfo(String id) {
 		AdminDTO adminDto = mapper.getAdminInfo(id);
 		
-		
 		return adminDto;
 	}
 
@@ -77,16 +78,22 @@ public class AdminServiceImpl implements AdminService {
 	public void adminUpdate(AdminDTO aDto) {
 		mapper.adminUpdate(aDto);
 		
-	}
-	
+	}	
 	
 	//관리자 등록 아이디 유효성 체크
 	public AdminDTO adminIdChk(String id) {
 		
 		AdminDTO adminDTO = mapper.adminIdCheck(id);
-		
-		
+				
 		return adminDTO;
+	}
+
+	//회원 리스트 가져오기
+	public List<UserDTO> getUserList(PageDTO pageDto) {
+		List<UserDTO> list = mapper.getUserList(pageDto);
+		
+		return list;
+		
 	}
 
 

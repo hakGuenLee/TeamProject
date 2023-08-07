@@ -5,6 +5,8 @@ import java.util.List;
 
 import ezen.team.domain.AdminDTO;
 import ezen.team.domain.EmpDTO;
+import ezen.team.domain.PageDTO;
+import ezen.team.domain.UserDTO;
 
 public interface AdminService {
 	
@@ -28,5 +30,8 @@ public interface AdminService {
 	 
 	 //관리자 등록 아이디 유효성 검사
 	 AdminDTO adminIdChk(String id);
+	 
+	 //회원 리스트 가져오기
+	 List<UserDTO> getUserList(PageDTO pageDto);
 
 }

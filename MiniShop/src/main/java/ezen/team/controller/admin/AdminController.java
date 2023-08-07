@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ezen.team.domain.AdminDTO;
 import ezen.team.domain.CommonCodeDTO;
 import ezen.team.domain.EmpDTO;
+import ezen.team.domain.PageDTO;
+import ezen.team.domain.UserDTO;
+import ezen.team.service.admin.AdminService;
 import ezen.team.service.admin.AdminServiceImpl;
 
 /* 
@@ -31,7 +34,7 @@ import ezen.team.service.admin.AdminServiceImpl;
 public class AdminController {
 	
 	@Autowired
-	private AdminServiceImpl adminservice;
+	private AdminService adminservice;
 
 	//관리자 메인 페이지 이동
 	@GetMapping("/adminHome")
@@ -141,6 +144,16 @@ public class AdminController {
 		 adminservice.adminDelete(id);
 		
 		return "redirect:/adminList";
+	}
+	
+	//회원리스트 페이지 이동
+	@GetMapping("/userList")
+	public String userList(Model model, PageDTO pageDto) {
+		
+		List<UserDTO> userList = adminservice.getUserList(pageDto);
+		
+		model.addAttribute("list", userList);				
+		return "/admin/userList";
 	}
 	
 	

@@ -10,6 +10,8 @@ import org.apache.ibatis.annotations.Mapper;
 import ezen.team.domain.AdminDTO;
 import ezen.team.domain.CommonCodeDTO;
 import ezen.team.domain.EmpDTO;
+import ezen.team.domain.PageDTO;
+import ezen.team.domain.UserDTO;
 
 //AdminServiceImpl과 연결
 
@@ -40,6 +42,9 @@ public interface AdminMapper {
 
 	//관리자 등록 아이디 유효성 검사
 	AdminDTO adminIdCheck(String id);
+
+	//회원 리스트 가져오기
+	List<UserDTO> getUserList(PageDTO pageDto);
 
 
 

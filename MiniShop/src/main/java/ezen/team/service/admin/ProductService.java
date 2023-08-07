@@ -22,6 +22,6 @@ public interface ProductService {
 
 	void prodUpdate(MultipartHttpServletRequest mhr, HttpServletRequest rq) throws Exception;
 
-	void prodDelete(String no);
+	void prodDelete(String no, HttpServletRequest request);
 
 }

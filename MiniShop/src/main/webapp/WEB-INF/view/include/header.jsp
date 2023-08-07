@@ -83,6 +83,7 @@
           <ul>
             <li><a class="nav-link" href="<c:url value="/myPage/myInfoUpdate"/>" >내 정보수정</a>
             <li><a class="nav-link" href="<c:url value="/cart/wishList"/>">나의 위시리스트</a></li>
+            <li><a class="nav-link" href="<c:url value="/myPage/myAddress"/>">나의 배송지 관리</a></li>
             <li><a class="nav-link" href="<c:url value="/myPage/myPagehome"/>">나의 주문/배송조회</a></li>
             <li><a class="nav-link" href="<c:url value="/myPage/myPagePoint"/>">나의 적립금</a></li>
             <li><a class="nav-link" href="<c:url value="/myPage/myPageQuestion"/>">나의 1:1문의</a></li>

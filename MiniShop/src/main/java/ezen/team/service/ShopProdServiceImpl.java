@@ -97,4 +97,46 @@ public class ShopProdServiceImpl implements ShopProdService {
 		return chickList;
 	}
 
+	//아우터 가져오기
+	@Override
+	public List<ProductDTO> getOuter() {
+		List<ProductDTO> pDto = mapper.getOuter();
+		return pDto;
+	}
+
+	//유정란 제품 가져오기
+	@Override
+	public List<ProductDTO> getEgg() {
+		List<ProductDTO> egglist = mapper.getEgg();
+		return egglist;
+	}
+
+	//팬츠 가져오기
+	@Override
+	public List<ProductDTO> getPants() {
+		List<ProductDTO> pants = mapper.getPants();
+		return pants;
+	}
+
+	//스커트 가져오기
+	@Override
+	public List<ProductDTO> getSkirt() {
+		List<ProductDTO> list = mapper.getSkirt();
+		return list;
+	}
+
+	//상의 가져오기
+	@Override
+	public List<ProductDTO> getTop() {
+		List<ProductDTO> list = mapper.getTop();
+		return list;
+	}
+
+	//주방가전 가져오기
+	@Override
+	public List<ProductDTO> getCook() {
+		List<ProductDTO> list = mapper.getCook();
+		return list;
+	}
+
 }

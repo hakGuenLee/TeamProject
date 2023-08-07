@@ -48,7 +48,13 @@ use_yn = #{use_yn} where adm_id = #{adm_id}
 <select id="adminIdCheck" resultType="AdminDTO">
 select * from admin_master
 where adm_id = #{id}
+</select>
 
+<!-- 회원 리스트 가져오기 -->
+<select id="getUserList" resultType="hashmap">
+select * from user_master
+ORDER BY user_no DESC
+LIMIT #{startIndex}, #{cntPerPage}
 </select>
 
 
