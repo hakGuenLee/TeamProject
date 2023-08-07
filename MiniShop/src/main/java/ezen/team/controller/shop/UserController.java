@@ -138,7 +138,7 @@ public class UserController {
 		return emailCode;
 	}
 	
-    
+    // 비밀번호 찾기 시 비밀번호 ㅜ정
     @PostMapping("pwChange")
     public @ResponseBody String pwChange(@Param("user_pw") String user_pw,
     							@Param("newUser_pwChk") String newUser_pwChk,
