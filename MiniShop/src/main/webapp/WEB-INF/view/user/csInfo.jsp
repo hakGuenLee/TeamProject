@@ -18,7 +18,7 @@
    
    <textarea class="form-control mt-2" name="cs_con" id="cs_con" value="{csDto.cs_title}" rows="5" cols="33" placeholder="내용을 입력하세요"></textarea>
    
-   <input class="form-control mt-2" type="text" id="user_id" name="user_id" value="${}" placeholder="이름을 입력하세요">
+   <input class="form-control mt-2" type="text" id="user_id" name="user_id"  placeholder="이름을 입력하세요">
    
    <div class="text-center mt-3">
       <button class="btn btn-primary">등록</button>   

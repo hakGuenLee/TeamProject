@@ -17,6 +17,7 @@ import ezen.team.service.BoardService;
 공지사항
 FAQ
 1:1문의하기
+상품문의하기
  */
 
 @Controller
@@ -26,7 +27,7 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	
-	
+	//1:1문의 이동
 	@GetMapping("/question")
 	public String question(CsDTO csDto, HttpSession session, Model model) {
 		UserDTO user =	(UserDTO) session.getAttribute("userDTO");
@@ -37,6 +38,7 @@ public class BoardController {
 		return "/user/csInsert";
 	}
 	
+	//1:1문의 등록하기
 	@PostMapping("/question")
 	public String question(CsDTO csDto) {
 		
@@ -48,4 +50,12 @@ public class BoardController {
 		
 		return "/user/csInfo";
 	}
+	
+	//상품 문의 이동
+	@GetMapping("/prodQuestion")
+	public String prodQuestion() {
+		
+		return "/user/prodQuestion";
+	}
+	
 }

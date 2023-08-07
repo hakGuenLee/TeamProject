@@ -73,7 +73,7 @@
             <li><a class="nav-link" href="#">Notice</a></li>
             <li><a class="nav-link" href="#">FAQ</a></li>
             <li><a class="nav-link" href="<c:url value="/board/question"/>">1:1 문의하기</a></li>
-            <li><a class="nav-link" href="#">상품문의</a></li>
+            <li><a class="nav-link" href="<c:url value="/board/prodQuestion"/>">상품문의</a></li>
           </ul>
         </li>
     
