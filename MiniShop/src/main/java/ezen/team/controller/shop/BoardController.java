@@ -1,5 +1,7 @@
 package ezen.team.controller.shop;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ezen.team.domain.BoardDTO;
 import ezen.team.domain.CsDTO;
 import ezen.team.domain.UserDTO;
 import ezen.team.service.BoardService;
@@ -26,6 +29,20 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
+	
+	
+	//Notice 페이지 이동(게시글)
+	@GetMapping("/noticePage")
+	public String notice(Model model) {
+		
+		List<BoardDTO> list = service.getNoticeList();
+		
+		model.addAttribute("list", list);
+		
+		return "/user/notice";
+	}
+	
+	
 	
 	//1:1문의 이동
 	@GetMapping("/question")

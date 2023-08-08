@@ -10,4 +10,9 @@
 		VALUES(#{user_id},#{cs_title},#{cs_con}) 
 	</insert>
 	
+	
+	<!-- Notice 가져오기 -->
+	<select id="getNoticeList" resultType="hashmap">
+	select * from post_mng where pst_gb = '002'
+	</select>
 </mapper>
