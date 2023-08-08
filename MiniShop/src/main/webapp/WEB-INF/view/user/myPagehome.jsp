@@ -70,7 +70,7 @@
 
 <div class="container w-50 mt-5">
 	<h3>
-		<b>주문/배송 조회내역</b> <span>N 건</span>
+		<b>주문/배송 조회내역</b> <span>${orderNum}건</span>
 	</h3>
 	<div class="dropdown mt-3">
 		<button class="btn btn-secondary dropdown-toggle" type="button"
@@ -96,15 +96,24 @@
 			</tr>
 		</thead>
 		<tbody>
+		<c:if test="${list == null }">
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>주문하신 내역이 존재하지 않습니다!</td>
+			<tr>
+		</c:if>
+		<c:if test="${list != null }">
+		<c:forEach var="dto" items="${list}">
+			<tr>
+				<td>${dto.order_no}</td>
+				<td>${dto.order_dt }</td>
+				<td>${dto.prod_no }</td>
+				<td>${dto.op_code}</td>
+				<td>${dto.tot_qty}</td>
+				<td>${dto.order_sts}</td>
 				<td><a href="<c:url value=""/>" class="btn btn-sm btn-primary">상세보기</a></td>
 			</tr>
+			</c:forEach>
+			</c:if>
 		</tbody>
 	</table>
 </div>

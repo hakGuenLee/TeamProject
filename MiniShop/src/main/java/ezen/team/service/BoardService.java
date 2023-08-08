@@ -12,4 +12,7 @@ public interface BoardService {
 	//Notice 리스트 가져오기
 	List<BoardDTO> getNoticeList();
 
+	//해당번호에 맞는 공지 글 가져오기
+	BoardDTO getNoticeContent(String no);
+
 }

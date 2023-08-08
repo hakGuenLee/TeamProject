@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ezen.team.domain.CartDTO;
 import ezen.team.domain.ProductDTO;
@@ -44,9 +45,17 @@ public class CartController {
 		return "/user/cartList";
 	}
 	
-	//상품 카드에서 바로 장바구니 담기
-	@GetMapping("/inputCart")
-	public String inputCart(@RequestParam("no") String no, HttpServletRequest request) {
+	//장바구니 담기
+	@PostMapping("/inputCart")
+	@ResponseBody
+	public String inputCart(@RequestParam("no") String no,
+			@RequestParam("opCode") String opCode, 
+			@RequestParam("pQty") String pQty2,
+			HttpServletRequest request) {
+		
+		System.out.println("카트담기 no : " + no);
+		System.out.println("카트담기 opCode : " + opCode);
+		System.out.println("카트담기 pQty : " + pQty2);
 		
 		HttpSession session = request.getSession();
 		

@@ -70,7 +70,7 @@
 		 success: (result) =>{
 			 if(cb) cb(result);
 		 },
-		 error: function(){alert("error")}
+		 error: function(){alert("상품박스 에러!!")}
 		 
 	 });
 	 
@@ -78,16 +78,16 @@
  }
  
  
-  function getVegeBox(a, cb){
-/*	  	  var token = $("meta[name='_csrf'").attr("content");
-	 var header = $("meta[name='_csrf_header']").attr("content");*/
+/*  function getVegeBox(a, cb){
+	  	  var token = $("meta[name='_csrf'").attr("content");
+	 var header = $("meta[name='_csrf_header']").attr("content");
 	 
 	 
 	 $.ajax({
 		 url:"/getVegeBox",
-/*		 		 	 	beforeSend: function(xhr){
+		 		 	 	beforeSend: function(xhr){
 				xhr.setRequestHeader(header, token);
-			},*/
+			},
 		 type:"post",
 		 data:{"codeNum" : a},
 		 dataType : "json",
@@ -99,6 +99,6 @@
 	 });
 	 
 	 
- }
+ }*/
  
  

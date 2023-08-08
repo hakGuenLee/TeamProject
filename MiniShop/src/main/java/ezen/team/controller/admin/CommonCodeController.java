@@ -67,23 +67,20 @@ public class CommonCodeController {
 	}
 	
 	
-	//홈 화면 채소 버튼 클릭 시 상품 가져오기
-	@PostMapping("/getVegeBox")
+	//홈 화면 상품별 카테고리 버튼 클릭 시 해당 상품들 가져오기
+	@PostMapping("/getProdBox")
 	@ResponseBody
-	public List<ProductDTO> getVegeBox(@RequestParam("codeNum") String ctNo){
+	public List<ProductDTO> getProdBox(@RequestParam("codeNum") String ctNo){
 		
 		System.out.println("ctno : " + ctNo);
 		
 		//view에서 넘겨준 codeNum을 통해 해당 카테고리 번호에 맞는 상품 정보 가져오기
-		List<ProductDTO> prodList = service.getProdBox(ctNo);
-		
-		System.out.println("홈화면 상품 리스트 : " + prodList);
-		
-		
-		return prodList;
-		
+		List<ProductDTO> prodList = service.getProdBox(ctNo);		
+				
+		return prodList;		
 	}
 	
+
 
 	
 }

@@ -12,11 +12,10 @@
 				    <div class="card-body" id="cardBox">
 				      <p id="prodName" class="card-title"><b>${dto.prod_nm }</b></p>
 				      <p class="card-text" style="color:dodgerblue"><b><fmt:formatNumber value="${dto.price}"/>원</b></p>
-					
+						
 
-				      	<a id="menuBtn" href="<c:url value='/cart/inputCart?no=${dto.prod_no }'/>" class="btn btn-dark rounded-0">장바구니 담기</a>
+				      	<a id="menuBtn" href="<c:url value='/prodDetail/prodInfo?no=${dto.prod_no }'/>" class="btn btn-dark rounded-0">상세 보기</a>
 				      	<a href="<c:url value='/cart/wish?no=${dto.prod_no}&opcode="없음"&qty=1'/>" class="btn btn-dark rounded-0">찜하기</a>
-				      	<a href="#" class="btn btn-dark rounded-0">바로 구매하기</a>
 			    	</div>
 			  	</div>
 			  	<!-- 카드 끝 -->

@@ -2,18 +2,19 @@
 
 
 #imgArea{
-	margin-top:300px;
+	margin-top:200px;
 	margin-left:30%;
 	
 }
 
 #prodInfoArea{
-	margin-top:300px;
+	margin-top:200px;
 }
 
 #detailImg{
 	margin-left:25%;
 }
+
 
 img{
 	cursor: pointer;

@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import ezen.team.domain.AddrDTO;
+import ezen.team.domain.CsDTO;
+import ezen.team.domain.OrderDTO;
 import ezen.team.domain.UserDTO;
 
 //마이페이지 담당 mapper
@@ -32,5 +34,17 @@ public interface MyPageMapper {
 
 	//배송지 수정하기
 	void updateAddress(AddrDTO aDto);
+
+	//해당 아이디에 맞는 주문내역 가져오기
+	List<OrderDTO> getOrderList(String id);
+
+	//해당 아이디의 주문 건수 가져오기
+	int getOrderNum(String id);
+
+	//해당 아이디의 1:1문의 건수 가져오기
+	int getTotalQuestion(String id);
+
+	//해당 아이디의 1:1문의 리스트 가져오기
+	List<CsDTO> getCsList(String id);
 
 }

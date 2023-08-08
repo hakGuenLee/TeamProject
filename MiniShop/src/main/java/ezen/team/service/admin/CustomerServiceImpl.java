@@ -17,6 +17,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerMapper mapper;
 
+	//1:1문의건 리스트 가져오기
 	@Override
 	public List<CsDTO> csList(String cs_code, String proc_sts, PageDTO pageDto) {
 		int totalCnt = mapper.totalCnt(pageDto);
@@ -30,6 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	
+	//회원 1:1문의건 상세보기
 	@Override
 	public CsDTO csInfo(int cs_no, int proc_sts) {
 		System.out.println(cs_no);

@@ -8,8 +8,20 @@ body, ul, li {
   list-style: none;		/* 해당 태그의 list-style을 none으로 하는 것으로 ●을 제거한다 */
 }
 
-.navbar > ul ul {
+
+#home{
+	margin-left:30px;
+	font-size: 25px;
+}
+
+.navbar > ul  ul{
 	display: none;
+}
+
+.navbar > ul > li:hover > ul {
+	display:block;
+/*	height: 250px;	*/
+	transition: 3s;
 }
 
 
@@ -18,24 +30,23 @@ body, ul, li {
 
 }
 
-.navbar a{
-	margin-top:10px;
+.navbar > ul > li >a{
+	margin-left:15px;
 }
 
-.navbar > ul > li:hover > ul {
-	display:block;
-	
-}
-
-header 
 
 
 
 
-img {
+
+
+
+
+
+/*img {
 	height:700px;
 	width:100%;
-}
+}*/
 
 #allProduct{
 	padding-left:600px;

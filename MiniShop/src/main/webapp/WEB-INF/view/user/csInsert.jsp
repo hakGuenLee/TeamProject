@@ -32,7 +32,7 @@
    
    <textarea class="form-control mt-2" name="cs_con" id="cs_con" rows="5" cols="33" placeholder="내용을 입력하세요"></textarea>
    
-   <input class="form-control mt-2" type="text" id="user_id" name="user_id" disabled value="${user_id}">
+   <input class="form-control mt-2" type="text" id="user_id" name="user_id" readonly value="${user_id}">
    
    <div class="text-center mt-3">
       <button class="btn btn-primary">등록</button>   
