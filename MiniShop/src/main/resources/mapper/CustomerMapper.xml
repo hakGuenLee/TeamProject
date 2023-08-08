@@ -52,7 +52,7 @@
 	  	<!-- select * from cs_master left outer join cmmn_cd on cs_master.cs_code = cmmn_cd.item_cd
 		where cs_master.cs_no = #{cs_no} -->
 		
-		<if test="porc_sts == 1">
+		<if test="proc_sts == 1">
 			select * 
 			from cs_master as cm, cmmn_cd as cmcd, cs_reply as cr
 		</if>

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<style>
+	a{text-decoration : none;}
+</style>
     
      <footer class="border-top container mt-5 p-3">
       &copy; Powered by Academy.

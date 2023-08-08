@@ -25,8 +25,8 @@ select * from addr_manage where user_id = #{id}
 
 <!-- 배송지 추가하기 -->
 <insert id="insertNewAddress">
-insert into addr_manage(user_id, addr_nm, addr_gb, addr_nik, addr_tel, zipcode, addr, addr_detail, addr_dt, addr_jibun)
-values(#{user_id}, #{addr_nm}, #{addr_gb}, #{addr_nik}, #{addr_tel}, #{zipcode}, #{addr}, #{addr_detail}, now(), #{addr_jibun}) 
+insert into addr_manage(user_id, addr_nm, addr_gb, addr_nik, addr_tel, zipcode, addr, addr_detail, addr_dt, addr_road)
+values(#{user_id}, #{addr_nm}, #{addr_gb}, #{addr_nik}, #{addr_tel}, #{zipcode}, #{addr}, #{addr_detail}, now(), #{addr_road}) 
 </insert>
 
 <!-- 배송지 삭제하기  -->
@@ -45,5 +45,31 @@ update addr_manage set user_id = #{user_id}, addr_nm = #{addr_nm}, addr_gb = #{a
 addr_tel = #{addr_tel}, zipcode = #{zipcode}, addr = #{addr}, addr_detail = #{addr_detail}, addr_dt = now(), 
 addr_jibun = #{addr_jibun} where addr_no = #{addr_no}
 </update>
+
+<!--해당 아이디의 주문 건수 가져오기  -->
+<select id="getOrderNum" resultType="Integer">
+select count(*) from order_master where user_id = #{id}
+</select>
+
+
+<!-- 해당 아이디에 맞는 주문내역 가져오기 -->
+<select id="getOrderList" resultType="hashmap">
+
+select m.order_no, m.user_id, m.od_seq, m.tot_qty, m.order_dt, m.addr_no, m.order_sts,
+d.prod_no, d.op_code, d.point, d.buy_dt, d.payback_yn, d.cs_yn
+from order_master m left outer join order_detail d
+on m.user_id = d.user_id
+where m.user_id = #{id}
+</select>
+
+<!-- 해당 아이디의 1:1문의 건수 가져오기 -->
+<select id="getTotalQuestion" resultType="Integer">
+select count(*) from cs_master where user_id = #{id}
+</select>
+
+<!-- 해당 아이디의 1:1문의 리스트 가져오기 -->
+<select id="getCsList" resultType="hashmap">
+select * from cs_master where user_id = #{id}
+</select>
 
 </mapper>

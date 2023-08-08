@@ -24,7 +24,7 @@
 					<c:forEach items="${list}" var="dto">				
 						<tr>
 							<th>${dto.pst_no}</th>					
-							<th><a href="">${dto.pst_ttl}</a></th>
+							<th><a href="<c:url value="/board/noticeView?no=${dto.pst_no }"/>">${dto.pst_ttl}</a></th>
 							<th>${dto.wrt_id}</th>
 							<th>${dto.req_dt}</th>
 						</tr>

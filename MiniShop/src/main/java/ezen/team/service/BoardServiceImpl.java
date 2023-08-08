@@ -24,10 +24,14 @@ public class BoardServiceImpl implements BoardService {
 	//Notice 모두 가져오기
 	@Override
 	public List<BoardDTO> getNoticeList() {
+		return mapper.getNoticeList();
+	}
+
+	//해당번호에 맞는 공지 글 가져오기
+	@Override
+	public BoardDTO getNoticeContent(String no) {
 		
-		List<BoardDTO> list = mapper.getNoticeList();
-		
-		return list;
+		return mapper.getNoticeInfo(no);
 	}
 
 }

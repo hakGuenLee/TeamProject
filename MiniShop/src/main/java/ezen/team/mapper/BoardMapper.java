@@ -16,5 +16,8 @@ public interface BoardMapper {
 
 	//notice 모두 가져오기
 	public List<BoardDTO> getNoticeList();
+	
+	//해당번호에 맞는 공지 글 가져오기
+	public BoardDTO getNoticeInfo(String no);
 
 }

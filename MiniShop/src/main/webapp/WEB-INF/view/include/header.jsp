@@ -27,13 +27,13 @@
 
 
 <header class="top-bar con-min-width">
-  <div class="container">
+  <div id="fdiv" class="container w-75">
     <nav class="navbar navbar-expand-sm  navbar-white bg-white fixed-top">
        <ul class="navbar-nav">
          <li class="nav-item">
-          <a class="nav-link active" href="<c:url value="/"/>">쇼핑몰 홈</a>
+          <a id="home" class="nav-link active" href="<c:url value="/"/>"><b>MiniMall</b></a>
         </li>
-
+		
         <li id="allProduct">
           <a class="nav-link active" href="#"><b>모든제품</b></a>
         </li>
@@ -71,7 +71,7 @@
           <a class="nav-link active" href="#"><b>Community</b></a>
           <ul>
             <li><a class="nav-link" href="<c:url value="/board/noticePage"/>">Notice</a></li>
-            <li><a class="nav-link" href="#">FAQ</a></li>
+            <li><a class="nav-link" href="<c:url value="/board/faqPage"/>">FAQ</a></li>
             <li><a class="nav-link" href="<c:url value="/board/question"/>">1:1 문의하기</a></li>
             <li><a class="nav-link" href="<c:url value="/board/prodQuestion"/>">상품문의</a></li>
           </ul>
@@ -109,6 +109,11 @@
     </nav>
   </div>
 </header>
+
+
+
+
+
 <script>
 $(document).ready(function(){	
 	var categoryCode = 'A100'

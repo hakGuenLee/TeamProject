@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ezen.team.domain.BoardDTO;
 import ezen.team.domain.CsDTO;
@@ -42,6 +43,18 @@ public class BoardController {
 		return "/user/notice";
 	}
 	
+	//Notice 상세보기
+	@GetMapping("/noticeView")
+	public String noticeView(@RequestParam("no")String no, Model model) {
+		
+		BoardDTO bDto = service.getNoticeContent(no);
+		
+		model.addAttribute("board", bDto);
+		
+		return "/user/noticeInfo";
+		
+	}
+	
 	
 	
 	//1:1문의 이동
@@ -61,7 +74,7 @@ public class BoardController {
 		
 		// 주문 상품 가져오기
 //		service.searchProd(session.get);
-		System.out.println(csDto);
+		System.out.println("1:1문의 파라미터 : " + csDto);
 		// 1:1문의 등록하기
 		service.csInsert(csDto);
 		
@@ -74,5 +87,8 @@ public class BoardController {
 		
 		return "/user/prodQuestion";
 	}
+	
+
+	
 	
 }

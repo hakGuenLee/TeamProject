@@ -136,14 +136,6 @@ public class UserServiceImpl implements UserService {
         return user;
 
     }
-
-	
-	
-	
-	
-	
-	
-	
 	
 	/////////// 카카오 로그인     //////////////
 	

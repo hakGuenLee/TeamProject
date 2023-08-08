@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- 마이페이지 첫 화면 -->
+<!-- 나의 1:1문의 내역 -->
 
 <jsp:include page="../include/header.jsp" />
 <div class="container w-50 border shadow-sm p-5 mt-5">
@@ -55,29 +55,36 @@
 
 <div class="container w-50 mt-5">
 	<h3>
-		<b>1:1문의 내역</b> <span>N 건</span>
+		<b>${sessionScope.userDTO.user_nm}님의 1:1문의 내역</b> <span>${questionNum} 건</span>
 	</h3>
 
 	<table class="table mt-5">
 		<thead class="table-secondary">
 			<tr>
 				<th>문의날짜</th>
-				<th>주문번호</th>
-				<th>상품명</th>
+				<th>문의유형</th>
 				<th>제목</th>
-				<th>문의상태</th>
+				<th>처리상태</th>
 				<th>답변처리일</th>
+				<th>상세보기</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+			<c:forEach var="dto" items="${list}">
+			<tr> 
+				<td>${dto.cs_dt}</td>
+				<td>${dto.cs_code }</td>
+				<td>${dto.cs_title }</td>
+				<c:if test="${dto.proc_sts == 1}">
+				<td>접수 완료(처리 중)</td>
+				</c:if>
+				<c:if test="${dto.proc_sts == 2 }">
+				<td>처리 완료</td>
+				</c:if>
 				<td></td>
 				<td><a href="<c:url value=""/>" class="btn btn-sm btn-primary">상세보기</a></td>
 			</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </div>

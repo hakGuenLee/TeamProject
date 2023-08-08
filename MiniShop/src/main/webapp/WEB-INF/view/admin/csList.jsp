@@ -49,9 +49,9 @@
 					<c:set var="cnt" value="0"/>
 					<c:if test="${csList!=null || csList.size() !=0}">
 					<c:set var="cnt" value="${cnt + 1}"/>
-						<script>
+					<!-- 	<script>
 							alert("${csList.size()}");						
-						</script>
+						</script> -->
 						<c:forEach var="dto" items="${csList}">
 						<tr>
 							<td>${dto.cs_no}</td>
@@ -62,7 +62,7 @@
 							<td>${dto.cs_dt}</td>
 							<td>관리자</td>
 							<td>${dto.proc_dt}</td>
-							<td><a href="<c:url value="/customer/csInfo?cs_no=${dto.cs_no}&cs_code=${dto.cs_code}&proc_sts=${search_sts}"/>" class="btn btn-primary">상세</a></td>
+							<td><a href="<c:url value="/customer/csInfo?cs_no=${dto.cs_no}&cs_code=${dto.cs_code}&proc_sts=${search_sts}"/>" class="btn btn-primary">상세</a></td>							
 						
 						</tr>
 						</c:forEach>				

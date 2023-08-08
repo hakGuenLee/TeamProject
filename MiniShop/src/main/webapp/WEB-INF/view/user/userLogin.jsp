@@ -26,10 +26,10 @@
     <div class="mt-3 w-100 findIdPw">
         <div class="d-flex justify-content-between">
             <div><i class="fa fa-lock"></i>
-                <a href="<c:url value='/user/idpwSearch?find=id'/>">아이디/</a>
-                <a href="<c:url value='/user/idpwSearch?find=pw'/>">비밀번호 찾기</a>
+                <a style="color:gray" href="<c:url value='/user/idpwSearch?find=id'/>">아이디/</a>
+                <a style="color:gray" href="<c:url value='/user/idpwSearch?find=pw'/>">비밀번호 찾기</a>
             </div>
-            <div><i class="fa fa-user-plus"></i> <a href="<c:url value="/user/userRegister"/>">회원가입</a></div>
+            <div><i class="fa fa-user-plus"></i> <a style="color:gray" href="<c:url value="/user/userRegister"/>">회원가입</a></div>
         </div>
     </div>
 </div>

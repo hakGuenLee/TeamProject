@@ -55,7 +55,7 @@
 
 <div class="container w-50 mt-5">
 	<h3>
-		<b>상품문의 내역</b> <span>N 건</span>
+		<b>${sessionScope.userDTO.user_nm}님의 상품문의 내역</b> <span>N 건</span>
 	</h3>
 
 	<table class="table mt-5">
