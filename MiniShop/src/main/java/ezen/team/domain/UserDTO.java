@@ -28,7 +28,8 @@ public class UserDTO {
 	private Date user_dt;
 
 
-
+	// 주문하기
+	private String order_no;
 	
 	
 }

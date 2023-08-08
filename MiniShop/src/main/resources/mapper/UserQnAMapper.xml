@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ezen.team.mapper.UserQnAMapper">
+
+<insert id="QnaRegister"> 
+INSERT INTO qna_master (qna_code, prod_no, qna_ttl, qna_con, user_id)
+VALUES
+(#{qna_code}, 1, #{qna_ttl}, #{qna_con}, #{user_id})
+</insert>
+
+
+
+</mapper>

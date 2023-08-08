@@ -18,6 +18,7 @@
 					<th>상품명</th>
 					<th>수량</th>
 					<th>가격</th>
+					<th>적립금</th>
 					<th>합계</th>
 					<th>삭제</th>
 				</tr>
@@ -51,7 +52,9 @@
 										value="수정" />
 								</form>
 							</td>
-							<td>가격 : <fmt:formatNumber value="${dto.price}" /> 원 </br>
+							<td><fmt:formatNumber value="${dto.price}" /> 원 </br>
+							</td>
+							<td><fmt:formatNumber value="${dto.point}" /> 원 </br>
 							</td>
 							<c:set var="totPrice" value="${dto.price * dto.qty}" />
 							<td><fmt:formatNumber value="${totPrice}" /> 원</br> <c:set
