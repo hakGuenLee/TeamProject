@@ -16,7 +16,7 @@ public class AddrDTO {
 	private String addr_tel; //휴대번호
 	private String zipcode; //우편번호
 	private String addr; //기본 주소
+	private String addr_road; //도로명주소
 	private String addr_detail; //상세주소
 	private Date addr_dt; //등록일자
-	private String addr_jibun; //지번주소
 }
