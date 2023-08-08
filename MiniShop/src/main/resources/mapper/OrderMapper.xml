@@ -17,12 +17,13 @@ INSERT INTO order_master(user_id,tot_qty)
 
 <!-- 주문 리스트 가져오기 -->
 <select id="getOrderList" resultType="CartDTO">
-SELECT c.user_id, c.prod_no, p.main_img, p.prod_nm, c.cart_no, c.qty, p.price
+SELECT c.user_id, c.prod_no, p.main_img, p.prod_nm, c.cart_no, c.qty, p.price, p.point, c.buy_yn
 FROM prod_master AS p LEFT OUTER JOIN cart AS c 
 ON p.prod_no = c.prod_no
 WHERE c.user_id = #{id} AND c.buy_yn='Y'
 </select>
 
+<!-- 카트 상품 buy_yn을 Y로 바꾸기   -->
 <update id="inputOrder">
 UPDATE cart
 SET
@@ -30,11 +31,46 @@ buy_yn = 'Y'
 WHERE cart_no = #{prod_no}
 </update>
 
+<!-- 주문페이지 삭제 시 카트 상품 buy_yn을 N로 바꾸기   -->
 <update id="orderDelete">
 UPDATE cart
 SET
 buy_yn = 'N'
 WHERE cart_no = #{no}
 </update>
+
+<!-- 결제 시 주문 마스터에 정보 넣기  -->
+<insert id="OMRegister">
+INSERT INTO order_master(order_no, user_id, addr_no, order_sts)
+VALUES
+(#{order_no}, #{user_id}, '1', '결제완료')
+</insert>
+
+
+<!--  결제 시 주문 디테일에 정보 넣기 -->
+<insert id="orderRegister"  parameterType="List">
+INSERT INTO order_detail(user_id,prod_no,order_no,op_code,addr_no,price,qty,point,tot_price)
+VALUES
+<foreach item="item" collection="list" separator=",">
+(#{item.user_id},#{item.prod_no},#{order_no},#{item.op_code},'1',#{item.price},#{item.qty},#{item.point},#{item.price}*#{item.qty})
+</foreach>
+</insert>
+
+<!-- 결제 시 카트 테이블에서 상품 삭제하기  -->
+<delete id="DeleteOrder" parameterType="List">
+DELETE FROM cart
+	<where> 
+		<foreach collection="list" item="item" open="" close="" separator="OR"> 
+		(cart_no = #{item.cart_no}) 
+		</foreach> 
+	</where> 
+</delete>
+
+<!-- 주문내역 가져오기  -->
+<select id="getOrderInfo" resultType="OrderDTO">
+SELECT * FROM order_master
+WHERE
+order_no = #{order_no}
+</select>
 
 </mapper>

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.annotations.Mapper;
 
 import ezen.team.domain.CartDTO;
+import ezen.team.domain.OrderDTO;
+import ezen.team.domain.UserDTO;
 
 //OrderServiceImpl과 연결
 
@@ -18,6 +20,14 @@ public interface OrderMapper {
 	void inputOrder(int prod_no);
 
 	void orderDelete(int no);
+
+	void orderRegister(List<CartDTO> list,String order_no);
+
+	void DeleteOrder(List<CartDTO> list);
+
+	void OMRegister(UserDTO user);
+
+	OrderDTO getOrderInfo(String order_no);
 	
 	
 

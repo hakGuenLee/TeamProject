@@ -18,4 +18,5 @@ public class CartDTO {
 	private String prod_nm; //상품명
 	private String main_img; //대표 이미지 파일명
 	private int price; //가격
+	private int point; //포인트
 }

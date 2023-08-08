@@ -6,16 +6,18 @@
 
 <jsp:include page="../include/header.jsp" />
 
+
 <div class="container mt-5 d-flex flex-direction-column">
 	<section class="w-75 ps-5 m-auto">
 		<h2 class="mb-5">주문 / 결제</h2>
-		<table class="table ms-5">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>이미지</th>
 					<th>상품명</th>
 					<th>수량</th>
 					<th>가격</th>
+					<th>적립금</th>
 					<th>합계</th>
 				</tr>
 			</thead>
@@ -33,6 +35,8 @@
 
 					<c:set var="totPrice" value="0" />
 					<c:set var="cartTotPrice" value="0" />
+					<c:set var="totPoint" value="0" />
+					<c:set var="cartTotPoint" value="0" />
 
 					<c:forEach var="dto" items="${list}">
 						<tr>
@@ -45,15 +49,23 @@
 							<td>
 								<form action="/order/updateQty?no=${dto.cart_no}" method="post">
 									<input type="text" size="3" name="pqty" value="${dto.qty }" />
+									
 									<input type="submit" class="btn btn-sm btn-outline-secondary"
 										value="수정" />
 								</form>
 							</td>
-							<td>가격 : <fmt:formatNumber value="${dto.price}" /> 원 </br>
+							<td><fmt:formatNumber value="${dto.price}" /> 원 </br>
+							</td>
+							<td><fmt:formatNumber value="${dto.point}" /> 원 </br>
 							</td>
 							<c:set var="totPrice" value="${dto.price * dto.qty}" />
-							<td><fmt:formatNumber value="${totPrice}" /> 원</br> <c:set
-									var="cartTotPrice" value="${cartTotPrice + totPrice }" />
+							<td><fmt:formatNumber value="${totPrice}" /> 원</br>
+							
+							<c:set var="totPoint" value="${dto.point * dto.qty}" />
+							
+							
+							<c:set var="cartTotPrice" value="${cartTotPrice + totPrice }" />
+							<c:set var="cartTotPoint" value="${cartTotPoint+ totPoint}" />
 							<td><a href="<c:url value="orderDelete?no=${dto.cart_no}"/>"
 								class="btn btn-sm btn-danger">삭제</a></td>
 						</tr>
@@ -66,11 +78,11 @@
 		</table>
 
 		<div class="text-center">
-			장바구니 총액 :
+			주문 총액 :
 			<fmt:formatNumber value="${cartTotPrice }" />
-			원<br /> 총 포인트 :
+			원<br /> 총 적립금 :
 			<fmt:formatNumber value="${cartTotPoint }" />
-			포인트
+			적립금
 		</div>
 
 		<table class="table">
@@ -93,8 +105,16 @@
 					<td>${userDTO.user_phone}</td>
 				</tr>
 				<tr>
-					<td><b>받는사람 정보</b></td>
+					<td><b>받는사람 정보</b> </td>
+					
+					<td> 
+					<p>기본 배송지 <input type="radio"/></p>
+					<p>우리집 <input type="radio"/></p>
+					<p>기본 배송지 <input type="radio"/></p>
+					</td>
 				</tr>
+				
+				
 				<tr>
 					<td>이름</td>
 					<td>${userDTO.user_nm}</td>
@@ -195,13 +215,12 @@
 			</select>
 		</div>
 		<div class="text-center">
-			<button class="btn btn-primary">결제하기</button>
+			<a href="<c:url value="/order/buyNow" />" class="btn btn-outline-primary">결제하기</a>
 			<a href="<c:url value="/" />" class="btn btn-outline-primary">계속
 				쇼핑하기</a>
 		</div>
 	</section>
 </div>
-
 <script>
    function checkAll(){
 	    let isChecked = document.getElementById("checkAll").checked;
