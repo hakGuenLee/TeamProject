@@ -2,8 +2,10 @@ package ezen.team.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CartDTO;
 import ezen.team.domain.OrderDTO;
 import ezen.team.domain.UserDTO;
@@ -25,8 +27,22 @@ public interface OrderService {
 	// 주문 후 결제내역 보기
 	OrderDTO getOrderInfo(String order_no);
 
+
 	// myPage 에서 주문 상세 보기
 	List<OrderDTO> getOrderDetail(String order_no);
+
+	//해당 회원의 배송지 별칭 목록 가져오기
+	List<String> getNickAddr(HttpSession session);
+
+	//별칭에 맞는 주소 가져오기
+	AddrDTO getAddrInfo(String nickname, HttpServletRequest request);
+
+	//기본주소 가져오기
+	AddrDTO getDefAddress(String addrName, HttpServletRequest request);
+
+
+
+
 
 
 	// 장바구니를 주문 리스트에 담기 ( 보류 )

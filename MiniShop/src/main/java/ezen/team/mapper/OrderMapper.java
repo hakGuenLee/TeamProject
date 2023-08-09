@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CartDTO;
 import ezen.team.domain.OrderDTO;
 import ezen.team.domain.UserDTO;
@@ -29,7 +30,17 @@ public interface OrderMapper {
 
 	OrderDTO getOrderInfo(String order_no);
 
+
 	List<OrderDTO> getOrderDetail(String order_no);
+
+	//해당 아이디의 배송지 별칭 목록 가져오기
+	List<String> getNickAddr(String id);
+
+	//별칭에 맞는 주소 가져오기
+	AddrDTO getAddrInfo(String nickname, String id);
+	
+	//기본주소 가져오기
+	AddrDTO getDefaultAddr(String id, String addrName);
 	
 	
 

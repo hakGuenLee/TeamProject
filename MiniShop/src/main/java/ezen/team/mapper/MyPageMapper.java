@@ -48,4 +48,16 @@ public interface MyPageMapper {
 	//해당 아이디의 1:1문의 리스트 가져오기
 	List<CsDTO> getCsList(PageDTO pageDTO, String user_id);
 
+	//해당 번호에 맞는 주소지를 기본 배송지로 설정하기
+	void updateDefaultAddress(String addrNo);
+
+	//해당 아이디에 기본 배송지가 있는지 확인
+	String checkAddress(String id);
+
+	//기본 배송지로 되어있던 주소번호의 주소는 기본배송지 지우기
+	void resetAddress(String addressChecked);
+
+	//해당 아이디의 배송지 개수 확인
+	int countAddress(String id);
+
 }

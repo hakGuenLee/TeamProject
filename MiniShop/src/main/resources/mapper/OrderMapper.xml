@@ -74,6 +74,7 @@ order_no = #{order_no}
 </select>
 
 
+
 <!-- 주문번호로 주문 디테일 가져오기  -->
 <select id="getOrderDetail" resultType="OrderDTO">
 SELECT pm.main_img, pm.prod_nm, od.qty, od.price, od.point
@@ -81,6 +82,21 @@ FROM
 order_detail od INNER JOIN prod_master pm on od.prod_no = pm.prod_no
 WHERE
 order_no = #{order_no}
+
+<!-- 해당 아이디의 배송지 별칭 목록 가져오기 -->
+<select id="getNickAddr" resultType="String">
+select addr_nik from addr_manage where user_id = #{id} and addr_gb != '기본배송지'
+</select>
+
+<!-- 해당 아이디의 별칭에 맞는 주소 가져오기  -->
+<select id="getAddrInfo" resultType="AddrDTO">
+select * from addr_manage where user_id = #{id} and addr_nik = #{nickname}
+</select>
+
+<!--기본주소 가져오기 -->
+<select id="getDefaultAddr" resultType="AddrDTO">
+select * from addr_manage where user_id = #{id} and addr_gb = #{addrName}
+
 </select>
 
 

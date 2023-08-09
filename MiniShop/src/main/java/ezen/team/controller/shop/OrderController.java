@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CartDTO;
 import ezen.team.domain.OrderDTO;
 import ezen.team.domain.UserDTO;
@@ -71,11 +73,15 @@ public class OrderController {
 		List<CartDTO> list = orderService.getOrderList(session);
 		//UserDTO user = orderService.getUserInfo(session);
 		
+		//해당 회원의 배송지 별칭 목록 가져오기
+		List<String> nicknameList = orderService.getNickAddr(session);
+		System.out.println("배송지별칭목록 : " + nicknameList);
 		UserDTO user = myPageService.getUserInfo(session);
 		
 //		System.out.println(list);
 		model.addAttribute("list",list);
 		model.addAttribute("userDTO",user);
+		model.addAttribute("nickList",nicknameList);
 		
 		return "/user/buyPage";
 	}
@@ -134,6 +140,7 @@ public class OrderController {
 		return "/user/buyInfo";
 	}
 	
+
 	// myPage 에서 주문 상세 보기
 	@GetMapping("/orderDetail")
 	public String orderDetail(@RequestParam("order_no")String order_no 
@@ -145,6 +152,37 @@ public class OrderController {
 		model.addAttribute("order_no",order_no);
 	
 		return "/user/orderDetail";
+
+
+	//별칭에 맞는 주소 가져오기
+	@PostMapping("/getAddressInfo")
+	@ResponseBody
+	public AddrDTO getAddress(@RequestParam("nickname") String nickname, HttpServletRequest request) {
+	
+		AddrDTO aDto = orderService.getAddrInfo(nickname, request);
+				
+		return aDto;
+		
+	}
+	
+	//기본주소 가져오기
+	@PostMapping("/getDefAddress")
+	@ResponseBody
+	public AddrDTO getDefAddress(@RequestParam("addrName") String addrName, HttpServletRequest request) {
+		
+		AddrDTO aDto = orderService.getDefAddress(addrName, request);
+		
+		System.out.println("기본주소값 : " + aDto);
+		
+		return aDto;
+		
+
 	}
 
 }
+
+
+
+	
+
+

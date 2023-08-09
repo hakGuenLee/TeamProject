@@ -6,11 +6,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CartDTO;
 import ezen.team.domain.OrderDTO;
 import ezen.team.domain.UserDTO;
@@ -89,6 +91,7 @@ public class OrderServiceImpl implements OrderService {
 		return mapper.getOrderInfo(order_no);
 	}
 
+
 	// myPage 에서 주문 상세 보기
 	@Override
 	public List<OrderDTO> getOrderDetail(String order_no) {
@@ -96,6 +99,46 @@ public class OrderServiceImpl implements OrderService {
 		
 		return mapper.getOrderDetail(order_no);
 	}
+
+	//해당 회원의 배송지 별칭 목록 가져오기
+	@Override
+	public List<String> getNickAddr(HttpSession session) {
+		
+		UserDTO uDto = (UserDTO) session.getAttribute("userDTO");
+		String id = uDto.getUser_id();
+		
+		List<String> list = mapper.getNickAddr(id);
+		return list;
+	}
+
+	//별칭에 맞는 주소 가져오기
+	@Override
+	public AddrDTO getAddrInfo(String nickname, HttpServletRequest request) {
+		
+		HttpSession session = (HttpSession) request.getSession();
+		UserDTO uDto = (UserDTO) session.getAttribute("userDTO");
+		String id = uDto.getUser_id();
+		
+		AddrDTO aDto = mapper.getAddrInfo(nickname, id);
+		return aDto;
+	}
+
+	//기본주소 가져오기
+	@Override
+	public AddrDTO getDefAddress(String addrName, HttpServletRequest request) {
+		
+		HttpSession session = (HttpSession) request.getSession();
+		UserDTO uDto = (UserDTO) session.getAttribute("userDTO");
+		String id = uDto.getUser_id();
+		
+		AddrDTO aDto = mapper.getDefaultAddr(id, addrName);
+		
+		
+		return aDto;
+	}
+
+
+
 	
 	
 //	@Override // 장바구니를 주문 리스트에 담기 ( 보류 )
