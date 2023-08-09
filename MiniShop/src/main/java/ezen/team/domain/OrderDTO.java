@@ -27,13 +27,17 @@ public class OrderDTO {
 	private int od_no; //no primary key
 	private String prod_no; //상품번호
 	private String op_code; //옵션코드
+	private String price; // 가격
+	private String qty; // 수량
 	private String point; //포인트
 	private Date buy_dt; //구매일자
 	private String payback_yn; //환불여부
 
 	private String cs_yn; //취소여부
 	
-	
+	// 상품 상세보기 상품 조인
+	private String main_img; // 상품사진
+	private String prod_nm; // 상품이름
 	
 
 

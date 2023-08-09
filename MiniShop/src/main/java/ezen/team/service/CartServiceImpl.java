@@ -60,9 +60,8 @@ public class CartServiceImpl implements CartService {
 		String id = uDto.getUser_id();
 		
 		mapper.insertCart(no, id);
-		
-	
 	}
+	
 
 	//해당 아이디에 맞는 장바구니 상품 가져오기
 	@Override

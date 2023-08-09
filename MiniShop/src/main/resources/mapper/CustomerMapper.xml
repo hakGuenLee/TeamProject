@@ -24,7 +24,7 @@
 	 	
 		<!-- , cr.proc_dt -->
 		
-		select cm.cs_no, cm.cs_code, cmcd.item_nm, cm.cs_title, cm.user_id, cm.cs_dt 
+		select cm.cs_no, cm.cs_code, cmcd.item_nm, cm.cs_ttl, cm.user_id, cm.cs_dt 
 		from cs_master as cm, cmmn_cd as cmcd <!-- ,cs_reply as cr -->
 
         where 1=1

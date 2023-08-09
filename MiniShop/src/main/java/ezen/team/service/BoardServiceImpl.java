@@ -34,4 +34,13 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.getNoticeInfo(no);
 	}
 
+	//1:1 문의 내용 상세보기
+	@Override
+	public CsDTO csInfo(String cs_no) {
+		
+		CsDTO csDTO = mapper.csInfo(cs_no);
+		
+		return csDTO;
+	}
+
 }

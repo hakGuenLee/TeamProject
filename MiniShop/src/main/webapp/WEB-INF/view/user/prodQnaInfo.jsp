@@ -15,10 +15,10 @@
    <h4>문의 내용</h4>
    
    <p>제목</p>
-   <input class="form-control mb-3" type="text"value="${csDTO.cs_ttl}" readonly>      
+   <input class="form-control mb-3" type="text"value="${qnaDTO.qna_ttl}" readonly>      
    
    <p>내용</p>
-   <textarea class="form-control mt-2"rows="5" cols="33" readonly>${csDTO.cs_con}</textarea>
+   <textarea class="form-control mt-2" rows="5" cols="33" readonly>${qnaDTO.qna_con}</textarea>
    
    
    <div class="text-center mt-3">

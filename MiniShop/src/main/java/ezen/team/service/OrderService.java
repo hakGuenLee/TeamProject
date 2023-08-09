@@ -24,7 +24,12 @@ public interface OrderService {
 	// 결제 시 주문정보를 테이블에 넣어주고, 카트에서 정보 지워주기
 	String orderRegister(List<CartDTO> list, UserDTO user);
 
+	// 주문 후 결제내역 보기
 	OrderDTO getOrderInfo(String order_no);
+
+
+	// myPage 에서 주문 상세 보기
+	List<OrderDTO> getOrderDetail(String order_no);
 
 	//해당 회원의 배송지 별칭 목록 가져오기
 	List<String> getNickAddr(HttpSession session);
@@ -34,6 +39,7 @@ public interface OrderService {
 
 	//기본주소 가져오기
 	AddrDTO getDefAddress(String addrName, HttpServletRequest request);
+
 
 
 

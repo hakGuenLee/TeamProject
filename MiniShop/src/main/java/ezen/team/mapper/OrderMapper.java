@@ -30,6 +30,9 @@ public interface OrderMapper {
 
 	OrderDTO getOrderInfo(String order_no);
 
+
+	List<OrderDTO> getOrderDetail(String order_no);
+
 	//해당 아이디의 배송지 별칭 목록 가져오기
 	List<String> getNickAddr(String id);
 

@@ -9,7 +9,7 @@
 <!-- <div class="container w-50 border shadow-sm p-5 mt-5"> -->
 <div class="container w-50 mt-5 p-5 shadow">
 
-<form action="question" method="post">
+<form action="<c:url value="/board/question"/>" method="post">
   
    <h4>1:1문의하기</h4>
    <div class="d-flex justify-content-center">
@@ -19,20 +19,11 @@
 	   </select>
    </div>
    
-   <div class="d-flex justify-content-center">
- 		  
-	   <label class="form-label  m-3">상품 선택</label>
-	 
-	   <select class="form-select w-50 m-3" id="prod_id" name="prod_id">
-	      
-	   </select>
-   </div>
-   
-   <input class="form-control" type="text" id="cs_title" name="cs_title" placeholder="제목을 입력하세요" autofocus>      
+   <input class="form-control" type="text" id="cs_tte" name="cs_ttl" placeholder="제목을 입력하세요" autofocus>      
    
    <textarea class="form-control mt-2" name="cs_con" id="cs_con" rows="5" cols="33" placeholder="내용을 입력하세요"></textarea>
    
-   <input class="form-control mt-2" type="text" id="user_id" name="user_id" readonly value="${user_id}">
+   <input class="form-control mt-2" type="hidden" id="user_id" name="user_id" readonly value="${user_id}">
    
    <div class="text-center mt-3">
       <button class="btn btn-primary">등록</button>   

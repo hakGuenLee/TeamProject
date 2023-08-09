@@ -4,15 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ezen.team.mapper.BoardMapper">
 
-	<!-- 1:1문의 등록 -->
-	<insert id="csInsert" parameterType="csDTO">
-		INSERT INTO cs_master(user_id, cs_code, cs_dt, cs_title, cs_con)
-		VALUES(#{user_id},#{cs_code}, now(), #{cs_title},#{cs_con}) 
-	</insert>
-	
-	
 	<!-- Notice 가져오기 -->
-	<select id="getNoticeList" resultType="hashmap">
+	<select id="getNoticeList" resultType="BoardDTO">
 	select * from post_mng where pst_gb = '002'
 	</select>
 	
@@ -20,4 +13,18 @@
 	<select id="getNoticeInfo" resultType="BoardDTO">
 	select * from post_mng where pst_no = #{no}
 	</select>
+
+
+	<!-- 1:1문의 등록 -->
+	<insert id="csInsert" parameterType="csDTO">
+		INSERT INTO cs_master(user_id, cs_code, cs_dt, cs_ttl, cs_con)
+		VALUES(#{user_id},#{cs_code}, now(), #{cs_ttl},#{cs_con}) 
+	</insert>
+
+	<select id="csInfo" resultType="CsDTO">
+	SELECT * FROM cs_master
+	WHERE cs_no = #{cs_no}
+	</select>	
+	
+
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CsDTO;
 import ezen.team.domain.OrderDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.domain.UserDTO;
 import ezen.team.mapper.MyPageMapper;
 
@@ -86,12 +87,17 @@ public class MyPageServiceImpl implements MyPageService {
 
 	//나의 주문내역 가져오기
 	@Override
-	public List<OrderDTO> getOrderList(HttpSession session) {
+	public List<OrderDTO> getOrderList(PageDTO pageDTO, HttpSession session) {
 		
 		UserDTO user = (UserDTO)session.getAttribute("userDTO");
-		String id = user.getUser_id();
+		String user_id = user.getUser_id();
 		
-		List<OrderDTO> list = mapper.getOrderList(id);
+		int totalCnt = mapper.getOrderNum(user_id);
+		pageDTO.setCntPerPage(5);
+		pageDTO.setValue(totalCnt, pageDTO.getCntPerPage());
+		
+		List<OrderDTO> list = mapper.getOrderList(pageDTO, user_id);
+		
 		return list;
 	}
 
@@ -120,11 +126,15 @@ public class MyPageServiceImpl implements MyPageService {
 
 	//해당 회원의 1:1문의 내역 가져오기
 	@Override
-	public List<CsDTO> getCsList(HttpSession session) {
+	public List<CsDTO> getCsList(PageDTO pageDTO, HttpSession session) {
 		UserDTO user = (UserDTO)session.getAttribute("userDTO");
-		String id = user.getUser_id();
+		String user_id = user.getUser_id();
 		
-		List<CsDTO> list = mapper.getCsList(id);
+		int totalCnt = mapper.getTotalQuestion(user_id);
+		pageDTO.setCntPerPage(5);
+		pageDTO.setValue(totalCnt, pageDTO.getCntPerPage());
+		
+		List<CsDTO> list = mapper.getCsList(pageDTO, user_id);
 		
 		
 		return list;

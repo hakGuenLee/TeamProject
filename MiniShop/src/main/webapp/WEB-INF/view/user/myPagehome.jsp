@@ -88,9 +88,6 @@
 			<tr>
 				<th>주문번호</th>
 				<th>주문일</th>
-				<th>상품명</th>
-				<th>옵션</th>
-				<th>상품금액/수량</th>
 				<th>주문상태</th>
 				<th>상세/리뷰</th>
 			</tr>
@@ -106,11 +103,8 @@
 			<tr>
 				<td>${dto.order_no}</td>
 				<td>${dto.order_dt }</td>
-				<td>${dto.prod_no }</td>
-				<td>${dto.op_code}</td>
-				<td>${dto.tot_qty}</td>
 				<td>${dto.order_sts}</td>
-				<td><a href="<c:url value=""/>" class="btn btn-sm btn-primary">상세보기</a></td>
+				<td><a href="<c:url value="/order/orderDetail?order_no=${dto.order_no}"/>" class="btn btn-sm btn-primary">상세보기</a></td>
 			</tr>
 			</c:forEach>
 			</c:if>
@@ -118,7 +112,22 @@
 	</table>
 </div>
 
+		<ul class="pagination justify-content-center my-5">
+        <li class="page-item ${pageDTO.prevPage <= 0 ? 'disabled' : ''}">
+            <a class="page-link" href="<c:url value="/myPage/myPagehome?viewPage=${pageDTO.prevPage}&cntPerPage=${pageDTO.cntPerPage}"/>">이전</a>
+        </li>
 
+        <c:forEach var="i" begin="${pageDTO.blockStart}" end="${pageDTO.blockEnd}">
+            <li class="page-item ${pageDTO.viewPage == i ? 'active' : ''}">
+                <a class="page-link"
+                   href="<c:url value="/myPage/myPagehome?viewPage=${i}&cntPerPage=${pageDTO.cntPerPage}"/>">${i}</a>
+            </li>
+        </c:forEach>
+
+        <li class="page-item ${pageDTO.blockEnd >= pageDTO.totalPage ? 'disabled' : ''}">
+            <a class="page-link" href="<c:url value="/myPage/myPagehome?viewPage=${pageDTO.nextPage}&cntPerPage=${pageDTO.cntPerPage}"/>">다음</a>
+        </li>
+    </ul>
 
 
 

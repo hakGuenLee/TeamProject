@@ -15,4 +15,7 @@ public interface BoardService {
 	//해당번호에 맞는 공지 글 가져오기
 	BoardDTO getNoticeContent(String no);
 
+	//1:1 문의 내용 상세보기
+	CsDTO csInfo(String cs_no);
+
 }

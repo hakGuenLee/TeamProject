@@ -85,9 +85,19 @@ public class OrderServiceImpl implements OrderService {
 		return order_no;
 	}
 
+	// 주문 후 결제 내역 보기
 	@Override
 	public OrderDTO getOrderInfo(String order_no) {
 		return mapper.getOrderInfo(order_no);
+	}
+
+
+	// myPage 에서 주문 상세 보기
+	@Override
+	public List<OrderDTO> getOrderDetail(String order_no) {
+		
+		
+		return mapper.getOrderDetail(order_no);
 	}
 
 	//해당 회원의 배송지 별칭 목록 가져오기
@@ -126,6 +136,7 @@ public class OrderServiceImpl implements OrderService {
 		
 		return aDto;
 	}
+
 
 
 	
