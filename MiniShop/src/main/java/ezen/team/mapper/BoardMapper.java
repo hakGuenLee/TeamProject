@@ -20,4 +20,6 @@ public interface BoardMapper {
 	//해당번호에 맞는 공지 글 가져오기
 	public BoardDTO getNoticeInfo(String no);
 
+	public CsDTO csInfo(String cs_no);
+
 }

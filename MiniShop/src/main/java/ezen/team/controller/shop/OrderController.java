@@ -119,7 +119,7 @@ public class OrderController {
 		return "redirect:/order/buyInfo";
 	}
 	
-	// 구매 후 주문내역 보기
+	// 구매 후 주문내역 보기(+페이지이동)
 	@GetMapping("buyInfo")
 	public String buyInfo(@ModelAttribute("order_no")String order_no,Model model) {
 		
@@ -134,7 +134,17 @@ public class OrderController {
 		return "/user/buyInfo";
 	}
 	
-
+	// myPage 에서 주문 상세 보기
+	@GetMapping("/orderDetail")
+	public String orderDetail(@RequestParam("order_no")String order_no 
+									, Model model) {
+		
+		List<OrderDTO> list = orderService.getOrderDetail(order_no);
+		
+		model.addAttribute("list",list);
+		model.addAttribute("order_no",order_no);
 	
+		return "/user/orderDetail";
+	}
 
 }

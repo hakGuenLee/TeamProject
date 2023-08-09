@@ -22,7 +22,11 @@ public interface OrderService {
 	// 결제 시 주문정보를 테이블에 넣어주고, 카트에서 정보 지워주기
 	String orderRegister(List<CartDTO> list, UserDTO user);
 
+	// 주문 후 결제내역 보기
 	OrderDTO getOrderInfo(String order_no);
+
+	// myPage 에서 주문 상세 보기
+	List<OrderDTO> getOrderDetail(String order_no);
 
 
 	// 장바구니를 주문 리스트에 담기 ( 보류 )

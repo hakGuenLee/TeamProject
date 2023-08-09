@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CsDTO;
 import ezen.team.domain.OrderDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.domain.UserDTO;
 
 public interface MyPageService {
@@ -35,7 +36,7 @@ public interface MyPageService {
 	void updateAddress(AddrDTO aDto);
 
 	//마이페이지 주문내역 가져오기
-	List<OrderDTO> getOrderList(HttpSession session);
+	List<OrderDTO> getOrderList(PageDTO pageDTO, HttpSession session);
 
 	//해당 회원의 주문건 수 가져오기
 	int getOrderTotal(HttpSession session);
@@ -44,6 +45,6 @@ public interface MyPageService {
 	int getTotalQuestion(HttpSession session);
 
 	//해당 회원의 1:1 문의 리스트 가져오기
-	List<CsDTO> getCsList(HttpSession session);
+	List<CsDTO> getCsList(PageDTO pageDTO, HttpSession session);
 
 }

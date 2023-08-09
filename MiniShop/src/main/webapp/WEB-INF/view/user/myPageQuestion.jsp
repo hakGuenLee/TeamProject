@@ -61,6 +61,7 @@
 	<table class="table mt-5">
 		<thead class="table-secondary">
 			<tr>
+				<th>문의번호</th>
 				<th>문의날짜</th>
 				<th>문의유형</th>
 				<th>제목</th>
@@ -72,9 +73,10 @@
 		<tbody>
 			<c:forEach var="dto" items="${list}">
 			<tr> 
+				<td>${dto.cs_no}</td>
 				<td>${dto.cs_dt}</td>
 				<td>${dto.cs_code }</td>
-				<td>${dto.cs_title }</td>
+				<td>${dto.cs_ttl }</td>
 				<c:if test="${dto.proc_sts == 1}">
 				<td>접수 완료(처리 중)</td>
 				</c:if>
@@ -82,14 +84,29 @@
 				<td>처리 완료</td>
 				</c:if>
 				<td></td>
-				<td><a href="<c:url value=""/>" class="btn btn-sm btn-primary">상세보기</a></td>
+				<td><a href="<c:url value="/board/csInfo?cs_no=${dto.cs_no}"/>" class="btn btn-sm btn-primary">상세보기</a></td>
 			</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 </div>
 
+		<ul class="pagination justify-content-center my-5">
+        <li class="page-item ${pageDTO.prevPage <= 0 ? 'disabled' : ''}">
+            <a class="page-link" href="<c:url value="/myPage/myPageQuestion?viewPage=${pageDTO.prevPage}&cntPerPage=${pageDTO.cntPerPage}"/>">이전</a>
+        </li>
 
+        <c:forEach var="i" begin="${pageDTO.blockStart}" end="${pageDTO.blockEnd}">
+            <li class="page-item ${pageDTO.viewPage == i ? 'active' : ''}">
+                <a class="page-link"
+                   href="<c:url value="/myPage/myPageQuestion?viewPage=${i}&cntPerPage=${pageDTO.cntPerPage}"/>">${i}</a>
+            </li>
+        </c:forEach>
+
+        <li class="page-item ${pageDTO.blockEnd >= pageDTO.totalPage ? 'disabled' : ''}">
+            <a class="page-link" href="<c:url value="/myPage/myPageQuestion?viewPage=${pageDTO.nextPage}&cntPerPage=${pageDTO.cntPerPage}"/>">다음</a>
+        </li>
+    </ul>
 
 
 

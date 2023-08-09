@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CsDTO;
 import ezen.team.domain.OrderDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.domain.UserDTO;
 import ezen.team.service.MyPageService;
 
@@ -31,20 +32,22 @@ public class MyPageController {
 	
 	//마이페이지 홈 이동
 	@GetMapping("/myPagehome")
-	public String myPagehome(HttpServletRequest request, Model model) {
+	public String myPagehome(PageDTO pageDTO , HttpServletRequest request, Model model) {
 		
 		HttpSession session = request.getSession();
 		
-		//해당 회원의 주문 개수 가져오기
+		//해당 회원의 주문 건수 가져오기 ( n건 )
 		int orderNum = service.getOrderTotal(session);
 		
-		List<OrderDTO> orderList = service.getOrderList(session);
+		List<OrderDTO> orderList = service.getOrderList(pageDTO,session);
 		
 		model.addAttribute("orderNum", orderNum);
 		model.addAttribute("list", orderList);
 		
 		return "/user/myPagehome";
 	}
+	
+	
 		
 	//회원정보 수정 페이지 이동
 	@GetMapping("/myInfoUpdate")
@@ -144,22 +147,18 @@ public class MyPageController {
 		
 		return "/user/myPagePoint";
 	}
-	@GetMapping("/myPageProdQna")
-	public String myPageProdQna() {
-		
-		return "/user/myPageProdQna";
-	}
+
 	
 	//나의 1:1문의 페이지 이동 (문의내역 가져오기)
 	@GetMapping("/myPageQuestion")
-	public String myPageQuestion(Model model, HttpServletRequest request) {
+	public String myPageQuestion(PageDTO pageDTO, Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		
 		//해당 회원의 1:1문의 건수 가져오기
 		int questionNum = service.getTotalQuestion(session);
 		
-		List<CsDTO> csList = service.getCsList(session);
+		List<CsDTO> csList = service.getCsList(pageDTO, session);
 		
 		model.addAttribute("questionNum", questionNum);
 		model.addAttribute("list", csList);		

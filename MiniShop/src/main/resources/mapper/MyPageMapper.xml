@@ -43,7 +43,7 @@ select * from addr_manage where addr_no = #{no}
 <update id="updateAddress">
 update addr_manage set user_id = #{user_id}, addr_nm = #{addr_nm}, addr_gb = #{addr_gb}, addr_nik = #{addr_nik},
 addr_tel = #{addr_tel}, zipcode = #{zipcode}, addr = #{addr}, addr_detail = #{addr_detail}, addr_dt = now(), 
-addr_jibun = #{addr_jibun} where addr_no = #{addr_no}
+addr_road = #{addr_road} where addr_no = #{addr_no}
 </update>
 
 <!--해당 아이디의 주문 건수 가져오기  -->
@@ -53,13 +53,14 @@ select count(*) from order_master where user_id = #{id}
 
 
 <!-- 해당 아이디에 맞는 주문내역 가져오기 -->
-<select id="getOrderList" resultType="hashmap">
-
-select m.order_no, m.user_id, m.od_seq, m.tot_qty, m.order_dt, m.addr_no, m.order_sts,
-d.prod_no, d.op_code, d.point, d.buy_dt, d.payback_yn, d.cs_yn
-from order_master m left outer join order_detail d
-on m.user_id = d.user_id
-where m.user_id = #{id}
+<select id="getOrderList" resultType="OrderDTO">
+SELECT * 
+FROM order_master
+WHERE
+user_id = #{user_id}
+ORDER BY
+order_no DESC
+LIMIT #{pageDTO.startIndex}, #{pageDTO.cntPerPage}
 </select>
 
 <!-- 해당 아이디의 1:1문의 건수 가져오기 -->
@@ -68,8 +69,12 @@ select count(*) from cs_master where user_id = #{id}
 </select>
 
 <!-- 해당 아이디의 1:1문의 리스트 가져오기 -->
-<select id="getCsList" resultType="hashmap">
-select * from cs_master where user_id = #{id}
+<select id="getCsList" resultType="CsDTO">
+select * from cs_master
+where user_id = #{user_id}
+ORDER BY
+cs_no DESC
+LIMIT #{pageDTO.startIndex}, #{pageDTO.cntPerPage}
 </select>
 
 </mapper>

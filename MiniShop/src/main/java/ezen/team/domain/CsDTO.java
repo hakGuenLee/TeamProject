@@ -13,7 +13,7 @@ import lombok.Setter;
 public class CsDTO {
 	private int cs_no; 		 // 1:1문의 번호
 	private String user_id;  // 회원 ID
-	private String prod_id;  // 상품 ID
+	private String prod_no;  // 상품 ID
 	private String cs_code;  // 문의유형코드
 	private String item_nm;  // 문의유형명
 	private String cs_ttl; // 제목

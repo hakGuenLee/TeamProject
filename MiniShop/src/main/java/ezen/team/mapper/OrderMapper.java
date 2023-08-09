@@ -28,6 +28,8 @@ public interface OrderMapper {
 	void OMRegister(UserDTO user);
 
 	OrderDTO getOrderInfo(String order_no);
+
+	List<OrderDTO> getOrderDetail(String order_no);
 	
 	
 
