@@ -102,7 +102,12 @@ function cartInput(){
 		type : "post",
 		data: {"no" : prod_no, "opCode" : opCode, "pQty" : pQty},
 		success : function(){
-			alert("장바구니에 제품이 담겼습니다!!")},
+			var result = confirm("장바구니에 제품이 담겼습니다! 확인하시겠습니까?")
+			if(resullt == true){
+				location.replace="/user/cartList";
+			}
+			
+		},
 		error: function(request, status, error){console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)}
 	})
 	

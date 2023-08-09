@@ -105,28 +105,33 @@
 					<td>${userDTO.user_phone}</td>
 				</tr>
 				<tr>
-					<td><b>받는사람 정보</b> </td>
+					<td><b>배송 정보</b> </td>
 					
-					<td> 
-					<p>기본 배송지 <input type="radio"/></p>
-					<p>우리집 <input type="radio"/></p>
-					<p>기본 배송지 <input type="radio"/></p>
+				<td> 
+					<div class="d-flex">
+					<p><input type="checkbox" onclick="getAddress(); checkOne(this);" name="checkBox" value="기본주소"/>기본주소</p>  <!-- 기본 배송지 영역 -->
+					<c:forEach var="dto" items="${nickList}">
+					<p><input type="checkbox" onclick="getAddress(); checkOne(this);" id="nickname"
+					value="${dto}" name="checkBox"/>${dto}</p> 	
+					</c:forEach>
 					</td>
+					</div>
 				</tr>
 				
-				
+				<div id="addrArea">
 				<tr>
 					<td>이름</td>
-					<td>${userDTO.user_nm}</td>
+					<td id="addr_nm"></td>
 				</tr>
 				<tr>
 					<td>배송지 주소</td>
-					<td>${userDTO.zipcode}<br>	${userDTO.addr}<br>${userDTO.addr_road} <br/>${userDTO.addr_detail}</td>
+					<td id="address"></td>
 				</tr>
 				<tr>
 					<td>전화번호</td>
-					<td>${userDTO.user_phone}</td>
+					<td id="addr_tel"></td>
 				</tr>
+				</div>
 				<tr>
 					<td><b>결제정보</b></td>
 				</tr>
@@ -221,7 +226,62 @@
 		</div>
 	</section>
 </div>
+<%-- <input tyle="hidden" value="${userDTO.user_id}" id="userid"> --%>
+
+
+
+
+
+
 <script>
+
+function getAddress(){
+	$("input:checkbox[name=checkBox]:checked").each(function(){
+		
+		var checkedVal = $(this).val();
+		console.log("주소 이름 : " + checkedVal);
+		
+		let str = "";
+		let addrArea = $("#addrArea");
+		
+		
+		getAddressInfo(checkedVal, function(data){
+		console.log(data)
+		
+		let AddrDTO = data; 
+	
+		$("#addr_nm").text(AddrDTO.addr_nm);
+		$("#address").text(AddrDTO.addr);
+		$("#addr_tel").text(AddrDTO.addr_tel);
+		
+		
+		})
+	
+	})	
+}
+
+function checkOne(element){
+	
+	const checkboxes = document.getElementsByName('checkBox');
+	let checkedCount = 0;
+	
+	for(let i=0; 0<checkboxes.length; i++){
+		if(checkboxes[i].checked){
+			checkedCount++;
+			if(checkboxes[i] !== element){
+				checkboxes[i].checked = false;
+			}
+		}
+	}
+	
+	if(checkedCount == 0){
+		element.checked = true;
+	}
+}
+
+
+
+
    function checkAll(){
 	    let isChecked = document.getElementById("checkAll").checked;
 
