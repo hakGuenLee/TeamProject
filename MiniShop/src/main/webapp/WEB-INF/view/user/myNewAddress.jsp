@@ -9,7 +9,7 @@
 
 <div class="container w-50 mt-5 p-5 shadow">
     <form action="/myPage/myAddressInput" method="post" > 
-        <h4>${userDto.user_nm }님의 배송지 추가 등록하기</h4>
+        <h4>${userDto.user_nm }님의 배송지 추가하기</h4>
 		
          <input class="form-control mb-2 w-25" type="hidden" name="user_id" id="user_id" value="${userDto.user_id }"/>
 
@@ -40,15 +40,15 @@
         <!-- <span id="guide" style="color:#999;display:none"></span> -->
         <input class="form-control mb-2" type="text" id="sample4_detailAddress" name="addr_detail" placeholder="상세주소">	
 
-		
+<!-- 		
 		<select class="forn-control mb-2 w-50" name="addr_gb">
         	<option selected>기본 배송지 여부를 체크해주세요</option>
         	<option>기본 배송지</option>
-        	<option>추가 배송지</option>
-        </select>
+        	<option></option>
+        </select> -->
         
         
-        <button type="submit" class="btn btn-success">등록하기</button>
+        <button id="submitBtn" type="submit" class="btn btn-success">등록하기</button>
         <button type="reset" class="btn btn-dark">되돌리기</button>
 
     </form>

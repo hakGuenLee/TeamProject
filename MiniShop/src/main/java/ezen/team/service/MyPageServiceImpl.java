@@ -130,4 +130,40 @@ public class MyPageServiceImpl implements MyPageService {
 		return list;
 	}
 
+	//해당 번호에 맞는 주소지를 기본 배송지로 설정하기
+	@Override
+	public void defaultAddressSetting(String addrNo, HttpServletRequest request) {
+		
+		//해당 아이디에 이미 기본 배송지가 있는지 확인
+		HttpSession session = request.getSession();
+		UserDTO user = (UserDTO)session.getAttribute("userDTO");
+		String id = user.getUser_id();
+		
+		//기본배송지로 되어 있는 주소 번호 받기
+		String addressChecked = mapper.checkAddress(id);
+		
+		//기본 배송지가 없을 경우 회원이 체크한 주소지 번호에 맞는 주소를 기본배송지로 변경하기
+		if(addressChecked == null) {
+			mapper.updateDefaultAddress(addrNo);
+		}else {
+			//기본 배송지로 되어있던 주소번호의 주소는 기본배송지 지우기
+			mapper.resetAddress(addressChecked);
+			//지운 후 회원이 체크한 주소번호를 기본배송지로 수정
+			mapper.updateDefaultAddress(addrNo);
+			
+		}
+		
+	}
+
+	//해당 회원의 배송지 개수 확인하기
+	@Override
+	public int countAddress(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserDTO user = (UserDTO)session.getAttribute("userDTO");
+		String id = user.getUser_id();
+		
+		int addressNum = mapper.countAddress(id);
+		return addressNum;
+	}
+
 }

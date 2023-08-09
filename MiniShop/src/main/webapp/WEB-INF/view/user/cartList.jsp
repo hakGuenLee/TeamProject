@@ -98,7 +98,7 @@
 		let chks = document.getElementsByName('cart_no');
 		//let chks = $('prod_no');
 
-		console.log(chks);
+		
 
 		for (let i = 0; i < chks.length; i++) {
 			chks[i].checked = isChecked;
@@ -107,7 +107,7 @@
 
 	function choiceBuy() {
 		let chks = document.getElementsByName('cart_no');
-
+		console.log(chks);
 		let prodNumStr = "";
 		let separator = false;
 		for (let i = 0; i < chks.length; i++) {

@@ -78,6 +78,65 @@
  }
  
  
+ function defaultAddressSetup(a){
+	 
+	 $.ajax({
+		url:"/myPage/defaultAddress",
+		type: "post",
+		data: {"no" : a},
+		success: function(){
+			console.log("성공!")
+			location.href = "/myPage/myAddress";
+		},
+		error: function(request, status, error){
+			alert("error code : " + request.status + "\n" + "message:" + request.responseText+"\n"+"error:"+error);
+			console.log("실패!")
+			
+		}
+	}) 
+	 
+	 
+	 
+ }
+ 
+ function getAddressInfo(a, cb){
+	 
+	 $.ajax({
+		 url:"/order/getAddressInfo",
+		 type:"post",
+		 data:{"nickname" : a},
+		 success:(result) => {
+				if(cb) cb(result);
+			},
+		error: function(request, status, error){
+			alert("error code : " + request.status + "\n" + "message:" + request.responseText+"\n"+"error:"+error);
+			console.log("실패!")
+			
+		}	  
+			 
+		 })
+	 
+}
+
+
+function getDefAddress(a, cb){
+	 $.ajax({
+		 url:"/order/getDefAddress",
+		 type:"post",
+		 data:{"addrName" : a},
+		 success:(result) => {
+				if(cb) cb(result);
+			},
+		error: function(request, status, error){
+			alert("error code : " + request.status + "\n" + "message:" + request.responseText+"\n"+"error:"+error);
+			console.log("실패!")
+			
+		}	  
+	})
+	
+	}
+ 
+ 
 /*  function getVegeBox(a, cb){
 	  	  var token = $("meta[name='_csrf'").attr("content");
 	 var header = $("meta[name='_csrf_header']").attr("content");
@@ -100,5 +159,4 @@
 	 
 	 
  }*/
- 
  

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CsDTO;
@@ -96,12 +98,21 @@ public class MyPageController {
 	
 	//배송지 추가 등록 처리
 	@PostMapping("/myAddressInput")
-	public String inputNewAddress(AddrDTO aDto) {
+	public String inputNewAddress(AddrDTO aDto, HttpServletRequest request) {
 		
-		service.inputNewAddress(aDto);
+		String str = "";
+		//배송지가 3개 이상인지 먼저 확인하기
+		int addressNum = service.countAddress(request);
 		
-		
-		return "redirect:myAddress";
+		//배송지가 3개면 등록 x
+		if(addressNum == 3) {
+			return "redirect:myAddress";	
+		}else {
+			//배송지가 
+			service.inputNewAddress(aDto);
+				
+			return "redirect:myAddress";
+		}
 	}
 	
 	//배송지 삭제
@@ -136,6 +147,16 @@ public class MyPageController {
 		
 		return "redirect:myAddress";
 	}
+	
+	//기본 배송지 선택하기
+	@PostMapping("/defaultAddress")
+	@ResponseBody
+	public String defaultAddress(@RequestParam("no") String addrNo, HttpServletRequest request) {
+		service.defaultAddressSetting(addrNo, request);
+		
+		return "redirect:myAddress";
+	}
+	
 	
 	
 
