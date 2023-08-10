@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ezen.team.domain.AdminDTO;
 import ezen.team.domain.CommonCodeDTO;
 import ezen.team.domain.CsDTO;
 import ezen.team.domain.PageDTO;
+import ezen.team.domain.UserDTO;
 import ezen.team.service.admin.CommonCodeService;
 import ezen.team.service.admin.CustomerService;
 
@@ -61,8 +65,9 @@ public class CustomerController {
 	
 	//1:1문의 상세보기
 	@GetMapping("/csInfo")
-//	public String csInfo(int cs_no, String cs_code, Model model) {
-	public String csInfo(int cs_no, int proc_sts, Model model) {	
+	public String csInfo(int cs_no, String proc_sts, Model model) {
+		
+		System.out.println("proc_sts : :: " + proc_sts);
 		CsDTO csDto = service.csInfo(cs_no, proc_sts);
 		
 		System.out.println("csDto :::::: " + csDto);
@@ -71,31 +76,30 @@ public class CustomerController {
 		model.addAttribute("csDto", csDto);
 		
 		
-		
-//		System.out.println("csDto :: " + csDto.toString());
-		
 		return "/admin/csInfo";
 	}
 	
 	// 1:1답글 등록
-	@PostMapping("/csReply")
+	@PostMapping("/csReply")	
 	public String csReply(@RequestParam("csre_con") String csre_con,
-						  int cs_no, String proc_id, Model model) {
+						  int cs_no, String proc_id, String proc_sts, 
+						  @RequestParam("prev_sts") String prev_sts, 
+//						  HttpSession session, Model model) {
+					  	  Model model) {
+		
+//		AdminDTO admin = (AdminDTO) session.getAttribute("adminDTO");
+//		String id = admin.getAdm_id();
+//		
+//		model.addAttribute("adm_id", id);
+		
 		System.out.println("cs_no:::::::::::::" + cs_no);
+		System.out.println("proc_prev_sts : "  + prev_sts);
 		
-		service.csReply(cs_no, csre_con, proc_id);
+		service.csReply(cs_no, csre_con, proc_id, proc_sts, prev_sts);
 		
-//		CsDTO csDto = service.csReply(cs_no, csre_con, proc_id);
-		
-//		model.addAttribute("csDto", csDto);
-		
-		
-		return "/admin/csList";
+		return "redirect:/customer/csList";
 		
 	}
 	
 	
-	
-	
-
 }

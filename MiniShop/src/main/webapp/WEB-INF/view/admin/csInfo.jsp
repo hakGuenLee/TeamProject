@@ -8,7 +8,9 @@
 
 		<div class="container w-75 mt-5">
 			<form action="csReply" method="post">
-			<input type="hidden" value="${csDto.cs_no}" name="cs_no"/>
+				<input type="hidden" value="${csDto.cs_no}" name="cs_no"/>
+				<input type="hidden" value="${csDto.proc_sts}" name="prev_sts"/>
+				<input type="hidden" value="2" name="proc_sts"/>
 			
 			<div class="d-flex justify-content-around">
 				<div>
@@ -26,9 +28,9 @@
 				            name="cs_no" disabled value="${csDto.cs_no}"/>
 				    </div>
 				    <div class="form-group">
-				         <label for="cs_title">제목</label>
-				         <input type="text" class="form-control" id="cs_title" 
-				            name="cs_title" disabled value="${csDto.cs_title}"/>
+				         <label for="cs_ttl">제목</label>
+				         <input type="text" class="form-control" id="cs_ttl" 
+				            name="cs_ttl" disabled value="${csDto.cs_ttl}"/>
 				    </div>
 				    <div class="form-group">
 				         <label for="user_id">글쓴이</label>
@@ -49,25 +51,34 @@
 				  	<div class="form-group">
 				         <label for="csre_con">답글쓰기</label>
 				         <textarea class="form-control" id="csre_con" 
-		           		 name="csre_con" rows="5" cols="33"><c:out value="${csDto.csre_con}"/></textarea>
+		           		 	name="csre_con" rows="5" cols="33">
+			           		 <c:if test="${param.proc_sts == 2 }">
+			           		 	<c:out value="${csDto.csre_con}"/>
+			           		 </c:if>
+		           		 </textarea>
 		      		</div>
 				       
-					<c:if test="${param.proc_sts != 1}">	
+					
 						<div class="form-group">
 				         <label for="proc_id">처리자</label>
 				         <input type="text" class="form-control" id="proc_id" 
 				            name="proc_id" readonly value="${csDto.proc_id}"/>
 				    	</div>
+				    <c:if test="${param.proc_sts != 1}">	
 				        <div class="form-group">
-				         <label for="proc_dt">처리일시</label>
-				         <input type="text" class="form-control" id="proc_dt" 
-				            name="proc_dt" readonly value="${csDto.proc_dt}"/>
+				         <label for="sts_dt">처리일시</label>
+				         <input type="text" class="form-control" id="sts_dt" 
+				            name="sts_dt" readonly value="${csDto.sts_dt}"/>
 				    	</div>
 					</c:if>
 					
 		  		    <div class="form-group mt-4">
-			         <button type="submit" id="btn-modify" class="btn btn-primary me-2">답글등록</button>
-			         <button type="submit" id="btn-remove" class="btn btn-danger me-2">답글수정</button>
+		  		    <c:if test="${param.proc_sts == 1}">
+			         <button type="submit" id="btn-register" class="btn btn-primary me-2">답글등록</button>
+			        </c:if> 
+			        <c:if test="${param.proc_sts != 1}">
+			         <button type="submit" id="btn-modify" class="btn btn-danger me-2">답글수정</button>
+			         </c:if>
 			         <button type="button" id="btn-list" class="btn btn-primary">리스트</button>
 			        </div>
 			        
@@ -78,7 +89,8 @@
 
 <script>
 	$("#btn-list").click(()=>{
-      location.href="<c:url value='/board/list.do?viewPage=${pDto.viewPage}&cntPerPage=${pDto.cntPerPage}&searchType=${pDto.searchType}&keyWord=${pDto.keyWord}'/>";
+/*       location.href="<c:url value='/board/list.do?viewPage=${pDto.viewPage}&cntPerPage=${pDto.cntPerPage}&searchType=${pDto.searchType}&keyWord=${pDto.keyWord}'/>"; */
+	     location.href="<c:url value='/customer/csList'/>";
    });
    $("#btn-remove").click(()=>{
       location.href="<c:url value='/board/remove.do?bid=${dto.bid}&cntPerPage=${pDto.cntPerPage}&searchType=${pDto.searchType}&keyWord=${pDto.keyWord}'/>";
