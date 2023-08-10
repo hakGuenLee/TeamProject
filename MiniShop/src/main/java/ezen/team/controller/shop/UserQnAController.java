@@ -67,9 +67,7 @@ public class UserQnAController {
 	// 상품문의 등록하기
 	@PostMapping("QnaRegister")
 	public String QnaRegister(QnaDTO qnaDTO, HttpServletRequest rq, Model model) {
-		
-		
-		
+
 		userQnAService.QnaRegister(qnaDTO);
 		// 이전페이지 주소
 //		String referer = (String)rq.getHeader("REFERER");

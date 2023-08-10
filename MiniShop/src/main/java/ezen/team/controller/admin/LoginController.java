@@ -31,9 +31,7 @@ public class LoginController {
 		System.out.println("error : " + error);
 		model.addAttribute("error", error);
 		model.addAttribute("exception", exception);
-		
-		
-		
+	
 		return "/admin/adminLogin";
 	}
 	
