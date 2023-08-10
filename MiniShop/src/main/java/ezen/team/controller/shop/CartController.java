@@ -45,9 +45,12 @@ public class CartController {
 		return "/user/cartList";
 	}
 	
+	
+	
+	
+	
 	//장바구니 담기
 	@PostMapping("/inputCart")
-	@ResponseBody
 	public String inputCart(@RequestParam("no") String no,
 			@RequestParam("opCode") String opCode, 
 			@RequestParam("pQty") String pQty2,

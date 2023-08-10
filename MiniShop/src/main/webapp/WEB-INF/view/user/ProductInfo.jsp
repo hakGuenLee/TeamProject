@@ -7,8 +7,9 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/ProductInfo.css"/>">   
 <jsp:include page="../include/header.jsp"/>
 
+<form action="" method="post" id="prodForm">
    <section>
-   	<input type="hidden" value="${dto.prod_no }" id="prod_no" name="prod_no">
+   	<input type="hidden" value="${dto.prod_no }" id="prod_no" name="no">
    	<input type="hidden" value="${dto.point }" name="point">
       <div class="d-flex">
          <div id="imgArea">
@@ -35,7 +36,7 @@
       		</c:if>
       		<c:if test="${dto.ctgry_no == 13 ||dto.ctgry_no == 14 || dto.ctgry_no == 15 || dto.ctgry_no == 15 }">
       			<p style="color:gray">OPTION</p>
-      			<select id="opCode" class="w-100 border border-secondary rounded-1">
+      			<select id="opCode" name="opCode" class="w-100 border border-secondary rounded-1">
       				<option>화이트/S</option>
       				<option>화이트/M</option>
       				<option>화이트/L</option>
@@ -47,7 +48,7 @@
       			</select>
       		</c:if>
       			<c:if test="${dto.ctgry_no == 17 || dto.ctgry_no == 18 || dto.ctgry_no == 19}">
-      			<select id="opCode" class="w-100 border border-secondary rounded-1">
+      			<select id="opCode" name="opCode" class="w-100 border border-secondary rounded-1">
       				<option>화이트</option>
       				<option>블랙</option>
       			</select>
@@ -63,13 +64,13 @@
       			<option>10</option>
       			<option>==직접 입력==</option>
       		</select> -->
-      		<input type="text" class="w-100 border border-secondary rounded-1" size="3" id="pqty" name="pqty" placeholder="수량을 입력해주세요"/> 
+      		<input type="text" class="w-100 border border-secondary rounded-1" size="3" id="pqty" name="pQty" placeholder="수량을 입력해주세요"/> 
       
             
 
             <div class="mt-5">
       			<a id="buy"class="btn btn-dark rounded-0 btn-outline-secondary w-25">BUY</a>
-      			<a id="cart" onclick="cartInput()"  class="btn rounded-0 btn-outline-secondary w-25">CART</a>
+      			<button id="cartBtn" onclick="InputCart()"  class="btn rounded-0 btn-outline-secondary w-25">CART</button>
       			<a id="wish" href="<c:url value="/cart/wish?no=${dto.prod_no}" />"class="btn rounded-0 btn-outline-secondary w-25" >WISH</a>
       		</div>
          </div>
@@ -86,32 +87,22 @@
       </div> 
      
    </section>  
+</form>
+
+
+
+
+
 
 <jsp:include page="../include/footer.jsp"/>
 <script>
 
 
-function cartInput(){
-	
-	let prod_no = $("#prod_no").val();
-	let opCode = $("#opCode").val();
-	let pQty = $("#pqty").val();
-	
-	$.ajax({	
-		url: "/cart/inputCart",
-		type : "post",
-		data: {"no" : prod_no, "opCode" : opCode, "pQty" : pQty},
-		success : function(){
-			var result = confirm("장바구니에 제품이 담겼습니다! 확인하시겠습니까?")
-			if(resullt == true){
-				location.replace="/user/cartList";
-			}
-			
-		},
-		error: function(request, status, error){console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)}
-	})
-	
-	
+function InputCart(){
+	console.log("하이!");
+	$("#prodForm").attr("action", "/cart/inputCart");
+	$("#prodForm").attr("method", "post");
+	$("#cartBtn").attr("type", "submit");
 	
 }
 
