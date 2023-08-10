@@ -204,6 +204,24 @@ public class ShopProdController {
 		return "/user/cook";
 	}
 	
+	//생활가전 페이지 이동
+	@GetMapping("/electroPage1")
+	public String lifeElectro(Model model) {
+		List<ProductDTO> list = service.getLifeElectro();
+		model.addAttribute("list", list);
+		
+		return "/user/lifeElectro";
+	}
+	
+	//욕실가전 페이지 이동
+	@GetMapping("/electroPage2")
+	public String bathElectro(Model model) {
+		List<ProductDTO> list = service.getBathElectro();
+		model.addAttribute("list", list);
+		
+		return "/user/bathElectro";
+		
+	}
 	
 	
 	

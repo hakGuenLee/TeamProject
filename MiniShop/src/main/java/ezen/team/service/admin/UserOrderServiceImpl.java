@@ -24,28 +24,22 @@ public class UserOrderServiceImpl implements UserOrderService {
 	//회원 주문/배송 페이지에서 회원ID/휴대폰번호 검색
 	@Override
 	public String orderSearch(String search) {
-
-	 String value = mapper.orderSearch(search);
 		
-		return value;
+		return mapper.orderSearch(search);
 	}
 
 	//검색한 회원ID 또는 전화번호로 주문내역 가져오기
 	@Override
 	public List<UserOrderDTO> getOrderList(String id, String phone) {
 		
-		List<UserOrderDTO> orderList = mapper.getOrderList(id, phone); 
-		
-		return orderList;
+		return mapper.getOrderList(id, phone); 
 	}
 
 	// 검색한 주문내역 상세보기
 	@Override
 	public List<UserOrderDTO> orderInfo(String order_no) {
 		
-		List<UserOrderDTO> UOdto = mapper.orderInfo(order_no);
-		
-		return UOdto;
+		return mapper.orderInfo(order_no);
 	}
 
 	// 검색한 주문내역 상세보기의 회원정보

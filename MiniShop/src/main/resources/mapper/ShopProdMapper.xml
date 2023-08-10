@@ -90,4 +90,17 @@ select * from prod_master where ctgry_no = 16
 select * from prod_master where ctgry_no = 17
 </select>
 
+<!--생활가전 가져오기-->
+<select id="getLifeElectro" resultType="hashmap">
+select * from prod_master where ctgry_no = 18
+</select>
+
+<!-- 욕실가전 가져오기 -->
+<select id="getBathElectro" resultType="hashmap">
+select * from prod_master where ctgry_no = 19
+</select>
+
+
+
+
 </mapper>

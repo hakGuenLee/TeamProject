@@ -13,6 +13,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @Component
 public class UserInterceptor extends HandlerInterceptorAdapter {
+
 	
 	//특정 URL 접근 전 실행
 	@Override
@@ -20,15 +21,21 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		
 		HttpSession session = request.getSession();
-		System.out.println("세션값 : " + session);
 		
 		Object UserDTO = session.getAttribute("userDTO");
+		
+		//인터셉터 발동 전 페이지 주소값을 session에 셋팅
+		String path = (String)request.getHeader("REFERER");
+		session.setAttribute("prev_url", path);
+		System.out.println("이전페이지 : " + path);
 		
 		//로그인되지 않은 상태에서 접근 시 로그인 페이지 띄우기
 		if(UserDTO == null) {
 			response.sendRedirect("/user/userLogin");
 			return false;
 		}else {
+			
+	
 			return true;
 		}
 		

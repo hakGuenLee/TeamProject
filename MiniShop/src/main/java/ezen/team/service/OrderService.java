@@ -35,10 +35,10 @@ public interface OrderService {
 	List<String> getNickAddr(HttpSession session);
 
 	//별칭에 맞는 주소 가져오기
-	AddrDTO getAddrInfo(String nickname, HttpServletRequest request);
+	AddrDTO getAddrInfo(String nickname, HttpSession session);
 
 	//기본주소 가져오기
-	AddrDTO getDefAddress(String addrName, HttpServletRequest request);
+	AddrDTO getDefAddress(String addrName, HttpSession session);
 
 
 

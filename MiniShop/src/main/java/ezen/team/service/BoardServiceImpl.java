@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ezen.team.domain.BoardDTO;
 import ezen.team.domain.CsDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.mapper.BoardMapper;
 
 @Service
@@ -23,14 +24,23 @@ public class BoardServiceImpl implements BoardService {
 
 	//Notice 모두 가져오기
 	@Override
-	public List<BoardDTO> getNoticeList() {
-		return mapper.getNoticeList();
+	public List<BoardDTO> getNoticeList(PageDTO pageDto) {
+		
+		//게시글 총 개수 구하기
+		int totalCnt = mapper.getNoticeTotalCnt(pageDto);
+		pageDto.setValue(totalCnt, pageDto.getCntPerPage());
+		
+		return mapper.getNoticeList(pageDto);
 	}
 
-	//해당번호에 맞는 공지 글 가져오기
+	//해당번호에 맞는 공지 글 가져오기 (notice 상세보기)
 	@Override
 	public BoardDTO getNoticeContent(String no) {
 		
+		//해당 번호의 공지 글 조회수 1 추가
+		mapper.addNoticeHit(no);
+		
+		//해당 번호의 공지글 가져오기
 		return mapper.getNoticeInfo(no);
 	}
 
@@ -38,9 +48,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public CsDTO csInfo(String cs_no) {
 		
-		CsDTO csDTO = mapper.csInfo(cs_no);
-		
-		return csDTO;
+		return mapper.csInfo(cs_no);
 	}
 
 }

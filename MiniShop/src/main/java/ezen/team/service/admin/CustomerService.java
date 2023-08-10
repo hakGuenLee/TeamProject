@@ -9,11 +9,11 @@ public interface CustomerService {
 
 	List<CsDTO> csList(String cs_code, String proc_sts, PageDTO pageDto);
 	
-	CsDTO csInfo(int cs_no, int proc_sts);
+	CsDTO csInfo(int cs_no, String proc_sts);
 
 	CsDTO itemName(String cs_code);
 
-	void csReply(int cs_no, String csre_con, String proc_id);
+	void csReply(int cs_no, String csre_con, String proc_id, String proc_sts, String prev_sts);
 
 	
 

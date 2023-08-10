@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ezen.team.domain.CategoryDTO;
 import ezen.team.domain.CommonCodeDTO;
+import ezen.team.domain.PostDTO;
 import ezen.team.domain.ProductDTO;
 import ezen.team.service.admin.CommonCodeService;
 
@@ -32,7 +33,6 @@ public class CommonCodeController {
 		//view에서 넘겨준 code값을 통해 공통코드 리스트 가져오기
 		List<CommonCodeDTO> codelist = service.getCode(code);
 		
-
 		return codelist;
 	}
 
@@ -44,41 +44,23 @@ public class CommonCodeController {
 		//view에서 넘겨준 catCode값을 통해 상품 카테고리 리스트 가져오기
 		List<CategoryDTO> catList = service.getProdCategory(catCode);		
 		
-		return catList;
-		
-		
+		return catList;	
 	}
 	
-	//홈 화면 상품 박스 출력하기
-	@PostMapping("/getHomeProdBox")
+	//팝업 이미지 가져오기
+	@PostMapping("/getPopImg")
 	@ResponseBody
-	public List<ProductDTO> prodBox(@RequestParam("codeNum") String ctNo){
+	public List<PostDTO> getPopImg(@RequestParam("popNum") String popNum) {
+		System.out.println("popNum : " + popNum);
+		List<PostDTO> popList = service.getPopImg(popNum);
 		
-		System.out.println("ctno : " + ctNo);
+		System.out.println("팝업이미지 리스트 : " + popList);
 		
-		//view에서 넘겨준 codeNum을 통해 해당 카테고리 번호에 맞는 상품 정보 가져오기
-		List<ProductDTO> prodList = service.getProdBox(ctNo);
-		
-		System.out.println("홈화면 상품 리스트 : " + prodList);
-		
-		
-		return prodList;
+		return popList;
 		
 	}
 	
-	
-	//홈 화면 상품별 카테고리 버튼 클릭 시 해당 상품들 가져오기
-	@PostMapping("/getProdBox")
-	@ResponseBody
-	public List<ProductDTO> getProdBox(@RequestParam("codeNum") String ctNo){
-		
-		System.out.println("ctno : " + ctNo);
-		
-		//view에서 넘겨준 codeNum을 통해 해당 카테고리 번호에 맞는 상품 정보 가져오기
-		List<ProductDTO> prodList = service.getProdBox(ctNo);		
-				
-		return prodList;		
-	}
+
 	
 
 

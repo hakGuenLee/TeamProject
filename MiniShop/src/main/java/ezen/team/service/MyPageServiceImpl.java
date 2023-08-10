@@ -13,6 +13,7 @@ import ezen.team.domain.CsDTO;
 import ezen.team.domain.OrderDTO;
 import ezen.team.domain.PageDTO;
 import ezen.team.domain.UserDTO;
+import ezen.team.domain.UserInfoHandler;
 import ezen.team.mapper.MyPageMapper;
 
 //마이페이지 담당 서비스
@@ -23,24 +24,23 @@ public class MyPageServiceImpl implements MyPageService {
 	@Autowired
 	private MyPageMapper mapper;
 	
+	@Autowired
+	private UserInfoHandler userInfoHandler;
+
+	
 	//세션에 담긴 회원 정보를 통해서 유저 정보 가져오기
 	@Override
 	public UserDTO getUserInfo(HttpSession session) {
 		
-		UserDTO uDto = (UserDTO) session.getAttribute("userDTO");
+		String username = userInfoHandler.getUserName(session);
 		
-		String username = uDto.getUser_nm();
-		
-		UserDTO uDto2 = mapper.getUserInfo(username);
-		
-		return uDto2;
+		return mapper.getUserInfo(username);
 	}
 
 	//회원 정보 수정 처리 완료하기
 	@Override
 	public void updateUser(UserDTO uDto) {
-		
-		
+				
 		mapper.userInfoUpdate(uDto);
 		
 	}
@@ -49,12 +49,9 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public List<AddrDTO> getAddressList(HttpSession session) {
 		
-		UserDTO user = (UserDTO)session.getAttribute("userDTO");
-		
-		String id = user.getUser_id();
-		
-		List<AddrDTO> list = mapper.getAddrList(id);
-		return list; 
+		String id = userInfoHandler.getUserId(session);
+
+		return  mapper.getAddrList(id); 
 	}
 
 	//배송지 추가하기
@@ -74,8 +71,8 @@ public class MyPageServiceImpl implements MyPageService {
 	//배송지 정보 가져오기
 	@Override
 	public AddrDTO getAddress(String no) {
-		AddrDTO aDto = mapper.getAddrInfo(no);
-		return aDto;
+
+		return mapper.getAddrInfo(no);
 	}
 
 	//배송지 수정 처리하기
@@ -89,66 +86,54 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public List<OrderDTO> getOrderList(PageDTO pageDTO, HttpSession session) {
 		
-		UserDTO user = (UserDTO)session.getAttribute("userDTO");
-		String user_id = user.getUser_id();
+		String user_id = userInfoHandler.getUserId(session);		
 		
 		int totalCnt = mapper.getOrderNum(user_id);
 		pageDTO.setCntPerPage(5);
 		pageDTO.setValue(totalCnt, pageDTO.getCntPerPage());
 		
-		List<OrderDTO> list = mapper.getOrderList(pageDTO, user_id);
-		
-		return list;
+		return mapper.getOrderList(pageDTO, user_id);
 	}
 
 	//해당 회원의 주문 건 수 가져오기
 	@Override
 	public int getOrderTotal(HttpSession session) {
 		
-		UserDTO user = (UserDTO)session.getAttribute("userDTO");
-		String id = user.getUser_id();
-		
-		int orderNum = mapper.getOrderNum(id);
-		return orderNum;
+		String id = userInfoHandler.getUserId(session);
+
+		return mapper.getOrderNum(id);
 	}
 
 	//해당 회원의 1:1문의 건수 가져오기
 	@Override
 	public int getTotalQuestion(HttpSession session) {
 		
-		UserDTO user = (UserDTO)session.getAttribute("userDTO");
-		String id = user.getUser_id();
+		String id = userInfoHandler.getUserId(session);
 		
-		int questionNum = mapper.getTotalQuestion(id);
-		
-		return questionNum;
+		return mapper.getTotalQuestion(id);
 	}
 
 	//해당 회원의 1:1문의 내역 가져오기
 	@Override
 	public List<CsDTO> getCsList(PageDTO pageDTO, HttpSession session) {
-		UserDTO user = (UserDTO)session.getAttribute("userDTO");
-		String user_id = user.getUser_id();
+		
+		String user_id = userInfoHandler.getUserId(session);
 		
 		int totalCnt = mapper.getTotalQuestion(user_id);
 		pageDTO.setCntPerPage(5);
 		pageDTO.setValue(totalCnt, pageDTO.getCntPerPage());
 		
-		List<CsDTO> list = mapper.getCsList(pageDTO, user_id);
-		
-		
-		return list;
+		return mapper.getCsList(pageDTO, user_id);
 	}
 
 	//해당 번호에 맞는 주소지를 기본 배송지로 설정하기
 	@Override
-	public void defaultAddressSetting(String addrNo, HttpServletRequest request) {
+	public void defaultAddressSetting(String addrNo, HttpSession session) {
 		
 		//해당 아이디에 이미 기본 배송지가 있는지 확인
-		HttpSession session = request.getSession();
-		UserDTO user = (UserDTO)session.getAttribute("userDTO");
-		String id = user.getUser_id();
-		
+	
+		String id = userInfoHandler.getUserId(session);
+
 		//기본배송지로 되어 있는 주소 번호 받기
 		String addressChecked = mapper.checkAddress(id);
 		
@@ -167,13 +152,10 @@ public class MyPageServiceImpl implements MyPageService {
 
 	//해당 회원의 배송지 개수 확인하기
 	@Override
-	public int countAddress(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		UserDTO user = (UserDTO)session.getAttribute("userDTO");
-		String id = user.getUser_id();
-		
-		int addressNum = mapper.countAddress(id);
-		return addressNum;
+	public int countAddress(HttpSession session) {
+				
+		String id = userInfoHandler.getUserId(session);
+		return mapper.countAddress(id);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ezen.team.domain.CsDTO;
 import ezen.team.domain.PageDTO;
@@ -32,25 +33,28 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	
 	//회원 1:1문의건 상세보기
-	@Override
-	public CsDTO csInfo(int cs_no, int proc_sts) {
+	public CsDTO csInfo(int cs_no, String proc_sts) {
 		System.out.println(cs_no);
 		return mapper.csInfo(cs_no, proc_sts);
 	}
 
+	// 문의유형명 가져오기
 	@Override
 	public CsDTO itemName(String cs_code) {
 		return mapper.itemName(cs_code);
 	}
 
 	@Override
-	public void csReply(int cs_no, String csre_con, String proc_id) {
-		mapper.csReply(cs_no, csre_con, proc_id);
-	}
-
-
-	
-	
+	@Transactional
+	public void csReply(int cs_no, String csre_con, String proc_id, String proc_sts, String prev_sts) {
+		
+		if(!prev_sts.equals("1"))
+			mapper.modifyReply(cs_no, csre_con);
+		else
+			mapper.csReply(cs_no, csre_con, proc_id);		
+		mapper.stsUpdate(cs_no, proc_sts);
+		
+	}	
 
 
 

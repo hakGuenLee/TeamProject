@@ -20,12 +20,15 @@
    </div>
    
    <div class="d-flex justify-content-center">
+ 	
+ 	<p>문의 상품 명</p>	  
+ 	<input class="form-control w-50 m-3" type="text" id="qna_ttl" name="qna_ttl" value="${prodName}" placeholder="제목을 입력하세요" autofocus>  	  
  		  
-	   <label class="form-label  m-3">상품 선택</label>
-	 
+	 <!--   <label class="form-label  m-3">문의 상품명</label>
+	 	
 	   <select class="form-select w-50 m-3" id="prod_no" name="prod_no">
 	      
-	   </select>
+	   </select> -->
    </div>
    
    <input type="hidden" id="isTtlChk" value="no"/>
