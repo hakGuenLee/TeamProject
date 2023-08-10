@@ -20,13 +20,13 @@ public interface CartService {
 	void deleteWish(int no);
 
 	//장바구니에 해당 상품 넣기
-	void inputCart(String no, HttpSession session);
+	void inputCart(CartDTO cartDTO, HttpSession session);
 
 	//해당 아이디에 맞는 장바구니 리스트 가져오기
 	List<CartDTO> getCartList(HttpSession session);
 
 	//카트 상품 유무 체크
-	CartDTO checkCart(String no, HttpSession session);
+	CartDTO checkCart(CartDTO cartDTO, HttpSession session);
 
 	//장바구니에 상품이 이미 있을 경우 수량만 1씩 증가
 	void modifyQty(int pQty, int cart_no);
@@ -36,6 +36,8 @@ public interface CartService {
 
 	//장바구니 수량 수정하기
 	void updateQty(String cartNo, String pqty);
+
+	WishDTO checkWish(String no, HttpSession session);
 
 
 

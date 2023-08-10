@@ -23,7 +23,7 @@ public interface CartMapper {
 	void deleteWish(int no);
 
 	//장바구니 상품 넣기
-	void insertCart(String no, String id);
+	void insertCart(CartDTO cartDTO, String id);
 
 	//해당 아이디에 맞는 장바구니 상품 가져오기
 	List<CartDTO> getCartList(String id);
@@ -39,5 +39,8 @@ public interface CartMapper {
 
 	//장바구니 수량 수정하기
 	void updateQty(String cartNo, String pqty);
+
+	// 찜바구니 유무 체크
+	WishDTO checkWish(String id, String no);
 
 }

@@ -9,7 +9,7 @@
 <!-- <div class="container w-50 border shadow-sm p-5 mt-5"> -->
 <div class="container w-50 mt-5 p-5 shadow">
 
-<form action="/userQna/QnaRegister" method="post">
+<form action="/userQna/QnaRegister" method="post"  onsubmit="return submitChk()">
   
    <h4>상품 문의하기</h4>
    <div class="d-flex justify-content-center">
@@ -31,9 +31,13 @@
 	   </select> -->
    </div>
    
-   <input class="form-control" type="text" id="qna_ttl" name="qna_ttl" placeholder="제목을 입력하세요" autofocus>      
+   <input type="hidden" id="isTtlChk" value="no"/>
+   <input class="form-control" type="text" id="qna_ttl" name="qna_ttl" onkeyup="ttlCheck()"  placeholder="제목을 입력하세요" autofocus>      
+   <p id="chkMsg" class="mb-2"></p>
    
-   <textarea class="form-control mt-2" name="qna_con" id="qna_con" rows="5" cols="33" placeholder="내용을 입력하세요"></textarea>
+   <input type="hidden" id="isConChk" value="no"/>
+   <textarea class="form-control mt-2" name="qna_con" id="qna_con" rows="5" cols="33" onkeyup="conCheck()" placeholder="내용을 입력하세요"></textarea>
+   <p id="chkMsg2" class="mb-2"></p>
    
    <input class="form-control mt-2" type="hidden" id="user_id" name="user_id" readonly value="${sessionScope.userDTO.user_id}">
    
@@ -75,6 +79,60 @@ $(document).ready(function(){
 
 });
 
+function submitChk(){
+
+    let isTtlChk = $("#isTtlChk").val();
+    let isConChk = $("#isConChk").val();
+
+    if(isTtlChk=="no"){
+        alert("제목을 2자 이상 입력해주세요.")
+        $("#qna_ttl").select();            
+        return false;
+    }
+     if(isConChk=="no"){
+        alert("내용을 10자 이상 입력해주세요");
+        $("#qna_con").select();
+        return false;
+    } 
+}//submitChk
+
+function ttlCheck() {
+
+    var qna_ttl = $('#qna_ttl').val();
+
+    if(qna_ttl.length<2){
+        $('#isTtlChk').val("no");
+        $('#chkMsg').html("제목을 2자 이상 입력해주세요.")
+        $('#chkMsg').css({"color":"red","font-size":"13px"});
+        return;
+    }
+    if(qna_ttl.length>1){
+        $('#isTtlChk').val("yes");
+        $('#chkMsg').html("")
+     //   $('#chkMsg').css({"color":"red","font-size":"13px"});
+        return;
+    }
+
+}//funtion ttlCheck
+
+function conCheck() {
+
+    var qna_con = $('#qna_con').val();
+
+    if(qna_con.length<10){
+        $('#isConChk').val("no");
+        $('#chkMsg2').html("내용의 길이는 10자 이상 입력해주세요.")
+        $('#chkMsg2').css({"color":"red","font-size":"13px"});
+        return;
+    }
+    if(qna_con.length>9){
+        $('#isConChk').val("yes");
+        $('#chkMsg2').html("")
+     //   $('#chkMsg').css({"color":"red","font-size":"13px"});
+        return;
+    }
+
+}//funtion conCheck
 
 </script>
 

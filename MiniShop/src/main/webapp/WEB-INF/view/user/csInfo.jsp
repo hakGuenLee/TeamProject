@@ -20,6 +20,10 @@
    <p>내용</p>
    <textarea class="form-control mt-2"rows="5" cols="33" readonly>${csDTO.cs_con}</textarea>
    
+<<<<<<< Updated upstream
+=======
+   <input class="form-control mt-2" type="text" id="user_id" name="user_id" value="" placeholder="이름을 입력하세요">
+>>>>>>> Stashed changes
    
    <div class="text-center mt-3">
       <a href="javaScript:history.back()" class="btn btn-primary">이전</a>

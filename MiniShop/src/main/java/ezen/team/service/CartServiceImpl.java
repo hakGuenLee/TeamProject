@@ -54,11 +54,12 @@ public class CartServiceImpl implements CartService {
 
 	//장바구니에 상품 넣기
 	@Override
+
 	public void inputCart(String no, HttpSession session) {
 		
 		String id = userInfoHandler.getUserId(session);
 		
-		mapper.insertCart(no, id);
+		mapper.insertCart(cartDTO, id);
 	}
 	
 
@@ -73,9 +74,13 @@ public class CartServiceImpl implements CartService {
 
 	//카트 상품 유무 여부 확인
 	@Override
-	public CartDTO checkCart(String no, HttpSession session) {
+	public CartDTO checkCart(CartDTO cartDTO, HttpSession session) {
 		
+
 		String id = userInfoHandler.getUserId(session);
+		String no = cartDTO.getProd_no();
+		
+		CartDTO cDto = mapper.checkCart(id, no);
 		
 		return mapper.checkCart(id, no);
 	}
@@ -99,6 +104,17 @@ public class CartServiceImpl implements CartService {
 	public void updateQty(String cartNo, String pqty) {
 		mapper.updateQty(cartNo, pqty);
 		
+	}
+
+	@Override
+	public WishDTO checkWish(String no, HttpSession session) {
+		
+		UserDTO user = (UserDTO) session.getAttribute("userDTO");
+		String id = user.getUser_id();
+		
+		WishDTO wishDTO = mapper.checkWish(id, no);
+		
+		return wishDTO;
 	}
 
 }

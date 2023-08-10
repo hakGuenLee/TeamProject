@@ -22,6 +22,17 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">   
 <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">   
 
+<c:if test="${msg != null}">
+<script>
+alert('장바구니나 구매목록에 이미 있는 상품입니다.')
+</script>
+</c:if>
+<c:if test="${msgWish != null}">
+<script>
+alert('위시리스트에 이미 있는 상품입니다.')
+</script>
+</c:if>
+
 </head>
 <body>
 

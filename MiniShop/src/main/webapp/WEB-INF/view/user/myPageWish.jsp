@@ -29,10 +29,12 @@
 			<p>위시리스트에 담긴 상품이 없습니다!</p>
 		</c:if>
 		<c:forEach var="dto" items="${list }">
+				<input type="hidden" value="${dto.wish_no }"/>
 			<tr>
-				<input type="hidden" value="${dto.wish_no }">
 				<td><input type="checkBox"></td>
-				<td><img src="/resources/upload/${dto.main_img }" style="width:70px; height:70px"></td>
+				<td><a href="<c:url value="/prodDetail/prodInfo?no=${dto.prod_no}"/>">
+				<img src="/resources/upload/${dto.main_img }" style="width:70px; height:70px">
+				</a></td>
 				<td>${dto.prod_nm }</td>
 				<td><fmt:formatNumber value="${dto.price}"/>원</td>
 				<td><fmt:formatNumber value="${dto.point}"/>원</td>

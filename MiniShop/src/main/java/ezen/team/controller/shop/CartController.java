@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ezen.team.domain.CartDTO;
 import ezen.team.domain.ProductDTO;
@@ -49,25 +50,36 @@ public class CartController {
 	
 	//장바구니 담기
 	@PostMapping("/inputCart")
-	public String inputCart(@RequestParam("no") String no,
-			@RequestParam("opCode") String opCode, 
-			@RequestParam("pQty") String pQty2,
-			HttpServletRequest request) {
-		
-		System.out.println("카트담기 no : " + no);
-		System.out.println("카트담기 opCode : " + opCode);
-		System.out.println("카트담기 pQty : " + pQty2);
+//			public String inputCart(@RequestParam("no") String no,
+//					@RequestParam("opCode") String opCode, 
+//					@RequestParam("pQty") String pQty2,
+	public String inputCart(CartDTO cartDTO,
+			HttpServletRequest request
+			, Model model
+			, RedirectAttributes redirect) {
+
 		
 		HttpSession session = request.getSession();
 		
 		//카트 상품 유무 체크
-		CartDTO cDto = service.checkCart(no, session);
+		CartDTO cDto = service.checkCart(cartDTO, session);
 		
-		if(cDto == null) {
-			service.inputCart(no,session);
-		}else {
-			int pQty = cDto.getQty() + 1;
-			service.modifyQty(pQty, cDto.getCart_no());
+		if(cDto == null) { // 카트에 담겨있지 않으면 카트에 담고
+			
+			service.inputCart(cartDTO,session);
+			
+		}else { // 카트에 이미 담겨있으면 메시지를 띄우자
+//			int pQty = Integer.parseInt( cDto.getQty() + 1);
+//			service.modifyQty(pQty, cDto.getCart_no());
+			
+//			model.addAttribute("msg","장바구니나 구매목록에 이미 있는 상품입니다.");
+			
+			String referer = (String)request.getHeader("REFERER");
+			
+			redirect.addFlashAttribute("msg", "이미 있어요");
+			
+			return "redirect:"+referer;
+			
 		}
 
 		return "redirect:cartList";
@@ -95,11 +107,33 @@ public class CartController {
 	
 	//찜하기 처리하기
 	@GetMapping("/wish")
-	public String wish(@RequestParam("no") String no, HttpServletRequest request) {
+	public String wish(@RequestParam("no") String no, HttpServletRequest request
+						, RedirectAttributes redirect) {
 		
 		HttpSession session = request.getSession();
+
+		//카트 상품 유무 체크
+				WishDTO wishDTO = service.checkWish(no, session);
+				
+				if(wishDTO == null) { // 카트에 담겨있지 않으면 카트에 담고
+					
+					service.insertWish(no, session);
+					
+				}else { // 카트에 이미 담겨있으면 메시지를 띄우자
+//					int pQty = Integer.parseInt( cDto.getQty() + 1);
+//					service.modifyQty(pQty, cDto.getCart_no());
+					
+//					model.addAttribute("msg","장바구니나 구매목록에 이미 있는 상품입니다.");
+					
+					String referer = (String)request.getHeader("REFERER");
+					
+					redirect.addFlashAttribute("msgWish", "이미 있어요");
+					
+					return "redirect:"+referer;
+					
+				}
 		
-		service.insertWish(no, session);
+		
 		
 		return "redirect:wishList";
 				

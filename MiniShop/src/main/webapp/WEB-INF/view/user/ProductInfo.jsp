@@ -7,9 +7,10 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/ProductInfo.css"/>">   
 <jsp:include page="../include/header.jsp"/>
 
+
 <form action="" method="post" id="prodForm">
    <section>
-   	<input type="hidden" value="${dto.prod_no }" id="prod_no" name="no">
+   	<input type="hidden" value="${dto.prod_no }" id="prod_no" name="prod_no">
    	<input type="hidden" value="${dto.point }" name="point">
       <div class="d-flex">
          <div id="imgArea">
@@ -48,8 +49,10 @@
       			</select>
       		</c:if>
       			<c:if test="${dto.ctgry_no == 17 || dto.ctgry_no == 18 || dto.ctgry_no == 19}">
+
       			<p style="color:gray">OPTION</p>
       			<select id="opCode" name="opCode" class="w-100 outline-danger rounded-1">
+
       				<option>화이트</option>
       				<option>블랙</option>
       			</select>
@@ -66,9 +69,11 @@
       			<option>==직접 입력==</option>
       		</select> -->
 
+
      		
       		<input type="number" class="w-100 border border-secondary rounded-1" value="1" min="1" size="3" id="pqty" name="pQty"/> 
 			
+
             
 
             <div class="mt-3">

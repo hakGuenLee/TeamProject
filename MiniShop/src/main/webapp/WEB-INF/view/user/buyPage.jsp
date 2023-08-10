@@ -15,6 +15,7 @@
 				<tr>
 					<th>이미지</th>
 					<th>상품명</th>
+					<th>옵션</th>
 					<th>수량</th>
 					<th>가격</th>
 					<th>적립금</th>
@@ -46,6 +47,7 @@
 									style="width: 60px; height: 60px" />
 							</a></td>
 							<td>${dto.prod_nm}</td>
+							<td>${dto.op_code==null ? '옵션없음': dto.op_code}</td>
 							<td>
 								<form action="/order/updateQty?no=${dto.cart_no}" method="post">
 									<input type="text" size="3" name="pqty" value="${dto.qty }" />
