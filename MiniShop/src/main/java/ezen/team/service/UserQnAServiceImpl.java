@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import ezen.team.domain.PageDTO;
 import ezen.team.domain.QnaDTO;
 import ezen.team.domain.UserDTO;
+import ezen.team.domain.UserInfoHandler;
 import ezen.team.mapper.UserQnAMapper;
 
 @Service
@@ -17,6 +18,9 @@ public class UserQnAServiceImpl implements UserQnAService {
 
 	@Autowired
 	private UserQnAMapper mapper;
+	
+	@Autowired
+	private UserInfoHandler userInfoHandler;
 
 	// 상품문의 등록하기
 	@Override
@@ -30,9 +34,7 @@ public class UserQnAServiceImpl implements UserQnAService {
 	public List<QnaDTO> getQnaList(PageDTO pageDTO, HttpSession session) {
 
 		
-		UserDTO user = (UserDTO) session.getAttribute("userDTO");
-		String user_id = user.getUser_id();
-
+		String user_id = userInfoHandler.getUserId(session);
 		
 		// 페이징네이션처리를 위한 pageDTO
 		int totalCnt = mapper.QnaCount(user_id);
@@ -54,9 +56,7 @@ public class UserQnAServiceImpl implements UserQnAService {
 	@Override
 	public int QnaCount(HttpSession session) {
 
-		UserDTO user = (UserDTO) session.getAttribute("userDTO");
-
-		String user_id = user.getUser_id();
+		String user_id = userInfoHandler.getUserId(session);
 
 		return mapper.QnaCount(user_id);
 	}

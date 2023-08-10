@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ezen.team.domain.CartDTO;
+import ezen.team.domain.FileHandler;
 import ezen.team.domain.ProductDTO;
 import ezen.team.domain.UserDTO;
+import ezen.team.domain.UserInfoHandler;
 import ezen.team.domain.WishDTO;
 import ezen.team.mapper.CartMapper;
 
@@ -21,13 +23,14 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartMapper mapper;
 	
+	@Autowired
+	private UserInfoHandler userInfoHandler;
 	
 	//위시리스트 상품 넣기
 	@Override
 	public void insertWish(String no, HttpSession session) {
-						
-		UserDTO uDto = (UserDTO) session.getAttribute("userDTO");
-		String id = uDto.getUser_id();
+		
+		String id = userInfoHandler.getUserId(session);
 		
 		mapper.insertWish(no, id);
 		
@@ -36,14 +39,10 @@ public class CartServiceImpl implements CartService {
 	//위시리스트 가져오기
 	@Override
 	public List<WishDTO> getWish(HttpSession session) {
+	
+		String id = userInfoHandler.getUserId(session);
 		
-		UserDTO user = (UserDTO) session.getAttribute("userDTO");
-		
-		String id = user.getUser_id();
-		
-		List<WishDTO> list = mapper.getWishList(id);
-		
-		return list;
+		return mapper.getWishList(id);
 	}
 
 	//해당번호에 해당하는 위시리스트 삭제하기
@@ -56,8 +55,8 @@ public class CartServiceImpl implements CartService {
 	//장바구니에 상품 넣기
 	@Override
 	public void inputCart(String no, HttpSession session) {
-		UserDTO uDto = (UserDTO) session.getAttribute("userDTO");
-		String id = uDto.getUser_id();
+		
+		String id = userInfoHandler.getUserId(session);
 		
 		mapper.insertCart(no, id);
 	}
@@ -67,24 +66,18 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<CartDTO> getCartList(HttpSession session) {
 		
-		UserDTO user = (UserDTO) session.getAttribute("userDTO");
-		String id = user.getUser_id();
+		String id = userInfoHandler.getUserId(session);
 		
-		List<CartDTO> cartList = mapper.getCartList(id);
-		
-		return cartList;
+		return mapper.getCartList(id);
 	}
 
 	//카트 상품 유무 여부 확인
 	@Override
 	public CartDTO checkCart(String no, HttpSession session) {
 		
-		UserDTO user = (UserDTO) session.getAttribute("userDTO");
-		String id = user.getUser_id();
+		String id = userInfoHandler.getUserId(session);
 		
-		CartDTO cDto = mapper.checkCart(id, no);
-		
-		return cDto;
+		return mapper.checkCart(id, no);
 	}
 
 	//장바구니에 상품이 이미 있을 경우 수량만 1씩 증가

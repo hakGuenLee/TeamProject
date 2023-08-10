@@ -22,4 +22,5 @@ public class BoardDTO {
 	private Date mod_dt; //처리일자
 	private String req_id; //요청자(공지 혹은 팝업을 등록한 사람)ㅒ
 	private Date req_dt; //승인 요청일자
+	private int hit; //조회수
 }

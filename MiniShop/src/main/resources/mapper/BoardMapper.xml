@@ -4,16 +4,28 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ezen.team.mapper.BoardMapper">
 
+	<!-- Notice 총 개수 구하기 -->
+	<select id="getNoticeTotalCnt" resultType="Integer">
+	select count(*) from post_mng where pst_gb = '002'
+	</select>
+
 	<!-- Notice 가져오기 -->
 	<select id="getNoticeList" resultType="BoardDTO">
-	select * from post_mng where pst_gb = '002'
+	select * from post_mng 
+	order by pst_no desc
+	limit #{startIndex}, #{cntPerPage}
+<!-- 	where pst_gb = '002' -->
 	</select>
 	
 	<!-- 해당번호에 맞는 공지 글 가져오기 -->
 	<select id="getNoticeInfo" resultType="BoardDTO">
 	select * from post_mng where pst_no = #{no}
 	</select>
-
+	
+	<!-- 해당번호의 공지글 1 추가 -->
+	<update id="addNoticeHit">
+	update post_mng set hit = hit + 1 where pst_no = #{no}
+	</update>
 
 	<!-- 1:1문의 등록 -->
 	<insert id="csInsert" parameterType="csDTO">

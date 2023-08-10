@@ -16,6 +16,7 @@ import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CartDTO;
 import ezen.team.domain.OrderDTO;
 import ezen.team.domain.UserDTO;
+import ezen.team.domain.UserInfoHandler;
 import ezen.team.mapper.OrderMapper;
 
 //OrderController와 연결
@@ -25,17 +26,17 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private OrderMapper mapper;
+	
+	@Autowired
+	private UserInfoHandler userInfoHandler;
 
 	// 카트에서 buy_yn 이 Y 인 것을 가져온다
 	@Override
 	public List<CartDTO> getOrderList(HttpSession session) {
 		
-		UserDTO user = (UserDTO) session.getAttribute("userDTO");
-		String id = user.getUser_id();
+		String id = userInfoHandler.getUserId(session);
 		
-		List<CartDTO> cartList = mapper.getOrderList(id);
-		
-		return cartList;
+		return  mapper.getOrderList(id);
 	}
 
 	// 카트에서 주문 할 상품들을 buy_yn 을 Y로 바꿔준다
@@ -104,37 +105,27 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<String> getNickAddr(HttpSession session) {
 		
-		UserDTO uDto = (UserDTO) session.getAttribute("userDTO");
-		String id = uDto.getUser_id();
-		
-		List<String> list = mapper.getNickAddr(id);
-		return list;
+		String id = userInfoHandler.getUserId(session);
+	
+		return mapper.getNickAddr(id);
 	}
 
 	//별칭에 맞는 주소 가져오기
 	@Override
-	public AddrDTO getAddrInfo(String nickname, HttpServletRequest request) {
+	public AddrDTO getAddrInfo(String nickname, HttpSession session) {
 		
-		HttpSession session = (HttpSession) request.getSession();
-		UserDTO uDto = (UserDTO) session.getAttribute("userDTO");
-		String id = uDto.getUser_id();
-		
-		AddrDTO aDto = mapper.getAddrInfo(nickname, id);
-		return aDto;
+		String id = userInfoHandler.getUserId(session);
+
+		return mapper.getAddrInfo(nickname, id);
 	}
 
 	//기본주소 가져오기
 	@Override
-	public AddrDTO getDefAddress(String addrName, HttpServletRequest request) {
+	public AddrDTO getDefAddress(String addrName, HttpSession session) {
 		
-		HttpSession session = (HttpSession) request.getSession();
-		UserDTO uDto = (UserDTO) session.getAttribute("userDTO");
-		String id = uDto.getUser_id();
-		
-		AddrDTO aDto = mapper.getDefaultAddr(id, addrName);
-		
-		
-		return aDto;
+		String id = userInfoHandler.getUserId(session);
+
+		return mapper.getDefaultAddr(id, addrName);
 	}
 
 

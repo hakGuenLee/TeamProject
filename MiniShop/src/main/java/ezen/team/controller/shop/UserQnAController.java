@@ -33,7 +33,19 @@ public class UserQnAController {
 	@Autowired
 	private UserQnAService userQnAService;
 	
-	// 상품문의 페이지 이동
+	//상품 문의 이동
+	@GetMapping("/prodQuestion")
+	public String prodQuestion(@RequestParam("name") String prodName, Model model) {
+		
+		model.addAttribute("prodName", prodName);
+		
+		return "/user/prodQuestion";
+	}
+	
+	
+	
+	
+	// 나의 상품문의 내역 페이지 이동
 	@GetMapping("/myPageProdQna")
 	public String myPageProdQna(PageDTO pageDTO, Model model,HttpServletRequest rq) {
 		
@@ -54,10 +66,11 @@ public class UserQnAController {
 	
 	// 상품문의 등록하기
 	@PostMapping("QnaRegister")
-	public String QnaRegister(QnaDTO qnaDTO, HttpServletRequest rq) {
+	public String QnaRegister(QnaDTO qnaDTO, HttpServletRequest rq, Model model) {
+		
+		
 		
 		userQnAService.QnaRegister(qnaDTO);
-		
 		// 이전페이지 주소
 //		String referer = (String)rq.getHeader("REFERER");
 		

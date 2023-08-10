@@ -57,4 +57,10 @@ public interface ShopProdService {
 	//주방가전 가져오기
 	List<ProductDTO> getCook();
 
+	//생활가전 가져오기
+	List<ProductDTO> getLifeElectro();
+
+	//욕실가전 가져오기
+	List<ProductDTO> getBathElectro();
+
 }

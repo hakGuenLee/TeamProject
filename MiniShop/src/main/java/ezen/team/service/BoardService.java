@@ -4,15 +4,16 @@ import java.util.List;
 
 import ezen.team.domain.BoardDTO;
 import ezen.team.domain.CsDTO;
+import ezen.team.domain.PageDTO;
 
 public interface BoardService {
 
 	void csInsert(CsDTO csDto);
 
 	//Notice 리스트 가져오기
-	List<BoardDTO> getNoticeList();
+	List<BoardDTO> getNoticeList(PageDTO pagedto);
 
-	//해당번호에 맞는 공지 글 가져오기
+	//해당번호에 맞는 공지 글 가져오기 (notice 상세보기)
 	BoardDTO getNoticeContent(String no);
 
 	//1:1 문의 내용 상세보기

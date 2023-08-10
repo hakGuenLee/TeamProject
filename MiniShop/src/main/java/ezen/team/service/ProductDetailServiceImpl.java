@@ -17,9 +17,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	//상품 상세정보 가져오기
 	@Override
 	public ProductDTO getProductInfo(String no) {
-		ProductDTO pDto = mapper.getProductInfo(no);
 		
-		return pDto;
+		return mapper.getProductInfo(no);
 	}
 
 }

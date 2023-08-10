@@ -157,9 +157,9 @@ public class OrderController {
 	//별칭에 맞는 주소 가져오기
 	@PostMapping("/getAddressInfo")
 	@ResponseBody
-	public AddrDTO getAddress(@RequestParam("nickname") String nickname, HttpServletRequest request) {
+	public AddrDTO getAddress(@RequestParam("nickname") String nickname, HttpSession session) {
 	
-		AddrDTO aDto = orderService.getAddrInfo(nickname, request);
+		AddrDTO aDto = orderService.getAddrInfo(nickname, session);
 				
 		return aDto;
 		
@@ -168,9 +168,9 @@ public class OrderController {
 	//기본주소 가져오기
 	@PostMapping("/getDefAddress")
 	@ResponseBody
-	public AddrDTO getDefAddress(@RequestParam("addrName") String addrName, HttpServletRequest request) {
+	public AddrDTO getDefAddress(@RequestParam("addrName") String addrName, HttpSession session) {
 		
-		AddrDTO aDto = orderService.getDefAddress(addrName, request);
+		AddrDTO aDto = orderService.getDefAddress(addrName, session);
 		
 		System.out.println("기본주소값 : " + aDto);
 		

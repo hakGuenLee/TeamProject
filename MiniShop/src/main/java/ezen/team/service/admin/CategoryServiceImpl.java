@@ -21,14 +21,9 @@ public class CategoryServiceImpl implements CategoryService {
 	      
 			int totalCnt = mapper.totalCnt(pagedto);
 			
-			pagedto.setValue(totalCnt, pagedto.getCntPerPage());    
-	      	
-	      
+			pagedto.setValue(totalCnt, pagedto.getCntPerPage());    	      
 	      return mapper.catList(pagedto);
 	   }
-
-	   
-	   
 	   
 	//카테고리 등록
 	@Override
@@ -42,9 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public CategoryDTO catListByNo(String no) {
 		
-		CategoryDTO cdto = mapper.catListByNo(no);
-		
-		return cdto;
+		return mapper.catListByNo(no);
 	}
 
 	//카테고리 수정
@@ -54,14 +47,11 @@ public class CategoryServiceImpl implements CategoryService {
 		mapper.catUpdate(cdto);
 		
 	}
-
-
-
-
+	
 	@Override
 	public List<CategoryDTO> cateList() {
-		List<CategoryDTO> cList = mapper.cateList();
-		return cList;
+
+		return mapper.cateList();
 	}
 
 
