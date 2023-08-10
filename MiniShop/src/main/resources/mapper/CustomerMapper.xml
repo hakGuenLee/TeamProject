@@ -9,68 +9,59 @@
 	SELECT count(*) FROM cs_master
 	</select>
 
-	<select id="csList" resultType="CsDTO">
-<!-- 		create view csList as
-
-		select a.cs_no, b.item_nm, a.cs_title, a.user_id, a.cs_dt, c.proc_id, c.proc_dt
-		from cs_master as a, cmmn_cd as b, cs_reply c
-		where a.cs_no = c.cs_no
-		and a.cs_code = b.cs_code
-	 	and 1=1 -->
-	 	
-<!--  	 	select * 
-	 	from cs_master as cm, cmmn_cd as ccd, cs_reply cr
-	 	where 1=1  -->
-	 	
-		<!-- , cr.proc_dt -->
-		
-		select cm.cs_no, cm.cs_code, cmcd.item_nm, cm.cs_ttl, cm.user_id, cm.cs_dt 
-		from cs_master as cm, cmmn_cd as cmcd <!-- ,cs_reply as cr -->
-
-        where 1=1
-	  <if test="cs_code == 'ALL'">
-	  	and cm.cs_code = cmcd.item_cd  
-	  </if>	  			
-      <if test="cs_code != 'ALL'">
-         and cm.cs_code = #{cs_code}
-         and cmcd.item_cd =  #{cs_code}         
-      </if>
-      <if test="proc_sts != 'proc_all'">
-         and cm.proc_sts = #{proc_sts}         
-      </if>
+	<!-- 리팩토링 후 -->
+    <select id="csList" resultType="CsDTO">	 	
+		select *
+		from cs_master as cm, cmmn_cd as cmcd
+		where 1=1
+			and cm.cs_code = cmcd.item_cd
+		<if test="cs_code !='ALL'">
+			and	cm.cs_code = #{cs_code}
+		</if>	
+		<if test="proc_sts !='proc_all'">
+			and	cm.proc_sts= #{proc_sts}
+		</if>  
       	ORDER BY cs_no DESC
 		LIMIT #{pageDto.startIndex},
 		#{pageDto.cntPerPage}
       
     </select>
-    <sql id="sel_reply">
-    	select * 
-		from cs_master as cm, cmmn_cd as cmcd, cs_reply as cr
-    </sql>
     
-    <select id="csInfo" parameterType="Integer" resultType="CsDTO">
+     <select id="csInfo" resultType="CsDTO">
 	  	<!-- select * from cs_master left outer join cmmn_cd on cs_master.cs_code = cmmn_cd.item_cd
 		where cs_master.cs_no = #{cs_no} -->
 		
-		<if test="proc_sts == 1">
+		<if test='proc_sts == "1"'>
+			select * 
+			from cs_master as cm, cmmn_cd as cmcd
+			where 1=1
+			and cm.cs_code = cmcd.item_cd
+			and cm.cs_no = #{cs_no} 
+		</if>
+		
+		<if test='proc_sts == "2"'>
 			select * 
 			from cs_master as cm, cmmn_cd as cmcd, cs_reply as cr
-		</if>
-		where 1=1 
-		
-		and cm.cs_code = cmcd.item_cd 
-		
-		and cm.cs_no = #{cs_no}
-		
-		and cr.cs_no = #{cs_no}
-		
+			where 1=1
+			and cm.cs_code = cmcd.item_cd
+			and cm.cs_no = #{cs_no}			
+			and cr.cs_no = #{cs_no}
+		</if>	
 		 
   	</select>
   	
+  	<update id="stsUpdate">
+  		update cs_master set proc_sts = #{proc_sts}, sts_dt = now()
+  		where cs_no = #{cs_no}
+  	</update>
   	
  	<insert id="csReply">
 	  	insert into cs_reply(cs_no, csre_con, proc_id) 
 	  	VALUES(#{cs_no}, #{csre_con}, #{proc_id})
     </insert>
+    
+    <update id="modifyReply">
+    	update cs_reply set csre_con=#{csre_con}, proc_dt= now() where cs_no = #{cs_no}
+    </update>
    
 </mapper>

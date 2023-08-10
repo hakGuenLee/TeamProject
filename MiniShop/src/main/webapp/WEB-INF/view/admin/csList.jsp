@@ -35,8 +35,10 @@
 						<th>제목</th>
 						<th>글쓴이ID</th>
 						<th>문의 일자(등록일)</th>
-						<th>처리자명</th>
+						<%-- <c:if test="${search_sts == '2'}"> --%>
+						<th>담당자명</th>
 						<th>처리일</th>
+						<%-- </c:if> --%> 
 						<th>상세</th>
 					</tr>
 				</thead>
@@ -49,20 +51,23 @@
 					<c:set var="cnt" value="0"/>
 					<c:if test="${csList!=null || csList.size() !=0}">
 					<c:set var="cnt" value="${cnt + 1}"/>
-					<!-- 	<script>
+						<script>
 							alert("${csList.size()}");						
-						</script> -->
+						</script>
 						<c:forEach var="dto" items="${csList}">
 						<tr>
 							<td>${dto.cs_no}</td>
 							<%-- <td>${item_nm}</td> --%>
 							<td>${dto.item_nm}</td>
-							<td>${dto.cs_title}</td>
+							<td>${dto.cs_ttl}</td>
 							<td>${dto.user_id}</td>
 							<td>${dto.cs_dt}</td>
-							<td>관리자</td>
-							<td>${dto.proc_dt}</td>
-							<td><a href="<c:url value="/customer/csInfo?cs_no=${dto.cs_no}&cs_code=${dto.cs_code}&proc_sts=${search_sts}"/>" class="btn btn-primary">상세</a></td>							
+							<%-- <c:if test="${search_sts != '1'}"> --%>
+								<td>${dto.proc_id}</td>
+								<%-- <td>${dto.proc_dt}</td> --%>
+								<td>${(null != dto.sts_dt) ? dto.sts_dt : ''}</td>
+							<%-- </c:if> --%> 
+							<td><a href="<c:url value="/customer/csInfo?cs_no=${dto.cs_no}&cs_code=${dto.cs_code}&proc_sts=${dto.proc_sts}"/>" class="btn btn-primary">상세</a></td>
 						
 						</tr>
 						</c:forEach>				
@@ -70,26 +75,26 @@
 				</tbody>
 			</table>
 </div>
-	
-		<div>
-		<ul class="pagination justify-content-center my-5">
-		<li class="page-item ${pageDTO.prevPage <= 0 ? 'disabled' : ''}">
-		<a class="page-link" href="<c:url value="/customer/csList?viewPage=${pageDTO.prevPage}&cntPerPage=${pageDTO.cntPerPage}"/>">이전</a>
-		</li>
-		
-		<c:forEach var="i" begin="${pageDTO.blockStart}" end="${pageDTO.blockEnd}">
-		<li class="page-item ${pageDTO.viewPage == i ? 'active' : ''}">
-		<a class="page-link"
-		href="<c:url value="/customer/csList?viewPage=${i}&cntPerPage=${pageDTO.cntPerPage}"/>">${i}</a>
-		</li>
-		</c:forEach>
-		
-		<li class="page-item ${pageDTO.blockEnd >= pageDTO.totalPage ? 'disabled' : ''}">
-		<a class="page-link" href="<c:url value="/customer/csList?viewPage?viewPage=${pageDTO.nextPage}&cntPerPage=${pageDTO.cntPerPage}"/>">다음</a>
-		</li>
-		</ul>
-		</div>
 
+<div>
+	<ul class="pagination justify-content-center my-5">
+		<li class="page-item ${pageDTO.prevPage <= 0 ? 'disabled' : ''}">
+			<a class="page-link" href="<c:url value="/customer/csList?viewPage=${pageDTO.prevPage}&cntPerPage=${pageDTO.cntPerPage}"/>">이전</a>
+		</li>
+	
+		<c:forEach var="i" begin="${pageDTO.blockStart}" end="${pageDTO.blockEnd}">
+			<li class="page-item ${pageDTO.viewPage == i ? 'active' : ''}">
+				<a class="page-link" href="<c:url value="/customer/csList?viewPage=${i}&cntPerPage=${pageDTO.cntPerPage}&cs_no=${dto.cs_no}&cs_code=${dto.cs_code}&proc_sts=${dto.proc_sts}"/>">${i}</a>
+			</li>
+		</c:forEach>
+	
+		<li class="page-item ${pageDTO.blockEnd >= pageDTO.totalPage ? 'disabled' : ''}">
+			<a class="page-link" href="<c:url value="/customer/csList?viewPage=${pageDTO.nextPage}&cntPerPage=${pageDTO.cntPerPage}"/>">다음</a>
+		</li>
+	</ul>
+</div>
+	
+					
 	<jsp:include page="../include/a_footer.jsp"/>
 	
 
