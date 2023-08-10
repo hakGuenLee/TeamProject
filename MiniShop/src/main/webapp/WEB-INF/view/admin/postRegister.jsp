@@ -19,7 +19,7 @@
 
 
 <form action="<c:url value="/post/postRegister"/>" method="post"
-enctype="multipart/form-data">
+enctype="multipart/form-data" onsubmit="return submitChk()">
 	<div class="container w-50 border shadow-sm p-5 my-5">
 			<h2>관리자 공지/팝업 등록</h2>
 				 <label for="sel1" class="form-label mt-3 mb-3 w-50">등록구분 ( 공지 / 팝업 ) </label>
@@ -28,13 +28,17 @@ enctype="multipart/form-data">
 			 </select>
 			<div class="d-flex">
 			<div class="form-floating mb-3 mt-3">
+			<input type="hidden" id="isTtlChk" value="no"/>
 				<input type="text" class="form-control" id="pst_ttl"
-					placeholder="제목" name="pst_ttl"> <label for="pst_ttl">제목</label>
+					placeholder="제목" name="pst_ttl"  onkeyup="ttlCheck()"> <label for="pst_ttl">제목</label>
+					<p id="chkMsg" class="mb-2"></p>
 			</div>
 
 			<div class="form-floating mt-3 mb-3">
+			<input type="hidden" id="isWrtChk" value="no"/>
 				<input type="text" class="form-control" id="wrt_id"
-					placeholder="담당자(글쓴이)" name="wrt_id"> <label for="wrt_id">담당자(글쓴이)</label>
+					placeholder="담당자(글쓴이)" name="wrt_id"  onkeyup="wrtCheck()"> <label for="wrt_id">담당자(글쓴이)</label>
+					<p id="chkMsg2" class="mb-2"></p>
 			</div>
 
 
@@ -58,14 +62,8 @@ enctype="multipart/form-data">
                <textarea id="pst_txt" name="pst_txt" class="mt-3" style="width:100%; Height:500px; display:none"></textarea>
                
                </div>
-               
-               
-
 
 		</div>
-
-		
-		
 
 			<button type="submit" class="btn btn-primary mt-3">승인요청</button>
 	</div>
@@ -206,6 +204,63 @@ enctype="multipart/form-data">
 		  btnTag.style.display="none";
 	}
 	
+	function submitChk(){
+
+	    let isTtlChk = $("#isTtlChk").val();
+	    let isWrtChk = $("#isWrtChk").val();
+
+	    if(isTtlChk=="no"){
+	        alert("제목을 2자 이상 입력해주세요.")
+	        $("#pst_ttl").select();            
+	        return false;
+	    }
+	     if(isWrtChk=="no"){
+	        alert("담당자 이름을 3자 이상 입력해주세요");
+	        $("#wrt_id").select();
+	        return false;
+	    } 
+	}//submitChk
+
+	function ttlCheck() {
+
+	    var pst_ttl = $('#pst_ttl').val();
+
+	    if(pst_ttl.length<2){
+	        $('#isTtlChk').val("no");
+	        $('#chkMsg').html("제목을 2자 이상 입력해주세요.")
+	        $('#chkMsg').css({"color":"red","font-size":"13px"});
+	        return;
+	    }
+	    if(pst_ttl.length>1){
+	        $('#isTtlChk').val("yes");
+	        $('#chkMsg').html("")
+	     //   $('#chkMsg').css({"color":"red","font-size":"13px"});
+	        return;
+	    }
+
+	}//funtion ttlCheck
+
+	function wrtCheck() {
+
+	    var wrt_id = $('#wrt_id').val();
+
+	    if(wrt_id.length<3){
+	        $('#isWrtChk').val("no");
+	        $('#chkMsg2').html("(3자이상)담당자 이름을 입력해주세요.")
+	        $('#chkMsg2').css({"color":"red","font-size":"13px"});
+	        return;
+	    }
+	    if(wrt_id.length>2){
+	        $('#isWrtChk').val("yes");
+	        $('#chkMsg2').html("")
+	     //   $('#chkMsg').css({"color":"red","font-size":"13px"});
+	        return;
+	    }
+
+	}//funtion conCheck
+	
+	// 등록구분을 val() 로 가져와서 if문으로 if 공지면 conChk()  
+	// if 팝업이면 popChk() 이런식으로 하면 될 듯?
 
 </script>
 <jsp:include page="../include/a_footer.jsp" />

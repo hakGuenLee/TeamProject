@@ -12,7 +12,7 @@ public class CartDTO {
 	private String user_id; //회원 계정
 	private String prod_no; //상품 번호
 	private String op_code; //옵션코드
-	private int qty; //수량
+	private String qty; //수량
 	private String buy_yn; //구매여부
 	private Date cart_dt; //장바구니 담긴 일시
 	private String prod_nm; //상품명

@@ -215,7 +215,7 @@ public class ProductServiceImpl implements ProductService {
 				}// 널일경우
 			}
 			
-			//서브이미지 1 수정 안했을 경우 원래꺼로
+			//서브이미지 2 수정 안했을 경우 원래꺼로
 			if(fileParamName.equals("sub_img2")) {
 				
 				mFile = mhr.getFile("sub_img2");
