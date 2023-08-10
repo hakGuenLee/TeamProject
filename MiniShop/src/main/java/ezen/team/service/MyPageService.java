@@ -48,9 +48,9 @@ public interface MyPageService {
 	List<CsDTO> getCsList(PageDTO pageDTO, HttpSession session);
 
 	//해당 번호에 맞는 주소지를 기본 배송지로 설정하기
-	void defaultAddressSetting(String addrNo, HttpServletRequest request);
+	void defaultAddressSetting(String addrNo, HttpSession session);
 
 	//해당 회원의 배송지 개수 확인하기
-	int countAddress(HttpServletRequest request);
+	int countAddress(HttpSession session);
 
 }

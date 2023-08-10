@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import ezen.team.domain.BoardDTO;
 import ezen.team.domain.CsDTO;
+import ezen.team.domain.PageDTO;
 
 //BoardServiceImple과 연결
 
@@ -15,11 +16,17 @@ public interface BoardMapper {
 	public void csInsert(CsDTO csDto);
 
 	//notice 모두 가져오기
-	public List<BoardDTO> getNoticeList();
+	public List<BoardDTO> getNoticeList(PageDTO pageDto);
 	
 	//해당번호에 맞는 공지 글 가져오기
 	public BoardDTO getNoticeInfo(String no);
 
 	public CsDTO csInfo(String cs_no);
+
+	//Notice 총 개수 구하기
+	public int getNoticeTotalCnt(PageDTO pageDto);
+
+	//해당번호의 공지글 1 추가
+	public void addNoticeHit(String no);
 
 }

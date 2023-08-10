@@ -114,7 +114,7 @@
                <td>
 				 <div id="div-file">
   				<input type="file" class="form-control form-control-sm w-50" 
-               name="main_img" onchange="preViewImg(this)"/>
+               name="sub_img2" onchange="preViewImg(this)"/>
              <img id="img-tag" /><button id="btn-chk" type="button" class="btn-close border bg-danger" style="display:none; position:relative; left:-24px; top:-30px;" onclick="delInput(this)"></button>
              
                   </div>

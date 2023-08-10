@@ -20,7 +20,7 @@
    </div>
    
    <input class="form-control" type="text" id="cs_tte" name="cs_ttl" placeholder="제목을 입력하세요" autofocus>      
-   
+    <p id="chkMsg" class="mb-5"></p>
    <textarea class="form-control mt-2" name="cs_con" id="cs_con" rows="5" cols="33" placeholder="내용을 입력하세요"></textarea>
    
    <input class="form-control mt-2" type="hidden" id="user_id" name="user_id" readonly value="${user_id}">
@@ -62,9 +62,13 @@ $(document).ready(function(){
 });
 
 });
+</script>
 
+
+<script>
 
 </script>
+
 
 <jsp:include page="../include/footer.jsp"/>
 	

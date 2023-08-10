@@ -35,7 +35,7 @@
 				<tbody>
 				<c:forEach items="${list}" var="dto">				
 					<tr>
-						<td><input type="checkbox" name="checkBox" onclick="checkOne(this)" value="${dto.addr_no}"></td>
+						<td><input id="addr" type="checkbox" name="checkBox" onclick="checkOne(this)" value="${dto.addr_no}"></td>
 						<td>${dto.addr_no}</td>										
 						<td>${dto.addr_gb}</td>
 						<td>${dto.addr}</td>
@@ -56,7 +56,7 @@
 				<button class="btn btn-primary" onclick="addressUpdate()">기본 배송지로 설정</button>
 				</div>
 				<div>
-				<a href="/myPage/myAddressInput" class="btn btn-warning" style="margin-left:20px">배송지 추가하기</a>
+				<a href="/myPage/myAddressInput" id="addAdressBtn" class="btn btn-warning" style="margin-left:20px">배송지 추가하기</a>
 				</div>
 				<div>
 				<p style="color:gray; font-size:15px; margin-left:10px">배송지는 3개 이상 등록할 수 없습니다.</p>
@@ -66,6 +66,19 @@
 
 
 <script>
+let address = $("#addr").val();
+
+//배송지가 3개 등록되어 있을 시 배송지 추가 기능 막기
+$("#addAdressBtn").on("click", function(){
+		
+	if(address == 3){
+		console.log("3개!")
+		alert("배송지기 이미 3건 등록 되어 있습니다!");
+		$("#addAdressBtn").attr("href","");
+	}	
+})
+
+
 
 function checkOne(element){
 

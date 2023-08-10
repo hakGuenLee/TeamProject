@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ezen.team.domain.BoardDTO;
 import ezen.team.domain.CsDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.domain.UserDTO;
 import ezen.team.service.BoardService;
 
@@ -34,9 +35,9 @@ public class BoardController {
 	
 	//Notice 페이지 이동(게시글)
 	@GetMapping("/noticePage")
-	public String notice(Model model) {
+	public String notice(PageDTO pagedto, Model model) {
 		
-		List<BoardDTO> list = boardService.getNoticeList();
+		List<BoardDTO> list = boardService.getNoticeList(pagedto);
 		
 		model.addAttribute("list", list);
 		
@@ -99,13 +100,7 @@ public class BoardController {
 	
 	
 	
-	//상품 문의 이동
-	@GetMapping("/prodQuestion")
-	public String prodQuestion() {
-		
-		return "/user/prodQuestion";
-	}
-	
+
 
 	
 	

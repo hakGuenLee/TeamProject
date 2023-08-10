@@ -22,18 +22,18 @@
       <div class="form-group">
          <label for="subject">제목</label>
          <input type="text" class="form-control" id="subject" value=${board.pst_ttl }
-            name="subject" disabled/>
+            name="subject" readonly/>
       </div>
 
       <div class="form-group">
          <label for="contents">내용</label>
          <textarea class="form-control" id="contents"
-            name="contents" rows="4" disabled>${board.pst_txt }</textarea>
+            name="contents" rows="4" readonly>${board.pst_txt }</textarea>
       </div>
       <div class="form-group">
          <label for="writer">글쓴이</label>
          <input type="text" class="form-control" id="writer"  value=${board.wrt_id }
-            name="writer" disabled/>
+            name="writer" readonly/>
       </div>
       <div class="form-group mt-4">
          <a href="/board/noticePage" type="button" id="btn-list" class="btn btn-primary">Notice 돌아가기</a>

@@ -55,9 +55,14 @@ public class UserController {
 	}
 	// 유저 로그인 처리
 	@PostMapping("/userLogin") //RedirectAttributes 는 Redirect 시에도 정보를 넘겨준다
-	public String userLogin( HttpServletRequest rq, RedirectAttributes rd) {
+	public String userLogin( HttpServletRequest rq, RedirectAttributes rd, HttpSession session) {
 		
 	boolean result = userService.userLogin(rq);
+	
+	
+	String prev_url = (String)session.getAttribute("prev_url");
+	System.out.println("넘어온 경로 : " + prev_url);
+	
 		
 	// result = 회원정보가 있으면 참 , 없으면 거짓
 	if(!result) {// 회원정보가 없으면
@@ -66,7 +71,7 @@ public class UserController {
 		return "redirect:/user/userLogin";
 	}
 	
-		return"redirect:/";
+		return "redirect:"+prev_url;
 	}
 	
 	// 카카오 로그인 처리

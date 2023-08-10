@@ -6,6 +6,7 @@
 
 <jsp:include page="../include/header.jsp" />
 
+
 <div class="container w-50 border shodow p-5 mt-5">
 	
 			<p>id(회원명 : 이학근) 회원 님의 등급은 짱 등급입니다.</p>
@@ -66,7 +67,6 @@
 		</div>
 	</div>
 </div>
-
 
 <div class="container w-50 mt-5">
 	<h3>

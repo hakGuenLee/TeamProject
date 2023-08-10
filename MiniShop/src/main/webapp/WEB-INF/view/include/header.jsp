@@ -73,7 +73,6 @@
             <li><a class="nav-link" href="<c:url value="/board/noticePage"/>">Notice</a></li>
             <li><a class="nav-link" href="<c:url value="/board/faqPage"/>">FAQ</a></li>
             <li><a class="nav-link" href="<c:url value="/board/question"/>">1:1 문의하기</a></li>
-            <li><a class="nav-link" href="<c:url value="/board/prodQuestion"/>">상품문의</a></li>
           </ul>
         </li>
     
@@ -87,7 +86,7 @@
             <li><a class="nav-link" href="<c:url value="/myPage/myPagehome"/>">나의 주문/배송조회</a></li>
             <li><a class="nav-link" href="<c:url value="/myPage/myPagePoint"/>">나의 적립금</a></li>
             <li><a class="nav-link" href="<c:url value="/myPage/myPageQuestion"/>">나의 1:1문의</a></li>
-            <li><a class="nav-link" href="<c:url value="/myPage/myPageProdQna"/>">나의 상품문의</a></li>
+            <li><a class="nav-link" href="<c:url value="/userQna/myPageProdQna"/>">나의 상품문의</a></li>
           </ul>
         </li>
          <li>

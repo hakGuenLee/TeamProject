@@ -101,11 +101,11 @@ public class MyPageController {
 	
 	//배송지 추가 등록 처리
 	@PostMapping("/myAddressInput")
-	public String inputNewAddress(AddrDTO aDto, HttpServletRequest request) {
+	public String inputNewAddress(AddrDTO aDto, HttpSession session) {
 		
-		String str = "";
+//		String str = "";
 		//배송지가 3개 이상인지 먼저 확인하기
-		int addressNum = service.countAddress(request);
+		int addressNum = service.countAddress(session);
 		
 		//배송지가 3개면 등록 x
 		if(addressNum == 3) {
@@ -154,14 +154,11 @@ public class MyPageController {
 	//기본 배송지 선택하기
 	@PostMapping("/defaultAddress")
 	@ResponseBody
-	public String defaultAddress(@RequestParam("no") String addrNo, HttpServletRequest request) {
-		service.defaultAddressSetting(addrNo, request);
+	public String defaultAddress(@RequestParam("no") String addrNo, HttpSession session) {
+		service.defaultAddressSetting(addrNo, session);
 		
 		return "redirect:myAddress";
 	}
-	
-	
-	
 
 	@GetMapping("/myPagePoint")
 	public String myPagePoint() {

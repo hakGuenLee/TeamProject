@@ -15,10 +15,9 @@ select * from cmmn_cd where cm_cd = #{code}
 select * from  ctgry_mng where ct_cd1 = #{catCode}
 </select>
 
-<!--해당 카테고리 번호에 맞는 상품 리스트 가져오기 -->
-<select id="getProdBox" resultType="hashmap">
-select * from prod_master where ctgry_no = #{ctNo}
+<!-- 팝업 이미지 가져오기 -->
+<select id="getPopImg" resultType="hashmap">
+select * from post_mng where pst_gb = #{popNum}
 </select>
-
 
 </mapper>

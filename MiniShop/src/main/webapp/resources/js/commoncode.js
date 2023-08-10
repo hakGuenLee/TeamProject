@@ -105,6 +105,7 @@
 		 url:"/order/getAddressInfo",
 		 type:"post",
 		 data:{"nickname" : a},
+		 dataType : "json",
 		 success:(result) => {
 				if(cb) cb(result);
 			},
@@ -129,34 +130,29 @@ function getDefAddress(a, cb){
 			},
 		error: function(request, status, error){
 			alert("error code : " + request.status + "\n" + "message:" + request.responseText+"\n"+"error:"+error);
-			console.log("실패!")
-			
+			console.log("실패!")			
 		}	  
 	})
 	
 	}
+	
+function PopImageGetter(a, cb){
+	$.ajax({
+		url: "/getPopImg",
+		type: "post",
+		data: {"popNum" : a},
+		success:(result) => {
+			if(cb) cb(result);
+		},
+		error: function(request, status, error){
+			alert("error code : " + request.status + "\n" + "message:" + request.responseText+"\n"+"error:"+error);
+			console.log("실패!")			
+		}
+		
+	})
+
+	
+}	
  
- 
-/*  function getVegeBox(a, cb){
-	  	  var token = $("meta[name='_csrf'").attr("content");
-	 var header = $("meta[name='_csrf_header']").attr("content");
-	 
-	 
-	 $.ajax({
-		 url:"/getVegeBox",
-		 		 	 	beforeSend: function(xhr){
-				xhr.setRequestHeader(header, token);
-			},
-		 type:"post",
-		 data:{"codeNum" : a},
-		 dataType : "json",
-		 success: (result) =>{
-			 if(cb) cb(result);
-		 },
-		 error: function(){alert("error")}
-		 
-	 });
-	 
-	 
- }*/
+
  

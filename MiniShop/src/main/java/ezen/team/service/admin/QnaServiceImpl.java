@@ -25,11 +25,7 @@ public class QnaServiceImpl implements QnaService {
 		
 		pagedto.setValue(totalCnt, pagedto.getCntPerPage());    
 		
-		List<QnaDTO> QList = mapper.qnaList(pagedto);
-		
-		System.out.println("서비스임플"+ QList);
-		
-		return QList;
+		return mapper.qnaList(pagedto);
 	}
 
 }
