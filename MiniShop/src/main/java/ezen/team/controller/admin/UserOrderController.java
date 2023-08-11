@@ -23,7 +23,7 @@ import ezen.team.service.admin.UserOrderService;
  */
 
 @Controller
-@RequestMapping("/order")
+@RequestMapping("/orderManager")
 public class UserOrderController {
 	@Autowired
 	private UserOrderService userOrderService;

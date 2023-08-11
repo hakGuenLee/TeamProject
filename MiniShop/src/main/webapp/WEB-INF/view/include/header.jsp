@@ -9,12 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <%--  	<meta name="_csrf_header" content="${_csrf.headerName}">
 	<meta name="_csrf" content="${_csrf.token}">  --%>
+	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="<c:url value="/resources/js/commoncode.js"/>"></script>
      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <script src="<c:url value="/resources/js/zipcode.js"/>"></script>
+   
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">   
 <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">   
@@ -93,7 +95,7 @@ alert('위시리스트에 이미 있는 상품입니다.')
 	            <li><a class="nav-link" href="<c:url value="/myPage/myInfoUpdate"/>" >내 정보수정</a>
 	            <li><a class="nav-link" href="<c:url value="/cart/wishList"/>">나의 위시리스트</a></li>
 	            <li><a class="nav-link" href="<c:url value="/myPage/myAddress"/>">나의 배송지 관리</a></li>
-	            <li><a class="nav-link" href="<c:url value="/myPage/myPagehome"/>">나의 주문/배송조회</a></li>
+	            <li><a class="nav-link" href="<c:url value="/myPage/myPagehome"/>">나의 주문 내역</a></li>
 	            <li><a class="nav-link" href="<c:url value="/myPage/myPagePoint"/>">나의 적립금</a></li>
 	            <li><a class="nav-link" href="<c:url value="/myPage/myPageQuestion"/>">나의 1:1문의</a></li>
 	            <li><a class="nav-link" href="<c:url value="/userQna/myPageProdQna"/>">나의 상품문의</a></li>

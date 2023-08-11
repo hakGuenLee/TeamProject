@@ -8,7 +8,7 @@
 
 	<div class="container w-50 mt-5">
 	<form action="<c:url value="/category/catUpdate"/>" method="post">
-		<h3><b>카테고리 등록</b></h3>
+		<h3><b>카테고리 수정</b></h3>
 		<div class="mt-5">
 			<!-- 어떤 카테고리를 수정할지 알아야 하기에 카테고리 번호를 히든으로 넘김 -->
 			<input type="hidden" name="ctgry_no" value="${cdto.ctgry_no}" >
@@ -33,7 +33,3 @@
 	</div>				
 					
 	<jsp:include page="../include/a_footer.jsp"/>
-	
-	
-</body>
-</html>

@@ -25,13 +25,12 @@ public class HomeController {
 	public String home() {
 		return "home";
 	}
-	
+
 	//관리자 메인 페이지 이동
 	@GetMapping("/adminHome")
 	public String adminHome() {
-			
-		return "/admin/adminHome";
+				
+	return "/admin/adminHome";
 	}
-	
 	
 }

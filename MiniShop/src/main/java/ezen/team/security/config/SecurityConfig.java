@@ -84,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 			.authorizeRequests()
 
-			.antMatchers("/", "/adminLogin", "/cart/**", "/user/**", "/getProdCategoryList", "/productPage/**", "/myPage/**", "/prodDetail/**","/order/**", 
+			.antMatchers("/", "/adminLogin", "/adminHome", "/cart/**", "/user/**", "/getProdCategoryList", "/productPage/**", "/myPage/**", "/prodDetail/**","/order/**", 
 					"/getCode", "/getPopImg", "/board/**","/userQna/**").permitAll()
 			.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
 			.anyRequest().authenticated()
@@ -93,7 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()   //formlogin방식 적용
 			.loginPage("/adminLogin")
 			.loginProcessingUrl("/login") //로그인 처리 URL
-			.defaultSuccessUrl("/admin/adminHome") //로그인 성공 시 URL
+			.defaultSuccessUrl("/adminHome") //로그인 성공 시 URL
 			.usernameParameter("username")
 			.authenticationDetailsSource(formAuthenticationDetailsSource)
 			.failureHandler(customAuthenticationFailureHandler) //로그인 실패 시 처리하는 Handler

@@ -24,7 +24,7 @@ body, ul, li {
 	transition: 1s;
 }
 
-.navbar > ul > li:hover > ul {
+.navbar  ul  li:hover > ul {
 	display:block;
 	height: 130px;
 	

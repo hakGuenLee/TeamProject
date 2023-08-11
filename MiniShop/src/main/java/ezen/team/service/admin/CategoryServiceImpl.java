@@ -16,13 +16,14 @@ public class CategoryServiceImpl implements CategoryService {
 	CategoryMapper mapper;
 	
 	//카테고리 리스트 가져오기(페이지 네이션 적용)
-	   @Override
-	   public List<CategoryDTO> catList(PageDTO pagedto) {
+	 @Override
+	 public List<CategoryDTO> catList(PageDTO pagedto) {
 	      
-			int totalCnt = mapper.totalCnt(pagedto);
+		int totalCnt = mapper.totalCnt(pagedto);
 			
-			pagedto.setValue(totalCnt, pagedto.getCntPerPage());    	      
-	      return mapper.catList(pagedto);
+		pagedto.setValue(totalCnt, pagedto.getCntPerPage());    	      
+	    
+		return mapper.catList(pagedto);
 	   }
 	   
 	//카테고리 등록
@@ -51,6 +52,13 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<CategoryDTO> cateList() {
 
 		return mapper.cateList();
+	}
+
+	//카테고리 삭제
+	@Override
+	public void deleteCategory(String no) {
+		
+		mapper.deleteCategory(no);		
 	}
 
 

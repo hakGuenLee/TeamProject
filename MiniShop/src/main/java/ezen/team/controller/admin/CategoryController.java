@@ -74,7 +74,17 @@ public class CategoryController {
 	   
 	  categoryService.catUpdate(cdto);
 	   
-	   return"redirect:/category/catList";
+	   return "redirect:/category/catList";
+   }
+   
+   //카테고리 삭제 처리 (삭제는 최고관리자만 할 수 있도록 view에서 설정)
+   @GetMapping("/catDelete")
+   public String catDelete(@RequestParam("no")String no) {
+	   
+	   categoryService.deleteCategory(no);
+	   
+	   return "redirect:/category/catList";
+	   
    }
    
 

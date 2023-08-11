@@ -5,7 +5,7 @@
 <jsp:include page="../include/a_header.jsp"/>
 
 		<div class="container mt-5 border shadow p-5">
-				<h3><b>관리자 로그인</b></h3>
+				<h3 style="text-align:center"><b>관리자 로그인</b></h3>
 				
 				<c:if test = "${param.error}">
 					<span class="text-danger">${exception}</span>

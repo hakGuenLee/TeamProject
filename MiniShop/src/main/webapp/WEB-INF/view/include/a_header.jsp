@@ -25,10 +25,14 @@
 <header class="top-bar con-min-width">
   <div class="con">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-       <ul class="navbar-nav">
+       <ul class="navbar-nav w-100">
+       <div class="d-flex w-100 justify-content-around">
+       	<div>
          <li class="nav-item">
           <a class="nav-link active" href="<c:url value="/admin/adminHome"/>">관리자 홈</a>
         </li>
+        </div>
+        <div class="d-flex">
         <li>
           <a class="nav-link active" href="#">관리자관리</a>
           <ul>
@@ -66,8 +70,8 @@
          <li>
           <a class="nav-link active" href="#">주문/배송 관리</a>
           <ul>
-           <li><a class="nav-link" href="<c:url value="/order/AllOrder"/>">회원 주문/배송 리스트</a></li>
-            <li><a class="nav-link" href="<c:url value="/order/orderList"/>">회원 주문/배송조회</a></li>
+           <li><a class="nav-link" href="<c:url value="/orderManager/AllOrder"/>">회원 주문/배송 리스트</a></li>
+            <li><a class="nav-link" href="<c:url value="/orderManager/orderList"/>">회원 주문/배송조회</a></li>
           </ul>
         </li>
          <li>
@@ -77,12 +81,21 @@
             <li><a class="nav-link" href="<c:url value="/QnA/qnaList"/>">상품 문의 처리</a></li>
           </ul>
         </li>
+        </div>
+        <div class="d-flex">
+        <c:if test="${SPRING_SECURITY_CONTEXT == null}">
            <li sec:authorize="isAnonymous()">
           <a class="nav-link active" href="<c:url value="/adminLogin"/>">로그인</a>
         </li>
+        </c:if>
+         <c:if test="${SPRING_SECURITY_CONTEXT != null}">
+         <p class="nav-link active"><sec:authentication property="principal"/>님 접속 중</p>
          <li sec:authorize="isAuthenticated()">
           <a class="nav-link active" href="<c:url value="/adminLogout"/>">로그아웃</a>
         </li>
+        </c:if>
+        </div>
+        </div>
       </ul>
     </nav>
   </div>

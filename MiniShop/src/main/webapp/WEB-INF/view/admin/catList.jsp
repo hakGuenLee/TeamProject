@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>  
 
 <!-- 카테고리 리스트 -->
 
 <jsp:include page="../include/a_header.jsp"/>
 		<div class="container w-75 mt-5">
 			<h3><b>카테고리 리스트</b></h3>
-			<table class="table mt-3">
+			<table class="table mt-5">
 				<thead class="table-secondary">
 					<tr>
 						<th>No.</th>					
@@ -21,6 +22,9 @@
 						<th>관리자ID</th>
 						<th>등록일</th>
 						<th>수정</th>
+						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+						<th>삭제</th>
+						</sec:authorize>
 					</tr>
 				</thead>
 				<tbody>				
@@ -36,8 +40,10 @@
 							<td>${cdto.use_yn}</td>
 							<td>${cdto.proc_id}</td>
 							<td>${cdto.proc_dt}</td>
-							<td><a href="<c:url value="/category/catUpdate?no=${cdto.ctgry_no}"/>" class="btn btn-primary btn-sm">수정</a></td>
-
+							<td><a href="<c:url value="/category/catUpdate?no=${cdto.ctgry_no}"/>" class="btn btn-outline-primary btn-sm">수정</a></td>
+							<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+							<td><a href="<c:url value="/category/catDelete?no=${cdto.ctgry_no}"/>" class="btn btn-outline-danger btn-sm">삭제</a></td>
+							</sec:authorize>
 						</tr>
 						</c:forEach>
 				</tbody>

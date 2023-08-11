@@ -14,10 +14,7 @@
 		ORDER BY ctgry_no DESC
 		LIMIT #{startIndex},
 		#{cntPerPage}
-	</select>
-	
-	
-	
+	</select>	
 
 	<!-- 페이징 처리를 위한 총 갯수 가져오기 -->
 	<select id="totalCnt" resultType="Integer">
@@ -55,7 +52,10 @@
 		WHERE ctgry_no = #{ctgry_no}
 	</update>
 
-
+	<!-- 카테고리 삭제 처리 -->
+	<delete id="deleteCategory">
+		delete from ctgry_mng where ctgry_no = #{no}
+	</delete>
 
 
 </mapper>

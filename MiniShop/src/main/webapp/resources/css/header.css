@@ -1,9 +1,10 @@
 /* 폰트 시작 */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 
 body{
-	font-family: 'NotoSans',sans-serif;	
+	font-family: 'Noto Sans KR', sans-serif;
+
 }
 
 body, ul, li {
@@ -22,14 +23,9 @@ header{
 	font-size: 25px;
 }
 
-/*#topdiv{
-	display:flex;
-	justify-content: space-around;
-	
-}
-*/
 .navbar{
 	width: 100%;
+	transition: 3s;
 }
 
 
@@ -39,15 +35,26 @@ header{
 
 }
 
+#menuName > ul > li a{
+	font-size: 15px;
+}
+
 #menuBar  li{
-	width: 100px;
+	width: 80px;
 }
 
 
 .myPage{
-	width:120px;
+	width:140px;
 } 
 
+.myPage > ul > li a{
+	font-size: 15px;
+}
+
+.navbar > ul {
+	position: relative;
+}
 
 .navbar > ul  ul{
 	display: none;
@@ -58,20 +65,15 @@ header{
 	
 }
 
-
-/*.navbar > ul li{
-	width: 120px;
-}*/
-
-
-.navbar  ul  li:hover > ul {
+.navbar  ul  li:hover ul {
 	display:block;
-	height: 350px;	
-	
+	height: 350px;		
 }
+
 
 .navbar ul li :hover{
 	color:#ffad94;
+
 }
 
 
@@ -85,24 +87,3 @@ header{
 }
 
 
-
-
-
-
-
-
-
-
-/*img {
-	height:700px;
-	width:100%;
-}*/
-
-/*#fruit{
-	padding-left:600px;
-	
-}*/
-
-/*#UserArea{
-	padding-left:300px;
-}*/

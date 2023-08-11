@@ -23,5 +23,8 @@ public interface CategoryService {
 
 	//카테고리 수정
 	void catUpdate(CategoryDTO cdto);
+
+	//카테고리 삭제
+	void deleteCategory(String no);
 	
 }

@@ -5,15 +5,12 @@
 
 
 <jsp:include page="../include/a_header.jsp"/>
-
-<p><sec:authentication property="principal"/></p>
-
-<p>${SPRING_SECURITY_CONTEXT}</p>
 					
 	<div class="container">
 		<div class="container-fluid mt-3" >
 		  <br>
 		   <h2>관리자 페이지</h2>
+		   <p><sec:authentication property="principal"/>님, 관리자 페이지에 오신 것을 환영합니다.</p>
 <ul>
       <li class="nav-item">
         <a class="nav-link active" href="<c:url value="/admin/adminHome"/>">관리자 홈</a>

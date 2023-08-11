@@ -36,12 +36,7 @@ public class AdminController {
 	@Autowired
 	private AdminService adminservice;
 	
-	//관리자 메인 페이지 이동
-	@GetMapping("/adminHome")
-	public String adminHome() {
-			
-		return "/admin/adminHome";
-	}
+	
 
 	
 	//관리자 등록 페이지 이동
