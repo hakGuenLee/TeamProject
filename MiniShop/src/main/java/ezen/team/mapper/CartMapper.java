@@ -43,4 +43,7 @@ public interface CartMapper {
 	// 찜바구니 유무 체크
 	WishDTO checkWish(String id, String no);
 
+	// 상세보기에서 바로 구매하기
+	void buyCart(CartDTO cartDTO, String id);
+
 }

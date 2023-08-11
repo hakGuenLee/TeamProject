@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CartDTO;
 import ezen.team.domain.OrderDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.domain.UserDTO;
 
 //OrderServiceImpl과 연결
@@ -41,6 +42,12 @@ public interface OrderMapper {
 	
 	//기본주소 가져오기
 	AddrDTO getDefaultAddr(String id, String addrName);
+
+	List<OrderDTO> dateSearch(PageDTO pageDTO, String user_id, String stt_ymd, String end_ymd);
+
+	int getCount(String user_id, String stt_ymd, String end_ymd);
+
+	void userPoint(UserDTO user, int point);
 	
 	
 

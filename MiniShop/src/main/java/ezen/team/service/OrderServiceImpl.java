@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CartDTO;
 import ezen.team.domain.OrderDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.domain.UserDTO;
 import ezen.team.domain.UserInfoHandler;
 import ezen.team.mapper.OrderMapper;
@@ -56,7 +57,7 @@ public class OrderServiceImpl implements OrderService {
 	// 주문 후 결제를 하게 되면 주문마스터, 주문디테일에 정보를 넣어주고
 	// 카트에서 정보를 지워준다
 	@Override
-	public String orderRegister(List<CartDTO> list, UserDTO user) {
+	public String orderRegister(List<CartDTO> list, UserDTO user, int point) {
 		
 //		String orderNo = Random
 		
@@ -80,8 +81,13 @@ public class OrderServiceImpl implements OrderService {
 		// 오더디테일에 주문 넣기
 		mapper.orderRegister(list,order_no);
 		
+		// 유저테이블에 포인트 넣어주기
+		mapper.userPoint(user, point);
+		
 		//카트에서 주문 지우기
 		mapper.DeleteOrder(list);
+		
+		
 		
 		return order_no;
 	}
@@ -126,6 +132,20 @@ public class OrderServiceImpl implements OrderService {
 		String id = userInfoHandler.getUserId(session);
 
 		return mapper.getDefaultAddr(id, addrName);
+	}
+
+	// 주문내역 조회에서 날짜로 조회하기
+	@Override
+	public List<OrderDTO> dateSearch(PageDTO pageDTO, HttpSession session, String stt_ymd, String end_ymd) {
+		
+		String user_id = userInfoHandler.getUserId(session);		
+		
+		int totalCnt = mapper.getCount(user_id, stt_ymd, end_ymd);
+		pageDTO.setCntPerPage(5);
+		pageDTO.setValue(totalCnt, pageDTO.getCntPerPage());
+		
+		
+		return mapper.dateSearch(pageDTO, user_id, stt_ymd, end_ymd);
 	}
 
 

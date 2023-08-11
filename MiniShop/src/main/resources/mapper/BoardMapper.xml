@@ -30,13 +30,36 @@
 	<!-- 1:1문의 등록 -->
 	<insert id="csInsert" parameterType="csDTO">
 		INSERT INTO cs_master(user_id, cs_code, cs_dt, cs_ttl, cs_con)
-		VALUES(#{user_id},#{cs_code}, now(), #{cs_ttl},#{cs_con}) 
+		VALUES(#{user_id}, #{cs_code}, now(), #{cs_ttl}, #{cs_con}) 
 	</insert>
 
 	<select id="csInfo" resultType="CsDTO">
 	SELECT * FROM cs_master
 	WHERE cs_no = #{cs_no}
 	</select>	
+	
+	<!-- 1:1문의 기간별 조회하기  -->
+<select id="dateSearch" resultType="CsDTO">
+    SELECT * FROM cs_master
+        WHERE user_id = #{user_id}
+        <![CDATA[
+        AND cs_dt >= DATE_FORMAT(#{stt_ymd}, '%Y%m%d')
+        AND cs_dt < DATE_ADD(DATE_FORMAT(#{end_ymd}, '%Y%m%d'),INTERVAL +1 DAY)
+      ]]>
+      ORDER BY
+cs_no DESC
+LIMIT #{pageDTO.startIndex}, #{pageDTO.cntPerPage}
+</select>
+
+<!-- 날짜별로 검색해서 가져온 리스트 개수 세기  -->
+<select id="getCount" resultType="Integer">
+SELECT count(*) FROM cs_master
+WHERE user_id = #{user_id}
+<![CDATA[
+AND cs_dt >= DATE_FORMAT(#{stt_ymd}, '%Y%m%d')
+AND cs_dt < DATE_ADD(DATE_FORMAT(#{end_ymd}, '%Y%m%d'),INTERVAL +1 DAY)
+]]>
+</select>
 	
 
 </mapper>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import ezen.team.domain.OrderDTO;
 import ezen.team.domain.PageDTO;
 import ezen.team.domain.QnaDTO;
 
@@ -16,5 +17,7 @@ public interface UserQnAService {
 	QnaDTO QnaInfo(String qna_no);
 
 	int QnaCount(HttpSession session);
+
+	List<QnaDTO> dateSearch(PageDTO pageDTO, HttpSession session, String stt_ymd, String end_ymd);
 
 }

@@ -28,9 +28,6 @@ qna_no DESC
 LIMIT #{pageDTO.startIndex}, #{pageDTO.cntPerPage}
 </select>
 
-
-
-
 <!-- 상품문의 상세보기  -->
 <select id="QnaInfo" resultType="QnaDTO">
 SELECT * FROM qna_master
@@ -38,6 +35,27 @@ WHERE
 qna_no = #{qna_no}
 </select>
 
+<!-- 주문 조회에서 날짜별로 조회하기  -->
+<select id="dateSearch" resultType="QnaDTO">
+    SELECT * FROM qna_master
+        WHERE user_id = #{user_id}
+        <![CDATA[
+        AND qna_dt >= DATE_FORMAT(#{stt_ymd}, '%Y%m%d')
+        AND qna_dt < DATE_ADD(DATE_FORMAT(#{end_ymd}, '%Y%m%d'),INTERVAL +1 DAY)
+      ]]>
+      ORDER BY
+qna_no DESC
+LIMIT #{pageDTO.startIndex}, #{pageDTO.cntPerPage}
+</select>
 
+<!-- 날짜별로 검색해서 가져온 리스트 개수 세기  -->
+<select id="getCount" resultType="Integer">
+SELECT count(*) FROM qna_master
+WHERE user_id = #{user_id}
+<![CDATA[
+AND qna_dt >= DATE_FORMAT(#{stt_ymd}, '%Y%m%d')
+AND qna_dt < DATE_ADD(DATE_FORMAT(#{end_ymd}, '%Y%m%d'),INTERVAL +1 DAY)
+]]>
+</select>
 
 </mapper>

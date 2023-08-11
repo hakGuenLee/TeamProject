@@ -14,41 +14,82 @@
 			<div class="form-floating mb-3 mt-3">
 				<p class="me-3">조회기간</p>
 			</div>
-			<div class="form-floating mb-3 mt-3">
-				<button class="form-control" style="width: 60px;">오늘</button>
-			</div>
 
-			<div class="form-floating mt-3 mb-3">
-				<button class="form-control" style="width: 60px;">1주</button>
-
+					<form action="<c:url value="/board/dateSearch"/>"  method="post">
+			<div class="d-flex">
+				<div class="d-flex form-floating mt-3 mb-3">
+					<input class="form-control mb-2" type="hidden" id="stt_ymd1d"
+						name="stt_ymd"  />
+					<input class="form-control mb-2" type="hidden" id="end_ymd1d"
+						name="end_ymd" />
+				</div>
+				<div class="form-floating mt-3 mb-3">
+			<button type="submit" class="form-control" style="width: 60px;">오늘</button>
+				</div>
 			</div>
-			<div class="form-floating mt-3 mb-3">
-				<button class="form-control" style="width: 60px;">1달</button>
-
+		</form>
+					<form action="<c:url value="/board/dateSearch"/>"  method="post">
+			<div class="d-flex">
+				<div class="d-flex form-floating mt-3 mb-3">
+					<input class="form-control mb-2" type="hidden" id="stt_ymd1w"
+						name="stt_ymd"  />
+					<input class="form-control mb-2" type="hidden" id="end_ymd1w"
+						name="end_ymd" />
+				</div>
+				<div class="form-floating mt-3 mb-3">
+			<button type="submit" class="form-control" style="width: 60px;">1주</button>
+				</div>
 			</div>
-			<div class="form-floating mt-3 mb-3 me-5">
-				<button class="form-control" style="width: 60px;">3달</button>
+		</form>
+					<form action="<c:url value="/board/dateSearch"/>"  method="post">
+			<div class="d-flex">
+				<div class="d-flex form-floating mt-3 mb-3">
+					<input class="form-control mb-2" type="hidden" id="stt_ymd1m"
+						name="stt_ymd"  />
+					<input class="form-control mb-2" type="hidden" id="end_ymd1m"
+						name="end_ymd" />
+				</div>
+				<div class="form-floating mt-3 mb-3">
+			<button type="submit" class="form-control" style="width: 60px;">1달</button>
+				</div>
 			</div>
+		</form>
+					<form action="<c:url value="/board/dateSearch"/>"  method="post">
+			<div class="d-flex">
+				<div class="d-flex form-floating mt-3 mb-3">
+					<input class="form-control mb-2" type="hidden" id="stt_ymd3m"
+						name="stt_ymd"  />
+					<input class="form-control mb-2" type="hidden" id="end_ymd3m"
+						name="end_ymd" />
+				</div>
+				<div class="form-floating mt-3 mb-3">
+			<button type="submit" class="form-control" style="width: 60px;">3달</button>
+				</div>
+			</div>
+		</form>
+	
 		</div>
 
-		<div class="d-flex">
-			<div class="form-floating mt-3 mb-3 me-3">
-				<input class="form-control mb-2" type="date" id="strt_ymd"
-					name="strt_ymd" min="now()" max="9999-12-31"
-					data-placeholder="검색기간(시작일)" required />
-				<!-- 수정할것  -->
+		<form action="<c:url value="/board/dateSearch"/>"  method="post">
+			<div class="d-flex">
+				<div class="d-flex form-floating mt-3 mb-3 me-3">
+					<input class="form-control mb-2" type="date" id="stt_ymd"
+						name="stt_ymd" max="9999-12-31"
+						data-placeholder="검색기간(시작일)" required />
+					<!-- 수정할것  -->
+				 <b class="mt-3 p-2"> ~</b>
+					<input class="form-control mb-2" type="date" id="end_ymd"
+						name="end_ymd" max="9999-12-31"
+						data-placeholder="검색기간(종료일)" required />
+					<!-- 수정할것  -->
+				</div>
+				<div class="form-floating mt-3 mb-3">
+					<button type="submit" class="btn btn-success btn-sm btn-outline">검색</button>
+				</div>
 			</div>
-			~
-			<div class="form-floating mt-3 mb-3">
-				<input class="form-control mb-2" type="date" id="end_ymd"
-					name="end_ymd" min="now()" max="9999-12-31"
-					data-placeholder="검색기간(종료일)" required />
-				<!-- 수정할것  -->
-			</div>
-			<div class="form-floating mt-3 mb-3">
-				<button class="btn btn-success btn-sm btn-outline">검색</button>
-			</div>
-		</div>
+		</form>
+		
+		
 	</div>
 </div>
 
@@ -83,7 +124,7 @@
 				<c:if test="${dto.proc_sts == 2 }">
 				<td>처리 완료</td>
 				</c:if>
-				<td></td>
+				<td>${dto.sts_dt}</td>
 				<td><a href="<c:url value="/board/csInfo?cs_no=${dto.cs_no}"/>" class="btn btn-sm btn-primary">상세보기</a></td>
 			</tr>
 			</c:forEach>
@@ -108,6 +149,24 @@
         </li>
     </ul>
 
+<script>
+
+// getDate == 날자 // getMonth == 달 
+
+document.getElementById('stt_ymd1d').value = new Date().toISOString().substring(0, 10);; // 오늘 조회하기
+document.getElementById('end_ymd1d').value = new Date().toISOString().substring(0, 10);; // 오늘 조회하기
+
+
+document.getElementById('end_ymd1w').value = new Date().toISOString().substring(0, 10);; // 1주일 조회하기
+document.getElementById('stt_ymd1w').value = new Date(new Date().setDate(new Date().getDate() - 7)).toISOString().substring(0, 10);; // 1주일 조회하기 
+
+document.getElementById('end_ymd1m').value = new Date().toISOString().substring(0, 10);; // 1달 조회하기
+document.getElementById('stt_ymd1m').value = new Date(new Date().setDate(new Date().getMonth() - 1)).toISOString().substring(0, 10);; // 1달 조회하기 
+
+document.getElementById('end_ymd3m').value = new Date().toISOString().substring(0, 10);; // 3달 조회하기
+document.getElementById('stt_ymd3m').value = new Date(new Date().setDate(new Date().getMonth() - 3)).toISOString().substring(0, 10);; // 3달 조회하기 
+
+</script>
 
 
 

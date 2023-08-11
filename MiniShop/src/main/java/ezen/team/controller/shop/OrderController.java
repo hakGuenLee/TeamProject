@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CartDTO;
 import ezen.team.domain.OrderDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.domain.UserDTO;
 import ezen.team.service.CartService;
 import ezen.team.service.MyPageService;
@@ -106,7 +107,10 @@ public class OrderController {
 	
 	// 구매페이지에서 구매하기
 	@RequestMapping("/buyNow")
-	public String buyNow(HttpServletRequest requset,RedirectAttributes reAttr) {
+	public String buyNow(@RequestParam("point") int point,
+							HttpServletRequest requset,RedirectAttributes reAttr) {
+		
+		System.out.println(point);
 		
 		// 로그인한 회원 정보 가져오기
 		HttpSession session =  requset.getSession();
@@ -115,10 +119,9 @@ public class OrderController {
 		// 구매할 상품 정보 가져오기 buy_yn이 Y 인 것
 		List<CartDTO> list = orderService.getOrderList(session);
 		
-		
 		// 가져온 정보들을 주문정보에 넣기
 		//주문정보 (오더마스터) 바로 가져오기
-		String order_no =  orderService.orderRegister(list,user);
+		String order_no =  orderService.orderRegister(list,user,point);
 		
 		reAttr.addFlashAttribute("order_no",order_no);
 		
@@ -172,12 +175,30 @@ public class OrderController {
 		
 		AddrDTO aDto = orderService.getDefAddress(addrName, session);
 		
-		System.out.println("기본주소값 : " + aDto);
 		
 		return aDto;
-		
 
 	}
+	
+	// 마이페이지에서 주문 기간으로 조회하기
+	@PostMapping("/dateSearch")
+	public String dateSearch(@RequestParam("stt_ymd")String stt_ymd,
+							@RequestParam("end_ymd")String end_ymd,
+							PageDTO pageDTO,
+							HttpSession session,
+							Model model) {
+		
+		
+		
+		List<OrderDTO> list = orderService.dateSearch(pageDTO, session, stt_ymd, end_ymd);
+		
+		model.addAttribute("list",list);
+		
+		return "/user/myPagehome";
+	}
+	
+	
+	
 
 }
 

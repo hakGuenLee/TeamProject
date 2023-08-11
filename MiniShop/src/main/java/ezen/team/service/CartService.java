@@ -39,6 +39,9 @@ public interface CartService {
 
 	WishDTO checkWish(String no, HttpSession session);
 
+	// 상세보기에서 바로 구매하기
+	void buyCart(CartDTO cartDTO, HttpSession session);
+
 
 
 }

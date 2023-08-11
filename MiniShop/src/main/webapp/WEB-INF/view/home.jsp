@@ -70,11 +70,11 @@ $(document).ready(function(){
 		
 		for(let i=0; i<list.length; i++){	
 			str += '<div class="d-flex">'
-			str += '<div id="popBox" style="margin-left:15px">'
+			str += '<div id="popBox'+i+'" style="margin-left:15px">'
 			str += '<div>'
-			str += '<img src="/resources/upload/'+list[i].pst_img+'" style="weight:500px; height:500px"/>'
+			str += '<img src="/resources/upload/'+list[i].pst_img+'" style="width:400px; height:400px"/>'
 			str += '<div style="background-color:black">'
-			str += '<button id="popCloseBtn" style="margin-left:81%; border:none; color:white; background-color:transparent;" onclick="closePop()">창닫기</button>'
+			str += '<button id="popCloseBtn" style="margin-left:81%; border:none; color:white; background-color:transparent;" onclick="closePop'+i+'()">창닫기</button>'
 			str += '</div>'
 			str += '</div>'
 			str += '</div>'
@@ -90,10 +90,19 @@ $(document).ready(function(){
 
 <script>
 
-function closePop(){
-	console.log("hi!!!")
-	$("#popBox").css("display", "none");
-
+function closePop0(){
+	
+	$("#popBox0").css("display", "none");
+	
+}
+function closePop1(){
+	
+	$("#popBox1").css("display", "none");
+	
+}
+function closePop2(){
+	
+	$("#popBox2").css("display", "none");
 	
 }
 

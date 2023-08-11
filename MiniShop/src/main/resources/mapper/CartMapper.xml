@@ -12,7 +12,6 @@ values(#{id}, #{no})
 
 <!-- 해당 회원 아이디에 맞는 위시리스트 가져오기 -->
 <select id="getWishList" resultType="hashmap">
-
 select p.main_img, u.prod_no, p.prod_nm, p.price, p.point, u.wish_no 
 from prod_master as p left outer join user_wish as u
 on p.prod_no = u.prod_no 
@@ -25,6 +24,11 @@ where u.user_id = #{id}
 delete from user_wish where wish_no = #{no}
 </delete>
 
+<!-- 상품 상세페이지에서 바로 구매하기  -->
+<insert id="buyCart">
+INSERT INTO cart(user_id, prod_no, qty, op_code, buy_yn, cart_dt)
+VALUES(#{id}, #{cartDTO.prod_no}, #{cartDTO.qty}, #{cartDTO.op_code}, 'Y', now())
+</insert>
 
 <!-- 장바구니에 상품 넣기 -->
 <insert id="insertCart">

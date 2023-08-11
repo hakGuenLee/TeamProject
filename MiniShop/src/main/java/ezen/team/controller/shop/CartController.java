@@ -46,6 +46,39 @@ public class CartController {
 		return "/user/cartList";
 	}
 	
+	//상세 페이지에서 바로 구매하기
+	@PostMapping("/buyCart")
+	public String buyCart(CartDTO cartDTO,
+			HttpServletRequest request
+			, Model model
+			, RedirectAttributes redirect) {
+
+		
+		HttpSession session = request.getSession();
+		
+		//카트 상품 유무 체크
+		CartDTO cDto = service.checkCart(cartDTO, session);
+		
+		if(cDto == null) { // 카트에 담겨있지 않으면 카트에 담고
+			
+			service.buyCart(cartDTO,session);
+			
+		}else { // 카트에 이미 담겨있으면 메시지를 띄우자
+//			int pQty = Integer.parseInt( cDto.getQty() + 1);
+//			service.modifyQty(pQty, cDto.getCart_no());
+			
+//			model.addAttribute("msg","장바구니나 구매목록에 이미 있는 상품입니다.");
+			
+			String referer = (String)request.getHeader("REFERER");
+			
+			redirect.addFlashAttribute("msg", "이미 있어요");
+			
+			return "redirect:"+referer;
+			
+		}
+
+		return "redirect:/order/buyPage";
+	}
 
 	
 	//장바구니 담기

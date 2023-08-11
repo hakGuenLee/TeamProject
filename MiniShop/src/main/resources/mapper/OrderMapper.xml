@@ -45,6 +45,14 @@ INSERT INTO order_master(order_no, user_id, addr_no, order_sts)
 VALUES
 (#{order_no}, #{user_id}, '1', '결제완료')
 </insert>
+<!-- 유저테이블에 포인트 넣어주기  -->
+<update id="userPoint">
+UPDATE user_master
+SET
+point = point + #{point}
+WHERE
+user_id = #{user.user_id}
+</update>
 
 
 <!--  결제 시 주문 디테일에 정보 넣기 -->
@@ -52,7 +60,7 @@ VALUES
 INSERT INTO order_detail(user_id,prod_no,order_no,op_code,addr_no,price,qty,point,tot_price)
 VALUES
 <foreach item="item" collection="list" separator=",">
-(#{item.user_id},#{item.prod_no},#{order_no},#{item.op_code},'1',#{item.price},#{item.qty},#{item.point},#{item.price}*#{item.qty})
+(#{item.user_id},#{item.prod_no},#{order_no},#{item.op_code},'1',#{item.price},#{item.qty},#{item.point}*#{item.qty},#{item.price}*#{item.qty})
 </foreach>
 </insert>
 
@@ -96,7 +104,29 @@ select * from addr_manage where user_id = #{id} and addr_nik = #{nickname}
 <!--기본주소 가져오기 -->
 <select id="getDefaultAddr" resultType="AddrDTO">
 select * from addr_manage where user_id = #{id} and addr_gb = #{addrName}
+</select>
 
+<!-- 주문 조회에서 날짜별로 조회하기  -->
+<select id="dateSearch" resultType="OrderDTO">
+    SELECT * FROM order_master
+        WHERE user_id = #{user_id}
+        <![CDATA[
+        AND order_dt >= DATE_FORMAT(#{stt_ymd}, '%Y%m%d')
+        AND order_dt < DATE_ADD(DATE_FORMAT(#{end_ymd}, '%Y%m%d'),INTERVAL +1 DAY)
+      ]]>
+      ORDER BY
+order_no DESC
+LIMIT #{pageDTO.startIndex}, #{pageDTO.cntPerPage}
+</select>
+
+<!-- 날짜별로 검색해서 가져온 리스트 개수 세기  -->
+<select id="getCount" resultType="Integer">
+SELECT count(*) FROM order_master
+WHERE user_id = #{user_id}
+<![CDATA[
+AND order_dt >= DATE_FORMAT(#{stt_ymd}, '%Y%m%d')
+AND order_dt < DATE_ADD(DATE_FORMAT(#{end_ymd}, '%Y%m%d'),INTERVAL +1 DAY)
+]]>
 </select>
 
 
