@@ -15,7 +15,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Autowired
 	CategoryMapper mapper;
 	
-	//카테고리 리스트 가져오기
+	//카테고리 리스트 가져오기(페이지 네이션 적용)
 	   @Override
 	   public List<CategoryDTO> catList(PageDTO pagedto) {
 	      
@@ -29,8 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void catRegister(CategoryDTO cdto) {
 		
-		 mapper.catRegister(cdto);
-		
+		 mapper.catRegister(cdto);		
 	}
 
 	//카테고리 수정 시 id값 가져오기
@@ -44,10 +43,10 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void catUpdate(CategoryDTO cdto) {
 		
-		mapper.catUpdate(cdto);
-		
+		mapper.catUpdate(cdto);		
 	}
 	
+	//카테고리 리스트 가져오기
 	@Override
 	public List<CategoryDTO> cateList() {
 

@@ -27,4 +27,10 @@ public interface UserOrderMapper {
 
 	void orderUpdate(UserOrderDTO uodto);
 
+	//주문내역 모두 가져오기
+	List<UserOrderDTO> getAllOrderList();
+
+	//주문번호를 통해 주문 상세내역 가져오기
+	List<UserOrderDTO> getOrderDetailInfo(String orderNo);
+
 }

@@ -4,11 +4,13 @@ import java.sql.Date;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 //주문/배송목록
 
 @Getter
 @Setter
+@ToString
 public class OrderDTO {
 	
 

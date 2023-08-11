@@ -54,6 +54,21 @@ public class UserOrderServiceImpl implements UserOrderService {
 	public void orderUpdate(UserOrderDTO uodto) {
 			mapper.orderUpdate(uodto);
 	}
+
+	//주문내역 모두 가져오기
+	@Override
+	public List<UserOrderDTO> getAllOrderList() {
+
+		return mapper.getAllOrderList();
+	}
+	
+	
+	//주문번호를 통해 주문 상세내역 가져오기
+	@Override
+	public List<UserOrderDTO> getOrderInfo(String orderNo) {
+
+		return mapper.getOrderDetailInfo(orderNo);
+	}
 	
 	
 

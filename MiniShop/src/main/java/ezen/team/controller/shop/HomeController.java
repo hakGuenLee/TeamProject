@@ -2,6 +2,7 @@ package ezen.team.controller.shop;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ezen.team.service.OrderServiceImpl;
@@ -23,6 +24,13 @@ public class HomeController {
 	@RequestMapping("/")
 	public String home() {
 		return "home";
+	}
+	
+	//관리자 메인 페이지 이동
+	@GetMapping("/adminHome")
+	public String adminHome() {
+			
+		return "/admin/adminHome";
 	}
 	
 	

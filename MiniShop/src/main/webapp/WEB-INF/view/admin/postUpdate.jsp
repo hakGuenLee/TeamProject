@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- <script src="/js/summernote/summernote-lite.js"></script>
-<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="/css/summernote/summernote-lite.css"> -->
-<!-- 공지사항/팝업 등록 페이지 -->
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
+<!-- 공지사항/팝업 수정 처리 페이지 -->
 <style>
 input[type='date']::before {
 	content: attr(data-placeholder);
@@ -20,7 +19,7 @@ input[type='date']:valid::before {
 
 
 <div class="container w-50 border shadow-sm p-5 my-5">
-	<h2>관리자 공지/팝업 수정</h2>
+	<h4><b>공지/팝업 수정</b></h4>
 	<form action="<c:url value="/post/postUpdate"/>" method="post"
 		enctype="multipart/form-data">
 		<label for="sel1" class="form-label mt-3 w-50">등록구분 ( 공지
@@ -91,25 +90,30 @@ input[type='date']:valid::before {
 
 
 			</c:if>
+
 			<c:if test="${pdto.pst_gb == '002'}">
+			
+			
 				<textarea id="pst_txt" name="pst_txt" class="mt-3"
 					style="width: 100%; Height: 500px;">${pdto.pst_txt}</textarea>
 			</c:if>
+
 		</div>
+		
+		<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+					<p>승인 구분</p>
+				<select class="form-select" id="pst_sts" name="pst_sts">
+					<option></option>
+				</select>
+		</sec:authorize>
 
 
-		<select class="form-select" id="pst_sts" name="pst_sts">
-			<option></option>
-		</select>
 
 
 
 
-
-
-
-		<button type="submit" class="btn btn-primary mt-3">수정완료</button>
-		<a class="btn btn-success mt-3" href="<c:url value="/post/postList"/>">
+		<button type="submit" class="btn btn-outline-primary mt-3  rounded-0">수정완료</button>
+		<a class="btn btn-outline-success mt-3 rounded-0" href="<c:url value="/post/postList"/>">
 			리스트</a>
 	</form>
 </div>

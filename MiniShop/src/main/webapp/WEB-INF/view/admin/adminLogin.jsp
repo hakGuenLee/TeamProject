@@ -22,7 +22,7 @@
 						  <span class="input-group-text"><i class="xi-lock"></i></span>
 						  <input type="password"  name="password" class="form-control" placeholder="비밀번호를 입력하세요">
 						</div>
-						<button type="submit" class="btn btn-outline-info">로그인</button>
+						<button type="submit" class="btn btn-outline-info rounded-0">로그인</button>
 				</form>
 		</div>					
 	<jsp:include page="../include/a_footer.jsp"/>

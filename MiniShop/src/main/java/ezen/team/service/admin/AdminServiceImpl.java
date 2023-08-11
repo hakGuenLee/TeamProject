@@ -44,18 +44,14 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public EmpDTO getEmpList(String name) {
 		
-		EmpDTO eDto = mapper.getEmp(name);	
-		
-		return eDto;
+		return mapper.getEmp(name);	
 	}
 
 	//관리자 리스트 가져오기
 	@Override
 	public List<AdminDTO> getAdminList() {
 		
-		List<AdminDTO> list = mapper.getAdminList();
-		
-		return list;
+		return mapper.getAdminList();
 	}
 
 	//관리자 삭제
@@ -68,9 +64,8 @@ public class AdminServiceImpl implements AdminService {
 	//수정할 관리자 정보 가져오기
 	@Override
 	public AdminDTO getAdminInfo(String id) {
-		AdminDTO adminDto = mapper.getAdminInfo(id);
-		
-		return adminDto;
+	
+		return mapper.getAdminInfo(id);
 	}
 
 	//관리자 정보 수정 처리하기
@@ -82,17 +77,14 @@ public class AdminServiceImpl implements AdminService {
 	
 	//관리자 등록 아이디 유효성 체크
 	public AdminDTO adminIdChk(String id) {
-		
-		AdminDTO adminDTO = mapper.adminIdCheck(id);
 				
-		return adminDTO;
+		return mapper.adminIdCheck(id);
 	}
 
 	//회원 리스트 가져오기
 	public List<UserDTO> getUserList(PageDTO pageDto) {
-		List<UserDTO> list = mapper.getUserList(pageDto);
-		
-		return list;
+
+		return mapper.getUserList(pageDto);
 		
 	}
 

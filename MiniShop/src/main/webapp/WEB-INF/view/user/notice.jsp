@@ -11,7 +11,7 @@
 
 			<div class="container mt-5">
 			<h3><b>공지사항</b></h3>
-				<table class="table mt-3">
+				<table class="table mt-3" >
 					<thead class="table-secondary">
 						<tr>
 							<th>No.</th>					
@@ -24,11 +24,11 @@
 					<tbody>
 					<c:forEach items="${list}" var="dto">				
 						<tr>
-							<th>${dto.pst_no}</th>					
-							<th><a href="<c:url value="/board/noticeView?no=${dto.pst_no }"/>">${dto.pst_ttl}</a></th>
-							<th>${dto.wrt_id}</th>
-							<th>${dto.req_dt}</th>
-							<th>${dto.hit}</th>
+							<td>${dto.pst_no}</td>					
+							<td><a href="<c:url value="/board/noticeView?no=${dto.pst_no }"/>">${dto.pst_ttl}</a></th>
+							<td>${dto.wrt_id}</td>
+							<td>${dto.req_dt}</td>
+							<td>${dto.hit}</td>
 						</tr>
 						</c:forEach>
 					</tbody>

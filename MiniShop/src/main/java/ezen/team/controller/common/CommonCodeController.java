@@ -1,4 +1,4 @@
-package ezen.team.controller.admin;
+package ezen.team.controller.common;
 
 import java.util.List;
 
@@ -23,8 +23,7 @@ public class CommonCodeController {
 	
 	@Autowired
 	CommonCodeService service;
-	
-	
+		
 	//공통코드 리스트 가져오기
 	@PostMapping("/getCode")
 	@ResponseBody
@@ -60,9 +59,5 @@ public class CommonCodeController {
 		
 	}
 	
-
-	
-
-
 	
 }

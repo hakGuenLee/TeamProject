@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>MiniMall</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <%--  	<meta name="_csrf_header" content="${_csrf.headerName}">
@@ -12,8 +12,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <script src="<c:url value="/resources/js/commoncode.js"/>"></script>
      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <script src="<c:url value="/resources/js/zipcode.js"/>"></script>
@@ -35,86 +33,86 @@ alert('위시리스트에 이미 있는 상품입니다.')
 
 </head>
 <body>
-
-
 <header class="top-bar con-min-width">
   <div id="fdiv" class="container w-75">
     <nav class="navbar navbar-expand-sm  navbar-white bg-white fixed-top">
-       <ul class="navbar-nav">
-         <li class="nav-item">
-          <a id="home" class="nav-link active" href="<c:url value="/"/>"><b>MiniMall</b></a>
-        </li>
-		
-        <li id="allProduct">
-          <a class="nav-link active" href="#"><b>모든제품</b></a>
-        </li>
-        <li>
-          <a class="nav-link active " href="#"><b>과일</b></a>
-          <ul id="fruitArea">
-            <li><a class="nav-link" href="#"></a></li>
-          </ul>
-        </li>
-         <li>
-          <a class="nav-link active" href="#"><b>채소</b></a>
-          <ul id="vegeArea">
-            <li><a class="nav-link" href="#"></a></li>
-          </ul>
-        </li>
-         <li>
-          <a class="nav-link active " href="#"><b>축산</b></a>
-          <ul id="meetArea">
-            <li><a class="nav-link" href="#"></a></li>
-          </ul>
-        </li>
-         <li>
-          <a class="nav-link active " href="#"><b>의류</b></a>
-          <ul id="clothArea">
-            <li><a class="nav-link" href="#"></a></li>
-          </ul>
-        </li>
-        <li>
-          <a class="nav-link active " href="#"><b>가전</b></a>
-          <ul id="electroArea">
-            <li><a class="nav-link" href="#"></a></li>
-          </ul>
-        </li>
-    	 <li>
-          <a class="nav-link active" href="#"><b>Community</b></a>
-          <ul>
-            <li><a class="nav-link" href="<c:url value="/board/noticePage"/>">Notice</a></li>
-            <li><a class="nav-link" href="<c:url value="/board/faqPage"/>">FAQ</a></li>
-            <li><a class="nav-link" href="<c:url value="/board/question"/>">1:1 문의하기</a></li>
-          </ul>
-        </li>
-    
-    
-        <li id="UserArea">
-          <a class="nav-link active" href="<c:url value="/myPage/myPagehome"/>">My Page</a>
-          <ul>
-            <li><a class="nav-link" href="<c:url value="/myPage/myInfoUpdate"/>" >내 정보수정</a>
-            <li><a class="nav-link" href="<c:url value="/cart/wishList"/>">나의 위시리스트</a></li>
-            <li><a class="nav-link" href="<c:url value="/myPage/myAddress"/>">나의 배송지 관리</a></li>
-            <li><a class="nav-link" href="<c:url value="/myPage/myPagehome"/>">나의 주문/배송조회</a></li>
-            <li><a class="nav-link" href="<c:url value="/myPage/myPagePoint"/>">나의 적립금</a></li>
-            <li><a class="nav-link" href="<c:url value="/myPage/myPageQuestion"/>">나의 1:1문의</a></li>
-            <li><a class="nav-link" href="<c:url value="/userQna/myPageProdQna"/>">나의 상품문의</a></li>
-          </ul>
-        </li>
-         <li>
-          <a class="nav-link active" href="<c:url value="/cart/cartList"/>">Cart</a>       
-        </li>
-        
-         <c:if test="${sessionScope.userDTO ==null}">
-            <li><a class="nav-link active ms-auto"
-                     href="<c:url value="/user/userLogin"/>">Login</a></li>
-            <li><a class="nav-link active ms-auto"
-                     href="<c:url value="/user/userRegister"/>">join</a></li>
-               </c:if>
-               <c:if test="${sessionScope.userDTO !=null}">
-                  <li><a class="nav-link active ms-auto"
-                     href="<c:url value="/user/userLogout"/>">Logout</a></li>
-               </c:if>
-
+       <ul class="navbar-nav w-100">
+       <div id="topdiv" class="d-flex w-100 justify-content-around" >
+	       	<div>
+	         <li class="nav-item">
+	          <a id="home" class="nav-link active" href="<c:url value="/"/>"><b>MiniMall</b></a>
+	        </li>
+	        </div>
+	        <div id="menuBar" class="d-flex">		
+	        <li id="menuName">
+	          <a class="nav-link active" href="#"><b>과일</b></a>
+	          <ul id="fruitArea">
+	            <li><a class="nav-link" href="#"></a></li>
+	          </ul>
+	        </li>
+	         <li id="menuName">
+	          <a class="nav-link active" href="#"><b>채소</b></a>
+	          <ul id="vegeArea">
+	            <li><a class="nav-link" href="#"></a></li>
+	          </ul>
+	        </li>
+	         <li id="menuName">
+	          <a class="nav-link active " href="#"><b>축산</b></a>
+	          <ul id="meetArea">
+	            <li><a class="nav-link" href="#"></a></li>
+	          </ul>
+	        </li>
+	         <li id="menuName">
+	          <a class="nav-link active " href="#"><b>의류</b></a>
+	          <ul id="clothArea">
+	            <li><a class="nav-link" href="#"></a></li>
+	          </ul>
+	        </li>
+	        <li id="menuName">
+	          <a class="nav-link active " href="#"><b>가전</b></a>
+	          <ul id="electroArea">
+	            <li><a class="nav-link" href="#"></a></li>
+	          </ul>
+	        </li>
+	    	 <li id="menuName">
+	          <a class="nav-link active" href="#"><b>Community</b></a>
+	          <ul>
+	            <li><a class="nav-link" href="<c:url value="/board/noticePage"/>">Notice</a></li>
+	            <li><a class="nav-link" href="<c:url value="/board/faqPage"/>">FAQ</a></li>
+	            <li><a class="nav-link" href="<c:url value="/board/question"/>">1:1 문의하기</a></li>
+	          </ul>
+	        </li>
+	    	</div>
+	    	<div class="d-flex">
+	    	<li id="menuName">
+	          <a class="nav-link active" href="<c:url value="/cart/cartList"/>">Cart</a>       
+	        </li>
+	        <li id="menuName" class="myPage">
+	          <a class="nav-link active" href="<c:url value="/myPage/myPagehome"/>">My Page</a>
+	          <ul>
+	            <li><a class="nav-link" href="<c:url value="/myPage/myInfoUpdate"/>" >내 정보수정</a>
+	            <li><a class="nav-link" href="<c:url value="/cart/wishList"/>">나의 위시리스트</a></li>
+	            <li><a class="nav-link" href="<c:url value="/myPage/myAddress"/>">나의 배송지 관리</a></li>
+	            <li><a class="nav-link" href="<c:url value="/myPage/myPagehome"/>">나의 주문/배송조회</a></li>
+	            <li><a class="nav-link" href="<c:url value="/myPage/myPagePoint"/>">나의 적립금</a></li>
+	            <li><a class="nav-link" href="<c:url value="/myPage/myPageQuestion"/>">나의 1:1문의</a></li>
+	            <li><a class="nav-link" href="<c:url value="/userQna/myPageProdQna"/>">나의 상품문의</a></li>
+	          </ul>
+	        </li>
+	      
+	        
+	         <c:if test="${sessionScope.userDTO ==null}">
+	            <li id="menuName"><a class="nav-link active ms-auto"
+	                     href="<c:url value="/user/userLogin"/>">Login</a></li>
+	            <li id="menuName"><a class="nav-link active ms-auto"
+	                     href="<c:url value="/user/userRegister"/>">join</a></li>
+	               </c:if>
+	               <c:if test="${sessionScope.userDTO !=null}">
+	                  <li id="menuName"><a class="nav-link active ms-auto"
+	                     href="<c:url value="/user/userLogout"/>">Logout</a></li>
+	               </c:if>
+			</div>
+      	</div>
       </ul>
     </nav>
   </div>

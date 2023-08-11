@@ -43,5 +43,17 @@ WHERE order_no = #{order_no}
 </update>
 
 
+<!-- 주문내역 모두 가져오기 -->
+<select id="getAllOrderList" resultType="UserOrderDTO">
+select * from order_master
+</select>
 
+<!-- 주문번호를 통해 주문 상세내역 가져오기 -->
+<select id="getOrderDetailInfo" resultType="UserOrderDTO">
+SELECT pm.main_img, pm.price, pm.prod_nm, od.qty, od.price, od.point, od.order_no
+FROM 
+order_detail od INNER JOIN prod_master pm on od.prod_no = pm.prod_no
+WHERE
+order_no = #{orderNo}
+</select>
 </mapper>

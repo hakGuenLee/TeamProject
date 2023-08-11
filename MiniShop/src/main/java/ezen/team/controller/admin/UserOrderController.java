@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import ezen.team.domain.UserOrderDTO;
 import ezen.team.service.admin.UserOrderService;
 
@@ -26,6 +27,31 @@ import ezen.team.service.admin.UserOrderService;
 public class UserOrderController {
 	@Autowired
 	private UserOrderService userOrderService;
+
+	
+	//회원 주문/배송 리스트 페이지 이동
+	@GetMapping("/AllOrder")
+	public String orderAll(Model model) {
+	
+		List<UserOrderDTO> list = userOrderService.getAllOrderList();
+		model.addAttribute("list", list);
+		
+		return "admin/orderAll";
+	}
+	
+	//회원 주문/배송 리스트에서 수정 페이지 이동
+		@GetMapping("/orderInfo")
+		public String orderInfo(@RequestParam("order_no")String orderNo, Model model) {
+			System.out.println("주문번호 : " + orderNo);
+			List<UserOrderDTO> orderDTO = userOrderService.getOrderInfo(orderNo);
+			
+			System.out.println("주문상세내역 : " + orderDTO);
+			model.addAttribute("list", orderDTO);
+			
+			return "/admin/orderDetailInfo";
+		}
+	
+
 	
 	//회원 주문/배송 조회 페이지 이동
 	@GetMapping("/orderList")
@@ -73,24 +99,30 @@ public class UserOrderController {
 	}
 
 	
-	//회원 주문/배송 상세 보기
-	@GetMapping("/orderInfo")
-	public String orderInfo(@RequestParam("order_no")String order_no,
-							@RequestParam("search")String search, Model model) {
-
-		// 검색한 주문내역 상세보기
-		List<UserOrderDTO> UOList = userOrderService.orderInfo(order_no);
-		
-		// 검색한 주문내역 상세보기의 회원정보
-		UserOrderDTO UOdto = userOrderService.userorderInfo(order_no);
-		
-		model.addAttribute("order_no",order_no);
-		model.addAttribute("search",search);
-		model.addAttribute("uoList",UOList);
-		model.addAttribute("UOdto",UOdto);
-		
-		return "/admin/userorderInfo";
-	}
+	
+	
+	
+	
+	
+	
+//	//회원 주문/배송 상세 보기
+//	@GetMapping("/orderInfo")
+//	public String orderInfo(@RequestParam("order_no")String order_no,
+//							@RequestParam("search")String search, Model model) {
+//
+//		// 검색한 주문내역 상세보기
+//		List<UserOrderDTO> UOList = userOrderService.orderInfo(order_no);
+//		
+//		// 검색한 주문내역 상세보기의 회원정보
+//		UserOrderDTO UOdto = userOrderService.userorderInfo(order_no);
+//		
+//		model.addAttribute("order_no",order_no);
+//		model.addAttribute("search",search);
+//		model.addAttribute("uoList",UOList);
+//		model.addAttribute("UOdto",UOdto);
+//		
+//		return "/admin/userorderInfo";
+//	}
 	
 	//회원 주문 상세보기 처리상태 업데이트
 //	@PostMapping("orderUpdate")

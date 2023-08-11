@@ -23,8 +23,8 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<CsDTO> csList(String cs_code, String proc_sts, PageDTO pageDto) {
 		int totalCnt = mapper.totalCnt(pageDto);
 		pageDto.setValue(totalCnt, pageDto.getCntPerPage());  
-		List<CsDTO> csList = mapper.csList(cs_code, proc_sts, pageDto);
-		System.out.println("서비스임플"+ csList);
+//		List<CsDTO> csList = mapper.csList(cs_code, proc_sts, pageDto);
+//		System.out.println("서비스임플"+ csList);
 		
 		System.out.println(cs_code);
 		return csList;
@@ -34,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	//회원 1:1문의건 상세보기
 	public CsDTO csInfo(int cs_no, String proc_sts) {
-		System.out.println(cs_no);
+
 		return mapper.csInfo(cs_no, proc_sts);
 	}
 

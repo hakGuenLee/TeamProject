@@ -35,20 +35,19 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminservice;
-
+	
 	//관리자 메인 페이지 이동
 	@GetMapping("/adminHome")
 	public String adminHome() {
 			
 		return "/admin/adminHome";
 	}
-	
+
 	
 	//관리자 등록 페이지 이동
 	@GetMapping("/adminRegister")
 	public String adminRegister(Model model) {
-		
-	
+			
 		return "/admin/adminRegister";
 	}
 	
@@ -64,16 +63,14 @@ public class AdminController {
 		return "yes";
 		
 	}
-	
-	
+		
 	//관리자 등록 처리
 	@PostMapping("/adminRegister")
 	public String adminRegister(AdminDTO aDto) {
 	
 		adminservice.adminRegister(aDto);
 			
-		return "redirect:/admin/adminList";
-		
+		return "redirect:/admin/adminList";		
 	}
 		
 	//관리자 사번 검색
@@ -81,17 +78,9 @@ public class AdminController {
 	@ResponseBody
 	public EmpDTO empSearch(@RequestParam("name") String name) {
 	
-		EmpDTO empDto = adminservice.getEmpList(name);		
-		
+		EmpDTO empDto = adminservice.getEmpList(name);				
 	
 		return empDto;
-	}
-
-	//시스템 로그리스트 페이지 이동
-	@GetMapping("/logList")
-	public String logList() {
-					
-	return "/admin/logList";
 	}
 	
 	//승인 요청 목록 페이지 이동(조회)
@@ -100,16 +89,13 @@ public class AdminController {
 		
 		return "/admin/requestList";
 	}
-	
-	
+		
 	//관리자 리스트 페이지 이동
 	@GetMapping("/adminList")
 	public String adminList(Model model) {
 			
 		List<AdminDTO> list = adminservice.getAdminList();
-		
-		
-		
+	
 		model.addAttribute("adminList", list);
 		
 		return "/admin/adminList";

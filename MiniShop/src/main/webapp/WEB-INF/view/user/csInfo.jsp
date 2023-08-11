@@ -19,8 +19,23 @@
    
    <p>내용</p>
    <textarea class="form-control mt-2"rows="5" cols="33" readonly>${csDTO.cs_con}</textarea>
+	
+	<p>답변 내용</p>
+   <textarea class="form-control mt-2"rows="5" cols="33" readonly>${csDTO.csre_con}</textarea>
+	<c:if test="${csDTO.csre_con == null }">
+	 <textarea class="form-control mt-2"rows="5" cols="33" readonly>현재 담당자가 처리 중입니다. 빠른 시일 내에 안내드리겠습니다.</textarea>
+	</c:if>
+
+
+   <p>담당자명</p>
+   <input class="form-control mb-3" type="text" value="${csDTO.proc_id}" readonly>      
    
-   <input class="form-control mt-2" type="text" id="user_id" name="user_id" value="" placeholder="이름을 입력하세요">
+   <p>처리일자</p>
+   <input class="form-control mb-3" type="text" value="${csDTO.proc_dt}" readonly>  
+   <c:if test="${csDTO.csre_con == null }">
+	  <input class="form-control mb-3" type="text" value="처리 중" readonly>  
+	</c:if>
+
    
    <div class="text-center mt-3">
       <a href="javaScript:history.back()" class="btn btn-primary">이전</a>

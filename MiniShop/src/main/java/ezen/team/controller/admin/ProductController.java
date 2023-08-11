@@ -53,7 +53,6 @@ public class ProductController {
 		
 		model.addAttribute("cList",cList);
 
-
 		return "/admin/prodRegister";
 	}
 	
@@ -63,8 +62,7 @@ public class ProductController {
 			HttpServletRequest request) throws Exception {
 		
 		productService.prodRegister(mhr,request);
-		
-	
+			
 		return "redirect:/product/prodList";
 		
 	}
@@ -109,7 +107,6 @@ public class ProductController {
 	public String prodUpdate(MultipartHttpServletRequest mhr, HttpServletRequest rq) throws Exception {
 		
 		productService.prodUpdate(mhr,rq);
-
 		
 		return "redirect:/product/prodList";
 	}
@@ -123,9 +120,5 @@ public class ProductController {
 		return "redirect:/product/prodList";
 	}
 		
-	
-	
-	
-	
 
 }
