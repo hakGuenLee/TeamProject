@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import ezen.team.domain.AddrDTO;
 import ezen.team.domain.CartDTO;
 import ezen.team.domain.OrderDTO;
+import ezen.team.domain.PageDTO;
 import ezen.team.domain.UserDTO;
 
 public interface OrderService {
@@ -22,7 +23,7 @@ public interface OrderService {
 	void orderDelete(int no);
 
 	// 결제 시 주문정보를 테이블에 넣어주고, 카트에서 정보 지워주기
-	String orderRegister(List<CartDTO> list, UserDTO user);
+	String orderRegister(List<CartDTO> list, UserDTO user, int point);
 
 	// 주문 후 결제내역 보기
 	OrderDTO getOrderInfo(String order_no);
@@ -39,6 +40,8 @@ public interface OrderService {
 
 	//기본주소 가져오기
 	AddrDTO getDefAddress(String addrName, HttpSession session);
+
+	List<OrderDTO> dateSearch(PageDTO pageDTO, HttpSession session, String stt_ymd, String end_ymd);
 
 
 

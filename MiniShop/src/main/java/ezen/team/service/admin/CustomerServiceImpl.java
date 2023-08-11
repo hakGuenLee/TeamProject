@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 //		System.out.println("서비스임플"+ csList);
 		
 		System.out.println(cs_code);
-		return mapper.csList(cs_code, proc_sts, pageDto);
+		return csList;
 
 	}
 	

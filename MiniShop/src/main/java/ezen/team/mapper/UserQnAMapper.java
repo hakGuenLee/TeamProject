@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import ezen.team.domain.OrderDTO;
 import ezen.team.domain.PageDTO;
 import ezen.team.domain.QnaDTO;
 
@@ -21,6 +22,10 @@ public interface UserQnAMapper {
 
 	// 페이징처리를 위한 totalcnt 용도 하나
 	int QnaCount(String user_id);
+
+	int getCount(String user_id, String stt_ymd, String end_ymd);
+	// 기간별 검색하기
+	List<QnaDTO> dateSearch(PageDTO pageDTO, String user_id, String stt_ymd, String end_ymd);
 
 
 }

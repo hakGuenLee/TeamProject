@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ezen.team.domain.OrderDTO;
 import ezen.team.domain.PageDTO;
 import ezen.team.domain.QnaDTO;
 import ezen.team.service.UserQnAService;
@@ -53,8 +54,6 @@ public class UserQnAController {
 		
 		// 상품문의 개수 구하기
 		int QnaCount = userQnAService.QnaCount(session);
-		
-		
 		List<QnaDTO> list = userQnAService.getQnaList(pageDTO, session);
 		
 		model.addAttribute("list",list);
@@ -83,8 +82,24 @@ public class UserQnAController {
 		QnaDTO qnaDTO = userQnAService.QnaInfo(qna_no);
 		model.addAttribute("qnaDTO",qnaDTO);
 		
-		
 		return "/user/prodQnaInfo";
+	}
+	
+	// 상품문의 기간별 조회하기
+	@PostMapping("/dateSearch")
+	public String dateSearch(@RequestParam("stt_ymd")String stt_ymd,
+							@RequestParam("end_ymd")String end_ymd,
+							PageDTO pageDTO,
+							HttpSession session,
+							Model model) {
+		
+		
+		
+		List<QnaDTO> list =  userQnAService.dateSearch(pageDTO, session, stt_ymd, end_ymd);
+		
+		model.addAttribute("list",list);
+		
+		return "/user/myPageProdQna";
 	}
 	
 	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ezen.team.domain.BoardDTO;
 import ezen.team.domain.CsDTO;
+import ezen.team.domain.OrderDTO;
 import ezen.team.domain.PageDTO;
 import ezen.team.domain.UserDTO;
 import ezen.team.domain.UserInfoHandler;
@@ -103,7 +104,23 @@ public class BoardController {
 		return "/user/csInfo";
 	}
 	
-	
+	// 1:1 문의 기간별 조회하기
+	@PostMapping("/dateSearch")
+	public String dateSearch(@RequestParam("stt_ymd")String stt_ymd,
+							@RequestParam("end_ymd")String end_ymd,
+							PageDTO pageDTO,
+							HttpSession session,
+							Model model) {
+		
+		
+		System.out.println(stt_ymd);
+		System.out.println(end_ymd);
+		List<CsDTO> list = boardService.dateSearch(pageDTO, session, stt_ymd, end_ymd);
+		
+		model.addAttribute("list",list);
+		
+		return "/user/myPageQuestion";
+	}
 	
 	
 	

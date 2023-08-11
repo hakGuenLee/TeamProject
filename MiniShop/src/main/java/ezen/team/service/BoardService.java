@@ -2,8 +2,11 @@ package ezen.team.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import ezen.team.domain.BoardDTO;
 import ezen.team.domain.CsDTO;
+import ezen.team.domain.OrderDTO;
 import ezen.team.domain.PageDTO;
 
 public interface BoardService {
@@ -18,5 +21,7 @@ public interface BoardService {
 
 	//1:1 문의 내용 상세보기
 	CsDTO csInfo(String cs_no);
+
+	List<CsDTO> dateSearch(PageDTO pageDTO, HttpSession session, String stt_ymd, String end_ymd);
 
 }

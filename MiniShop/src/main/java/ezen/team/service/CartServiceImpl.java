@@ -114,4 +114,14 @@ public class CartServiceImpl implements CartService {
 		return mapper.checkWish(id, no);
 	}
 
+	// 상세보기에서 바로 구매하기
+	@Override
+	public void buyCart(CartDTO cartDTO, HttpSession session) {
+		
+		String id = userInfoHandler.getUserId(session);
+		
+		mapper.buyCart(cartDTO, id);
+		
+	}
+
 }

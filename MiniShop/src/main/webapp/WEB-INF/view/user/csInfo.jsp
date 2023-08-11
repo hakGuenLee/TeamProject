@@ -19,7 +19,6 @@
    
    <p>내용</p>
    <textarea class="form-control mt-2"rows="5" cols="33" readonly>${csDTO.cs_con}</textarea>
-   
 	
 	<p>답변 내용</p>
    <textarea class="form-control mt-2"rows="5" cols="33" readonly>${csDTO.csre_con}</textarea>
@@ -36,6 +35,7 @@
    <c:if test="${csDTO.csre_con == null }">
 	  <input class="form-control mb-3" type="text" value="처리 중" readonly>  
 	</c:if>
+
    
    <div class="text-center mt-3">
       <a href="javaScript:history.back()" class="btn btn-primary">이전</a>

@@ -53,6 +53,7 @@ public class UserController {
 	
 		return "/user/userLogin";
 	}
+	
 	// 유저 로그인 처리
 	@PostMapping("/userLogin") //RedirectAttributes 는 Redirect 시에도 정보를 넘겨준다
 	public String userLogin( HttpServletRequest rq, RedirectAttributes rd, HttpSession session) {
@@ -63,6 +64,9 @@ public class UserController {
 	String prev_url = (String)session.getAttribute("prev_url");
 	System.out.println("넘어온 경로 : " + prev_url);
 	
+	if(prev_url==null) {
+		prev_url = "/";
+	}
 		
 	// result = 회원정보가 있으면 참 , 없으면 거짓
 	if(!result) {// 회원정보가 없으면

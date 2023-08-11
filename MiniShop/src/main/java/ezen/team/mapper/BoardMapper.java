@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import ezen.team.domain.BoardDTO;
 import ezen.team.domain.CsDTO;
+import ezen.team.domain.OrderDTO;
 import ezen.team.domain.PageDTO;
 
 //BoardServiceImple과 연결
@@ -28,5 +29,9 @@ public interface BoardMapper {
 
 	//해당번호의 공지글 1 추가
 	public void addNoticeHit(String no);
+
+	public int getCount(String user_id, String stt_ymd, String end_ymd);
+	// 1:1문의 기간별 조회하기
+	public List<CsDTO> dateSearch(PageDTO pageDTO, String user_id, String stt_ymd, String end_ymd);
 
 }

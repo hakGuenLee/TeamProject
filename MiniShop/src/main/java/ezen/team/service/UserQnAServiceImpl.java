@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ezen.team.domain.OrderDTO;
 import ezen.team.domain.PageDTO;
 import ezen.team.domain.QnaDTO;
 import ezen.team.domain.UserDTO;
@@ -57,6 +58,21 @@ public class UserQnAServiceImpl implements UserQnAService {
 		String user_id = userInfoHandler.getUserId(session);
 
 		return mapper.QnaCount(user_id);
+	}
+
+	// 기간별로 조회하기
+	@Override
+	public List<QnaDTO> dateSearch(PageDTO pageDTO, HttpSession session, String stt_ymd, String end_ymd) {
+		
+		String user_id = userInfoHandler.getUserId(session);		
+		
+		int totalCnt = mapper.getCount(user_id, stt_ymd, end_ymd);
+		pageDTO.setCntPerPage(5);
+		pageDTO.setValue(totalCnt, pageDTO.getCntPerPage());
+		
+		
+		return mapper.dateSearch(pageDTO, user_id, stt_ymd, end_ymd);
+		
 	}
 
 }

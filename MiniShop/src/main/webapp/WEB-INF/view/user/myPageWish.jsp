@@ -16,7 +16,6 @@
 	<table class="table mt-5">
 		<thead class="table-secondary">
 			<tr>
-				<th>선택</th>
 				<th>상품이미지</th>
 				<th>상품명</th>
 				<th>상품금액</th>
@@ -31,7 +30,6 @@
 		<c:forEach var="dto" items="${list }">
 				<input type="hidden" value="${dto.wish_no }"/>
 			<tr>
-				<td><input type="checkBox"></td>
 				<td><a href="<c:url value="/prodDetail/prodInfo?no=${dto.prod_no}"/>">
 				<img src="/resources/upload/${dto.main_img }" style="width:70px; height:70px">
 				</a></td>
@@ -43,8 +41,14 @@
 			</tr>
 			</c:forEach>
 		</tbody>
+		<tr>
+			<td><a href="javaScript:history.back()"
+				class="btn btn-outline-primary me-2">이전</a></td>
+			<td><a href="<c:url value="/"/> "	
+				class="btn btn-outline-primary me-2">홈으로 이동</a></td>
+
+		</tr>
 	</table>
-				<td><a href="<c:url value=""/>" class="btn btn-sm btn-danger">선택 삭제</a></td>
 </div>
 	
 					

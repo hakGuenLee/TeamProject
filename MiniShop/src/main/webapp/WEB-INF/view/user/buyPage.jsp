@@ -83,8 +83,9 @@
 			주문 총액 :
 			<fmt:formatNumber value="${cartTotPrice }" />
 			원<br /> 총 적립금 :
-			<fmt:formatNumber value="${cartTotPoint }" />
+			<fmt:formatNumber value="${cartTotPoint }"/>
 			적립금
+			<%-- <input type="hidden" name="point" value="${cartTotPoint}"/> --%>
 		</div>
 
 		<table class="table">
@@ -222,7 +223,7 @@
 			</select>
 		</div>
 		<div class="text-center">
-			<a href="<c:url value="/order/buyNow" />" class="btn btn-outline-primary">결제하기</a>
+			<a href="<c:url value="/order/buyNow?point=${cartTotPoint}" />" class="btn btn-outline-primary">결제하기</a>
 			<a href="<c:url value="/" />" class="btn btn-outline-primary">계속
 				쇼핑하기</a>
 		</div>

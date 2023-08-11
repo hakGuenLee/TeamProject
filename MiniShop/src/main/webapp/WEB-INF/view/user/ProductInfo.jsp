@@ -8,7 +8,7 @@
 <jsp:include page="../include/header.jsp"/>
 
 
-<form action="" method="post" id="prodForm">
+<form action="<c:url value="/cart/buyCart"/>"  method="post" id="prodForm"> 
    <section>
    	<input type="hidden" value="${dto.prod_no }" id="prod_no" name="prod_no">
    	<input type="hidden" value="${dto.point }" name="point">
@@ -77,7 +77,7 @@
             
 
             <div class="mt-3">
-      			<a id="buy"class="btn btn-danger rounded-0 w-25"><b>BUY</b></a>
+      			<button id="buy"class="btn btn-danger rounded-0 w-25"><b>BUY</b></button>
       			<button id="cartBtn" onclick="InputCart()"  class="btn rounded-0 btn-outline-danger w-25"><b>CART</b></button>
       			<a id="wish" href="<c:url value="/cart/wish?no=${dto.prod_no}" />"class="btn rounded-0 btn-outline-danger w-25" ><b>WISH</b></a>
       		</div>
@@ -97,7 +97,7 @@
          </c:if>
       </div> 
      
-   </section>  
+   </section> 
 </form>
 
 <jsp:include page="../include/footer.jsp"/>
