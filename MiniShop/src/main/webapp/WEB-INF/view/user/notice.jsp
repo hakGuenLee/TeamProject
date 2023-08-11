@@ -11,6 +11,15 @@
 
 			<div class="container mt-5">
 			<h3><b>공지사항</b></h3>
+			
+			<form action="/board/NoticeSearch" method="post">
+				  <div class="input-group mb-3 w-25 d-flex">
+					 <input type="text" name="search" class="form-control" placeholder="제목을 검색하세요">
+				  	<button type="submit" class="btn btn-primary">검색</button>	
+				  </div>
+				</form>
+			
+			
 				<table class="table mt-3" >
 					<thead class="table-secondary">
 						<tr>

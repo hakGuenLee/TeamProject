@@ -8,7 +8,7 @@
 
 	<form action="adminUpdate" method="post">
 		<div class="container w-75 mt-5">
-			<h3><b>관리자 수정</b></h3>
+			<h3><b>${adminDTO.adm_id}님의 관리자 정보 수정</b></h3>
 
 			<div class="mt-3">
 				<p>관리자명(실명)</p>		

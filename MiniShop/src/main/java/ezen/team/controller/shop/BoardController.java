@@ -61,6 +61,16 @@ public class BoardController {
 		
 	}
 	
+	//Notice(공지사항)검색하기
+	@PostMapping("/NoticeSearch")
+	public String noticeSearch(String search, Model model) {
+		
+		List<BoardDTO> boardList = boardService.searchNotice(search);
+		model.addAttribute("list", boardList);
+		
+		return "/user/notice";
+	}
+	
 	
 	
 	//1:1문의 이동
@@ -121,6 +131,7 @@ public class BoardController {
 		
 		return "/user/myPageQuestion";
 	}
+	
 	
 	
 	

@@ -20,7 +20,7 @@
 
 		<form action="adminRegister" method="post" class="mt-5 w-100">
 			
-		<div class="d-flex container w-50 border shadow-sm p-5 my-5">
+		<div class="container w-50 border shadow-sm p-5 my-5">
 			<h4><b>관리자 등록</b></h4>	
 			<div class="mt-5">
 			<div class="form-floating mb-3 mt-3">
@@ -30,13 +30,14 @@
 			</div>
 
 			<div class="form-floating mt-3 mb-3">
-			  <input type="text" class="form-control" id="adm_vnm" placeholder="관리자 이름(사용자뷰용 닉네임)" name="adm_vnm">
-			  <label for="name">관리자 이름(닉네임)</label>
+			  <input onkeyup="nickNameCheck()" type="text" class="form-control" id="adm_vnm" placeholder="관리자 이름(사용자뷰용 닉네임)" name="adm_vnm">
+			  <label for="name">관리자 별칭(쇼핑몰에서 사용될 닉네임)</label>
+			  <p id="chkMsg2" class="mb-2"></p>
 			</div>
 			
 			<div class="form-floating mt-3 mb-3">
 			  <input type="text" class="form-control" id="adm_nm" placeholder="관리자 이름(사용자명))" name="adm_nm">
-			  <label for="name">관리자 이름(사용자명)</label>
+			  <label for="name">관리자 성명</label>
 			</div>
 			
 <!-- 			<input type="button" value="사번검색" class="btn btn-secondary" onclick="shoEmp()"/>		 -->
@@ -97,7 +98,7 @@
 			</div>
 			 
 			 
-			 <label for="sel1" class="form-label">권한 부여 </label>
+			 <label for="sel1" class="form-label">관리자 권한 지정</label>
 			 <select class="form-select" id="role" name="role">
 			      <option></option>
 			 </select>
@@ -114,7 +115,7 @@
 	<script>
 
 	// 날짜설장
-		document.getElementById('proc_dt').value = new Date().toISOString().substring(0, 10);; // 게시판 설정일 기본값을 오늘날짜로
+	document.getElementById('proc_dt').value = new Date().toISOString().substring(0, 10);; // 게시판 설정일 기본값을 오늘날짜로
 	  document.getElementById('proc_dt').min = new Date().toISOString().substring(0, 10);; // 게시판 설정일 min 값을 오늘 날짜로
 	  document.getElementById('mod_dt').min = new Date().toISOString().substring(0, 10);; // 게시판 설정일 min 값을 오늘 날짜로
 	  document.getElementById('exp_dt').min = new Date().toISOString().substring(0, 10);; // 게시판 설정일 min 값을 오늘 날짜로
@@ -162,28 +163,31 @@
  			
  		});
 	
-	});
-	
-	
+	});	
 	//관리자명 검색 시 사번 가져온 후, 사번 입력폼에 대입하는 함수
 	function empSearch(){
 		let empName = $("#adm_nm").val();
  				
 		
 	 	$.ajax({
-			url:"<c:url value='empSearch?name="+empName+"'/>", 
-			type : "get", //서버에 전송하기 위한 전송방식
-			dataType : "json", // 서버에서 응답하는 데이터 형식
+			url:"/admin/empSearch", 
+			type : "post", //서버에 전송하기 위한 전송방식
+			data : {"name" : empName},
 			success: 
 			function(data){
 				console.log(data)
-				$("#emp_id").val(data.emp_id)},
+				
+				if(data != "NotFound"){
+					$("#emp_id").attr("value", data)
+				}else{
+					alert("등록할 관리자의 성명을 다시 확인하세요!")
+				}				
+			},
 			error : function(){alert("error!!")} //서버에서 요청 처리가 실패 됬을 경우
 			
 		}); 
 	}
 	
-
     function idCheck() {
 
         var adm_id = $('#adm_id').val();
@@ -200,9 +204,7 @@
             data: {"adm_id": adm_id}, // 서버에 전송 할 데이터
             success: function (responseData) {
 					
-            	console.log("아이디 중복체크"+responseData);
-            	
-            	
+            	console.log("아이디 중복체크"+responseData);          	
                 //responseData = "Y" or "N", Y: 사용가능 N: 사용불가
                 if (responseData == "yes") {
                     $('#chkMsg').html("사용가능한 아이디 입니다.");
@@ -214,8 +216,6 @@
                     $('#chkMsg').css({"color":"red","font-size":"13px"});
 
                 }// if문
-
-
             },
             //success
 
@@ -229,9 +229,43 @@
 
     }//funtion idCheck
 	
-	
-	
-	
+	function nickNameCheck(){
+		 
+      let vnm =	$("#adm_vnm").val();
+      
+      if(vnm.length == 0){
+          $('#chkMsg2').html("닉네임을 입력해주세요!")
+          $('#chkMsg2').css({"color":"red","font-size":"13px"});
+          return;
+      }
+      
+      $.ajax({
+    		url: "/admin/nickNameCheck",
+    		type: "post",
+    		data: {"vnm" : vnm},
+    		success: function (responseData) {				
+            	console.log("닉네임 중복체크"+responseData);
+                  	
+                //responseData = "Y" or "N", Y: 사용가능 N: 사용불가
+                if (responseData == "Yes") {
+                    $('#chkMsg2').html("사용가능한 닉네임 입니다.");
+                    $('#chkMsg2').css({"color":"blue","font-size":"13px"});
+                } else {
+                    $('#chkMsg2').html("사용 불가능한 아이디 입니다.")
+                    $('#chkMsg2').css({"color":"red","font-size":"13px"});
+
+                }// if문
+            },
+            //success
+
+            error: function () {
+                $('#chkMsg').html("네트웍 에러")
+            }
+
+      })
+    	
+  }	
+
 	</script>
 	
 	

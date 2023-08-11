@@ -19,7 +19,7 @@ values(#{adm_id}, #{adm_nm}, #{adm_vnm}, #{adm_pw}, #{emp_id}, #{use_yn},
 </insert>
 
 <!-- 검색한 관리자의 사번 가져오기 -->
-<select id="getEmp" resultType="EmpDTO">
+<select id="getEmp" resultType="String">
 select emp_id, emp_nm from emp_info where emp_nm = #{name}
 </select>
 
@@ -49,6 +49,12 @@ use_yn = #{use_yn} where adm_id = #{adm_id}
 select * from admin_master
 where adm_id = #{id}
 </select>
+
+<!-- 관리자 등록 시 닉네임 유효성 체크 -->
+<select id="checkNickName" resultType="Integer">
+select count(*) from admin_master where adm_vnm = #{vnm}
+</select>
+
 
 <!-- 회원 리스트 가져오기 -->
 <select id="getUserList" resultType="hashmap">

@@ -15,16 +15,16 @@
 						<th>No.</th>					
 						<th>회원ID</th>
 						<th>password</th>
-						<th>회원명</th>
-						<th>자택번호</th>
-						<th>휴대번호</th>
-						<th>이메일</th>
-						<th>생년월일</th>
-						<th>우편번호</th>
-						<th>지번주소</th>
-						<th>도로명주소</th>
+						<th style="width:10%">회원명</th>
+						<th style="width:10%">자택번호</th>
+						<th style="width:10%">휴대번호</th>
+						<th style="width:10%">이메일</th>
+						<th style="width:10%">생년월일</th>
+						<th style="width:10%">우편번호</th>
+						<th style="width:20%">지번주소</th>
+						<th style="width:20%">도로명주소</th>
 						<th>상세주소</th>
-						<th>활성화여부</th>
+						<th style="width:12%">활성화여부</th>
 						<th>가입일자</th>
 						<th>수정</th>
 						<th>삭제</th>
@@ -34,20 +34,20 @@
 				<tbody>
 				<c:forEach items="${list}" var="dto">				
 					<tr>
-						<th>${dto.user_no}</th>					
-						<th>${dto.user_id}</th>
-						<th>****</th>
-						<th>${dto.user_nm}</th>
-						<th>${dto.user_home}</th>
-						<th>${dto.user_phone}</th>
-						<th>${dto.user_email}</th>
-						<th>${dto.birth_ymd}</th>
-						<th>${dto.zipcode}</th>
-						<th>${dto.addr}</th>
-						<th>${dto.addr_road}</th>
-						<th>${dto.addr_detail}</th>
-						<th>${dto.use_yn}</th>
-						<th>${dto.user_dt}</th>
+						<td>${dto.user_no}</td>					
+						<td>${dto.user_id}</td>
+						<td>****</td>
+						<td>${dto.user_nm}</td>
+						<td>${dto.user_home}</td>
+						<td>${dto.user_phone}</td>
+						<td>${dto.user_email}</td>
+						<td>${dto.birth_ymd}</td>
+						<td>${dto.zipcode}</td>
+						<td>${dto.addr}</td>
+						<td>${dto.addr_road}</td>
+						<td>${dto.addr_detail}</td>
+						<td>${dto.use_yn}</td>
+						<td>${dto.user_dt}</td>
 						<td><a href="<c:url value="/product/prodUpdate?prod_no=${pdto.prod_no}"/>" class="btn btn-info">수정</a></td>
 						<td><a href="<c:url value="/product/prodDelete?prod_no=${pdto.prod_no}"/>" class="btn btn-dark">삭제</a></td>
 					</tr>

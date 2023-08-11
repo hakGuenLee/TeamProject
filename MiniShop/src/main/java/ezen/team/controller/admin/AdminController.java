@@ -55,8 +55,26 @@ public class AdminController {
 		if(adminDTO != null || "".equals(id.trim())) {
 			return "N";
 		}
-		return "yes";
+		return "yes";		
+	}
+	
+	//관리자 등록 시 닉네임 유효성 체크
+	@PostMapping("/nickNameCheck")
+	@ResponseBody
+	public String nickNameCheck(@RequestParam("vnm") String vnm) {
 		
+		System.out.println("vnm : " + vnm);
+		
+		int nickNameNum = adminservice.nickNameCheck(vnm);
+		
+		System.out.println("개수 : " + nickNameNum);
+		
+		if(nickNameNum == 1) {
+			return "No";
+		}
+		
+		return "Yes";
+
 	}
 		
 	//관리자 등록 처리
@@ -69,13 +87,16 @@ public class AdminController {
 	}
 		
 	//관리자 사번 검색
-	@GetMapping("/empSearch")
+	@PostMapping("/empSearch")
 	@ResponseBody
-	public EmpDTO empSearch(@RequestParam("name") String name) {
-	
-		EmpDTO empDto = adminservice.getEmpList(name);				
-	
-		return empDto;
+	public String empSearch(@RequestParam("name") String name) {
+		
+		String empId = adminservice.getEmpList(name);		
+		
+		if(empId == null) {
+			return "NotFound";
+		}	
+		return empId;
 	}
 	
 	//승인 요청 목록 페이지 이동(조회)

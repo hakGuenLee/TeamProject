@@ -26,6 +26,12 @@
 	<update id="addNoticeHit">
 	update post_mng set hit = hit + 1 where pst_no = #{no}
 	</update>
+	
+	<!-- 공지글 검색하기 -->
+	<select id="searchNotice" resultType="BoardDTO">
+	select * from post_mng where pst_ttl like CONCAT('%', #{search}, '%') and 
+	pst_gb = '002'
+	</select>
 
 	<!-- 1:1문의 등록 -->
 	<insert id="csInsert" parameterType="csDTO">

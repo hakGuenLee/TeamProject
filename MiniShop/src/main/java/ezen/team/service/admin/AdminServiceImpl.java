@@ -42,7 +42,7 @@ public class AdminServiceImpl implements AdminService {
 
 	//관리자 등록 페이지 사번 검색하기
 	@Override
-	public EmpDTO getEmpList(String name) {
+	public String getEmpList(String name) {
 		
 		return mapper.getEmp(name);	
 	}
@@ -80,6 +80,13 @@ public class AdminServiceImpl implements AdminService {
 				
 		return mapper.adminIdCheck(id);
 	}
+	
+	//관리자 등록 시 닉네임 유효성 체크
+	@Override
+	public int nickNameCheck(String vnm) {
+	
+		return mapper.checkNickName(vnm);
+	}
 
 	//회원 리스트 가져오기
 	public List<UserDTO> getUserList(PageDTO pageDto) {
@@ -87,6 +94,8 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.getUserList(pageDto);
 		
 	}
+
+
 
 
 

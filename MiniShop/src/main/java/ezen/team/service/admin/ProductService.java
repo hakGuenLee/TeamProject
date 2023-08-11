@@ -24,4 +24,7 @@ public interface ProductService {
 
 	void prodDelete(String no, HttpServletRequest request);
 
+	//상품명으로 상품 검색하기
+	List<ProductDTO> prodSearch(String search);
+
 }

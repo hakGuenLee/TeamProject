@@ -34,4 +34,7 @@ public interface BoardMapper {
 	// 1:1문의 기간별 조회하기
 	public List<CsDTO> dateSearch(PageDTO pageDTO, String user_id, String stt_ymd, String end_ymd);
 
+	//공지글 검색하기
+	public List<BoardDTO> searchNotice(String search);
+
 }

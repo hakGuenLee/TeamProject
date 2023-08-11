@@ -56,5 +56,10 @@
 	<select id="getProdInfo" resultType="ProductDTO">
 	select * from prod_master where prod_no = #{prod_no}	
 	</select>
+	
+	<!-- 상품명으로 상품 검색하기 -->
+	<select id="prodSearch" resultType="ProductDTO">
+	select * from prod_master where prod_nm like CONCAT('%', #{search}, '%')
+	</select>
 
 </mapper>

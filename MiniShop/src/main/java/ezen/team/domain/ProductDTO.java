@@ -4,11 +4,13 @@ import java.sql.Date;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 //상품
 //prod_master 테이블
 @Getter
 @Setter
+@ToString
 public class ProductDTO {
 	
 	private int prod_no; //상품no

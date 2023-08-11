@@ -24,4 +24,7 @@ public interface BoardService {
 
 	List<CsDTO> dateSearch(PageDTO pageDTO, HttpSession session, String stt_ymd, String end_ymd);
 
+	//공지사항 검색하기
+	List<BoardDTO> searchNotice(String search);
+
 }

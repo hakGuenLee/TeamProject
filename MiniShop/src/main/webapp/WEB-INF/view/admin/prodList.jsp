@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- 상품 리스트 페이지 -->
 
@@ -8,7 +9,21 @@
 	
 	
 		<div class="container w-75 mt-5">
-			<h3><b>상품 리스트</b></h3>
+		
+				
+				<h3><b>상품 리스트</b></h3>
+
+
+				<form action="/product/prodNameSearch" method="post">
+				  <div class="input-group mb-3 w-25 d-flex">
+					 <input type="text" name="search" class="form-control" placeholder="상품명을 검색하세요">
+				  	<button type="submit" class="btn btn-primary">검색</button>	
+				  </div>
+				</form>
+
+
+			
+			
 			<table class="table mt-3">
 				<thead class="table-secondary">
 					<tr>
@@ -39,7 +54,7 @@
 						<td>${pdto.price}</td>
 						<td>${pdto.point}</td>
 						<td>${pdto.qty}</td>
-						<td>${pdto.dc_price}</td>
+						<td><fmt:formatNumber value="${pdto.dc_price}"/></td>
 						<td>${pdto.use_yn}</td>
 						<td>${pdto.proc_id}</td>
 						<td>${pdto.proc_dt}</td>

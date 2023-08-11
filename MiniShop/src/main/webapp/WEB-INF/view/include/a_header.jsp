@@ -29,7 +29,7 @@
        <div class="d-flex w-100 justify-content-around">
        	<div>
          <li class="nav-item">
-          <a class="nav-link active" href="<c:url value="/admin/adminHome"/>">관리자 홈</a>
+          <a class="nav-link active" href="<c:url value="/adminHome"/>">관리자 홈</a>
         </li>
         </div>
         <div class="d-flex">

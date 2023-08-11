@@ -32,6 +32,9 @@ public interface ProductMapper {
 	//상품 정보 가져오기
 	ProductDTO getProdInfo(String no);
 
+	//상품명 검색하기
+	List<ProductDTO> prodSearch(String search);
+
 
 
 }

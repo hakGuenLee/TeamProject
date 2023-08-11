@@ -115,6 +115,13 @@ public class ProductServiceImpl implements ProductService {
 		
 		mapper.prodDelete(no);
 	}
+
+	//상품명으로 상품 검색하기
+	@Override
+	public List<ProductDTO> prodSearch(String search) {
+		
+		return mapper.prodSearch(search);
+	}
 		
 	
 

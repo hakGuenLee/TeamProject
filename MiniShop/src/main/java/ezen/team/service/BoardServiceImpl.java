@@ -74,6 +74,13 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.dateSearch(pageDTO, user_id, stt_ymd, end_ymd);
 		
 	}
+
+	//공지사항 검색하기
+	@Override
+	public List<BoardDTO> searchNotice(String search) {
+		
+		return mapper.searchNotice(search);
+	}
 	
 	
 }

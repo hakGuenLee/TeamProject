@@ -23,7 +23,7 @@ public interface AdminMapper {
 	void adminRegister(AdminDTO aDto);
 
 	//사번 검색
-	EmpDTO getEmp(String name);
+	String getEmp(String name);
 
 	//관리자 리스트 가져오기
 	List<AdminDTO> getAdminList();
@@ -42,9 +42,14 @@ public interface AdminMapper {
 
 	//관리자 등록 아이디 유효성 검사
 	AdminDTO adminIdCheck(String id);
+	
+	//관리자 등록 시 닉네임 유효성 체크
+	int checkNickName(String vnm);
 
 	//회원 리스트 가져오기
 	List<UserDTO> getUserList(PageDTO pageDto);
+
+
 
 
 

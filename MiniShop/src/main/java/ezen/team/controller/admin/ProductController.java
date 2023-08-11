@@ -119,6 +119,21 @@ public class ProductController {
 		
 		return "redirect:/product/prodList";
 	}
+	
+	//상품 리스트에서 상품명으로 검색하기
+	@PostMapping("/prodNameSearch")
+	public String prodNameSearch(String search, Model model) {
+		System.out.println("상품명 : " + search);
+		
+		List<ProductDTO> prodList = productService.prodSearch(search);
+		
+		System.out.println("검색결과 : " + prodList);
+		
+		model.addAttribute("pList", prodList);
+		
+		return "/admin/prodList";
+		
+	}
 		
 
 }
