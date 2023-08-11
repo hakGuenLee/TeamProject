@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!-- 1:1문의 상세보기 -->
 
 <jsp:include page="../include/a_header.jsp"/>
@@ -62,7 +62,7 @@
 						<div class="form-group">
 				         <label for="proc_id">처리자</label>
 				         <input type="text" class="form-control" id="proc_id" 
-				            name="proc_id" readonly value="${csDto.proc_id}"/>
+				            name="proc_id" readonly value="<sec:authentication property="principal"/>"/>
 				    	</div>
 				    <c:if test="${param.proc_sts != 1}">	
 				        <div class="form-group">

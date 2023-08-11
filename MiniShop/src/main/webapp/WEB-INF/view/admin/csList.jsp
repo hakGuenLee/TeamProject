@@ -76,8 +76,8 @@
 			</table>
 </div>
 
-<div>
-	<ul class="pagination justify-content-center my-5">
+<!-- <div> -->
+ 	<ul class="pagination justify-content-center my-5">
 		<li class="page-item ${pageDTO.prevPage <= 0 ? 'disabled' : ''}">
 			<a class="page-link" href="<c:url value="/customer/csList?viewPage=${pageDTO.prevPage}&cntPerPage=${pageDTO.cntPerPage}"/>">이전</a>
 		</li>
@@ -92,7 +92,7 @@
 			<a class="page-link" href="<c:url value="/customer/csList?viewPage=${pageDTO.nextPage}&cntPerPage=${pageDTO.cntPerPage}"/>">다음</a>
 		</li>
 	</ul>
-</div>
+</div> 
 	
 					
 	<jsp:include page="../include/a_footer.jsp"/>

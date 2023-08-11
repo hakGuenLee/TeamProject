@@ -22,6 +22,7 @@
 
 						<tr>
 							<th>No.</th>
+							<th>이미지</th>
 							<th>상품명</th>
 							<th>금액</th>
 							<th>적립금</th>
@@ -36,8 +37,9 @@
 						<c:forEach items="${uoList}" var="list">
 							<tr>
 								<td>${i}</td>
-								<td><a>${list.prod_nm}</a></td>
-								<td><a>${list.price}</a></td>
+								<td>${list.main_img}</td>
+								<td>${list.prod_nm}</a></td>
+								<td>${list.price}</a></td>
 								<td>${list.point}</td>
 								<td>${list.order_sts}</td>
 								<td>${list.order_dt}</td>

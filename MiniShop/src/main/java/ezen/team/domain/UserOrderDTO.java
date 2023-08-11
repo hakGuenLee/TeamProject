@@ -4,11 +4,13 @@ import java.sql.Date;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 //주문/배송목록/교환/환불조회
 
 @Getter
 @Setter
+@ToString
 public class UserOrderDTO {
 	
 	private String user_id;  // 유조 id
@@ -20,6 +22,7 @@ public class UserOrderDTO {
 	
 	private String order_no;  // 주문번호
 	private String prod_nm; // 상품 이름
+	private String main_img; // 상품 메인 이미지
 	private int price; // 상품 가격
 	private int point; // 상품 적립금
 	private Date order_dt; // 주문일자

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Minimall Admin Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- -  	<meta name="_csrf_header" content="${_csrf.headerName}">
@@ -34,7 +34,6 @@
           <ul>
             <li> <a class="nav-link" href="<c:url value="/admin/adminRegister"/>">관리자 등록</a></li>
             <li> <a class="nav-link" href="<c:url value="/admin/adminList"/>">관리자 리스트</a></li>
-            <li> <a class="nav-link" href="<c:url value="/admin/logList"/>">시스템 로그</a></li>
           </ul>
         </li>
           <li>
@@ -67,6 +66,7 @@
          <li>
           <a class="nav-link active" href="#">주문/배송 관리</a>
           <ul>
+           <li><a class="nav-link" href="<c:url value="/order/AllOrder"/>">회원 주문/배송 리스트</a></li>
             <li><a class="nav-link" href="<c:url value="/order/orderList"/>">회원 주문/배송조회</a></li>
           </ul>
         </li>

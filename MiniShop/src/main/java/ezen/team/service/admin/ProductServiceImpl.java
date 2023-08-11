@@ -56,9 +56,6 @@ public class ProductServiceImpl implements ProductService {
 		
 		mapper.prodUpdate(map);
 	}
-	
-	
-	
 
 	//상품 리스트
 	@Override

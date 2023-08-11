@@ -16,10 +16,10 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardMapper mapper;
 
+	
 	@Override
 		public void csInsert(CsDTO csDto) {
-		mapper.csInsert(csDto);
-		
+		mapper.csInsert(csDto);		
 	}
 
 	//Notice 모두 가져오기

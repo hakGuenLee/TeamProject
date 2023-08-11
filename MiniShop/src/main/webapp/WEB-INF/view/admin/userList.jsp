@@ -36,7 +36,7 @@
 					<tr>
 						<th>${dto.user_no}</th>					
 						<th>${dto.user_id}</th>
-						<th>${dto.user_pw}</th>
+						<th>****</th>
 						<th>${dto.user_nm}</th>
 						<th>${dto.user_home}</th>
 						<th>${dto.user_phone}</th>

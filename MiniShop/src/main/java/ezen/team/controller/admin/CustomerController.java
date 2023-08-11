@@ -53,7 +53,6 @@ public class CustomerController {
     	List<CsDTO> csList = service.csList(cs_code, proc_sts, pageDto);
 
     	model.addAttribute("csList", csList);
-    	System.out.println("csList : " + csList);
     	model.addAttribute("search_cd", cs_code);
     	model.addAttribute("search_sts", proc_sts);
     	model.addAttribute("pageDTO", pageDto);

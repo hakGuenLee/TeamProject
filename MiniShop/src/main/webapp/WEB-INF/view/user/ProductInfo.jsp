@@ -71,7 +71,7 @@
 
 
      		
-      		<input type="number" class="w-100 border border-secondary rounded-1" value="1" min="1" size="3" id="pqty" name="pQty"/> 
+      		<input type="number" class="w-100 border border-secondary rounded-1" value="1" min="1" size="3" id="pqty" name="qty"/> 
 			
 
             

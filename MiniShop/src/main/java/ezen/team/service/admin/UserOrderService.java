@@ -21,6 +21,12 @@ public interface UserOrderService {
 
 	void orderUpdate(UserOrderDTO uodto);
 
+	//주문 내역 모두 가져오기
+	List<UserOrderDTO> getAllOrderList();
+
+	//주문 번호를 통해 주문 상세 내역 가져오기
+	List<UserOrderDTO> getOrderInfo(String orderNo);
+
 
 
 }

@@ -90,6 +90,7 @@ public class FileHandler {
 		
 	}
 	
+	//수정하기 메서드
 	public Map productUpdate(MultipartHttpServletRequest mhr, HttpServletRequest request) throws Exception {
 		
 		String repo = "/resources/upload";

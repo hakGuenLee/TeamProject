@@ -40,8 +40,6 @@ public class UserQnAServiceImpl implements UserQnAService {
 		int totalCnt = mapper.QnaCount(user_id);
 		pageDTO.setCntPerPage(5); // 5건씩 보이게 세팅
 		pageDTO.setValue(totalCnt, pageDTO.getCntPerPage());
-		
-		
 
 		return mapper.getQnaList(pageDTO, user_id);
 	}

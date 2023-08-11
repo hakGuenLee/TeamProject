@@ -8,6 +8,7 @@
 
 <div class="container w-50 mt-5">
 	<h3>상품 등록</h3>
+	<p style="color:tomato">상세 이미지, 서브이미지 1,2를 제외한 모든 내용은 공백없이 입력</p>
 	<form action="<c:url value="/product/prodRegister"/>" method="post"
 		enctype="multipart/form-data">
 		<table class="table table-borderless">

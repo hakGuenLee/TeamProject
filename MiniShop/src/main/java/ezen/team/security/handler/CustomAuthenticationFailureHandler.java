@@ -22,11 +22,11 @@ public class CustomAuthenticationFailureHandler extends
 			AuthenticationException exception) throws IOException, ServletException {
 
 	//기본적으로 전달하는 예외 메세지를 작성	
-	String errorMsg = "Invalid username or password";	
+	String errorMsg = "Check your Id or Password again!";
 		
 	//예외 종류에 따라 타입별 메세지 전달
 	if(exception instanceof BadCredentialsException) {
-		errorMsg = "Invalid username or password";
+		errorMsg = "Check your Id or Password again!";
 		
 		//시크릿 키가 일치하지 않을 경우
 	}else if(exception instanceof InsufficientAuthenticationException) {

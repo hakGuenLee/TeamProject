@@ -32,18 +32,18 @@
 				<tbody>
 				<c:forEach items="${pList}" var="pdto">				
 					<tr>
-						<th>${pdto.prod_no}</th>					
-						<th>${pdto.ctgry_no}</th>
-						<th>${pdto.prod_nm}</th>
-						<th> <img src="<c:url value="/resources/upload/${pdto.main_img}"/>" style="width:60px"/></th>
-						<th>${pdto.price}</th>
-						<th>${pdto.point}</th>
-						<th>${pdto.qty}</th>
-						<th>${pdto.dc_price}</th>
-						<th>${pdto.use_yn}</th>
-						<th>${pdto.proc_id}</th>
-						<th>${pdto.proc_dt}</th>
-						<th>${pdto.mod_dt}</th>
+						<td>${pdto.prod_no}</td>					
+						<td>${pdto.ctgry_no}</td>
+						<td>${pdto.prod_nm}</td>
+						<td> <img src="<c:url value="/resources/upload/${pdto.main_img}"/>" style="width:60px"/></td>
+						<td>${pdto.price}</td>
+						<td>${pdto.point}</td>
+						<td>${pdto.qty}</td>
+						<td>${pdto.dc_price}</td>
+						<td>${pdto.use_yn}</td>
+						<td>${pdto.proc_id}</td>
+						<td>${pdto.proc_dt}</td>
+						<td>${pdto.mod_dt}</td>
 						<td><a href="<c:url value="/product/prodUpdate?prod_no=${pdto.prod_no}"/>" class="btn btn-info">수정</a></td>
 						<td><a href="<c:url value="/product/prodDelete?prod_no=${pdto.prod_no}"/>" class="btn btn-dark">삭제</a></td>
 					</tr>

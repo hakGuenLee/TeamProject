@@ -5,11 +5,14 @@ import java.sql.Date;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 // 1:1문의
 // cs_master 테이블
 
-@Data
+@Getter
+@Setter
+@ToString
 public class CsDTO {
 	private int cs_no; 		 // 1:1문의 번호
 	private String user_id;  // 회원 ID

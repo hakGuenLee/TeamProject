@@ -11,20 +11,20 @@
 
 	<!-- 리팩토링 후 -->
     <select id="csList" resultType="CsDTO">	 	
-		select *
-		from cs_master as cm, cmmn_cd as cmcd
-		where 1=1
-			and cm.cs_code = cmcd.item_cd
-		<if test="cs_code !='ALL'">
-			and	cm.cs_code = #{cs_code}
-		</if>	
-		<if test="proc_sts !='proc_all'">
-			and	cm.proc_sts= #{proc_sts}
-		</if>  
-      	ORDER BY cs_no DESC
+		  select *
+      from cs_master as cm, cmmn_cd as cmcd
+      where 1=1
+         and cm.cs_code = cmcd.item_cd
+         and cmcd.cm_cd = 300
+      <if test="cs_code !='ALL'">
+         and cm.cs_code = #{cs_code}
+      </if>   
+      <if test="proc_sts !='proc_all'">
+         and cm.proc_sts= #{proc_sts}
+      </if>      
+     	ORDER BY cs_no DESC
 		LIMIT #{pageDto.startIndex},
-		#{pageDto.cntPerPage}
-      
+		#{pageDto.cntPerPage}       
     </select>
     
      <select id="csInfo" resultType="CsDTO">
@@ -35,6 +35,7 @@
 			select * 
 			from cs_master as cm, cmmn_cd as cmcd
 			where 1=1
+			and cmcd.cm_cd = 300
 			and cm.cs_code = cmcd.item_cd
 			and cm.cs_no = #{cs_no} 
 		</if>

@@ -34,8 +34,10 @@
 	</insert>
 
 	<select id="csInfo" resultType="CsDTO">
-	SELECT * FROM cs_master
+	 SELECT * FROM cs_master as cm, cs_reply as rp
 	WHERE cs_no = #{cs_no}
+	and cm.cs_no = rp.cs_no 
+	
 	</select>	
 	
 

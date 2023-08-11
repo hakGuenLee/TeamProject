@@ -29,12 +29,10 @@ public class CustomUserDetailService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
 		
 		//DB로부터 관리자 정보 가져오기
 		AdminDTO aDto = adminMapper.findByusername(username);
-		
-		System.out.println("커스터머 유저 디테일스 aDto : " + aDto);
+
 		
 //		//해당 아이디가 없을 경우
 	if(aDto == null) {

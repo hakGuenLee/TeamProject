@@ -16,6 +16,7 @@ import ezen.team.domain.BoardDTO;
 import ezen.team.domain.CsDTO;
 import ezen.team.domain.PageDTO;
 import ezen.team.domain.UserDTO;
+import ezen.team.domain.UserInfoHandler;
 import ezen.team.service.BoardService;
 
 /*
@@ -31,6 +32,9 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private UserInfoHandler userInfoHandler;
 	
 	
 	//Notice 페이지 이동(게시글)
@@ -62,9 +66,8 @@ public class BoardController {
 	@GetMapping("/question")
 	public String question(CsDTO csDto, HttpSession session, Model model) {
 		
-		UserDTO user =	(UserDTO) session.getAttribute("userDTO");
-		String id = user.getUser_id();
-		
+		String id = userInfoHandler.getUserId(session);
+				
 		model.addAttribute("user_id", id);
 		
 		return "/user/csInsert";
@@ -90,6 +93,10 @@ public class BoardController {
 	public String csInfo(@RequestParam("cs_no")String cs_no, Model model) {
 		
 		CsDTO csDTO = boardService.csInfo(cs_no);
+		
+		System.out.println(csDTO.getProc_id());
+		
+		System.out.println("csDTO 답변내용 : " + csDTO);
 		
 		model.addAttribute("csDTO",csDTO);		
 		

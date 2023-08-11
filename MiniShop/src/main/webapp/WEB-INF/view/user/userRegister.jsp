@@ -19,7 +19,7 @@
 
 <div class="container w-50 mt-5 p-5 shadow">
     <form action="/user/userRegister" method="post" onsubmit="return submitChk()"> 
-        <h4>회원가입</h4>
+        <h4><b>회원가입</b></h4>
 
             <input type="hidden" id="isIdChk" value="no"/><!-- -->
             <input class="form-control mb-2 w-50"  onkeyup="idCheck()" type="text" name="user_id" id="user_id" placeholder="아이디"/>
