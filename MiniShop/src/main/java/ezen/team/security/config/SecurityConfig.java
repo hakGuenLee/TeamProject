@@ -80,34 +80,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception { 
 
 		   http
-//		   		.cors().disable()
+		   		.cors().disable()
 		         .csrf().disable()
-//		         .formLogin().disable()
-//		         .headers().frameOptions().disable();
+		         .formLogin().disable()
+		         .headers().frameOptions().disable();
 		
 		
-		
-			.authorizeRequests()
-
-			.antMatchers("/", "/adminLogin", "/adminHome", "/cart/**", "/user/**", "/getProdCategoryList", "/productPage/**", "/myPage/**", "/prodDetail/**","/order/**", 
-					"/getCode", "/getPopImg", "/board/**","/userQna/**").permitAll()
-			.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
-			.anyRequest().authenticated()
-			
-		.and()
-			.formLogin()   //formlogin방식 적용
-			.loginPage("/adminLogin")
-			.loginProcessingUrl("/login") //로그인 처리 URL
-			.defaultSuccessUrl("/adminHome") //로그인 성공 시 URL
-			.usernameParameter("username")
-			.authenticationDetailsSource(formAuthenticationDetailsSource)
-			.failureHandler(customAuthenticationFailureHandler) //로그인 실패 시 처리하는 Handler
-			.permitAll()
-			
-			//인가 예외 발생하였을 경우 처리하는 Handler
-		.and()
-			.exceptionHandling()
-			.accessDeniedHandler(accessDeniedHandler());
+		   
+//			.authorizeRequests()
+//
+//			.antMatchers("/", "/adminLogin", "/cart/**", "/user/**", "/getProdCategoryList", "/productPage/**", "/myPage/**", "/prodDetail/**","/order/**", 
+//					"/getCode", "/getHomeProdBox", "/getProdBox", "/board/**","/userQna/**").permitAll()
+//			.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
+//			.anyRequest().authenticated()
+//			
+//		.and()
+//			.formLogin()   //formlogin방식 적용
+//			.loginPage("/adminLogin")
+//			.loginProcessingUrl("/login") //로그인 처리 URL
+//			.defaultSuccessUrl("/admin/adminHome") //로그인 성공 시 URL
+//			.usernameParameter("username")
+//			.authenticationDetailsSource(formAuthenticationDetailsSource)
+//			.failureHandler(customAuthenticationFailureHandler) //로그인 실패 시 처리하는 Handler
+//			.permitAll()
+//			
+//			//인가 예외 발생하였을 경우 처리하는 Handler
+//		.and()
+//			.exceptionHandling()
+//			.accessDeniedHandler(accessDeniedHandler());
 	}
 	
 	//인가 예외 처리 Handler

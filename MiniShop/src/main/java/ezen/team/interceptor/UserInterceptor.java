@@ -38,9 +38,6 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 	
 			return true;
 		}
-		
-		
-	
 
 	}
 	
