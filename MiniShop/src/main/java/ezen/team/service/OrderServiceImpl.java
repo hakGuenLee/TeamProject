@@ -113,6 +113,8 @@ public class OrderServiceImpl implements OrderService {
 		
 		String id = userInfoHandler.getUserId(session);
 	
+		System.out.println("배송지 가져올 아이디 : " + id);
+		
 		return mapper.getNickAddr(id);
 	}
 

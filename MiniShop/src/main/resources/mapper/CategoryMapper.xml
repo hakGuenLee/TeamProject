@@ -16,6 +16,16 @@
 		#{cntPerPage}
 	</select>	
 
+	<!-- 카테고리명 검색하기 -->
+	<select id="catNameSearch" resultType="CategoryDTO">
+		select * from ctgry_mng
+		where ct_nm1 like CONCAT('%', #{search}, '%')
+		or ct_nm2 like CONCAT('%', #{search}, '%')
+		or ct_cd1 like CONCAT('%', #{search}, '%')
+		or ct_cd2 like CONCAT('%', #{search}, '%')
+	</select>
+
+
 	<!-- 페이징 처리를 위한 총 갯수 가져오기 -->
 	<select id="totalCnt" resultType="Integer">
 		SELECT count(*) FROM ctgry_mng

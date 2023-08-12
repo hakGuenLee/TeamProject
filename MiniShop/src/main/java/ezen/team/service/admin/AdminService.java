@@ -17,7 +17,7 @@ public interface AdminService {
 	String getEmpList(String name);
 
 	//관리자 리스트 가져오기
-	 List<AdminDTO> getAdminList();
+	 List<AdminDTO> getAdminList(PageDTO pageDto);
 	 
 	 //관리자 삭제
 	 void adminDelete(String id);

@@ -1,10 +1,14 @@
 //
  package ezen.team.security.config;
+import java.util.Locale;
+
 //
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,7 +30,7 @@ import ezen.team.security.provider.CustomAuthenticationProvider;
 ////Spring Security 환경설정
 //
 @Configuration
- @EnableWebSecurity 
+@EnableWebSecurity 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
@@ -44,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		 web.ignoring().antMatchers("/resources/js/*.js", "/resources/css/*.css", "/resources/imgs/*.jpg", "/resources/imgs/*.png", "/resources/upload/*.jpg", "/resources/upload/*.png", 
 				 "/resources/upload/*.jpeg");
-
+	 
 //			
 	}
 	
@@ -69,11 +73,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return passwordEncoder;
 	}
 //	
+	
 //	
 //	//인증, 인가 권한 설정
 	@Override
 	protected void configure(HttpSecurity http) throws Exception { 
-		
+
 		   http
 //		   		.cors().disable()
 		         .csrf().disable()

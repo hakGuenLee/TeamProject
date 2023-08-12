@@ -11,10 +11,10 @@
 
 	<!-- Notice 가져오기 -->
 	<select id="getNoticeList" resultType="BoardDTO">
-	select * from post_mng 
+	select * from post_mng where pst_gb = '002'  
 	order by pst_no desc
 	limit #{startIndex}, #{cntPerPage}
-<!-- 	where pst_gb = '002' -->
+ 	
 	</select>
 	
 	<!-- 해당번호에 맞는 공지 글 가져오기 -->

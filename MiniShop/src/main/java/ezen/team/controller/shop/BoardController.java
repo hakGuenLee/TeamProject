@@ -65,7 +65,12 @@ public class BoardController {
 	@PostMapping("/NoticeSearch")
 	public String noticeSearch(String search, Model model) {
 		
+		System.out.println("노티스 제목 : " + search);
+		
 		List<BoardDTO> boardList = boardService.searchNotice(search);
+		
+		System.out.println("노티스 리스트 : " + boardList);
+		
 		model.addAttribute("list", boardList);
 		
 		return "/user/notice";

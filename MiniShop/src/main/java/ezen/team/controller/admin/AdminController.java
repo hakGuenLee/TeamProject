@@ -108,9 +108,9 @@ public class AdminController {
 		
 	//관리자 리스트 페이지 이동
 	@GetMapping("/adminList")
-	public String adminList(Model model) {
+	public String adminList(Model model, PageDTO pageDto) {
 			
-		List<AdminDTO> list = adminservice.getAdminList();
+		List<AdminDTO> list = adminservice.getAdminList(pageDto);
 	
 		model.addAttribute("adminList", list);
 		

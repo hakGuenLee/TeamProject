@@ -61,5 +61,12 @@ public class CategoryServiceImpl implements CategoryService {
 		mapper.deleteCategory(no);		
 	}
 
+	//카테고리명 검색
+	@Override
+	public List<CategoryDTO> catNameSearch(String search) {
+
+		return mapper.catNameSearch(search);
+	}
+
 
 }

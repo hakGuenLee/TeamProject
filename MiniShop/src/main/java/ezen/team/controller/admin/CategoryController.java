@@ -56,6 +56,17 @@ public class CategoryController {
       return "/admin/catList";
    }
    
+   //카테고리명 검색하기
+   @PostMapping("/categoryNameSearch")
+   public String categorySearch(String search, Model model) {
+	   
+	   List<CategoryDTO> cList = categoryService.catNameSearch(search);
+	   
+	   model.addAttribute("cList", cList);
+	   
+	   return "/admin/catList";
+   }
+   
    //카테고리 수정페이지 이동
    @GetMapping("/catUpdate")
    public String catUpdate(@RequestParam("no")String no

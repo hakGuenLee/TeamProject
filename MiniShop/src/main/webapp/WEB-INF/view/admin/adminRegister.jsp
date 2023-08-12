@@ -40,24 +40,26 @@
 			  <label for="name">관리자 성명</label>
 			</div>
 			
-<!-- 			<input type="button" value="사번검색" class="btn btn-secondary" onclick="shoEmp()"/>		 -->
-			
-				<a class="btn btn-secondary" onclick="empSearch()">사번 검색</a>
-				
-				
+			<a class="btn btn-secondary" onclick="empSearch()">사번 검색</a>
+								
 			<!-- 사번 값 대입받는 input -->	
+<!-- 			<div class="form-floating mt-3 mb-3"> -->
+			  <input type="text" class="form-control w-50 mt-3" style="display:none" id="emp_id"  name="emp_id">
+<!-- 			</div> -->
+			
 			<div class="form-floating mt-3 mb-3">
-			  <input type="text" class="form-control w-50" id="emp_id" placeholder="사번" name="emp_id">
-			  <label for="emp_id"></label>
+			  <input type="password" class="form-control w-50" id="adm_pw" placeholder="관리자 패스워드" name="adm_pw">
+			  <label for="pw">관리자 패스워드</label>
 			</div>
 			
 			<div class="form-floating mt-3 mb-3">
-			  <input type="text" class="form-control w-50" id="adm_pw" placeholder="관리자 패스워드" name="adm_pw">
-			  <label for="pw">관리자 패스워드</label>
+			  <input type="password" class="form-control w-50" id="adm_pw2" placeholder="패스워드를 한번 더 입력하세요" name="adm_pw">
+			  <label for="pw">패스워드를 한번 더 입력하세요</label>
+			  <a class="btn btn-secondary" onclick="passwordCheck()">비밀번호 확인</a>
 			</div>
 
 	
-			 <label for="sel1" class="form-label">사용 구분</label>
+			 <label for="sel1" class="form-label">계정 활성화 구분</label>
 			 <select class="form-select w-50" id="use_yn" name="use_yn">
 			      <option></option>
 			 </select>
@@ -178,7 +180,9 @@
 				console.log(data)
 				
 				if(data != "NotFound"){
+					$("#emp_id").css("display", "block")
 					$("#emp_id").attr("value", data)
+					
 				}else{
 					alert("등록할 관리자의 성명을 다시 확인하세요!")
 				}				
@@ -265,6 +269,16 @@
       })
     	
   }	
+    
+  function passwordCheck(){
+	 let admPw = $("#adm_pw").val();
+	 let admPw2 = $("#adm_pw2").val();
+	 
+	 if(admPw2 != admPw){
+		 alert("비밀번호가 일치하지 않습니다! 다시 확인해주세요!")
+	 }
+	  
+  }
 
 	</script>
 	

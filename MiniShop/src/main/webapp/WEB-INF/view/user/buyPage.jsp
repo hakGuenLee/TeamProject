@@ -112,10 +112,14 @@
 					
 				<td> 
 					<div class="d-flex">
-					<p><input type="checkbox" onclick="getAddress(); checkOne(this);" name="checkBox" value="기본주소"/>기본주소</p>  <!-- 기본 배송지 영역 -->
+					<p><input type="checkbox" onclick="getDefAddress(); checkOne(this);" id="defAddr" name="checkBox" value="기본주소"/>기본주소</p>  <!-- 기본 배송지 영역 -->
+					
 					<c:forEach var="dto" items="${nickList}">
-					<p><input type="checkbox" onclick="getAddress(); checkOne(this);" id="nickname"
-					value="${dto}" name="checkBox"/>${dto}</p> 	
+						<c:set var="i" value="0"/>
+						<p>
+						<input type="checkbox" onclick="getAddress(); checkOne(this);" id="nickname${i}" value="${dto}" name="checkBox"/>${dto}
+						</p> 	
+						<c:set var="i" value="${i + 1 }"/>
 					</c:forEach>
 					</td>
 					</div>
@@ -237,8 +241,33 @@
 
 
 <script>
+function getDefAddress(){
+	$("input:checkbox[name=checkBox]:checked").each(function(){
+		
+		var checkedVal = $(this).val();
+		console.log("주소 이름 : " + checkedVal);
+		
+		let str = "";
+		let addrArea = $("#addrArea");
+		
+		
+		getDefAddress(checkedVal, function(data){
+		console.log(data)
+		
+		let AddrDTO = data; 
+	
+		$("#addr_nm").text(AddrDTO.addr_nm);
+		$("#address").text(AddrDTO.addr);
+		$("#addr_tel").text(AddrDTO.addr_tel);
+		
+		
+		})
+	
+	})	
+}
 
 function getAddress(){
+
 	$("input:checkbox[name=checkBox]:checked").each(function(){
 		
 		var checkedVal = $(this).val();
@@ -260,23 +289,23 @@ function getAddress(){
 		
 		})
 	
-	})	
-}
-
+	})	 
+	
+}	
+	
 function checkOne(element){
 	
 	const checkboxes = document.getElementsByName('checkBox');
 	let checkedCount = 0;
 	
-	for(let i=0; 0<checkboxes.length; i++){
+	for(let i=0; i<checkboxes.length; i++){
 		if(checkboxes[i].checked){
 			checkedCount++;
 			if(checkboxes[i] !== element){
 				checkboxes[i].checked = false;
 			}
 		}
-	}
-	
+	}	
 	if(checkedCount == 0){
 		element.checked = true;
 	}
@@ -359,7 +388,7 @@ function checkOne(element){
 	 }
 	 
 	 
-   </script>
+	   </script>
 
 
 <jsp:include page="../include/footer.jsp" />

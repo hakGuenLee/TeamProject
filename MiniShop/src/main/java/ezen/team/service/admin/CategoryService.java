@@ -26,5 +26,8 @@ public interface CategoryService {
 
 	//카테고리 삭제
 	void deleteCategory(String no);
+
+	//카테고리명 검색하기
+	List<CategoryDTO> catNameSearch(String search);
 	
 }

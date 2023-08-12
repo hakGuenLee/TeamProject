@@ -27,6 +27,7 @@ public class CustomAuthenticationFailureHandler extends
 	//예외 종류에 따라 타입별 메세지 전달
 	if(exception instanceof BadCredentialsException) {
 		errorMsg = "Check your Id or Password again!";
+
 		
 		//시크릿 키가 일치하지 않을 경우
 	}else if(exception instanceof InsufficientAuthenticationException) {

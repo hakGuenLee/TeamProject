@@ -8,6 +8,16 @@
 <jsp:include page="../include/a_header.jsp"/>
 		<div class="container w-75 mt-5">
 			<h3><b>카테고리 리스트</b></h3>
+			
+				<form action="/category/categoryNameSearch" method="post">
+				  <div class="input-group mb-3 w-50 d-flex">
+					 <input type="text" name="search" class="form-control" 
+					 placeholder="카테고리1,2 또는 이름1,2로 검색하세요">
+				  	<button type="submit" class="btn btn-primary">검색</button>	
+				  </div>
+				</form>
+			
+			
 			<table class="table mt-5">
 				<thead class="table-secondary">
 					<tr>

@@ -31,8 +31,7 @@
 
 				<tr>
 					<td>상품명</td>
-					<td><input type="text"
-						class="form-control form-control-sm w-50" name="prod_nm" /></td>
+					<td><input type="text" class="form-control form-control-sm w-50" name="prod_nm" /></td>
 				</tr>
 				<tr>
 					<td>상품이미지</td>
@@ -134,15 +133,37 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" class="text-center"><input type="submit"
-						class="btn btn-sm btn-primary" value="상품등록" /> <a
-						class="btn btn-sm btn-secondary"
-						href="<c:url value="/product/prodList"/>">리스트</a>
+					<td colspan="2" class="text-center">
+					<input type="submit" class="btn btn-sm btn-primary" id="registerButton" value="상품등록" /> 
+					<a class="btn btn-sm btn-secondary" href="<c:url value="/product/prodList"/>">리스트</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 	</form>
 </div>
+
+<script>
+
+/* function registerCheck(){
+	
+	let prodName = $("prod_nm").val(); //상품명
+	let mainImg = $("main_img").val(); //대표이미지
+	let price = $("price").val(); //상품가격
+	let point = $("point").val(); //포인트
+	let qty = $("qty").val(); //수량
+	let dcPrice = $("dc_price").val(); //할인가
+
+	if(prodName == null || mainImg == 0 || price == 0 || point == 0 || qty == 0 || dcPrice == 0){
+		alert("상품의 정보를 모두 입력해주세요!!")
+	}else{
+		alert("상품 등록 완료!")
+		$("#registerButton").attr("type", "submit");
+	}
+}
+ */
+</script>
+
 
 <script>	
 
@@ -168,9 +189,6 @@ $(document).ready(function(){
 	});
 	
 });
-
-
-
 
 
 function preViewImg(obj){

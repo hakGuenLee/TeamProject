@@ -49,9 +49,13 @@ public class AdminServiceImpl implements AdminService {
 
 	//관리자 리스트 가져오기
 	@Override
-	public List<AdminDTO> getAdminList() {
+	public List<AdminDTO> getAdminList(PageDTO pageDto) {
 		
-		return mapper.getAdminList();
+		int totalCnt = mapper.totalCnt(pageDto);
+		
+		pageDto.setValue(totalCnt,pageDto.getCntPerPage());
+		
+		return mapper.getAdminList(pageDto);
 	}
 
 	//관리자 삭제

@@ -17,8 +17,6 @@ import ezen.team.service.OrderServiceImpl;
 @Controller
 public class HomeController {
 	
-	@Autowired
-	private OrderServiceImpl service;
 
 	//홈 화면 이동
 	@RequestMapping("/")

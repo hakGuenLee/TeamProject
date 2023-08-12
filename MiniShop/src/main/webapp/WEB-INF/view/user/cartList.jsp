@@ -73,8 +73,8 @@
 
 		<div class="text-end">
 			장바구니 총액 :
-			<fmt:formatNumber value="${cartTotPrice }" />
-			원</br>
+		<fmt:formatNumber value="${cartTotPrice }" />
+			원
 
 		</div>
 		<div class="text-center">

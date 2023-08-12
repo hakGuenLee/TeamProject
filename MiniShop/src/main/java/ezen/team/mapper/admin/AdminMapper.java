@@ -26,7 +26,7 @@ public interface AdminMapper {
 	String getEmp(String name);
 
 	//관리자 리스트 가져오기
-	List<AdminDTO> getAdminList();
+	List<AdminDTO> getAdminList(PageDTO pageDto);
 
 	//관리자 삭제
 	void adminDelete(String id);
@@ -48,6 +48,9 @@ public interface AdminMapper {
 
 	//회원 리스트 가져오기
 	List<UserDTO> getUserList(PageDTO pageDto);
+
+	//총 개수 구하기
+	int totalCnt(PageDTO pageDto);
 
 
 
