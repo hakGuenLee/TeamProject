@@ -26,7 +26,7 @@
 						<th>주문번호</th>
 						<th>주문자ID</th>
 						<th>주문일자</th>
-						<th>상태</th>
+						<th style="width:150px">상태</th>	
 						<th>주문상태 수정하기</th>
 					</tr>
 				</thead>
@@ -94,7 +94,7 @@ function statusUpdate(a){
 	var codeNum = '300';
 	
 	var BtnValue = a;
-	ss
+
 	console.log(codeNum)
 	console.log(BtnValue);
 	
@@ -109,7 +109,7 @@ function statusUpdate(a){
 	let list = data;
 	
 	for(let i=0; i<list.length; i++){
-			str += ' <option id="status" value=' + list[i].item_nm+ '>'+list[i].item_nm+'</option>'		
+			str += ' <option id="status" value="' + list[i].item_nm+ '">'+list[i].item_nm+'</option>'		
 	}
 	
 	str2 = '<h4><b>'+BtnValue+'번의 상태 변경</b></h4>'
