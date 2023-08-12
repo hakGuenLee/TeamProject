@@ -55,7 +55,7 @@
 <jsp:include page="include/footer.jsp"/>
 
 <script>
-$(document).ready(function(){
+ $(document).ready(function(){
 	
 	let popNum = '001';
 	
@@ -84,7 +84,7 @@ $(document).ready(function(){
 	})
 
 	
-})
+}) 
 
 </script>
 

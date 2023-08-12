@@ -69,6 +69,20 @@ public class UserOrderServiceImpl implements UserOrderService {
 
 		return mapper.getOrderDetailInfo(orderNo);
 	}
+
+	//주문건 검색하기
+	@Override
+	public List<UserOrderDTO> searchOrder(String search) {
+
+		return mapper.searchOrder(search);
+	}
+
+	//주문 상태 변경하기
+	@Override
+	public void UpdateStatus(String status, String btnValue) {
+		mapper.updateStatus(status, btnValue);
+		
+	}
 	
 	
 

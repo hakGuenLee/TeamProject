@@ -52,6 +52,15 @@ public interface AdminMapper {
 	//총 개수 구하기
 	int totalCnt(PageDTO pageDto);
 
+	//회원 정보 가져오기
+	UserDTO getUserInfo(String no);
+
+	//회원정보 수정하기
+	void userUpdate(UserDTO uDto);
+
+	//회원 검색하기
+	List<UserDTO> searchUser(String search);
+
 
 
 

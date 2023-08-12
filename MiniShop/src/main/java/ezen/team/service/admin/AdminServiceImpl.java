@@ -99,6 +99,27 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
+	//회원 정보 가져오기
+	@Override
+	public UserDTO getUserInfo(String no) {
+
+		return mapper.getUserInfo(no);
+	}
+
+	//회원정보 수정하기
+	@Override
+	public void updateUserInfo(UserDTO uDto) {
+		mapper.userUpdate(uDto);
+		
+	}
+
+	//회원 검색하기
+	@Override
+	public List<UserDTO> searchUser(String search) {
+
+		return mapper.searchUser(search);
+	}
+
 
 
 

@@ -15,7 +15,6 @@ select * from user_info where info like CONCAT('%', #{parameter}, '%')
 select o.order_no, o.user_id, u.user_phone, o.order_sts, o.order_dt, u.user_nm
 from order_master as o left outer join user_master as u
 on o.user_id = u.user_id where u.user_id = #{id} or u.user_phone = #{phone}  
-
 </select>
 
 <!-- 검색한 주문번호 상세보기 내역 가져오기  -->
@@ -56,4 +55,21 @@ order_detail od INNER JOIN prod_master pm on od.prod_no = pm.prod_no
 WHERE
 order_no = #{orderNo}
 </select>
+
+
+<!-- 회원 주문/배송 관리 페이지에서 검색하기 -->
+<select id="searchOrder" resultType="UserOrderDTO">
+select * from order_master
+where order_no like CONCAT('%', #{search}, '%')
+or user_id like CONCAT('%', #{search}, '%')
+</select>
+
+<!-- 주문상태 변경하기 -->
+<update id="updateStatus">
+update order_master 
+set order_sts = #{status}
+where order_no = #{btnValue}
+</update>
+
+
 </mapper>

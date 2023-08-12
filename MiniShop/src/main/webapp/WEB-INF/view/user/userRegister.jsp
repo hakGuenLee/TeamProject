@@ -42,7 +42,9 @@
 
 
 		<input class="form-control mb-2 w-50" type="text" name="user_nm"
-			placeholder="이름" required> <input class="form-control mb-2 w-50"
+			placeholder="이름" required> 
+			
+			<input class="form-control mb-2 w-50"
 			type="text" name="user_home" id="user_home" placeholder="집 번호" oninput="regexPhoneNumber(this)"> 
 			<input
 			class="form-control mb-2 w-50" type="text" id="user_phone" name="user_phone" onkeyup="telCheck()" oninput="regexPhoneNumber(this)"

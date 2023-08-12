@@ -27,6 +27,12 @@ public interface UserOrderService {
 	//주문 번호를 통해 주문 상세 내역 가져오기
 	List<UserOrderDTO> getOrderInfo(String orderNo);
 
+	//주문건 검색하기(회원 주문/배송 관리 페이지)
+	List<UserOrderDTO> searchOrder(String search);
+
+	//주문상태 변경하기
+	void UpdateStatus(String status, String btnValue);
+
 
 
 }

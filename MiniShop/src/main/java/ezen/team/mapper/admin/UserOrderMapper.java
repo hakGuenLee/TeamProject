@@ -33,4 +33,10 @@ public interface UserOrderMapper {
 	//주문번호를 통해 주문 상세내역 가져오기
 	List<UserOrderDTO> getOrderDetailInfo(String orderNo);
 
+	//주문건 검색하기
+	List<UserOrderDTO> searchOrder(String search);
+
+	//주문상태 변경하기
+	void updateStatus(String status, String btnValue);
+
 }

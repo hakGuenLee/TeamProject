@@ -7,27 +7,33 @@
 <jsp:include page="../include/a_header.jsp"/>
 	
 	
+
 		<div class="container w-75 mt-5">
 			<h3><b>회원 리스트</b></h3>
-			<table class="table mt-3">
+		
+		
+			 <form action="/admin/userSearch" method="post">
+				  <div class="input-group mb-3 w-50 d-flex">
+					 <input type="text" name="search" class="form-control" 
+					 placeholder="회원명, ID 또는 회원 휴대번호 뒷자리로 회원 검색 가능합니다">
+				  	<button type="submit" class="btn btn-primary">검색</button>	
+				  </div>
+				</form>
+		
+			
+			
+			<table class="table w-100 mt-3">
 				<thead class="table-secondary">
 					<tr>
 						<th>No.</th>					
 						<th>회원ID</th>
-						<th>password</th>
-						<th style="width:10%">회원명</th>
-						<th style="width:10%">자택번호</th>
-						<th style="width:10%">휴대번호</th>
-						<th style="width:10%">이메일</th>
-						<th style="width:10%">생년월일</th>
-						<th style="width:10%">우편번호</th>
-						<th style="width:20%">지번주소</th>
-						<th style="width:20%">도로명주소</th>
-						<th>상세주소</th>
-						<th style="width:12%">활성화여부</th>
+						<th >회원명</th>
+						<th >휴대번호</th>
+						<th >이메일</th>
+						<th style="width:100px">생년월일</th>
+						<th style="width:100px">활성화여부</th>
 						<th>가입일자</th>
 						<th>수정</th>
-						<th>삭제</th>
 					</tr>
 				</thead>
 				
@@ -35,26 +41,20 @@
 				<c:forEach items="${list}" var="dto">				
 					<tr>
 						<td>${dto.user_no}</td>					
-						<td>${dto.user_id}</td>
-						<td>****</td>
+						<td id="userId">${dto.user_id}</td>
 						<td>${dto.user_nm}</td>
-						<td>${dto.user_home}</td>
 						<td>${dto.user_phone}</td>
 						<td>${dto.user_email}</td>
 						<td>${dto.birth_ymd}</td>
-						<td>${dto.zipcode}</td>
-						<td>${dto.addr}</td>
-						<td>${dto.addr_road}</td>
-						<td>${dto.addr_detail}</td>
 						<td>${dto.use_yn}</td>
 						<td>${dto.user_dt}</td>
-						<td><a href="<c:url value="/product/prodUpdate?prod_no=${pdto.prod_no}"/>" class="btn btn-info">수정</a></td>
-						<td><a href="<c:url value="/product/prodDelete?prod_no=${pdto.prod_no}"/>" class="btn btn-dark">삭제</a></td>
+						<td><a href="/admin/userInfoUpdate?no=${dto.user_no}" class="btn btn-info">수정</a></td>
 					</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
+
 	
 		<ul class="pagination justify-content-center my-5">
         <li class="page-item ${pageDTO.prevPage <= 0 ? 'disabled' : ''}">
@@ -76,6 +76,3 @@
 					
 	<jsp:include page="../include/a_footer.jsp"/>
 	
-	
-</body>
-</html>

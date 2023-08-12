@@ -9,9 +9,13 @@
 
 
 <div class="container w-50 mt-5">
+
 	<h3>
 		<b>위시리스트 내역</b>
 	</h3>
+			<c:if test="${list == null }">
+			<p>위시리스트에 담긴 상품이 없습니다!</p>
+		</c:if>
 
 	<table class="table mt-5">
 		<thead class="table-secondary">
@@ -24,9 +28,8 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:if test="${list == null }">
-			<p>위시리스트에 담긴 상품이 없습니다!</p>
-		</c:if>
+	
+		<c:if test="${list != null }">
 		<c:forEach var="dto" items="${list }">
 				<input type="hidden" value="${dto.wish_no }"/>
 			<tr>
@@ -40,6 +43,7 @@
 				
 			</tr>
 			</c:forEach>
+		</c:if>	
 		</tbody>
 		<tr>
 			<td><a href="javaScript:history.back()"

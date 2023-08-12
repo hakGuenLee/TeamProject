@@ -1,2 +1,26 @@
 @charset "utf-8";
 
+
+#idFinder{
+	color:gray
+}
+
+#idFinder:hover{
+	color: dodgerblue;
+}
+
+#pwFinder{
+	color:gray
+}
+
+#pwFinder:hover{
+	color: dodgerblue;
+}
+
+#join{
+	color: gray;
+}
+
+#join:hover{
+	color: tomato;
+}

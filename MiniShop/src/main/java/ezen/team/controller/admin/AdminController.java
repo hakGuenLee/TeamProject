@@ -158,5 +158,39 @@ public class AdminController {
 		return "/admin/userList";
 	}
 	
+	//회원정보 상세보기 이동
+	@GetMapping("/userInfoUpdate")
+	public String userUpdate(String no, Model model) {
+		System.out.println("넘어온 회원 번호 : " + no);
+		
+		UserDTO userInfo = adminservice.getUserInfo(no);
+		
+		model.addAttribute("userInfo", userInfo);
+		
+		return "/admin/userInfo";
+	}
+	
+	//회원정보 수정 처리
+	@PostMapping("/userInfoUpdate")
+	public String userUpdate(UserDTO uDto) {
+		
+		adminservice.updateUserInfo(uDto);
+		
+		return "redirect:/admin/userList";
+		
+	}
+	
+	//회원검색하기
+	@PostMapping("/userSearch")
+	public String userSearch(String search, Model model) {
+		
+		List<UserDTO> list = adminservice.searchUser(search);
+		
+		model.addAttribute("list", list);
+		
+		return "/admin/userList";
+		
+	}
+	
 	
 }

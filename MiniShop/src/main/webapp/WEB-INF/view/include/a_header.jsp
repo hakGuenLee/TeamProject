@@ -15,6 +15,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="<c:url value="/resources/js/commoncode.js"/>"></script>
+     <script src="<c:url value="/resources/js/zipcode.js"/>"></script>
+      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">   
 <link rel="stylesheet" href="<c:url value="/resources/css/a_header.css"/>">   
 <link rel="stylesheet" href="<c:url value="/resources/css/admin.css"/>">   

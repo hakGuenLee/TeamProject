@@ -37,6 +37,15 @@ public interface AdminService {
 	 //회원 리스트 가져오기
 	 List<UserDTO> getUserList(PageDTO pageDto);
 
+	 //회원 정보 가져오기
+	UserDTO getUserInfo(String no);
+
+	//회원 정보 수정하기
+	void updateUserInfo(UserDTO uDto);
+
+	//회원 검색하기
+	List<UserDTO> searchUser(String search);
+
 	
 
 }

@@ -25,6 +25,7 @@ public class UserOrderDTO {
 	private String main_img; // 상품 메인 이미지
 	private int price; // 상품 가격
 	private int point; // 상품 적립금
+	private int qty; //수량
 	private Date order_dt; // 주문일자
 	
 	private String addr_tel; //배송지 번호

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ezen.team.domain.UserOrderDTO;
 import ezen.team.service.admin.UserOrderService;
@@ -33,11 +33,46 @@ public class UserOrderController {
 	@GetMapping("/AllOrder")
 	public String orderAll(Model model) {
 	
-		List<UserOrderDTO> list = userOrderService.getAllOrderList();
-		model.addAttribute("list", list);
+		List<UserOrderDTO> list = userOrderService.getAllOrderList();				
 		
+		model.addAttribute("list", list);
+
 		return "admin/orderAll";
 	}
+	
+	//회원 주문/배송 리스트 검색
+	@PostMapping("/orderListSearch")
+	public String orderListSearch(String search, Model model) {
+		
+		List<UserOrderDTO> list = userOrderService.searchOrder(search);
+		
+		if(list == null) {
+			String message = "검색 결과 주문 내역이 존재하지 않습니다!";
+			model.addAttribute("Msg", message);
+			return "/admin/orderAll";
+		}
+		
+		model.addAttribute("list", list);
+		
+		return "/admin/orderAll";
+		
+	}
+	
+	//주문 상태 변경하기
+	@PostMapping("/statusUpdate")
+	@ResponseBody
+	public String statusUpdate(@RequestParam(value="status", required=false)String status,
+			@RequestParam(value="BtnValue", required=false) String BtnValue) {
+		System.out.println("넘어온 상태값 : " + status);
+		System.out.println("넘어온 주문번호 : " + BtnValue);
+		
+		userOrderService.UpdateStatus(status, BtnValue);
+		
+		
+		return "/admin/";
+	}
+	
+	
 	
 	//회원 주문/배송 리스트에서 수정 페이지 이동
 		@GetMapping("/orderInfo")

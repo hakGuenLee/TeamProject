@@ -5,11 +5,11 @@
 
 <!-- 마이페이지 위시리스트-->
 
-<jsp:include page="../include/header.jsp" />
+<jsp:include page="../include/a_header.jsp" />
 
 
 	<div class="container w-75 mt-5">
-		<h3>${list.order_no}번의 주문 상세보기</h3>  
+		<h3>주문 상세보기</h3>  
 		<table class="table">
 			<thead>
 				<tr>
@@ -58,59 +58,11 @@
 		</div>
 			<a href="javaScript:history.back()"
 				class="btn btn-outline-primary me-2">이전페이지로 이동</a>
-			<a href="<c:url value="/"/> "	
-				class="btn btn-outline-primary me-2">홈으로 이동</a>
-
 		</div>
 
 
 
-<script>
-	function checkAll() {
-		let isChecked = document.getElementById("checkAll").checked;
-
-		let chks = document.getElementsByName('cart_no');
-		//let chks = $('prod_no');
-
-		console.log(chks);
-
-		for (let i = 0; i < chks.length; i++) {
-			chks[i].checked = isChecked;
-		}
-	}
-
-	function choiceBuy() {
-		let chks = document.getElementsByName('cart_no');
-
-		let prodNumStr = "";
-		let separator = false;
-		for (let i = 0; i < chks.length; i++) {
-			if (chks[i].checked) {
-				if (separator) {
-					prodNumStr += '/';
-				}
-				prodNumStr += chks[i].value;
-
-				separator = true;
-			}
-		}
-
-		if (!prodNumStr) { //js null : 거짓
-			alert("구매 할 상품을 체크하세요");
-			return;
-		}
-		//구매할 상품번호(예: 7/9/..) 문자열로 묶어서 input에 저장
-		document.cartForm.choiceBuy.value = prodNumStr;
-
-		console.log(prodNumStr);
-
-		let res = confirm("구매 하시겠습니까?");
-		if (res) {
-			document.cartForm.submit();
-		}
-	}
-</script>
 
 
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../include/a_footer.jsp" />
 

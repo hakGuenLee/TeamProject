@@ -69,5 +69,27 @@ ORDER BY user_no DESC
 LIMIT #{startIndex}, #{cntPerPage}
 </select>
 
+<!-- 회원 정보 가져오기 -->
+<select id="getUserInfo" resultType="UserDTO">
+select * from user_master where user_no = #{no}
+</select>
+
+<!-- 회원정보 수정하기 -->
+<update id="userUpdate">
+update user_master 
+set user_email = #{user_email}, zipcode = #{zipcode}, 
+addr_road = #{addr_road}, 
+addr = #{addr}, 
+addr_detail = #{addr_detail}
+where user_no = #{user_no}
+</update>
+
+<!-- 회원 검색하기 -->
+<select id="searchUser" resultType="UserDTO">
+select * from user_master 
+where user_nm like CONCAT('%', #{search}, '%')
+or user_id like CONCAT('%', #{search}, '%')
+or user_phone like CONCAT('%', #{search}, '%')
+</select>
 
 </mapper>
