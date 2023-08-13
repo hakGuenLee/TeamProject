@@ -9,11 +9,13 @@
 	<div class="container">
 		<div class="container-fluid mt-3" >
 		  <br>
-		   <h2>관리자 페이지</h2>
+		   <h2><b>관리자 페이지</b></h2>
 		   <p><sec:authentication property="principal"/>님, 관리자 페이지에 오신 것을 환영합니다.</p>
+		   
+		   <h3 class="mt-5" style="font-size:23px">관리자 메뉴 바로가기</h3>
 <ul>
       <li class="nav-item">
-        <a class="nav-link active" href="<c:url value="/admin/adminHome"/>">관리자 홈</a>
+        <a class="nav-link active" href="<c:url value="/adminHome"/>">관리자 홈</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<c:url value="/admin/adminRegister"/>">관리자 등록</a>
@@ -53,9 +55,6 @@
       </li>
        <li class="nav-item">
         <a class="nav-link" href="<c:url value="/QnA/qnaList"/>">상품 문의 처리</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<c:url value="/aLogin/adminLogin"/>">로그인</a>
       </li>
     </ul>
 

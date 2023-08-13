@@ -56,7 +56,7 @@
 		  		    <div class="form-group mt-4">
 
 			         <button type="submit" id="btn-modify" class="btn btn-danger me-2">정보 수정하기</button>
-			         <button type="button" id="btn-list" class="btn btn-primary">회원 리스트</button>
+			         <a href="/admin/userList" type="button" id="btn-list" class="btn btn-primary">회원 리스트</a>
 			        </div>
 			        
 			  	</div>
