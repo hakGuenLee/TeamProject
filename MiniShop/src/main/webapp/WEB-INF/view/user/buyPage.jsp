@@ -112,12 +112,12 @@
 					
 				<td> 
 					<div class="d-flex">
-					<p><input type="checkbox" onclick="getDefAddress(); checkOne(this);" id="defAddr" name="checkBox" value="기본주소"/>기본주소</p>  <!-- 기본 배송지 영역 -->
+					<p><input type="checkbox" onclick="getAddress()" id="defAddr" name="checkBox" value="기본주소"/>기본주소</p>  <!-- 기본 배송지 영역 -->
 					
 					<c:forEach var="dto" items="${nickList}">
 						<c:set var="i" value="0"/>
 						<p>
-						<input type="checkbox" onclick="getAddress(); checkOne(this);" id="nickname${i}" value="${dto}" name="checkBox"/>${dto}
+						<input type="checkbox" onclick="getAddress()" id="nickname" value="${dto}" name="checkBox"/>${dto}
 						</p> 	
 						<c:set var="i" value="${i + 1 }"/>
 					</c:forEach>
@@ -241,8 +241,25 @@
 
 
 <script>
+
+
+
+$('input[type="checkbox"][name="checkBox"]').click(function(){
+	 
+	  if($(this).prop('checked')){
+	 
+	     $('input[type="checkbox"][name="checkBox"]').prop('checked',false);
+	 
+	     $(this).prop('checked',true);
+	 
+	    }
+	  
+	   });	  
+
+
+
 function getDefAddress(){
-	$("input:checkbox[name=checkBox]:checked").each(function(){
+	/* $("input:checkbox[name=checkBox]:checked").each(function(){
 		
 		var checkedVal = $(this).val();
 		console.log("주소 이름 : " + checkedVal);
@@ -263,12 +280,22 @@ function getDefAddress(){
 		
 		})
 	
-	})	
+	})	 */
 }
 
 function getAddress(){
-
-	$("input:checkbox[name=checkBox]:checked").each(function(){
+	
+	
+/* 	let defCheckbox = $("input:checkbox[id=defAddr]");
+		
+		
+	
+	
+	let checkAddr = $("input:checkbox[name=checkBox]:checked").val();
+	
+	console.log(checkAddr); */
+	
+$("input:checkbox[name=checkBox]:checked").each(function(){
 		
 		var checkedVal = $(this).val();
 		console.log("주소 이름 : " + checkedVal);
@@ -293,7 +320,7 @@ function getAddress(){
 	
 }	
 	
-function checkOne(element){
+/* function checkOne(element){
 	
 	const checkboxes = document.getElementsByName('checkBox');
 	let checkedCount = 0;
@@ -309,7 +336,7 @@ function checkOne(element){
 	if(checkedCount == 0){
 		element.checked = true;
 	}
-}
+} */
 
 
 

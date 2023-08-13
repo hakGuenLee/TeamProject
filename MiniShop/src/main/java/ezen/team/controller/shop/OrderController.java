@@ -162,6 +162,9 @@ public class OrderController {
 	@ResponseBody
 	public AddrDTO getAddress(@RequestParam("nickname") String nickname, HttpSession session) {
 	
+		System.out.println("넘어온 배송지목록 값 : " + nickname);
+		
+		
 		AddrDTO aDto = orderService.getAddrInfo(nickname, session);
 				
 		return aDto;
