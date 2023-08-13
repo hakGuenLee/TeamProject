@@ -54,7 +54,7 @@ select addr_no from addr_manage where user_id = #{id} and addr_gb = '기본배�
 
 <!--기본 배송지로 되어있던 주소번호의 주소는 기본배송지 지우기 -->
 <update id="resetAddress">
-update addr_manage set addr_gb = '' where addr_no = #{addressChecked}
+update addr_manage set addr_gb = null where addr_no = #{addressChecked}
 </update>
 
 

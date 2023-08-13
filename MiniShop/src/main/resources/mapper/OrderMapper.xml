@@ -93,7 +93,7 @@ order_no = #{order_no}
 </select>
 <!-- 해당 아이디의 배송지 별칭 목록 가져오기 -->
 <select id="getNickAddr" resultType="String">
-select addr_nik from addr_manage where user_id = #{id} 
+select addr_nik from addr_manage where user_id = #{id} and addr_gb is null
 </select>
 
 <!-- 해당 아이디의 별칭에 맞는 주소 가져오기  -->

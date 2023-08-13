@@ -130,13 +130,14 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public void defaultAddressSetting(String addrNo, HttpSession session) {
 		
-		//해당 아이디에 이미 기본 배송지가 있는지 확인
+		
 	
 		String id = userInfoHandler.getUserId(session);
 
 		//기본배송지로 되어 있는 주소 번호 받기
 		String addressChecked = mapper.checkAddress(id);
 		
+		//해당 아이디에 이미 기본 배송지가 있는지 확인
 		//기본 배송지가 없을 경우 회원이 체크한 주소지 번호에 맞는 주소를 기본배송지로 변경하기
 		if(addressChecked == null) {
 			mapper.updateDefaultAddress(addrNo);

@@ -155,6 +155,7 @@ public class MyPageController {
 	@PostMapping("/defaultAddress")
 	@ResponseBody
 	public String defaultAddress(@RequestParam("no") String addrNo, HttpSession session) {
+		
 		service.defaultAddressSetting(addrNo, session);
 		
 		return "redirect:myAddress";
