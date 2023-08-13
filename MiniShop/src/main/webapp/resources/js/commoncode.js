@@ -105,7 +105,6 @@
 		 url:"/order/getAddressInfo",
 		 type:"post",
 		 data:{"nickname" : a},
-		 dataType : "json",
 		 success:(result) => {
 				if(cb) cb(result);
 			},

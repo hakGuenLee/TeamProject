@@ -162,20 +162,28 @@ public class OrderController {
 	@ResponseBody
 	public AddrDTO getAddress(@RequestParam("nickname") String nickname, HttpSession session) {
 	
-		System.out.println("넘어온 배송지목록 값 : " + nickname);
+		System.out.println("넘어온 배송지목록 값:" + nickname);
 		
+		if(nickname == "기본주소") {
+			System.out.println("기본주소 명령 실행!");
+			AddrDTO aDto1 = orderService.getDefAddress(nickname, session);
+			return aDto1;
+		}
 		
-		AddrDTO aDto = orderService.getAddrInfo(nickname, session);
-				
-		return aDto;
-		
+			AddrDTO aDto = orderService.getAddrInfo(nickname, session);
+			
+			System.out.println("가져온 배송지 주소 : " + aDto);
+					
+			return aDto;			
 	}
-	
+
+
 	//기본주소 가져오기
 	@PostMapping("/getDefAddress")
 	@ResponseBody
-	public AddrDTO getDefAddress(@RequestParam("addrName") String addrName, HttpSession session) {
+	public AddrDTO getDefAddress(@RequestParam(value="addrName", required=false) String addrName, HttpSession session) {
 		
+		System.out.println("넘어온 기본주소 : " + addrName);
 		AddrDTO aDto = orderService.getDefAddress(addrName, session);
 
 		return aDto;

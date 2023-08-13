@@ -123,6 +123,7 @@ public class OrderServiceImpl implements OrderService {
 	public AddrDTO getAddrInfo(String nickname, HttpSession session) {
 		
 		String id = userInfoHandler.getUserId(session);
+		
 
 		return mapper.getAddrInfo(nickname, id);
 	}
@@ -130,6 +131,8 @@ public class OrderServiceImpl implements OrderService {
 	//기본주소 가져오기
 	@Override
 	public AddrDTO getDefAddress(String addrName, HttpSession session) {
+		
+		System.out.println("서비스단에 넘어온 기본 주소 : " + addrName);
 		
 		String id = userInfoHandler.getUserId(session);
 

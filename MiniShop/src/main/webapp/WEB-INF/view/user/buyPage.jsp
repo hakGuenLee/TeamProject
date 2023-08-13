@@ -112,7 +112,7 @@
 					
 				<td> 
 					<div class="d-flex">
-					<p><input type="checkbox" onclick="getAddress()" id="defAddr" name="checkBox" value="기본주소"/>기본주소</p>  <!-- 기본 배송지 영역 -->
+					<p><input type="checkbox" onclick="getDefaultAddress()" id="defAddr" name="checkBox" value="기본배송지"/>기본주소</p>  <!-- 기본 배송지 영역 -->
 					
 					<c:forEach var="dto" items="${nickList}">
 						<c:set var="i" value="0"/>
@@ -254,11 +254,29 @@ $('input[type="checkbox"][name="checkBox"]').click(function(){
 	 
 	    }
 	  
-	   });	  
+});	  
 
 
 
-function getDefAddress(){
+function getDefaultAddress(){
+	
+	var checkedVal = $("input:checkbox[name=checkBox]:checked").val();
+	console.log(checkedVal)
+	let addrArea = $("#addrArea");
+	
+	getDefAddress(checkedVal, function(data){
+		
+		console.log(data);
+		
+		let AddrDTO = data; 
+	
+		$("#addr_nm").text(AddrDTO.addr_nm);
+		$("#address").text(AddrDTO.addr);
+		$("#addr_tel").text(AddrDTO.addr_tel);
+		
+		
+		})
+	
 	/* $("input:checkbox[name=checkBox]:checked").each(function(){
 		
 		var checkedVal = $(this).val();
@@ -283,19 +301,16 @@ function getDefAddress(){
 	})	 */
 }
 
-function getAddress(){
-	
+
+function getAddress(){	
 	
 /* 	let defCheckbox = $("input:checkbox[id=defAddr]");
-		
-		
+
 	
 	
-	let checkAddr = $("input:checkbox[name=checkBox]:checked").val();
+	 */
 	
-	console.log(checkAddr); */
-	
-$("input:checkbox[name=checkBox]:checked").each(function(){
+ $("input:checkbox[name=checkBox]:checked").each(function(){
 		
 		var checkedVal = $(this).val();
 		console.log("주소 이름 : " + checkedVal);
@@ -303,22 +318,22 @@ $("input:checkbox[name=checkBox]:checked").each(function(){
 		let str = "";
 		let addrArea = $("#addrArea");
 		
-		
+
 		getAddressInfo(checkedVal, function(data){
-		console.log(data)
-		
-		let AddrDTO = data; 
-	
-		$("#addr_nm").text(AddrDTO.addr_nm);
-		$("#address").text(AddrDTO.addr);
-		$("#addr_tel").text(AddrDTO.addr_tel);
-		
-		
-		})
-	
+				console.log(data)
+				
+				let AddrDTO = data; 
+			
+				$("#addr_nm").text(AddrDTO.addr_nm);
+				$("#address").text(AddrDTO.addr);
+				$("#addr_tel").text(AddrDTO.addr_tel);
+				
+				
+				})
+
 	})	 
 	
-}	
+}
 	
 /* function checkOne(element){
 	
