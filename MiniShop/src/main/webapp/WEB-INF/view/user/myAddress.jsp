@@ -85,10 +85,10 @@ $("#addAdressBtn").on("click", function(){
 function checkOne(element){
 
    
-   const checkboxes = document.getElementsByName('checkBox');
+   const checkboxes = document.getElementsByName('addr_no');
    let checkedCount = 0;
    
-   for(let i=0; 0<checkboxes.length; i++){
+   for(let i=0; i<checkboxes.length; i++){
       if(checkboxes[i].checked){
          checkedCount++;
          if(checkboxes[i] !== element){
@@ -105,7 +105,7 @@ function checkOne(element){
 
 function addressUpdate(){
 	
-	$("input:checkbox[name=checkBox]:checked").each(function(){
+	$("input:checkbox[name=addr_no]:checked").each(function(){
 		var checkVal = $(this).val();
 		console.log("주소지 번호 값 " + checkVal);
 		
