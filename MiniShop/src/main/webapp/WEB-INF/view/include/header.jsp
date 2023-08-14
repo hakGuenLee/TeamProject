@@ -124,94 +124,93 @@ alert('위시리스트에 이미 있는 상품입니다.')
 
 
 <script>
-$(document).ready(function(){	
-	var categoryCode = 'A100'
-	let str = "";
-	let fruitArea = $("#fruitArea");
-	
-	getProdCategoryList(categoryCode, function(data){
-		console.log(data);
-		
-		let list = data;
-		
-		for(let i=0; i<list.length; i++){
-			str += '<li><a class="nav-link" href="/productPage/fruitPage'+i+'">'+list[i].ct_nm2+'</a></li>'
-		}
-		
-		fruitArea.html(str);
+$(document).ready(function(){   
+   var categoryCode = 'A100'
+   let str = "";
+   let fruitArea = $("#fruitArea");
+   
+   getProdCategoryList(categoryCode, function(data){
+      console.log(data);
+      
+      let list = data;
+      
+      for(let i=0; i<list.length; i++){
+         str += '<li><a class="nav-link" href="/productPage/fruitPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+      }
+      
+      fruitArea.html(str);
 
-	});
-	
-	var categoryCode = 'B100'
-	let str2 = "";
-	let vegeArea = $("#vegeArea");
-		
-		getProdCategoryList(categoryCode, function(data){
-		console.log(data);
-			
-		let list = data;
-			
-		for(let i=0; i<list.length; i++){
-			str2 += '<li><a class="nav-link" href="/productPage/vegePage'+i+'">'+list[i].ct_nm2+'</a></li>'
-		}
-			
-			vegeArea.html(str2);
+   });
+   
+   var categoryCode = 'B100'
+   let str2 = "";
+   let vegeArea = $("#vegeArea");
+      
+      getProdCategoryList(categoryCode, function(data){
+      console.log(data);
+         
+      let list = data;
+         
+      for(let i=0; i<list.length; i++){
+         str2 += '<li><a class="nav-link" href="/productPage/vegePage'+i+'">'+list[i].ct_nm2+'</a></li>'
+      }
+         
+         vegeArea.html(str2);
 
-		});
-		
-	var categoryCode = 'C100'
-		let str3 = "";
-		let meetArea = $("#meetArea");
-				
-		getProdCategoryList(categoryCode, function(data){
-			console.log(data);
-					
-			let list = data;
-					
-			for(let i=0; i<list.length; i++){
-				str3 += '<li><a class="nav-link" href="/productPage/meetPage'+i+'">'+list[i].ct_nm2+'</a></li>'
-			}
-					
-			meetArea.html(str3);
+      });
+      
+   var categoryCode = 'C100'
+      let str3 = "";
+      let meetArea = $("#meetArea");
+            
+      getProdCategoryList(categoryCode, function(data){
+         console.log(data);
+               
+         let list = data;
+               
+         for(let i=0; i<list.length; i++){
+            str3 += '<li><a class="nav-link" href="/productPage/meetPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+         }
+               
+         meetArea.html(str3);
 
-		});
-		
-	var categoryCode = 'S100'
-		let str4 = "";
-		let clothArea = $("#clothArea");
-					
-		getProdCategoryList(categoryCode, function(data){
-			console.log(data);
-						
-			let list = data;
-						
-			for(let i=0; i<list.length; i++){
-				str4 += '<li><a class="nav-link" href="/productPage/clothPage'+i+'">'+list[i].ct_nm2+'</a></li>'
-			}
-						
-			clothArea.html(str4);
-				
-		});	
-		
-	var categoryCode = 'K100'
-		let str5 = "";
-		let electroArea = $("#electroArea");
-						
-		getProdCategoryList(categoryCode, function(data){
-			console.log(data);
-							
-			let list = data;
-							
-			for(let i=0; i<list.length; i++){
-				str5 += '<li><a class="nav-link" href="/productPage/electroPage'+i+'">'+list[i].ct_nm2+'</a></li>'
-			}
-							
-			electroArea.html(str5);
-					
-		});			
+      });
+      
+   var categoryCode = 'S100'
+      let str4 = "";
+      let clothArea = $("#clothArea");
+               
+      getProdCategoryList(categoryCode, function(data){
+         console.log(data);
+                  
+         let list = data;
+                  
+         for(let i=0; i<list.length; i++){
+            str4 += '<li><a class="nav-link" href="/productPage/clothPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+         }
+                  
+         clothArea.html(str4);
+            
+      });   
+      
+   var categoryCode = 'K100'
+      let str5 = "";
+      let electroArea = $("#electroArea");
+                  
+      getProdCategoryList(categoryCode, function(data){
+         console.log(data);
+                     
+         let list = data;
+                     
+         for(let i=0; i<list.length; i++){
+            str5 += '<li><a class="nav-link" href="/productPage/electroPage'+i+'">'+list[i].ct_nm2+'</a></li>'
+         }
+                     
+         electroArea.html(str5);
+               
+      });         
 
 });
 </script>
-
 
 

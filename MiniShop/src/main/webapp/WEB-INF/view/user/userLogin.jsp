@@ -14,7 +14,7 @@
         <h3 class="text-center mb-4"><b>로그인</b></h3>
 
         <input class="form-control mb-3 w-100" type="text" id="user_id" name="user_id" placeholder="아이디를 입력하세요"/>
-        <input class="form-control mb-2 w-100" type="text" id="user_pw" name="user_pw" placeholder="비밀번호를 입력하세요"/>
+        <input class="form-control mb-2 w-100" type="password" id="user_pw" name="user_pw" placeholder="비밀번호를 입력하세요"/>
 
         <div class="text-center pt-4">
             <input type="submit" class="btn btn-primary" style="width:300px; height:48px" value="로그인"/>

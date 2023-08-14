@@ -51,9 +51,6 @@
 					<c:set var="cnt" value="0"/>
 					<c:if test="${csList!=null || csList.size() !=0}">
 					<c:set var="cnt" value="${cnt + 1}"/>
-						<script>
-							alert("${csList.size()}");						
-						</script>
 						<c:forEach var="dto" items="${csList}">
 						<tr>
 							<td>${dto.cs_no}</td>
@@ -136,9 +133,7 @@
            str += " <option value='" + list[i].item_cd+"' "+selected + ">";
           str += list[i].item_nm+"</option>"; 
           
-          
           console.log(str);
-       
        }
               
        roleArea.html(str);

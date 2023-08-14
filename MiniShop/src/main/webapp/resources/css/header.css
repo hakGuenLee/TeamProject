@@ -1,3 +1,4 @@
+
 /* 폰트 시작 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
@@ -18,21 +19,36 @@ header{
 }
 
 
-#home{
+/*#home{
 	margin-left:30px;
 	font-size: 25px;
-}
+}*/
 
+<<<<<<< Updated upstream
 .navbar{
 	width: 100%;
+=======
+.navbar > ul  ul{
+	display: none;
+}
+
+.navbar ul  li:hover > ul {
+	display:block;
+/*	height: 250px;	*/
+>>>>>>> Stashed changes
 	transition: 3s;
 }
 
 
+<<<<<<< Updated upstream
 #menuName > a{
 	margin-top:6px;
 	font-size: 18px;
 
+=======
+.navbar > ul > li {
+	position: relative;
+>>>>>>> Stashed changes
 }
 
 #menuName > ul > li a{
@@ -70,6 +86,7 @@ header{
 	height: 350px;		
 }
 
+<<<<<<< Updated upstream
 
 .navbar ul li :hover{
 	color:#ffad94;
@@ -87,3 +104,18 @@ header{
 }
 
 
+=======
+/*img {
+	height:700px;
+	width:100%;
+}*/
+
+/*#allProduct{
+	padding-left:600px;
+	
+}
+
+#UserArea{
+	padding-left:300px;
+}*/
+>>>>>>> Stashed changes

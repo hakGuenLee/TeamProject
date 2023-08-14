@@ -11,6 +11,7 @@
 
 	<!-- 리팩토링 후 -->
     <select id="csList" resultType="CsDTO">	 	
+<<<<<<< Updated upstream
 		  select *
       from cs_master as cm, cmmn_cd as cmcd
       where 1=1
@@ -23,6 +24,20 @@
          and cm.proc_sts= #{proc_sts}
       </if>      
      	ORDER BY cs_no DESC
+=======
+		select *
+		from cs_master
+		 as cm, cmmn_cd as cmcd
+		where cm.cs_code = cmcd.item_cd
+		and cmcd.cm_cd = 300
+		<if test="cs_code !='ALL'">
+			and	cm.cs_code = #{cs_code}
+		</if>	
+		<if test="proc_sts !='proc_all'">
+			and	cm.proc_sts= #{proc_sts}
+		</if>
+      	ORDER BY cs_no DESC
+>>>>>>> Stashed changes
 		LIMIT #{pageDto.startIndex},
 		#{pageDto.cntPerPage}       
     </select>
@@ -30,7 +45,6 @@
      <select id="csInfo" resultType="CsDTO">
 	  	<!-- select * from cs_master left outer join cmmn_cd on cs_master.cs_code = cmmn_cd.item_cd
 		where cs_master.cs_no = #{cs_no} -->
-		
 		<if test='proc_sts == "1"'>
 			select * 
 			from cs_master as cm, cmmn_cd as cmcd
@@ -39,16 +53,15 @@
 			and cm.cs_code = cmcd.item_cd
 			and cm.cs_no = #{cs_no} 
 		</if>
-		
 		<if test='proc_sts == "2"'>
 			select * 
 			from cs_master as cm, cmmn_cd as cmcd, cs_reply as cr
 			where 1=1
+			and cmcd.cm_cd = 300
 			and cm.cs_code = cmcd.item_cd
 			and cm.cs_no = #{cs_no}			
 			and cr.cs_no = #{cs_no}
 		</if>	
-		 
   	</select>
   	
   	<update id="stsUpdate">
