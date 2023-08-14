@@ -36,9 +36,12 @@ public class UserQnAController {
 	
 	//상품 문의 이동
 	@GetMapping("/prodQuestion")
-	public String prodQuestion(@RequestParam("name") String prodName, Model model) {
+	public String prodQuestion(@RequestParam("name") String prodName,
+								@RequestParam("no") String prodNo,
+								Model model) {
 		
 		model.addAttribute("prodName", prodName);
+		model.addAttribute("prod_no", prodNo);
 		
 		return "/user/prodQuestion";
 	}

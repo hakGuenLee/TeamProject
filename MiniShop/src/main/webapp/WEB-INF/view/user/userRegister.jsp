@@ -32,11 +32,11 @@
 
 		<input type="hidden" id="isPwChk" value="no" /> 
 		<input
-			class="form-control mb-2 w-50" type="text" id="user_pw"
+			class="form-control mb-2 w-50" type="password" id="user_pw"
 			name="user_pw" placeholder="비밀번호" onkeyup="pwCheck()">
 		<p id="chkMsg2" class="mb-2"></p>
 		<input type="hidden" id="isPwChk2" value="no" /> <input
-			class="form-control mb-2 w-50" type="text" id="user_pw2"
+			class="form-control mb-2 w-50" type="password" id="user_pw2"
 			name="user_pw2" placeholder="비밀번호 확인" onkeyup="pwCheck2()">
 		<p id="chkMsg3" class="mb-2"></p>
 
@@ -155,7 +155,7 @@
 	function idCheck() {
 
 		var user_id = $('#user_id').val();
-		var pattern = /^[a-zA-Z0-9]{2,10}$/;
+		var pattern =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{2,10}$/;
 
 		if (!pattern.test(user_id)) {
 			$('#isIdChk').val("no");

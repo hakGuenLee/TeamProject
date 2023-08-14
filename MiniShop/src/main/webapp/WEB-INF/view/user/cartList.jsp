@@ -82,10 +82,9 @@
 	method="post">
 			<input type="hidden" name="choiceBuy" /> <a
 				href="javascript:choiceBuy()" class="btn btn-outline-secondary">구매하기</a>
-			<a href="${pageContext.request.contextPath}"
-				class="btn btn-outline-primary me-2">계속 쇼핑하기</a>
+      		<a href="javaScript:history.go(-2)" class="btn btn-primary">계속 쇼핑하기</a>
 				<a href="<c:url value="/order/buyPage"/>"
-				class="btn btn-outline-primary me-2">(임시) 구매페이지 이동)</a>
+				class="btn btn-outline-primary me-2">구매페이지 이동</a>
 			</form>
 
 		</div>
