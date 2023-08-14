@@ -66,7 +66,7 @@
 
 
 <script>
-let address = $("addr_no").length;
+let address = document.getElementsByName("addr_no").length;
 
 //배송지가 3개 등록되어 있을 시 배송지 추가 기능 막기
 $("#addAdressBtn").on("click", function(){
@@ -76,7 +76,7 @@ $("#addAdressBtn").on("click", function(){
 	if(address == 3){
 		console.log("3개!")
 		alert("배송지기 이미 3건 등록 되어 있습니다!");
-		$("#addAdressBtn").attr("href","");
+		$("#addAdressBtn").attr("href","#");
 	}	
 })
 
