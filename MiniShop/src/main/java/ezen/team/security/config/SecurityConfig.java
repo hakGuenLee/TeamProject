@@ -88,7 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 //
 		.antMatchers("/", "/adminLogin", "/cart/**", "/user/**", "/getProdCategoryList", "/productPage/**", "/myPage/**", "/prodDetail/**","/order/**", 
-					"/getCode", "/getPopImg", "/getHomeProdBox", "/getProdBox", "/board/**","/userQna/**").permitAll()
+					"/getCode", "/getPopImg", "/myPage/defaultAddress", "/getHomeProdBox", "/getProdBox", "/board/**","/userQna/**").permitAll()
 			.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
 			.antMatchers("/adminHome").hasAnyAuthority("ROLE_ADMIN", "ROLE_MANAGER")
 		.anyRequest().authenticated()

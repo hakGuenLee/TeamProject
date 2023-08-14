@@ -25,7 +25,7 @@
             </c:if>
             </div>
          </div>
-         <div id="prodInfoArea">
+         <div id="prodInfoArea" style="width:400px">
             <p id="prodName"><b>${dto.prod_nm }</b></p>
             <p style="font-size:25px"><b><fmt:formatNumber value="${dto.price }"/></b></p>
             <hr>
@@ -93,7 +93,7 @@
             <p style="color:gray">해당 상품은 상세 이미지가 없습니다.</p>
          </c:if>
          <c:if test="${dto.detail_img != null }">
-         <img src="/resources/upload/${dto.detail_img}">
+         <img src="/resources/upload/${dto.detail_img}" style="width:1000px">
          </c:if>
       </div> 
      
