@@ -134,7 +134,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" class="text-center">
-					<input type="submit" class="btn btn-sm btn-primary" id="registerButton" value="상품등록" /> 
+					<input type="button" class="btn btn-sm btn-primary" onclick="registerCheck()" id="registerButton" value="상품등록" /> 
 					<a class="btn btn-sm btn-secondary" href="<c:url value="/product/prodList"/>">리스트</a>
 					</td>
 				</tr>
@@ -145,7 +145,7 @@
 
 <script>
 
-/* function registerCheck(){
+ function registerCheck(){
 	
 	let prodName = $("prod_nm").val(); //상품명
 	let mainImg = $("main_img").val(); //대표이미지
@@ -161,7 +161,7 @@
 		$("#registerButton").attr("type", "submit");
 	}
 }
- */
+
 </script>
 
 
