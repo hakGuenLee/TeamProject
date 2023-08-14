@@ -53,7 +53,7 @@
 			</div>
 			
 			<div class="form-floating mt-3 mb-3">
-			  <input type="password" class="form-control w-50" id="adm_pw2" placeholder="패스워드를 한번 더 입력하세요" name="adm_pw">
+			  <input type="password" class="form-control w-50" id="adm_pw2" placeholder="패스워드를 한번 더 입력하세요">
 			  <label for="pw">패스워드를 한번 더 입력하세요</label>
 			  <a class="btn btn-secondary" onclick="passwordCheck()">비밀번호 확인</a>
 			</div>

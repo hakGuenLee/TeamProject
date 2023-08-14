@@ -232,6 +232,8 @@
 				쇼핑하기</a>
 		</div>
 	</section>
+
+	
 </div>
 <%-- <input tyle="hidden" value="${userDTO.user_id}" id="userid"> --%>
 
@@ -272,7 +274,6 @@ function getDefaultAddress(){
 	
 		$("#addr_nm").text(AddrDTO.addr_nm);
 		$("#address").text(AddrDTO.addr);
-		$("#addr_tel").text(AddrDTO.addr_tel);
 		
 		
 		})
@@ -310,7 +311,11 @@ function getAddress(){
 	
 	 */
 	
- $("input:checkbox[name=checkBox]:checked").each(function(){
+
+	var checkV =  $("input:checkbox[name=checkBox]:checked").val();
+	 console.log(checkV);
+	 
+$("input:checkbox[name=checkBox]:checked").each(function(){
 		
 		var checkedVal = $(this).val();
 		console.log("주소 이름 : " + checkedVal);
@@ -327,7 +332,7 @@ function getAddress(){
 				$("#addr_nm").text(AddrDTO.addr_nm);
 				$("#address").text(AddrDTO.addr);
 				$("#addr_tel").text(AddrDTO.addr_tel);
-				
+				$("$getAddroNo").attr("value", AddrDTO.addr_no);
 				
 				})
 
