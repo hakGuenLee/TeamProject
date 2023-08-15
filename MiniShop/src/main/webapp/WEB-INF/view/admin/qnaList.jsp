@@ -41,28 +41,26 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:if test="${csList==null || csList.size() ==0}">						
+					<c:if test="${QList==null || QList.size() ==0}">						
 						<tr>
 							<td colspan="8">문의건이 존재하지 않습니다!!</td>
 						</tr>
 					</c:if>
 					<c:set var="cnt" value="0"/>
-					<c:if test="${csList!=null || csList.size() !=0}">
+					<c:if test="${QList!=null || QList.size() !=0}">
 					<c:set var="cnt" value="${cnt + 1}"/>
-						<script>
-							alert("${csList.size()}");						
-						</script>
-						<c:forEach var="dto" items="${csList}">
+
+						<c:forEach var="dto" items="${QList}">
 						<tr>
-							<td>${dto.cs_no}</td>
+							<td>${dto.qna_no}</td>
 							<%-- <td>${item_nm}</td> --%>
-							<td>${dto.item_nm}</td>
-							<td>${dto.cs_title}</td>
+						<%-- 	<td>${dto.item_nm}</td> --%>
+							<td>${dto.qna_ttl}</td>
 							<td>${dto.user_id}</td>
-							<td>${dto.cs_dt}</td>
+							<td>${dto.qna_dt}</td>
 							<td>관리자</td>
 							<td>${dto.proc_dt}</td>
-							<td><a href="<c:url value="/customer/csInfo?cs_no=${dto.cs_no}&cs_code=${dto.cs_code}&proc_sts=${search_sts}"/>" class="btn btn-primary">상세</a></td>
+							<td><a href="<c:url value="/customer/QnaInfo?qna_no=${dto.qna_no}&qna_code=${dto.qna_code}&proc_sts=${search_sts}"/>" class="btn btn-primary">상세</a></td>
 						
 						</tr>
 						</c:forEach>				

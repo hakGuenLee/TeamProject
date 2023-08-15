@@ -16,7 +16,7 @@
 		from cs_master
 		 as cm, cmmn_cd as cmcd
 		where cm.cs_code = cmcd.item_cd
-		and cmcd.cm_cd = 300
+		and cmcd.cm_cd = 500
 		<if test="cs_code !='ALL'">
 			and	cm.cs_code = #{cs_code}
 		</if>	
@@ -36,7 +36,7 @@
 			select * 
 			from cs_master as cm, cmmn_cd as cmcd
 			where 1=1
-			and cmcd.cm_cd = 300
+			and cmcd.cm_cd = 500
 			and cm.cs_code = cmcd.item_cd
 			and cm.cs_no = #{cs_no} 
 		</if>
@@ -44,7 +44,7 @@
 			select * 
 			from cs_master as cm, cmmn_cd as cmcd, cs_reply as cr
 			where 1=1
-			and cmcd.cm_cd = 300
+			and cmcd.cm_cd = 500
 			and cm.cs_code = cmcd.item_cd
 			and cm.cs_no = #{cs_no}			
 			and cr.cs_no = #{cs_no}
