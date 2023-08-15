@@ -11,9 +11,18 @@ SELECT count(*) FROM qna_master
 
 <select id="qnaList" resultType="QnaDTO">
 SELECT * FROM qna_master
+AS qm, cmmn_cd AS cmcd
+		WHERE qm.qna_code = cmcd.item_cd
+		AND cmcd.cm_cd = 400
+		<if test="cs_code !='ALL'">
+			AND	qm.qna_code = #{cs_code}
+		</if>	
+		<if test="proc_sts !='proc_all'">
+			AND	qm.proc_sts= #{proc_sts}
+		</if>
 ORDER BY qna_no DESC
-LIMIT #{startIndex},
-#{cntPerPage}
+LIMIT #{pagedto.startIndex},
+#{pagedto.cntPerPage}
 </select>
 
 

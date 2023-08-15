@@ -19,13 +19,14 @@ public class QnaServiceImpl implements QnaService {
 	
 	// 상품문의 리스트 가져오기
 	@Override
-	public List<QnaDTO> qnaList(PageDTO pagedto) {
-		
+	public List<QnaDTO> qnaList(String cs_code, String proc_sts, PageDTO pagedto) {
+
 		int totalCnt = mapper.totalCnt(pagedto);
 		
-		pagedto.setValue(totalCnt, pagedto.getCntPerPage());    
+		pagedto.setValue(totalCnt, pagedto.getCntPerPage());
 		
-		return mapper.qnaList(pagedto);
+		
+		return mapper.qnaList(cs_code, proc_sts,pagedto);
 	}
 
 }

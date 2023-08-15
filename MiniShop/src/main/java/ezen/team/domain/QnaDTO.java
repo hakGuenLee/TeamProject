@@ -24,6 +24,7 @@ public class QnaDTO {
 	private String proc_id;
 	private String proc_sts;
 	private Date proc_dt;
+	private int cs_code;
 	
 	
 }

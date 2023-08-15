@@ -13,6 +13,6 @@ public interface QnaMapper {
 	// 상품문의 페이징 처리
 	int totalCnt(PageDTO pagedto);
 	//상품문의 가져오기
-	List<QnaDTO> qnaList(PageDTO pagedto);
+	List<QnaDTO> qnaList(String cs_code, String proc_sts, PageDTO pagedto);
 
 }
