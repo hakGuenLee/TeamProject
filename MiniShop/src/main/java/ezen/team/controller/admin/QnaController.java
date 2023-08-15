@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ezen.team.domain.PageDTO;
 import ezen.team.domain.QnaDTO;
@@ -28,14 +29,19 @@ public class QnaController {
 	private QnaService qnaService;
 	
 	//상품 QnA 리스트 이동
-	@GetMapping("/qnaList")
-	public String qnaList(PageDTO pagedto,Model model) {
+	@RequestMapping("/qnaList")
+	public String qnaList(
+			@RequestParam(value = "cs_code" , defaultValue ="ALL") String cs_code,
+            @RequestParam(value = "proc_sts" , defaultValue ="1") String proc_sts,
+			PageDTO pagedto,Model model) {
 		
-	List<QnaDTO> QList = qnaService.qnaList(pagedto);
+	List<QnaDTO> QList = qnaService.qnaList(cs_code, proc_sts, pagedto);
 		
-	System.out.println(QList);
 	
 	model.addAttribute("QList",QList);
+	model.addAttribute("search_cd", cs_code);
+	model.addAttribute("search_sts", proc_sts);
+	model.addAttribute("pageDTO", pagedto);
 	
 		return "/admin/qnaList";
 	}
