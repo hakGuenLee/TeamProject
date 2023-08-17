@@ -6,6 +6,9 @@ Spring boot와 JSP, My Batis를 통해 소규모 종합 쇼핑몰을 개발한 �
 ## 개발 기간
 2023.07.17 ~ 2023.08.15
 
+## 개발 인원
+3명
+
 ### 개발 환경
 - JDK 11.0.18
 - Language : Java 11, JavaScript 1.5, Jquery 3.7.0, JSP 
