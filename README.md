@@ -1,7 +1,5 @@
 # Spring-boot MiniMall Project
 
-[![Hits](https://hits.sh/github.com/hakGuenLee/TeamProject.svg)](https://hits.sh/github.com/hakGuenLee/TeamProject/)
-
 ## 프로젝트 소개
 Spring boot와 JSP, My Batis를 통해 소규모 종합 쇼핑몰을 개발한 프로젝트입니다.
 
